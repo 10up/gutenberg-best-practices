@@ -1,0 +1,136 @@
+{
+  "main": {
+    "id": "cc2d9fbc2207327b",
+    "type": "split",
+    "children": [
+      {
+        "id": "304997078ba8c329",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md",
+            "mode": "source"
+          }
+        },
+        "group": "13fdc14b61fde162"
+      },
+      {
+        "id": "8054aa17e280a9fd",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md",
+            "mode": "preview"
+          }
+        },
+        "group": "13fdc14b61fde162"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1a9eeb0c87ed384b",
+    "type": "split",
+    "children": [
+      {
+        "id": "5044b7ca741524c4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2fdf7fc82a065c17",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "763af3b1536ed1ec",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a6eb06371dc9854d",
+    "type": "split",
+    "children": [
+      {
+        "id": "d3a2fb16533ff6c6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2483a670948c2054",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f12f0accaa23e720",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "d52abaf77801691f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "304997078ba8c329",
+  "lastOpenFiles": [
+    "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md",
+    "00-fundamentals/03-a-block.md",
+    "00-fundamentals/02-the-editor.md",
+    "readme.md",
+    "00-introduction/03-support.md",
+    "00-introduction/02-course-structure.md",
+    "00-fundamentals/01-overview.md",
+    "05-custom-blocks/custom-blocks.md",
+    "04-block-extentions/block-extentions.md",
+    "03-block-patterns/block-patterns.md"
+  ]
+}
