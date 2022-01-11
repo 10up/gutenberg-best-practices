@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "02-blocks/05-custom-blocks/block updates.md",
+            "file": "02-blocks/04-block-extensions/block-extensions.md",
             "mode": "source",
             "source": true
           }
@@ -22,7 +22,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "02-blocks/05-custom-blocks/block updates.md",
+            "file": "02-blocks/04-block-extensions/block-extensions.md",
             "mode": "preview",
             "source": true
           }
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "02-blocks/05-custom-blocks/block updates.md",
+                "file": "02-blocks/04-block-extensions/block-extensions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "02-blocks/05-custom-blocks/block updates.md"
+                "file": "02-blocks/04-block-extensions/block-extensions.md"
               }
             }
           }
@@ -124,15 +124,15 @@
   },
   "active": "304997078ba8c329",
   "lastOpenFiles": [
-    "02-blocks/05-custom-blocks/block updates.md",
+    "02-blocks/04-block-extensions/block-extensions.md",
     "02-blocks/Blocks Outline.md",
+    "02-blocks/05-custom-blocks/block updates.md",
     "01-themes/styles.md",
     "01-themes/theme-json.md",
     "02-blocks/01-block-styles/block-styles.md",
     "00-fundamentals/03-a-block.md",
     "00-fundamentals/02-the-editor.md",
     "00-fundamentals/01-overview.md",
-    "02-blocks/04-block-extentions/block-extentions.md",
     "02-blocks/03-block-patterns/block-patterns.md"
   ]
 }
