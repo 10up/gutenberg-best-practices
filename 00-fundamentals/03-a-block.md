@@ -15,7 +15,7 @@ A great examples of this in the core blocks for example is the cover block. The 
 
 This pattern of having a placehoder also allows you to make it easier for your editors in very complex block to not overwhelm them when they start inserting the block. If you look at the core columns block the first thing you get to see is a placeholder where you can selecte the layout of columns you want to start with. You can of course change that easily later in the settings sidebar but you don't need to and can get up and running without having to interact with the advanced options in the sidebar at all. 
 
-**This actually is a pattern that you will see over and over again throughout this section. The settings sidebar should be treated as optional. Most editors should never have to open it and interact with the options in it. Everythign they need to share their content should be available inline.**
+**This actually is a pattern that you will see over and over again throughout this section. The settings sidebar should be treated as optional. Most editors should never have to open it and interact with the options in it. Everythign they need to enter their content should be available inline.**
 
 ### Selected 
 In it's selected state the editor representation should be though of as the frontend representation with additional inline controls to modify the content of the block. This means that if a block for example provides different rich text areas for you to fill out they should all be shown with placeholder text. This way editors can see all the options and choose to fill in all the areas they want to. 

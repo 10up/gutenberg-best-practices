@@ -1,5 +1,9 @@
 {
   "baseFontSize": 16,
   "cssTheme": "Gitsidian",
-  "theme": "moonstone"
+  "theme": "moonstone",
+  "translucency": false,
+  "enabledCssSnippets": [
+    "obsidian"
+  ]
 }

@@ -9,8 +9,9 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md",
-            "mode": "source"
+            "file": "02-blocks/05-custom-blocks/block updates.md",
+            "mode": "source",
+            "source": true
           }
         },
         "group": "13fdc14b61fde162"
@@ -21,8 +22,9 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md",
-            "mode": "preview"
+            "file": "02-blocks/05-custom-blocks/block updates.md",
+            "mode": "preview",
+            "source": true
           }
         },
         "group": "13fdc14b61fde162"
@@ -81,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md",
+                "file": "02-blocks/05-custom-blocks/block updates.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -109,7 +111,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md"
+                "file": "02-blocks/05-custom-blocks/block updates.md"
               }
             }
           }
@@ -122,15 +124,15 @@
   },
   "active": "304997078ba8c329",
   "lastOpenFiles": [
-    "06-wordpress-packages/02-wordpress-block-editor/01-inner-blocks.md.md",
+    "02-blocks/05-custom-blocks/block updates.md",
+    "02-blocks/Blocks Outline.md",
+    "01-themes/styles.md",
+    "01-themes/theme-json.md",
+    "02-blocks/01-block-styles/block-styles.md",
     "00-fundamentals/03-a-block.md",
     "00-fundamentals/02-the-editor.md",
-    "readme.md",
-    "00-introduction/03-support.md",
-    "00-introduction/02-course-structure.md",
     "00-fundamentals/01-overview.md",
-    "05-custom-blocks/custom-blocks.md",
-    "04-block-extentions/block-extentions.md",
-    "03-block-patterns/block-patterns.md"
+    "02-blocks/04-block-extentions/block-extentions.md",
+    "02-blocks/03-block-patterns/block-patterns.md"
   ]
 }
