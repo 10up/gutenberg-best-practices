@@ -70,3 +70,10 @@ register_block_pattern(
     )
 ); 
 ```
+
+## Caveats with using Block Patterns:
+There is one items that you need to be aware about in regards to Block Patterns. Once they are inserted they have no link to the original block pattern that they were created by. On insertion they become regular blocks. Therefore it is not possible to adjust all occurrences of a block pattern after it has been used. 
+
+If you find an issue with the markup of a pattern that you want to fix it is only going to impact new instances of the pattern that are created after you updated it. And you will have to manually go into every instance that was created using the pattern and make the update manually, or create an update script to update it in the database directly. 
+
+If you want to get around this limitation you can of course also build block patterns mad up of [[dynamic]] [[custom-blocks]] that don't actually store their markup in the database. That way you can get the benefits of both worlds.
