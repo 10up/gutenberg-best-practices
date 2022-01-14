@@ -4,6 +4,8 @@ Block Patterns are a great way to get up and running quickly when editing a page
 
 ![](/pattern-modal.png)
 
+## How to create block Patterns:
+
 Adding patterns also is very easy from a development perspective. The [`register_block_pattern`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/#register_block_pattern) API allows you to easily register your own patterns that will get shown in the Pattern Picker.
 
 ```php
