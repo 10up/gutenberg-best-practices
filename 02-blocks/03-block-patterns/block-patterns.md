@@ -4,6 +4,14 @@ Block Patterns are a great way to get up and running quickly when editing a page
 
 ![](/pattern-modal.png)
 
+## What should patterns be used for? 
+
+Patterns are best suited for commonly used sections within a design system. If you for example have a Pricing table that should normally be used with a heading above and a full width colored background that would make a perfect pattern. 
+
+You can also put entire Page layouts into block patterns to really get someone up and running quickly which might be useful for projects where the editors commonly need to create similar types of landing pages for example. 
+
+In general they are best suited for predefined sections in a page. 
+
 ## How to create block Patterns:
 
 Adding patterns also is very easy from a development perspective. The [`register_block_pattern`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/#register_block_pattern) API allows you to easily register your own patterns that will get shown in the Pattern Picker.
