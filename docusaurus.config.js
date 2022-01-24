@@ -53,9 +53,21 @@ const config = {
           },
           {
             type: 'doc',
+            docId: 'Training/Training',
+            position: 'right',
+            label: 'Training',
+          },
+          {
+            type: 'doc',
             docId: 'Guides/guides',
             position: 'right',
             label: 'Guides',
+          },
+          {
+            type: 'doc',
+            docId: 'Reference/Reference',
+            position: 'right',
+            label: 'Reference',
           }
         ],
       },
@@ -98,7 +110,13 @@ const config = {
             ],
           },
         ],
-        copyright: `🚀 10up Gutenberg Best Practices`,
+        logo: {
+          src: "img/10up-logo-full.svg",
+          height: 50,
+          width: 50,
+          href: 'https://10up.com',
+        },
+        copyright:`🚀 10up Gutenberg Best Practices`,
       },
       prism: {
         theme: lightCodeTheme,
