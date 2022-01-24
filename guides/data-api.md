@@ -19,6 +19,9 @@ In redux and therefore in the WordPress Data API there is the concept of a Store
 - **`subscribe`**: In most cases you want to be aware of any changes that happen to a value in the store. In order to receive updates when the value has changed you need to subscribe to changes. In react you can do this with the `useSelect` and `useDispatch` hooks.
 
 ## Stores in WordPress:
+
+![](/img/data-api-core-stores.png)
+
 The editor does not only have one global data store but rather multiple different stores that each focus on different areas of the site. These stores can be refereed to by their namespace or you can import the store object from the individual packages.
 
 | Namespace           | Description                                                                            |
@@ -81,6 +84,9 @@ const { something, somethingElse } = useSelect( function(select) {
 ```
 
 ### Handling Error & Loading States:
+
+![](/img/data-api-loading-error.png)
+
 You get get access to whether or not a select statement has been resolved by using the `hasFinishedResolution` selector that is provided on every core store.
 
 The `hasFinishedResolution` selector takes the name of the selector you want to monitor as the first parameter and the parameters you provided the selector as the second parameter. Because of that it is a good pattern to put the parameter for the main selector into a variable on its own and list the parameter in an array. You can then use this array to spread the parameter into the selector itself and also provide them to the `hasFinishedResolution` selector.
@@ -104,6 +110,8 @@ const something = useSelect( function(select) {
 
 ## Using the Data API vs. Using the Rest API
 Under the hood the Data API uses the Rest API. With the very important difference that changes you make to values only actually get saved to the database when the post is saved. If you were to interface with the Rest API directly to manipulate information about a post that data would be updated and saved immediately without getting a preview or being aware of it. That is why it is always preferred to use the Data API when you are trying to manipulate anything.
+
+![How the Data API interacts with the WordPress Database](/img/data-api-wordpress-db.png)
 
 ## Examples:
 
