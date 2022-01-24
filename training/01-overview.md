@@ -7,6 +7,9 @@ These lessons will walk you through the process of creating a simple custom bloc
 The very first thing you need to know about blocks is about the Block Editor itself — let's start there!
 
 ## The Block Editor
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/flrWBgXBNDE" title="Gutenberg Interface Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 So that we are all on the same page with block terminology, here is a list of the important components of a block that you will be dealing with:
 
 ![The Block Editor](/img/gutenberg-interface-sketch.png)
