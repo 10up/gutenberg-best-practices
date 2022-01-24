@@ -21,18 +21,50 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/10up/gutenberg-best-practices/tree/main/',
-          showLastUpdateTime: true,
-          showLastUpdateAuthor: true,
-        },
+        docs: false,
         blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
       }),
+    ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'guides',
+        path: 'guides',
+        routeBasePath: 'guides',
+        sidebarPath: require.resolve('./sidebars.js'),
+        showLastUpdateTime: true,
+        showLastUpdateAuthor: true,
+        editUrl: 'https://github.com/10up/gutenberg-best-practices/tree/main/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'training',
+        path: 'training',
+        routeBasePath: 'training',
+        sidebarPath: require.resolve('./sidebars.js'),
+        showLastUpdateTime: true,
+        showLastUpdateAuthor: true,
+        editUrl: 'https://github.com/10up/gutenberg-best-practices/tree/main/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'reference',
+        routeBasePath: 'reference',
+        sidebarPath: require.resolve('./sidebars.js'),
+        showLastUpdateTime: true,
+        showLastUpdateAuthor: true,
+        editUrl: 'https://github.com/10up/gutenberg-best-practices/tree/main/',
+      },
     ],
   ],
 
@@ -47,27 +79,23 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
-            position: 'right',
-            label: 'Getting Started',
-          },
-          {
-            type: 'doc',
-            docId: 'Training/Training',
-            position: 'right',
-            label: 'Training',
-          },
-          {
-            type: 'doc',
-            docId: 'Guides/guides',
-            position: 'right',
-            label: 'Guides',
-          },
-          {
-            type: 'doc',
-            docId: 'Reference/Reference',
+            docId: 'reference',
             position: 'right',
             label: 'Reference',
+          },
+          {
+            type: 'doc',
+            docId: 'training',
+            position: 'right',
+            label: 'Training',
+            docsPluginId: 'training'
+          },
+          {
+            type: 'doc',
+            docId: 'guides',
+            position: 'right',
+            label: 'Guides',
+            docsPluginId: 'guides'
           }
         ],
       },
@@ -78,8 +106,16 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Reference',
+                to: '/reference/reference',
+              },
+              {
+                label: 'Training',
+                to: '/training/training',
+              },
+              {
+                label: 'Guides',
+                to: '/guides/guides',
               },
             ],
           },

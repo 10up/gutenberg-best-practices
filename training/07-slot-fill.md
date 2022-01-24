@@ -4,7 +4,7 @@ With the introduction of Gutenberg in WordPress 5.0, developers lost the ability
 
 For a much deeper dive into the entire SlotFill system and how it works internally, [watch this presentation](https://www.youtube.com/watch?v=pMD0WpMaXEo) from the 2019 JavaScript for WordPress conference.
 
-## Lesson Outcomes
+## Lesson Outcomes:
 
 1. Understanding of the SlotFill system in Gutenberg.
 2. Create and register a plugin to add a new Fill to the Document Settings panel.
