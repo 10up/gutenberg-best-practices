@@ -79,20 +79,20 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'reference',
+            docId: 'index',
             position: 'right',
             label: 'Reference',
           },
           {
             type: 'doc',
-            docId: 'training',
+            docId: 'index',
             position: 'right',
             label: 'Training',
             docsPluginId: 'training'
           },
           {
             type: 'doc',
-            docId: 'guides',
+            docId: 'index',
             position: 'right',
             label: 'Guides',
             docsPluginId: 'guides'
@@ -107,15 +107,15 @@ const config = {
             items: [
               {
                 label: 'Reference',
-                to: '/reference/reference',
+                to: '/reference/index',
               },
               {
                 label: 'Training',
-                to: '/training/training',
+                to: '/training/index',
               },
               {
                 label: 'Guides',
-                to: '/guides/guides',
+                to: '/guides/index',
               },
             ],
           },

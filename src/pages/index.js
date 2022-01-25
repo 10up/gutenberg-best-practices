@@ -21,19 +21,19 @@ export default function Home() {
           <article className={styles.gridItem}>
             <h2>
              🧑‍🏫
-              <Link to="/training/training"> Training</Link>
+              <Link to="/training"> Training</Link>
             </h2>
           </article>
           <article className={styles.gridItem}>
             <h2>
               🚀
-              <Link to="/guides/guides"> Guides</Link>
+              <Link to="/guides"> Guides</Link>
             </h2>
           </article>
           <article className={styles.gridItem}>
             <h2>
               📚
-              <Link to="/reference/reference"> Reference</Link>
+              <Link to="/reference"> Reference</Link>
             </h2>
           </article>
         </section>

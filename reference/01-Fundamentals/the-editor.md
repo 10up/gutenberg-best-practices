@@ -1,5 +1,6 @@
 ---
 sidebar_label: The Block Editor
+sidebar_position: 1
 ---
 
 # A Recap of the WordPress Block Editor

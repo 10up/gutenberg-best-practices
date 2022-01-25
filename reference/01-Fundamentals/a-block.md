@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Anatomy of a Block
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HzhB_NNn-TI" title="Block Interface Tour" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>

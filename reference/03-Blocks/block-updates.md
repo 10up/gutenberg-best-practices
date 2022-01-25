@@ -1,4 +1,8 @@
-# A Complete Guide to the Block Updates
+---
+sidebar_position: 7
+---
+
+# Block Updates
 
 ![](/img/block-migration.png)
 
