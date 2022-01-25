@@ -1,6 +1,6 @@
 # Anatomy of a Block
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HzhB_NNn-TI" title="Block Interface Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HzhB_NNn-TI" title="Block Interface Tour" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
 
 
 ## Block Canvas
@@ -13,7 +13,7 @@
 
 ## States of a Block
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/euW9PBKaubk" title="Block Interface Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/euW9PBKaubk" title="Block Interface Tour" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
 
 ### Initial Setup
 
@@ -50,4 +50,7 @@ When a block has child blocks selected it should behave the same as in it's dese
 This is super useful for any instanced where the child blocks are very tightly coupled with the parent block and you can hereby prevent the editors from constantly having to switch between the parent and child block. Use sparingly though since it can also easily become confusing. 
 
 ### Deselected 
+
+![](/img/block-deselected-state.png)
+
 As mentioned before the deselected state of a block should be a accurate representation of the frontend display. This includes font rendering, spacing within the block and in relationship to other blocks on the page. This should also be the case for the selected states but additional controls and placeholder elements may alter the spacing slightly. 

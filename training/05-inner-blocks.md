@@ -9,9 +9,7 @@
 
 Inner Blocks in WordPress let you nest blocks within other blocks. You may have come across this when using the Core Group or Columns Block. This ability is very powerful because it allows you to compose different blocks to build your content. Composition is not the only thing nested blocks are useful for. Nesting also allows you to reduce complexity when you have to create repeatable items your blocks.
 
-Looking at the two core blocks I just mentioned — Group and Columns — we can see this concept of nested blocks come to life.
-
-The Group block is meant to be a wrapper for other blocks. It creates a container with some options like a background color for that section and allows you to insert other blocks into that wrapper. Other examples of this kind of nesting can be found in the the Media & Text and the Cover Block. They all allow you to place other blocks within an inner blocks area.
+The [Group block](https://developer.wordpress.org/block-editor/reference-guides/core-blocks/#group) for example is meant to be a wrapper for other blocks. It creates a container with some options like a background color for that section and allows you to insert other blocks into that wrapper. Other examples of this kind of nesting can be found in the the [Media & Text](https://developer.wordpress.org/block-editor/reference-guides/core-blocks/#media-text) and the [Cover Block](https://developer.wordpress.org/block-editor/reference-guides/core-blocks/#cover). They all allow you to place other blocks within an inner blocks area.
 
 ![Editor List View showing a Core Group block with a Heading and Paragraph nested within.](/img/inner-blocks-core-group-screenshot.jpg)
 

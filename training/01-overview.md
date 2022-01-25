@@ -8,7 +8,7 @@ The very first thing you need to know about blocks is about the Block Editor its
 
 ## The Block Editor
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/flrWBgXBNDE" title="Gutenberg Interface Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/flrWBgXBNDE" title="Gutenberg Interface Tour" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
 
 So that we are all on the same page with block terminology, here is a list of the important components of a block that you will be dealing with:
 
