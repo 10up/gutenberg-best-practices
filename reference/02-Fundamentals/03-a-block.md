@@ -39,11 +39,15 @@ The available groups ordered left to right are:
 
 
 ## Block Content
-
+The content of the block is an inline editable representation of the block. Depending of the [state of the block](#states-of-a-block) it may show additional inline controls inside of the blocks content. Visually what you see should match what the user gets to see on the frontend of the site. 
 
 ## Settings Sidebar
 ![](/img/block-settings-sidebar.png)
+The settings sidebar housed additional secondary controls. What is placed in here should never be mandatory in order to use a block. Instead the block should operate with sensible defaults in place and if an editor wants to dig down deeper and configure more details of how the block looks & behaves this is where they can go. 
 
+:::caution
+The settings sidebar should **not** be the default place for every single option of the block.
+:::
 
 --- 
 
