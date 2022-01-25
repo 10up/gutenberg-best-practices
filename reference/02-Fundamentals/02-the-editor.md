@@ -1,3 +1,7 @@
+---
+sidebar_label: The Block Editor
+---
+
 # A Recap of the WordPress Block Editor
 The editor is the main interface through which one interacts with their website. It is the gateway through which you can share your message with the world. So the editorial experience is essential in creating a pleasant supportive experience that allows you to focus just on what you want to share.
 

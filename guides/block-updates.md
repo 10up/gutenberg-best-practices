@@ -15,7 +15,6 @@ If dynamic blocks define their `save` function to return `null` there still is s
 <!-- wp:namespace/slide {"headline":"This is a Headline","summary":"And some description text","linkText":"Read More","linkUrl":"https://example.com/","image":{269},"isEditingImage":false} /-->
 <!-- /wp:namespace/carousel -->
 ```
-
 </details>
 
 ### Updates to markup

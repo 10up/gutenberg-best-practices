@@ -1,4 +1,8 @@
 # Anatomy of a Block
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HzhB_NNn-TI" title="Block Interface Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+
+
 ## Block Canvas
 
 ## Toolbar
@@ -8,16 +12,27 @@
 --- 
 
 ## States of a Block
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/euW9PBKaubk" title="Block Interface Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+
 ### Initial Setup
+
+![](/img/block-initial-setup-state.png)
+
 The initial setup state is one that not all blocks will or even should have. But it is a common pattern that gets used whenever a block relies on a core piece of data before it can start displaying it's main interface. 
 
 A great examples of this in the core blocks for example is the cover block. The cover relies on a background image or some background color. When neither of the two is selected there is not much you can do with the block. Therefore it presents you with a placeholder to select a background image or color and once you have completed this step you are not represented with all the options.
 
 This pattern of having a placeholder also allows you to make it easier for your editors in very complex block to not overwhelm them when they start inserting the block. If you look at the core columns block the first thing you get to see is a placeholder where you can select the layout of columns you want to start with. You can of course change that easily later in the settings sidebar but you don't need to and can get up and running without having to interact with the advanced options in the sidebar at all. 
 
-**This actually is a pattern that you will see over and over again throughout this section. The settings sidebar should be treated as optional. Most editors should never have to open it and interact with the options in it. Everything they need to enter their content should be available inline.**
+:::info
+This actually is a pattern that you will see over and over again throughout this section. The settings sidebar should be treated as optional. Most editors should never have to open it and interact with the options in it. Everything they need to enter their content should be available inline.
+:::info
 
 ### Selected 
+
+![](/img/block-selected-state.png)
+
 In it's selected state the editor representation should be though of as the frontend representation with additional inline controls to modify the content of the block. This means that if a block for example provides different rich text areas for you to fill out they should all be shown with placeholder text. This way editors can see all the options and choose to fill in all the areas they want to. 
 
 Once they deselect the block all the fields they have not filled in will disappear and the block becomes a true 1to1 representation of how it looks on the frontend. 

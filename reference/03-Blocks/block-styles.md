@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Block Styles
 
 Block styles are a relatively simple API that allows you to add different visual styles to a block. In Core the image for example allows you to select a rounded style to round the corners of the image. 
