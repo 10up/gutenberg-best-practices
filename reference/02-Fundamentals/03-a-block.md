@@ -4,14 +4,14 @@
 
 ## Block Toolbar
 ![](/img/block-toolbar.png)
-The Toolbar is anchored at the top of a block. It contains controls to quickly transform the block into other supported blocks, move the block, and any primary controls to alter the appearance of the block. The toolbar itself is divided up into several groups. These groups narrow their scope from left to right. The first group is coming from core and cannot be altered. It houses controls that impact the entire block instance. This is where the transforms and rearrangement controls live. To the right there is the "Meta" group followed by "Tools", "Other" and then "More" which is collapsed into a dropdown. 
+The Toolbar is anchored at the top of a block. It contains controls to quickly transform the block into other supported blocks, move the block, and any primary controls to alter the appearance of the block. The toolbar itself is divided up into several groups. These groups narrow their scope from left to right. The first group is coming from core and cannot be altered. It houses controls that impact the entire block instance. This is where the transforms and rearrangement controls live. To the right there is the "Meta" group followed by "Tools", "Inline Formatting", "Other" and then "More" which is collapsed into a dropdown. 
 
 ![](/img/block-toolbar-groups.png)
 
-When building a custom block or extending a block you can insert your items into these groups via the `ToolbarGroup` component which accepts a `group` parameter where you can specify in which group your option should be rendered. 
+When building a custom block or extending a block you can insert your items into these groups via the `BlockControls` component which accepts a `group` parameter where you can specify in which group your option should be rendered. 
 
-```js {10-12}
-import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
+```js {9-11}
+import { ToolbarButton } from '@wordpress/components';
 import { BlockControls, useBlockProps } from '@wordpress/block-editor';
 import { star } from '@wordpress/icons';
 
@@ -19,10 +19,8 @@ export function BlockEdit() {
     const blockProps = useBlockProps();
     return (
         <>
-            <BlockControls>
-                <ToolbarGroup group="meta">
-                    <ToolbarButton icon={ star } >
-                </ToolbarGroup>
+            <BlockControls group="meta">
+                <ToolbarButton icon={ star } >
             </BlockControls>
             <div {...blockProps}>
                 <h2>Hello World!</h2>
