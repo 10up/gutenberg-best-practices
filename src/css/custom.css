@@ -51,3 +51,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 main > .container {
   margin-top: 4rem;
 }
+
+
+.theme-doc-markdown iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  height: auto;
+}
