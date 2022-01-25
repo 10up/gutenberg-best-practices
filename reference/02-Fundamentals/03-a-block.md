@@ -30,6 +30,12 @@ export function BlockEdit() {
 }
 ```
 
+The available groups ordered left to right are: 
+1. `parent`
+2. `block`
+3. `inline`
+4. `default`
+5. `other`
 
 
 ## Block Content
