@@ -55,11 +55,15 @@ You can also add Styles to custom blocks that you create. Let's add a new style 
 
 It looks a lot like the registering a Style for a core block. Follow the steps below to create your own custom block style. If you get stuck you can reference the same [custom block style registration](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/includes/block-styles/cta.js) applied to the `cta-complete` block.:
 1. Create a new `cta-starter.js` file in `/includes/block-styles/`
-2. Import `registerBlockStyle` from WordPress: `import { registerBlockStyle } from '@wordpress/blocks';`
+2. Import `registerBlockStyle` from WordPress: 
+   ```js 
+   import { registerBlockStyle } from '@wordpress/blocks';
+   ```
 3. Create a new function, `registerCTAStarterStyles()`
-4. Within this function, use the `registerBlockStyle` function to target the `gutenberg-lessons/cta-starter` block(the name to reference is found in the blocks' `block.json` file), and set the style "name" to `thick-border` and the style "label" to `Thick border`.
+4. Within this function, use the `registerBlockStyle` function to target the `gutenberg-lessons/cta-starter` block (the name to reference is found in the blocks' `block.json` file), and set the style "name" to `thick-border` and the style "label" to `Thick border`.
 
-**Hint** Remember what we did for the core image block:
+:::tip
+Remember what we did for the core image block:
 ```js
 function registerImageStyles() {
 	registerBlockStyle('core/image', {
@@ -68,6 +72,7 @@ function registerImageStyles() {
 	});
 }
 ```
+:::tip
 
 5. Call the function in the WordPress.dom ready:
 ```js
