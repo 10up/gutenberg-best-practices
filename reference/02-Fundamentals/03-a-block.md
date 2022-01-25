@@ -4,7 +4,7 @@
 
 ## Block Toolbar
 ![](/img/block-toolbar.png)
-The Toolbar is anchored at the top of a block. It contains controls to quickly transform the block into other supported blocks, move the block, and any primary controls to alter the appearance of the block. The toolbar itself is divided up into several groups. These groups narrow their scope from left to right. The first group is coming from core and cannot be altered. It houses controls that impact the entire block instance. This is where the transforms and rearrangement controls live. To the right there is the "Meta" group followed by "Tools", "Inline Formatting", "Other" and then "More" which is collapsed into a dropdown. 
+The Toolbar is anchored at the top of a block. It contains controls to quickly transform the block into other supported blocks, move the block, and any primary controls to alter the appearance of the block. The toolbar itself is divided up into several groups. These groups narrow their scope from left to right. Focusing on Block level & parent block controls first and then moving to more inline focused controls.
 
 ![](/img/block-toolbar-groups.png)
 
