@@ -39,46 +39,50 @@ You can find a completed example in [application-ctas-example.js](https://gitlab
 :::tip
 
 1. First, we need to create our variations file. In the directory [block-variations](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includes/block-variations) add a new file `application-ctas.js`.
-2. Next, in this new file, we need to register a new variation of the group block. We first need to import the `registerBlockVariation` function (`import { registerBlockVariation } from '@wordpress/blocks';`), then call the function and register our group block variation:
-```js
-registerBlockVariation('core/group', {
-	name: 'application-ctas',
-	title: 'Application CTAs',
-	icon: 'block-default',
-	scope: ['inserter'],
-	attributes: {
-		className: 'is-style-application-ctas',
-	},
-});
-```
+2. Next, in this new file, we need to register a new variation of the group block. We first need to import the `registerBlockVariation` function
+   ```js
+   import { registerBlockVariation } from '@wordpress/blocks';
+   ```
+   then call the function and register our group block variation:
+	```js
+	registerBlockVariation('core/group', {
+		name: 'application-ctas',
+		title: 'Application CTAs',
+		icon: 'block-default',
+		scope: ['inserter'],
+		attributes: {
+			className: 'is-style-application-ctas',
+		},
+	});
+	```
 3. We now need to make sure this variation is being imported correctly and verify it displays in the admin. Open the [index.js](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includes/block-variations/index.js) file inside `block-variations`. Here, you will see the import for `./application-ctas-example`. We want to replicate that import for our new file as `import './application-ctas';`. Once this is added (be sure you are running `npm run watch` in the theme to ensure your code updates), you should now find your variation in listed in the editor in the block inserter as `Application CTAs`. If you select it, it currently only outputs a core block. .
 4. We need to define some structure for our variation via `innerBlocks`. We add this declaration after `attributes: {},` in our `application-ctas.js` file. This is where the real magic happens:
-```js
-innerBlocks: [
-		[
-			'core/heading',
-			{
-				level: 2, // IE: make it an <h2>
-				placeholder: 'Getting started with your application',
-			},
-		],
-		[
-			'core/paragraph',
-			{
-				placeholder: 'Add the description text here...',
-				className: 'application-ctas__description',
-			}
-		],
-		[
-			'core/columns',
-			{},
+	```js
+	innerBlocks: [
 			[
-				['gutenberg-lessons/cta-complete', {}],
-				['gutenberg-lessons/cta-complete', {}],
+				'core/heading',
+				{
+					level: 2, // IE: make it an <h2>
+					placeholder: 'Getting started with your application',
+				},
+			],
+			[
+				'core/paragraph',
+				{
+					placeholder: 'Add the description text here...',
+					className: 'application-ctas__description',
+				}
+			],
+			[
+				'core/columns',
+				{},
+				[
+					['gutenberg-lessons/cta-complete', {}],
+					['gutenberg-lessons/cta-complete', {}],
+				],
 			],
 		],
-	],
-```
+	```
 
 5. You can see that we added a custom className on the description paragraph. You could do the same for any of the attributes that a block supports. [BlockBook](https://youknowriad.github.io/blockbook/block/) is an excellent resource for seeing what attributes are available on each block to use
 
