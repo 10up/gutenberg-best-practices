@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: '10up - Gutenberg Best Practices',
+  tagline: 'The central hub for everything Gutenberg related at 10up',
+  url: 'https://gutenberg.10up.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -98,6 +98,14 @@ const config = {
             docsPluginId: 'guides'
           }
         ],
+      },
+      announcementBar: {
+        id: 'support_us',
+        content:
+          'Have any questions or suggestions? Just open a discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/10up/gutenberg-best-practices/discussions/new">this GitHub Repository</a>',
+        backgroundColor: '#fafbfc',
+        textColor: '#091E42',
+        isCloseable: false,
       },
       footer: {
         style: 'light',
