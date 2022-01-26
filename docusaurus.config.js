@@ -72,6 +72,11 @@ const config = {
         
         indexDocs: true,
         docsRouteBasePath: 'reference',
+        docsDir: 'reference',
+        indexBlog: true,
+        blogRouteBasePath: 'guides',
+        blogDir: 'guides',
+        indexPages: true,
         hashed: true,
         
       },
