@@ -66,6 +66,16 @@ const config = {
         editUrl: 'https://github.com/10up/gutenberg-best-practices/tree/main/',
       },
     ],
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        
+        indexDocs: true,
+        docsRouteBasePath: 'reference',
+        hashed: true,
+        
+      },
+    ],
   ],
 
   themeConfig:
