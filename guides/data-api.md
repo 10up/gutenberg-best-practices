@@ -1,3 +1,7 @@
+---
+sidebar_label: Working with the WordPress Data API
+---
+
 # A Complete Guide to the WordPress Data API
 
 <details>
