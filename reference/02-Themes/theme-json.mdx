@@ -1,0 +1,52 @@
+---
+sidebar_label: Theme.json
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Global Settings & Styles (`theme.json`)
+
+Theme.json has been introduced in WordPress 5.8 as the way to control the overall appearance and settings of blocks. These settings and style presets get applied both in the editor and on the frontend of the site. 
+
+<Tabs>
+<TabItem label="Input" value="input">
+
+```json title="theme.json"
+{
+    "version": 2,
+    "settings": {
+        "color": {
+            "palette": [
+                {
+                    "name": "Black",
+                    "slug": "black",
+                    "color": "#000000"
+                },
+                {
+                    "name": "White",
+                    "slug": "white",
+                    "color": "#ffffff"
+                }
+            ]
+        }
+    }
+}
+```
+
+</TabItem>
+<TabItem label="Output" value="output">
+
+```css title="generated custom properties"
+body {
+    --wp--preset--color--black: #000000;
+    --wp--preset--color--white: #ffffff;
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Links:
+- [Block Editor Handbook - Global Settings & Styles (theme.json)](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/)
+- [Block Editor Handbook - Theme JSON API Reference](https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/theme-json-living/)
