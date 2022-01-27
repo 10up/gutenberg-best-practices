@@ -59,9 +59,9 @@ unregisterBlockStyle( 'core/image', 'rounded' );
 ```
 
 
-:::warning
+:::caution
 Important: The PHP function `unregister_block_style` only unregisters styles that were registered on the server using `register_block_style`. The function does not unregister a style registered using client-side code.
-:::
+:::caution
 
 
 There is no actual API for checking which style is currently selected and there is no listener to subscribe to changes in the selected style. 
