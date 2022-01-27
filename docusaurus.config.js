@@ -162,6 +162,10 @@ const config = {
                 label: 'Block Examples',
                 href: 'https://github.com/10up/block-examples',
               },
+              {
+                label: 'WP Scaffold',
+                href: 'https://github.com/10up/wp-scaffold',
+              },
             ],
           },
         ],
