@@ -1,41 +1,23 @@
-# Website
+# 10up Gutenberg Best Practices 
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+This repository houses the source code for the [10up Gutenberg Best Practices website](https://gutenberg.10up.com).
 
-### Installation
+The content of this site is grouped into three different sections. Training, Reference, and Guides. 
 
-```
-$ yarn
-```
+## Training
+The training section is meant for hands on learning. By covering the most common development topics in order this will get anyone up to speed with how we build experiences for the editor at 10up.
 
-### Local Development
+## Reference
+The reference section on the other hand is a place for detailed reference explications on everything surrounding the block editor.
 
-```
-$ yarn start
-```
+## Guides
+Guides are one off articles that go into depth on one particular topic. 
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-### Build
+--- 
 
-```
-$ yarn build
-```
+## Questions / Suggestions? 
+If you have questions about the material covered or have any suggestions for additional topics please create a new Discussion in the discussions tab here in GutHub.
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## Contributing 
+Issues & PR's are always welcome :) To build this site locally all you need to do is run `npm ci` and `npm start`
