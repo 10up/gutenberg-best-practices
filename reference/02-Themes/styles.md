@@ -1,4 +1,8 @@
-# How to properly include styles in the editor?
+---
+sidebar_label: Styling
+---
+
+# How to properly include styles?
 
 First of all the goal we aim for here is parity between the editor and the frontend of the site. The stylesheet that gets loaded on the frontend of the site should also get loaded in the editor. And the expectation is that the markup matches between both environments.
 
