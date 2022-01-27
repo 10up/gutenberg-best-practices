@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # Block Supports
 
-Block Supports is the API that allows a block to declare support for certain features.
+The Block Supports API allows a block to opt in or out of certain core features. These features come with 
 
 Opting into any of these features will register additional attributes on the block and provide the UI to manipulate that attribute.
 
@@ -15,7 +15,10 @@ Opting into any of these features will register additional attributes on the blo
 -   Type: `boolean`
 -   Default value: `false`
 
-Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block and a button to copy the direct link. _Important: It doesn't work with dynamic blocks yet._
+Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block and a button to copy the direct link. 
+:::warning
+This doesn't work with dynamic blocks yet. If you need to add Anchor support to a block that uses PHP rendering you need to manually add the attribute and UI for it.
+:::
 
 ```json
 // Declare support for anchor links.
@@ -80,6 +83,10 @@ This property allows to enable [wide alignment](https://developer.wordpress.org/
 -   Default value: `true`
 
 By default, the class `.wp-block-your-block-name` is added to the root element of your saved markup. This helps having a consistent mechanism for styling blocks that themes and plugins can rely on. If, for whatever reason, a class is not desired on the markup, this functionality can be disabled.
+
+:::note
+In general it is recommended for consistency sake to stick with the core generated `className`
+:::
 
 ```json
 "supports": {
