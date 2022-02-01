@@ -7,12 +7,16 @@ sidebar_position: 2
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HzhB_NNn-TI" title="Block Interface Tour" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
 
 
-## Block Structure:
-### Block Toolbar:
+## Block Structure
+### Block Toolbar
 ![](/img/block-toolbar.png)
 The Toolbar is anchored at the top of a block. It contains controls to quickly transform the block into other supported blocks, move the block, and any primary controls to alter the appearance of the block. The toolbar itself is divided up into several groups. These groups narrow their scope from left to right. Focusing on Block level & parent block controls first and then moving to more inline focused controls.
 
 ![](/img/block-toolbar-groups.png)
+
+<details>
+<summary>Learn more about the ordering of Toolbar Groups</summary>
+<p>
 
 When building a custom block or extending a block you can insert your items into these groups via the `BlockControls` component which accepts a `group` parameter where you can specify in which group your option should be rendered. 
 
@@ -44,10 +48,14 @@ The available groups ordered left to right are:
 5. `other`
 
 
-### Block Content:
+</p>
+</details>
+
+
+### Block Content
 The content of the block is an inline editable representation of the block. Depending of the [state of the block](#states-of-a-block) it may show additional inline controls inside of the blocks content. Visually what you see should match what the user gets to see on the frontend of the site. 
 
-### Settings Sidebar:
+### Settings Sidebar
 ![](/img/block-settings-sidebar.png)
 The settings sidebar housed additional secondary controls. What is placed in here should never be mandatory in order to use a block. Instead the block should operate with sensible defaults in place and if an editor wants to dig down deeper and configure more details of how the block looks & behaves this is where they can go. 
 
@@ -56,13 +64,13 @@ The settings sidebar should **not** be the default place for every single option
 :::
 
 
-## States of a Block:
+## States of a Block
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/euW9PBKaubk" title="Block Interface Tour" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
 
 A block may exist in several different states in the editor. Depending on what state a block is in it may display differently.
 
-### Initial Setup:
+### Initial Setup
 
 ![](/img/block-initial-setup-state.png)
 
@@ -76,7 +84,7 @@ This pattern of having a placeholder also allows you to make it easier for your 
 This actually is a pattern that you will see over and over again throughout this section. The settings sidebar should be treated as optional. Most editors should never have to open it and interact with the options in it. Everything they need to enter their content should be available inline.
 :::info
 
-### Selected:
+### Selected
 
 ![](/img/block-selected-state.png)
 
@@ -86,17 +94,17 @@ Once they deselect the block all the fields they have not filled in will disappe
 
 As an example for this you can take a look at the core image block. When the block is selected it shows you the placeholder for the image description. If you don't provide a description and deselect the block it will no longer show the placeholder. 
 
-Another key piece of the selected experience for a block is that it's [toolbar](#toolbar) is shown. Editors can choose to either have the toolbar anchored to the top of the currently selected block or to the top of the editor canvas. _(The default is at the top of the block)_
+Another key piece of the selected experience for a block is that it's [toolbar](#block-toolbar) is shown. Editors can choose to either have the toolbar anchored to the top of the currently selected block or to the top of the editor canvas. _(The default is at the top of the block)_
 
-The toolbar should provide the editor with any additional options that are commonly used. You can read more about the toolbar here: [toolbar](#toolbar)
+The [toolbar](#block-toolbar) should provide the editor with any additional options that are commonly used.
 
 
-### Selected Descendent:
+#### Selected Descendent
 When a block has child blocks selected it should behave the same as in it's deselected state. The only difference is that there may be reasons for the parent block to provide additional options to a child blocks toolbar. You can see this pattern being used in the core columns block for example where the individual column blocks toolbar still allows you to change the vertical alignment of the overall columns block.
 
 This is super useful for any instanced where the child blocks are very tightly coupled with the parent block and you can hereby prevent the editors from constantly having to switch between the parent and child block. Use sparingly though since it can also easily become confusing. 
 
-### Deselected:
+### Deselected
 
 ![](/img/block-deselected-state.png)
 
