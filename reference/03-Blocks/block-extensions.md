@@ -7,4 +7,4 @@ There is no core API for block extensions. When we refer to block extensions her
 
 The most commonly used filters are `blocks.registerBlockType` for adding new attributes / supports to a block, `editor.BlockEdit` for adding custom controls to the blocks toolbar or settings sidebar, `editor.BlockListBlock` for adding custom attributes to the wrapping element within the editor, and `blocks.getSaveContent.extraProps` for adding additional attributes to the wrapping element in the save method.
 
-In order to make it easier to work with all of these filters there is a function called `registerBlockExtention` in the `10up/block-components` package. For that please refer to the [Documentation on GitHub](https://github.com/10up/block-components#registerblockextention).
+In order to make it easier to work with all of these filters there is a function called `registerBlockExtention` in the `10up/block-components` package. 
