@@ -93,7 +93,7 @@ const ALLOWED_BLOCKS = [ 'core/group' ];
 
 const addAttributesToBlock = (settings, name) => {
 
-    // return early from the block mofification
+    // return early from the block modification
     if (! ALLOWED_BLOCKS.includes(name)) {
         return settings;
     }
@@ -138,7 +138,7 @@ const addSettingsToBlock = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
         const { setAttributes, name, attributes, isSelected } = props;
 
-        // return early from the block mofification
+        // return early from the block modification
         if (! ALLOWED_BLOCKS.includes(name)) {
             return <BlockEdit {...props} />;
         }
@@ -185,7 +185,7 @@ const addSettingsToBlock = createHigherOrderComponent((BlockEdit) => {
                                         value={backgroundPatternShape}
                                         options={[
                                             { value: 'dots', label: "Dots" },
-                                            { value: 'squares', label: "Suares" },
+                                            { value: 'squares', label: "Squares" },
                                         ]}
                                         onChange={value => setAttributes({backgroundPatternShape: value})}
                                     />
@@ -233,7 +233,7 @@ const addClassNameInEditor = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
         const { name, attributes } = props;
 
-        // return early from the block mofification
+        // return early from the block modification
         if (! ALLOWED_BLOCKS.includes(name)) {
             return <BlockEdit {...props} />;
         }
@@ -249,10 +249,10 @@ const addClassNameInEditor = createHigherOrderComponent((BlockEdit) => {
             return <BlockEdit {...props} />;
         }
 
-        const backgroundPatternColorClassName = `has-${backgroundPatternColor}-background-patern-color`;
-        const backgroundPatternShapeClassName = `has-${backgroundPatternShape}-background-patern-shape`;
+        const backgroundPatternColorClassName = `has-${backgroundPatternColor}-background-pattern-color`;
+        const backgroundPatternShapeClassName = `has-${backgroundPatternShape}-background-pattern-shape`;
 
-        return <BlockEdit {...props} className={`${className || ''} has-background-patern ${backgroundPatternColorClassName} ${backgroundPatternShapeClassName}`} />;
+        return <BlockEdit {...props} className={`${className || ''} has-background-pattern ${backgroundPatternColorClassName} ${backgroundPatternShapeClassName}`} />;
     };
 }, 'addClassNameInEditor');
 
@@ -272,7 +272,7 @@ const ALLOWED_BLOCKS = [ 'core/group' ];
 
 function saveSpacingAttributes(props, block, attributes) {
 
-    // return early from the block mofification
+    // return early from the block modification
     if (! ALLOWED_BLOCKS.includes(block.name)) {
         return props;
     }
@@ -288,10 +288,10 @@ function saveSpacingAttributes(props, block, attributes) {
         return props;
     }
 
-    const backgroundPatternColorClassName = `has-${backgroundPatternColor}-background-patern-color`;
-    const backgroundPatternShapeClassName = `has-${backgroundPatternShape}-background-patern-shape`;
+    const backgroundPatternColorClassName = `has-${backgroundPatternColor}-background-pattern-color`;
+    const backgroundPatternShapeClassName = `has-${backgroundPatternShape}-background-pattern-shape`;
 
-    return {...props, className: `${className || ''} has-background-patern ${backgroundPatternColorClassName} ${backgroundPatternShapeClassName}`};
+    return {...props, className: `${className || ''} has-background-pattern ${backgroundPatternColorClassName} ${backgroundPatternShapeClassName}`};
 }
 
 addFilter(
@@ -304,27 +304,27 @@ addFilter(
 And since we now have separate better suited utility classes we can reduce the amount of CSS we need to write to something like this:
 
 ```css
-.has-background-patern {
+.has-background-pattern {
     ...
 }
 
-.has-red-background-patern-color {
+.has-red-background-pattern-color {
     ...
 }
 
-.has-blue-background-patern-color {
+.has-blue-background-pattern-color {
     ...
 }
 
-.has-green-background-patern-color {
+.has-green-background-pattern-color {
     ...
 }
 
-.has-dots-background-patern-shape {
+.has-dots-background-pattern-shape {
     ...
 }
 
-.has-squares-background-patern-shape {
+.has-squares-background-pattern-shape {
     ...
 }
 ```
