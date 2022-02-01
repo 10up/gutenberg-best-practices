@@ -1,6 +1,7 @@
 # Lesson 5: Inner Blocks / Nested Blocks
 
-## Learning Outcomes:
+## Learning Outcomes
+
 1. Learn what inner blocks are and how to use them
 2. Learn how to decide when to use inner blocks
 3. Learn about controlled parent/child relationships in inner blocks
@@ -24,9 +25,11 @@ Another example of this is the core buttons block. It only allows button blocks 
 ![Editor List View showing a Core Columns block with three nested Column Blocks that each have their own child blocks within.](/img/inner-blocks-core-columns-screenshot.jpg)
 
 ## Exercise Overview
+
 In this lesson we are going to build two different blocks ("Hero" Block and "Card Grid" blocks) to take a look at these different use-cases inner blocks can solve. Both of these blocks have a `starter` folder that already contains a lot of the skeleton for these blocks. But the actual `InnerBlocks` need to get added to the components to make them work. If you get stuck you can always take a peek at the `completed` folder for a complete version of the block.
 
 ### 1. "Hero" Block
+
 First we will take a look at how we can use inner blocks to allow an editor to place anything they want into a predefined area of your component. In this example we have a "simple" design of a "Hero" component that has an image at the top with a content area that overlaps the image.
 
 ![Hero Block Mockup](/img/inner-blocks-one-mockup.png)
@@ -42,6 +45,7 @@ To get started there is a starter block scaffolded out located in the blocks fol
 Most of the markup and block scaffolding already is in place. What is left to do is wiring up the `InnerBlock` area both in the editor and on the frontend. You will find comments outlining where the inner blocks area should go in both the [`edit.js`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks/inner-blocks-one-starter/edit.js) and the [`markup.php`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks/inner-blocks-one-starter/markup.php) files. We go through these steps below in our [`Using Inner Blocks` section](#using-inner-blocks).
 
 ### 2. "Card Grid" Block
+
 The second block we will be building is a "Card Grid" component. This Card grid should allow editors to place as many card components into a grid that automatically reflows based on the screen size of the device they are using.
 
 ![Card Grid Block Mockup](/img/inner-blocks-two-mockup.png)
@@ -57,6 +61,7 @@ To get started there are two starter blocks scaffolded out located in the blocks
 As in the first example, most of the markup and block is already scaffolded out. The inner blocks area needs to get added and configured again and the "Card" block needs to get hidden from the inserter unless it is being used within the "Card Grid" block. We go through these steps below in our [`Using Inner Blocks` section](#using-inner-blocks).
 
 ## Using Inner Blocks
+
 Inner Blocks actually is the name of a react component that is part of the "Block Editor" package. We can import it into our block edit component and use it within the markup of our block.
 
 In the block one starter [`edit.js`](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/inner-blocks-one-starter/edit.js) file, do the following:
@@ -118,6 +123,7 @@ First, look at the [`package.json`](https://github.com/10up/wp-scaffold/tree/tru
       "cta-starter-block": "./includes/blocks/cta-starter/index.js"
     }
 ```
+
 Second, we need to register the block in [`blocks.php`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks.php). There are two steps to this. Step one: find the comment `// Require custom blocks` and the line `require_once TENUP_THEME_BLOCK_DIR . '/inner-blocks-one-complete/register.php';`. We want to duplicate this line and reference the starter register file:
 
 ```php title="includes/blocks.php"
@@ -148,6 +154,7 @@ Let's test that and see if it works. Stop your task runner in the terminal and r
 With this done you can already go to the editor and see that there is now a Block Appender rendering inside your block that allows you to insert any blocks you want (you may have to refresh the page).
 
 ### Saving the Content of our Inner Blocks Area
+
 If you now try to save the post and view it on the frontend you will find that your changes are not actually saved. The way the editor stores inner blocks is in the actual post content. But right now our blocks just return `null` in their `save` method in the [`index.js`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks/inner-blocks-one-starter/index.js) file.
 
 We can fix this by replacing the `null` with the `<InnerBlocks.Content />` component:
@@ -246,7 +253,6 @@ Before continuing, be sure you have done the following for the `inner-blocks-two
 4. Update the `save` method in the [`index.js`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks/inner-blocks-two-card-grid-starter/edit.js) file (`save: () => <InnerBlocks.Content />`).
 5. Add the markup output in [`markup.php`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks/inner-blocks-two-card-grid-starter/markup.php) (`echo $args['content'];`).
 
-
 If you want to create parent / child relationships between blocks like we need to do for our "Card Grid" and "Card" blocks that consists of two things. For one you need to define the `allowedBlocks` on the `InnerBlocks` in the parent block to only contain the child block you want to have show up. If the `allowedBlocks` array only contains one item the inserter will no longer show the block picker popover but instead directly insert that one block. Which is a nice little UX improvement we get for free.
 
 So, for the "Card Grid" block, we want to update the [`edit.js`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks/inner-blocks-two-card-grid-starter/edit.js) do define `allowedBlocks` for `<InnerBlocks />`:
@@ -283,6 +289,7 @@ The second thing we need to do is make sure our "child" block, in this case the 
 	"parent": [ "namespace/block-name" ]
 }
 ```
+
 So, let's go ahead and update the "Card" [`block.json`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks/inner-blocks-two-card-starter/block.json) to include the following:
 
 ```json
@@ -294,6 +301,7 @@ Now, when using the block inserter, you no longer see reference to the "Card" bl
 ### Styling Considerations in the Editor
 
 One thing to be aware of when using `InnerBlocks` is that at the moment it makes it a bit more difficult to match styling between the editor and the frontend of the site because the `InnerBlocks` component in the editor wraps the markup of the child blocks in this markup:
+
 ```html title="Markup in the Editor"
 <div class="block-editor-inner-blocks">
 	<div class="block-editor-block-list__layout">
@@ -302,6 +310,7 @@ One thing to be aware of when using `InnerBlocks` is that at the moment it makes
 	</div>
 </div>
 ```
+
 This means that we will have to adjust our styling between the frontend and the editor.
 
 In our "Card Grid" we use CSS Grid to make the main wrapper a grid container with the child blocks being direct children of the wrapper. In the editor however this won't work because the `.block-editor-inner-blocks` and `.block-editor-block-list__layout` elements are inserted in between the wrapper and the children. So we need to get creating in our styles and override some of the frontend styles and add new ones to visually match the component in the editor.
@@ -311,12 +320,15 @@ There currently is a new experimental API in core called `__experimentalUseInner
 :::info
 
 ## Takeaways
+
 The takeaways you should take from this lesson is that inner blocks are a very powerful concept in the editor that allow us to use different blocks to compose more complex content. They can also allow us to simplify the logic we have to code when it comes to managing repeating elements and have many options to control the user experience.
 
 ## Next Steps
+
 Now that you have build two blocks that use `InnerBlocks` take a look at the [Component Reference for the `InnerBlocks`](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/inner-blocks#innerblocks) component and see wether there are any other things you can to to improve the editorial user experience.
 
 ## Further Reading
+
 - [Nested Blocks: Using InnerBlocks](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/nested-blocks-inner-blocks/)
 - [Inner Blocks Component Reference](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/inner-blocks#innerblocks)
 - [API Version 2 - useBlockProps & useInnerBlocksProps](https://internal.10up.com/blog/2021/06/23/a-quick-guide-for-gutenberg-api-version-2/)

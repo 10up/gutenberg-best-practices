@@ -4,18 +4,18 @@ sidebar_position: 10
 
 # Block Supports
 
-The Block Supports API allows a block to opt in or out of certain core features. These features come with 
+The Block Supports API allows a block to opt in or out of certain core features. These features come with
 
 Opting into any of these features will register additional attributes on the block and provide the UI to manipulate that attribute.
 
 ## anchor
 
-![](/img/supports-anchor.png)
+![Editor showing the Anchor Text Control in the Advanced Settings Sidebar](/img/supports-anchor.png)
 
--   Type: `boolean`
--   Default value: `false`
+- Type: `boolean`
+- Default value: `false`
 
-Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block and a button to copy the direct link. 
+Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block and a button to copy the direct link.
 :::warning
 This doesn't work with dynamic blocks yet. If you need to add Anchor support to a block that uses PHP rendering you need to manually add the attribute and UI for it.
 :::
@@ -23,32 +23,32 @@ This doesn't work with dynamic blocks yet. If you need to add Anchor support to 
 ```json
 // Declare support for anchor links.
 "supports": {
-	"anchor": true
+    "anchor": true
 }
 ```
 
 ## align
 
-![](/img/supports-align.png)
+![Block Toolbar with Block alignment controls configures](/img/supports-align.png)
 
--   Type: `boolean` or `array`
--   Default value: `false`
+- Type: `boolean` or `array`
+- Default value: `false`
 
 This property adds block controls which allow to change block's alignment.
 
 ```json
 "supports": {
-	// Declare support for block's alignment.
-	// This adds support for all the options:
-	// left, center, right, wide, and full.
-	"align": true
+    // Declare support for block's alignment.
+    // This adds support for all the options:
+    // left, center, right, wide, and full.
+    "align": true
 }
 ```
 
 ```json
 "supports": {
-	// Declare support for specific alignment options.
-	"align": [ "left", "right", "full" ]
+    // Declare support for specific alignment options.
+    "align": [ "left", "right", "full" ]
 }
 ```
 
@@ -65,22 +65,22 @@ When the block declares support for `align`, the attributes definition is extend
 
 ## alignWide
 
--   Type: `boolean`
--   Default value: `true`
+- Type: `boolean`
+- Default value: `true`
 
 This property allows to enable [wide alignment](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#wide-alignment) for your theme. To disable this behavior for a single block, set this flag to `false`.
 
 ```json
 "supports": {
-	// Remove the support for wide alignment.
-	"alignWide": false
+    // Remove the support for wide alignment.
+    "alignWide": false
 }
 ```
 
 ## className
 
--   Type: `boolean`
--   Default value: `true`
+- Type: `boolean`
+- Default value: `true`
 
 By default, the class `.wp-block-your-block-name` is added to the root element of your saved markup. This helps having a consistent mechanism for styling blocks that themes and plugins can rely on. If, for whatever reason, a class is not desired on the markup, this functionality can be disabled.
 
@@ -90,22 +90,22 @@ In general it is recommended for consistency sake to stick with the core generat
 
 ```json
 "supports": {
-	// Remove the support for the generated className.
-	"className": false
+    // Remove the support for the generated className.
+    "className": false
 }
 ```
 
 ## color
 
-![](/img/supports-color.png)
+![Block Editor Sidebar showing the Color Settings Panel](/img/supports-color.png)
 
--   Type: `Object`
--   Default value: null
--   Subproperties:
-    -   `background`: type `boolean`, default value `true`
-    -   `gradients`: type `boolean`, default value `false`
-    -   `link`: type `boolean`, default value `false`
-    -   `text`: type `boolean`, default value `true`
+- Type: `Object`
+- Default value: null
+- Subproperties:
+  - `background`: type `boolean`, default value `true`
+  - `gradients`: type `boolean`, default value `false`
+  - `link`: type `boolean`, default value `false`
+  - `text`: type `boolean`, default value `true`
 
 This value signals that a block supports some of the properties related to color. When it does, the block editor will show UI controls for the user to set their values.
 
@@ -113,10 +113,10 @@ Note that the `background` and `text` keys have a default value of `true`, so if
 
 ```json
 "supports": {
-	"color": {
-		// This also enables text and background UI controls.
-		"gradients": true // Enable gradients UI control.
-	}
+    "color": {
+        // This also enables text and background UI controls.
+        "gradients": true // Enable gradients UI control.
+ }
 }
 ```
 
@@ -210,7 +210,6 @@ This property adds UI controls which allow the user to apply a gradient backgrou
 
 Gradient presets are sourced from `editor-gradient-presets` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#block-gradient-presets).
 
-
 When the block declares support for `color.gradient`, the attributes definition is extended to include two new attributes: `gradient` and `style`:
 
 - `gradient`: attribute of `string` type with no default assigned.
@@ -251,7 +250,6 @@ When the block declares support for `color.gradient`, the attributes definition 
 
 This property adds block controls which allow the user to set link color in a block, link color is disabled by default.
 
-
 ```json
 "supports": {
     "color": true // Enables only background and text
@@ -269,7 +267,6 @@ To enable link color support, set to `true`.
 ```
 
 Link color presets are sourced from the `editor-color-palette` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#block-color-palettes).
-
 
 When the block declares support for `color.link`, the attributes definition is extended to include two new attributes: `linkColor` and `style`:
 
@@ -323,15 +320,14 @@ To disable text color support while keeping other color supports enabled, set to
 
 ```json
 "supports": {
-    color: {
+    "color": {
         // Disable text color support.
-        text: false
+        "text": false
     }
 }
 ```
 
 Text color presets are sourced from the `editor-color-palette` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#block-color-palettes).
-
 
 When the block declares support for `color.text`, the attributes definition is extended to include two new attributes: `textColor` and `style`:
 
@@ -342,7 +338,7 @@ When the block declares support for `color.text`, the attributes definition is e
   The block can apply a default preset text color by specifying its own attribute with a default e.g.:
 
   ```json
-  attributes: {
+  "attributes": {
       "textColor": {
           "type": "string",
           "default": "some-preset-text-color-slug",
@@ -357,7 +353,7 @@ When the block declares support for `color.text`, the attributes definition is e
   The block can apply a default custom text color by specifying its own attribute with a default e.g.:
 
   ```json
-  attributes: {
+  "attributes": {
       "style": {
           "type": "object",
           "default": {
@@ -371,103 +367,103 @@ When the block declares support for `color.text`, the attributes definition is e
 
 ## customClassName
 
-![](/img/supports-classname.png)
+![Block Editor Sidebar showing the custom class name setting](/img/supports-classname.png)
 
--   Type: `boolean`
--   Default value: `true`
+- Type: `boolean`
+- Default value: `true`
 
 This property adds a field to define a custom className for the block's wrapper.
 
 ```json
 "supports": {
-	// Remove the support for the custom className.
-	"customClassName": false
+    // Remove the support for the custom className.
+    "customClassName": false
 }
 ```
 
 ## defaultStylePicker
 
-![](/img/supports-default-style-picker.png)
+![Block Editor Sidebar showing the default style picker](/img/supports-default-style-picker.png)
 
--   Type: `boolean`
--   Default value: `true`
+- Type: `boolean`
+- Default value: `true`
 
 When the style picker is shown, the user can set a default style for a block type based on the block's currently active style. If you prefer not to make this option available, set this property to `false`.
 
 ```json
 "supports": {
-	// Remove the Default Style picker.
-	"defaultStylePicker": false
+    // Remove the Default Style picker.
+    "defaultStylePicker": false
 }
 ```
 
 ## html
 
-![](/img/supports-edit-html.png)
+![Block Toolbar showing the Edit as HTML option](/img/supports-edit-html.png)
 
--   Type: `boolean`
--   Default value: `true`
+- Type: `boolean`
+- Default value: `true`
 
 By default, a block's markup can be edited individually. To disable this behavior, set `html` to `false`.
 
 ```json
 "supports": {
-	// Remove support for an HTML mode.
-	"html": false
+    // Remove support for an HTML mode.
+    "html": false
 }
 ```
 
 ## inserter
 
--   Type: `boolean`
--   Default value: `true`
+- Type: `boolean`
+- Default value: `true`
 
 By default, all blocks will appear in the inserter. To hide a block so that it can only be inserted programmatically, set `inserter` to `false`.
 
 ```json
 "supports": {
-	// Hide this block from the inserter.
-	"inserter": false
+    // Hide this block from the inserter.
+    "inserter": false
 }
 ```
 
 ## multiple
 
--   Type: `boolean`
--   Default value: `true`
+- Type: `boolean`
+- Default value: `true`
 
-A non-multiple block can be inserted into each post, one time only. For example, the built-in 'More' block cannot be inserted again if it already exists in the post being edited. A non-multiple block's icon is automatically dimmed (unclickable) to prevent multiple instances.
+A non-multiple block can be inserted into each post, one time only. For example, the built-in 'More' block cannot be inserted again if it already exists in the post being edited. A non-multiple block's icon is automatically dimmed (disabled) to prevent multiple instances.
 
 ```json
 "supports": {
-	// Use the block just once per post
-	"multiple": false
+    // Use the block just once per post
+    "multiple": false
 }
 ```
 
 ## reusable
 
--   Type: `boolean`
--   Default value: `true`
+- Type: `boolean`
+- Default value: `true`
 
 A block may want to disable the ability of being converted into a reusable block. By default all blocks can be converted to a reusable block. If supports reusable is set to false, the option to convert the block into a reusable block will not appear.
 
 ```json
 "supports": {
-	// Don't allow the block to be converted into a reusable block.
-	"reusable": false,
+    // Don't allow the block to be converted into a reusable block.
+    "reusable": false,
 }
 ```
 
 ## spacing
 
-![](/img/supports-dimension.png)
+![Block Editor Sidebar showing the Dimension Control panel](/img/supports-dimension.png)
 
--   Type: `Object`
--   Default value: null
--   Subproperties:
-    -   `margin`: type `boolean` or `array`, default value `false`
-    -   `padding`: type `boolean` or `array`, default value `false`
+- Type: `Object`
+- Default value: null
+- Subproperties:
+  - `margin`: type `boolean` or `array`, default value `false`
+  - `padding`: type `boolean` or `array`, default value `false`
 
 This value signals that a block supports some of the CSS style properties related to spacing. When it does, the block editor will show UI controls for the user to set their values, if [the theme declares support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#cover-block-padding).
 
@@ -482,7 +478,7 @@ This value signals that a block supports some of the CSS style properties relate
 
 When the block declares support for a specific spacing property, the attributes definition is extended to include the `style` attribute.
 
--   `style`: attribute of `object` type with no default assigned. This is added when `margin` or `padding` support is declared. It stores the custom values set by the user.
+- `style`: attribute of `object` type with no default assigned. This is added when `margin` or `padding` support is declared. It stores the custom values set by the user.
 
 ```json
 "supports": {
@@ -495,16 +491,15 @@ When the block declares support for a specific spacing property, the attributes 
 
 A spacing property may define an array of allowable sides that can be configured. When arbitrary sides are defined only UI controls for those sides are displayed. Axial sides are defined with the `vertical` and `horizontal` terms, and display a single UI control for each axial pair (for example, `vertical` controls both the top and bottom sides). A spacing property may support arbitrary individual sides **or** axial sides, but not a mix of both.
 
-
 ## typography
 
-![](/img/supports-typography.png)
+![Block Editor Sidebar showing the Typography Settings panel](/img/supports-typography.png)
 
--   Type: `Object`
--   Default value: `null`
--   Subproperties:
-    - `fontSize`: type `boolean`, default value `false`
-    - `lineHeight`: type `boolean`, default value `false`
+- Type: `Object`
+- Default value: `null`
+- Subproperties:
+  - `fontSize`: type `boolean`, default value `false`
+  - `lineHeight`: type `boolean`, default value `false`
 
 The presence of this object signals that a block supports some typography related properties. When it does, the block editor will show a typography UI allowing the user to control their values.
 
@@ -520,8 +515,9 @@ The presence of this object signals that a block supports some typography relate
 ```
 
 ### typography.fontSize
--   Type: `boolean`
--   Default value: `false`
+
+- Type: `boolean`
+- Default value: `false`
 
 This value signals that a block supports the font-size CSS style property. When it does, the block editor will show an UI control for the user to set its value.
 
@@ -538,7 +534,7 @@ The values shown in this control are the ones declared by the theme via the `edi
 
 When the block declares support for `fontSize`, the attributes definition is extended to include two new attributes: `fontSize` and `style`:
 
--   `fontSize`: attribute of `string` type with no default assigned. It stores any preset value selected by the user. The block can apply a default fontSize by specifying its own `fontSize` attribute with a default e.g.:
+- `fontSize`: attribute of `string` type with no default assigned. It stores any preset value selected by the user. The block can apply a default fontSize by specifying its own `fontSize` attribute with a default e.g.:
 
 ```json
 attributes: {
@@ -549,7 +545,7 @@ attributes: {
 }
 ```
 
--   `style`: attribute of `object` type with no default assigned. It stores the custom values set by the user and is shared with other block supports such as color. The block can apply a default style by specifying its own `style` attribute with a default e.g.:
+- `style`: attribute of `object` type with no default assigned. It stores the custom values set by the user and is shared with other block supports such as color. The block can apply a default style by specifying its own `style` attribute with a default e.g.:
 
 ```json
 "attributes": {
@@ -566,8 +562,8 @@ attributes: {
 
 ### typography.lineHeight
 
--   Type: `boolean`
--   Default value: `false`
+- Type: `boolean`
+- Default value: `false`
 
 This value signals that a block supports the line-height CSS style property. When it does, the block editor will show an UI control for the user to set its value if [the theme declares support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#supporting-custom-line-heights).
 
@@ -598,6 +594,7 @@ When the block declares support for `lineHeight`, the attributes definition is e
 ## Working with Block Supports
 
 You can specify any of the these block supports in your `block.json` file under the `supports` key:
+
 ```json title="block.json"
 {
     "apiVersion": 2,
@@ -612,22 +609,21 @@ In order for the attribute to get applied to the block the generated properties 
 
 ```js title="BlockEdit function:"
 function BlockEdit() {
-	const blockProps = useBlockProps();
+    const blockProps = useBlockProps();
 
-	return (
-		<div {...blockProps}>Hello World!</div>
-	);
+    return (
+        <div {...blockProps}>Hello World!</div>
+    );
 }
 ```
 
-
 ```js title="save function:"
 function BlockEdit() {
-	const blockProps = useBlockProps.save();
+    const blockProps = useBlockProps.save();
 
-	return (
-		<div {...blockProps}>Hello World!</div>
-	);
+    return (
+        <div {...blockProps}>Hello World!</div>
+    );
 }
 ```
 
@@ -635,12 +631,12 @@ For dynamic blocks that get rendered via a `render_callback` in PHP you can use 
 
 ```php title="render_callback function:"
 function render_block() {
-	$wrapper_attributes = get_block_wrapper_attributes();
+    $wrapper_attributes = get_block_wrapper_attributes();
 
-	return sprintf(
-		'<div %1$s>%2$s</div>',
-		$wrapper_attributes,
-		'Hello World!'
-	);
+    return sprintf(
+        '<div %1$s>%2$s</div>',
+        $wrapper_attributes,
+        'Hello World!'
+    );
 }
 ```

@@ -1,11 +1,13 @@
 # Lesson 6: Rich Text Formats
 
-## Learning Outcomes:
+## Learning Outcomes
+
 1. Learn what RichText Formats are
 2. Understand how you can control them in RichText components
 3. Build your own custom Rich Text Format
 
 ## What are "Rich Text Formats"?
+
 Rich Text within WordPress is the underlying engine that powers the text editing capabilities in the new Editor. The way rich text works is by representing the text, whether it is an Element Tree (DOM), a HTML String, or a Plain Text string, as a Rich Text Object. Under the hood that representation looks something like this:
 
 ```js
@@ -29,20 +31,23 @@ Core comes with a whole bunch of core Rich Text Formats. They are all created wi
 In the same way core adds all these core formats you are able to add your own custom formats and also remove the formats that core or another plugin created.
 
 ## When should you use "Rich Text Formats"
+
 Rich Text Formats make sense to use whenever you want editors to be able to manipulate something inline. Not on a block level. So the same way you can use the Core "Inline Image" to place a special inline element into your text, you can create your own format that adds a special inline element at the current cursor position. Or more commonly you can add a custom format to apply to a range of text to wrap it in a special class name or inline html tag.
 
 ## Exercise Overview
+
 Let's say we get the following design on a project:
 ![Design showing text with some areas being highlighted by a gradient background](/img/text-format-design.png)
 The client wants to be able to highlight text across their site with a gradient text color. This should not be limited to specific blocks but be available for any text on the page.
 
 There is already a starter file for this component that can be found under `themes/10up-theme/includes/text-formats/gradient-starter.js`. It contains all the imports that we need and what still needs to be done is calling the `registerFormatType` function with the correct information to register our format.
 
-
 ## Takeaways
+
 Rich Text Formats are a great way to add inline formatting controls and therefore a great resource for anything that should not affect an entire block but anything inline.
 
 Registering a Format works very similarly to registering a block. There are two parameters we need to pass to the `registerFormatType` function.
+
 1. Every format needs to have a unique name. The formats are named the same way blocks are named with a `namespace` at the beginning followed by a `/` divider and the `name`.
 2. Every format also needs to have some format options defined. For starters every format needs to have a `title` and a `tagName`. It optionally can have a `className` and or some inline `styles` and then it must have an `edit` method that defines the actual UI with which we interact.
 
@@ -65,9 +70,11 @@ We need to wrap that in a function and then assign that to the `onClick` event o
 Now all that is left is adding a proper icon and a title to the `RichTextToolbarButton` and passing the `isActive` value to the `isActive` prop and we are done.
 
 ## Next steps
+
 1. Take a look at a more complex rich text format like the "text-color" format from core: [Text Color Rich Text Format](https://github.com/WordPress/gutenberg/blob/trunk/packages/format-library/src/text-color/index.js)
 2. Try to change our simple gradient toggle to allow editors to modify the gradient or pick from a predefined list of gradients in a popover like core does in the "text-color" format.
 
 ## Further reading
+
 - [Block Editor Handbook: Introduction to the Format API](https://developer.wordpress.org/block-editor/how-to-guides/format-api/)
 - [How to Create Custom Text Formats for Gutenberg Block Editor - by Jeffrey Carandang](https://jeffreycarandang.com/how-to-create-custom-text-formats-for-gutenberg-block-editor/)

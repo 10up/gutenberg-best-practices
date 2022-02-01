@@ -4,7 +4,7 @@ This lesson provides a partially completed block that needs to have some feature
 
 If you are stuck or need help, refer to the `cta-complete` block as reference or reach out to #10up-gutenberg in Slack for help
 
-## Learning Outcomes:
+## Learning Outcomes
 
 1. Learn how to add new attributes to a block.
 2. Use the RichText component and save the values to a block.
@@ -14,9 +14,10 @@ If you are stuck or need help, refer to the `cta-complete` block as reference or
 Here's the completed CTA block that we're going to build:
 ![alt text](/img/cta-complete.png "The completed CTA block")
 
-## Tasks:
+## Tasks
 
-### 1: Adding a new attribute: `description`.
+### 1: Adding a new attribute: `description`
+
 Add a new attribute to the `cta-starter/block.json` file that will store the `description` field. Attributes are how data is stored with a block. [Here is a link to the official docs for reference](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/) and some more reading [here](https://developer.wordpress.org/block-editor/handbook/tutorials/create-block/attributes/). For reference, you can see the existing `title` attribute in the file. Don't forget to set the "type"!:
 
 ```json
@@ -30,7 +31,9 @@ Add a new attribute to the `cta-starter/block.json` file that will store the `de
 ```json
 "title": "CTA Starter Example"
 ```
-###  2: Adding a RichText component to manage the new attribute
+
+### 2: Adding a RichText component to manage the new attribute
+
 We want the user to be able to enter the description and manage formatting of the text in the blocks `edit` property. To do that, we first need to be sure our attributes are listed in the top of the `ExampleBlockEdit` call in the the `cta-starter/edit.js` file. We need to be sure `description` is included in the `attributes` object below:
 
 ```js
@@ -51,6 +54,7 @@ Next, in the same file, we can add a `RichText` component under the existing one
 
 :::tip
 Not sure what to use as values? Here you go:
+
 * `className="call-to-action-block__description"`
 * `tagName="p"`
 * `placeholder={__('Description here…', 'gutenberg-lessons')}`
@@ -62,14 +66,15 @@ Not sure what to use as values? Here you go:
 See that `setAttributes` call? That's a function that is provided by the block API to set attributes for the block you can read more about it [here](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/)
 :::note
 
-### 3: Adding an optional field to the block.
+### 3: Adding an optional field to the block
+
 Now that we know how to add new attributes and use `setAttributes` to update them, we can a more complicated feature - let's add an optional CTA button!
 
 When we're done, it will look like this:
 ![alt text](/img/cta-complete-with-control.png "CTA block with Inspector control")
 
-
 To do this, we need to manage three new pieces of data:
+
 1. Is the CTA enabled?
 2. The button text.
 3. The button link.
@@ -82,12 +87,14 @@ Add three more attributes to the `cta-starter/block.json` file for each of the n
 
 :::tip
 Attributes we are adding:
+
 * `showCTALink`
 * `ctaLink`
 * `ctaText`
 :::tip
 
 **BONUS:** Let's set some defaults for these new attributes:
+
 * `ctaLink`: "https://10up.com"
 * `ctaText`: "Learn more →"
 
@@ -110,11 +117,12 @@ place `ToggleControl` inside `PanelBody`:
 Once that is in-place, we want to add a `URLInput` component to the Inspector Side bar. This will allow the user to set the URL that the CTA button links to. The issue here, is that we only want to show this new control if the attribute that stores if the CTA is enabled is set to true. Give this a try and again refer to the completed example if you get stuck.
 
 :::tip
+
 * We want to display the `URLInput` component just inder our `ToggleControl` and *ONLY* if `showCTALink` is `true`. In React, we can do something like `{showCTALink && ( ... )}`
 * `URLInput` component props:
-	* `label={__('URL', 'gutenberg-lessons')}`
-	* `value={ctaLink}`
-	* `onChange={(ctaLink) => {
+  * `label={__('URL', 'gutenberg-lessons')}`
+  * `value={ctaLink}`
+  * `onChange={(ctaLink) => {
 		setAttributes({ ctaLink });
 	}}`
 :::tip
@@ -122,21 +130,24 @@ Once that is in-place, we want to add a `URLInput` component to the Inspector Si
 The next step is to add a new `RichText` component below the one for the `description` field that will manage the text of the CTA button. Be sure that this is only shown if the feature is enabled and that it sets and retrieves the associated attribute correctly.
 
 :::tip
+
 * Remember how we conditionally showed `URLInput` above? We can do the same thing for this new `RichText` component.
 * NEW `RichText` component props:
-	* `className="call-to-action-block__link"`
-	* `tagName="a"`
-	* `placeholder={__('CTA here…', 'gutenberg-lessons')}`
-	* `value={ctaText}`
-	* `onChange={(ctaText) => setAttributes({ ctaText })}`
+  * `className="call-to-action-block__link"`
+  * `tagName="a"`
+  * `placeholder={__('CTA here…', 'gutenberg-lessons')}`
+  * `value={ctaText}`
+  * `onChange={(ctaText) => setAttributes({ ctaText })}`
 :::tip
 
-__A quick note on block UX best practices:__ Generally, speaking content such as text or setting a featured image should be input into the actual block and "settings" such as the CTA on/off toggle should be in the inspector toolbar.
-### 4: Rendering the front-end.
+**A quick note on block UX best practices:** Generally, speaking content such as text or setting a featured image should be input into the actual block and "settings" such as the CTA on/off toggle should be in the inspector toolbar.
+
+### 4: Rendering the front-end
 
 The intention for any block we create at 10up is to have the Block Editor experience match the front-end experience match as closely as possible. Update the `cta-starter/markup.php` to show the new attributes correctly ( including the optional CTA button ).
 
 :::tip
+
 * Add `description`, and conditionally shown `ctaLink`.
 * All data needed should be passed found in $attributes.
 * Don't forget class names.

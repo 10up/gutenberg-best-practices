@@ -14,13 +14,16 @@ There are several different instances of the editor throughout the WordPress adm
 But there are also other instances of the block editor being used throughout the admin interface. There is the site editor also reffered to as the template editor which was introduced in WordPress 5.8 as the first piece of the full-site-editing project. Finally, for now, there is the widget editor which now also runs powered by the block editor.
 
 ## Anatomy of the Block Editor
+
 No matter which instance of the editor you are working with the fundamental anatomy always stays the same. There always is the main editing canvas, a top toolbar and a settings sidebar on the side.
 
 Insert an image of the editor to show the different sections
 
 ### Top Toolbar
+
 ![](/img/gutenberg-toolbar.png)
 The top toolbar is a place for page level tools and interface related toggles. You can insert
 
 ### Sidebar
+
 ![](/img/gutenberg-sidebar.png)

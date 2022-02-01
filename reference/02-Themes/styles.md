@@ -7,7 +7,8 @@ sidebar_label: Styling
 First of all the goal we aim for here is parity between the editor and the frontend of the site. The stylesheet that gets loaded on the frontend of the site should also get loaded in the editor. And the expectation is that the markup matches between both environments.
 
 ## The main stylesheet
-In order for our stylesheet to get loaded in the editor including all its's variants like the Template Editor, Site Editor, and Widget Editor (some of which are already rendering the content in an iframe) we use the [`add_editor_style`](https://developer.wordpress.org/reference/functions/add_editor_style/) function. 
+
+In order for our stylesheet to get loaded in the editor including all its's variants like the Template Editor, Site Editor, and Widget Editor (some of which are already rendering the content in an iframe) we use the [`add_editor_style`](https://developer.wordpress.org/reference/functions/add_editor_style/) function.
 
 ```php
 function theme_setup() {
@@ -21,12 +22,14 @@ function theme_setup() {
 }
 add_action( 'after_setup_theme', 'theme_setup' );
 ```
+
 :::info
-If we need to load custom fonts from an external source we also need to add a separate `add_editor_style` call for the stylesheet loading the font. 
+If we need to load custom fonts from an external source we also need to add a separate `add_editor_style` call for the stylesheet loading the font.
 :::note
 
 ## Block specific styles
-If you have stylesheets that are specific to a particular block you **can** also add them via the `wp_enqueue_block_style` function that was introduced in WordPress 5.9. The stylesheets that you add here will also get loaded properly in all the various contexts where a block is being used. The only difference being that they are only loaded when the block is actually used. 
+
+If you have stylesheets that are specific to a particular block you **can** also add them via the `wp_enqueue_block_style` function that was introduced in WordPress 5.9. The stylesheets that you add here will also get loaded properly in all the various contexts where a block is being used. The only difference being that they are only loaded when the block is actually used.
 
 ```php
 function theme_setup() {
@@ -90,5 +93,6 @@ If your theme opts-in to the separate block-styles, core block styles by default
 :::note
 
 ## Links
+
 - [Block-styles loading enhancements in WordPress 5.8](https://make.wordpress.org/core/2021/07/01/block-styles-loading-enhancements-in-wordpress-5-8/)
 - [Using multiple stylesheets per block](https://make.wordpress.org/core/2021/12/15/using-multiple-stylesheets-per-block/)
