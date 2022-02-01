@@ -4,6 +4,9 @@ sidebar_position: 1
 ---
 
 # A Recap of the WordPress Block Editor
+
+![](/img/gutenberg-interface-sketch.png)
+
 The editor is the main interface through which one interacts with their website. It is the gateway through which you can share your message with the world. So the editorial experience is essential in creating a pleasant supportive experience that allows you to focus just on what you want to share.
 
 There are several different instances of the editor throughout the WordPress admin interface. The most common one being the **post editor**. it is what you are probably thinking of straight away. The post editor is where you create new or edit posts/pages or any other custom post type.
@@ -15,4 +18,9 @@ No matter which instance of the editor you are working with the fundamental anat
 
 Insert an image of the editor to show the different sections
 
+### Top Toolbar
+![](/img/gutenberg-toolbar.png)
 The top toolbar is a place for page level tools and interface related toggles. You can insert
+
+### Sidebar
+![](/img/gutenberg-sidebar.png)
