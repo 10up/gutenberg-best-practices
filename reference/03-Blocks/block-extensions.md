@@ -3,8 +3,71 @@ sidebar_position: 3
 ---
 
 # Block Extensions
-There is no core API for block extensions. When we refer to block extensions here, what we actually mean is using the hooks provided in the block editor to add our own custom attributes and UI to existing blocks. You can see a full list of the [available block filters in the Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/). 
+There is no core API for block extensions. When we refer to block extensions here, we actually mean using the hooks provided in the block editor to add our own custom attributes and UI to existing blocks.
 
-The most commonly used filters are `blocks.registerBlockType` for adding new attributes / supports to a block, `editor.BlockEdit` for adding custom controls to the blocks toolbar or settings sidebar, `editor.BlockListBlock` for adding custom attributes to the wrapping element within the editor, and `blocks.getSaveContent.extraProps` for adding additional attributes to the wrapping element in the save method.
+The Block Editor Handbook has a full list of the [available block filters in the Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/).
 
-In order to make it easier to work with all of these filters there is a function called `registerBlockExtention` in the `10up/block-components` package. 
+Luckily we don't have to manually use all the filters every time anymore. The 10up/block-components package comes with a `registerBlockExtention` API which allows you to get up and running much faster.
+
+## Why use Block Extensions?
+The ability to extend blocks is one of the superpowers of the editor. Essentially the entire [block supports](./block-supports.md) system is build using block extensions. The concept is, that you can add custom attributes and editorial controls to one or more blocks at the same time. 
+
+But it isn't just useful when you want to add one control to multiple blocks. It also comes in handy as a replacement for [block styles](./block-styles.md). As mentioned in that section the block styles api comes with big limitation that you cannot apply multiple styles at the same time and therefore cannot combine the effects they are having on the block. This is where being able to add your own settings to blocks comes in super handy. 
+
+Instead of having to add more and more block styles that essentially are just combination of other styles you can instead add these options as visual options that you can combine however you need.
+
+### Example
+Lets say we have a design where we want to be able to have different background patterns on a group block. This pattern can start out as just three different block styles. Dots, Squares, and triangles. 
+
+Now the client comes and also wants the ability to choose between green, blue, and red variants of these patterns. 
+
+Because of the limitation of the block styles API you would now have to duplicate each of the variants twice to create a style for each of the combinations.
+![](/img/block-extenstions-before.png)
+
+This can be avoided by creating the same options as block extensions. Instead of nine almost identical block styles that take over the entire screen you can register two attributes. One for the pattern shape and one for the pattern color. And then add settings to the settings sidebar for them. 
+
+![](/img/block-extenstions-after.png)
+
+And if you need to extend this even further by adding a sizing control to the pattern or more different variants it is much easier than adding more and more block styles.
+
+## Using `registerBlockExtention`
+
+
+## Manually using the hooks
+### Common filters
+#### `blocks.registerBlockType`
+for adding new attributes / supports to a block.
+```js
+import { addFilter } from '@wordpress/hooks';
+
+add_filter( 'blocks.registerBlockType', 'namespace/filter-name', function(settings, name) {...} );
+```
+
+#### `editor.BlockEdit`
+for adding custom controls to the blocks toolbar or settings sidebar.
+
+```js
+import { addFilter } from '@wordpress/hooks';
+import { createHigherOrderComponent } from '@wordpress/compose';
+
+add_filter( 'editor.BlockEdit', 'namespace/filter-name', createHigherOrderComponent((BlockEdit) => {...}) );
+```
+
+#### `editor.BlockListBlock`
+for adding additional properties to the wrapping element within the editor.
+
+```js
+import { addFilter } from '@wordpress/hooks';
+import { createHigherOrderComponent } from '@wordpress/compose';
+
+add_filter( 'editor.BlockListBlock', 'namespace/filter-name', createHigherOrderComponent((BlockList) => {...}) );
+```
+
+#### `blocks.getSaveContent.extraProps`
+for adding additional properties to the wrapping element in the save method.
+
+```js
+import { addFilter } from '@wordpress/hooks';
+
+add_filter( 'blocks.getSaveContent.extraProps', 'namespace/filter-name', function(props, block, attributes) {...} );
+```
