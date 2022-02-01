@@ -89,6 +89,6 @@ If for example on a page there are 30 stylesheets that are 1kb each, and they al
 If your theme opts-in to the separate block-styles, core block styles by default have `path` defined so they can all be inlined.
 :::note
 
-## Links:
+## Links
 - [Block-styles loading enhancements in WordPress 5.8](https://make.wordpress.org/core/2021/07/01/block-styles-loading-enhancements-in-wordpress-5-8/)
 - [Using multiple stylesheets per block](https://make.wordpress.org/core/2021/12/15/using-multiple-stylesheets-per-block/)
