@@ -41,6 +41,7 @@ const config = {
         showLastUpdateTime: true,
         showLastUpdateAuthor: true,
         editUrl: 'https://github.com/10up/gutenberg-best-practices/tree/main/',
+        sidebarCollapsed: false,
       },
     ],
     [
@@ -53,6 +54,7 @@ const config = {
         showLastUpdateTime: true,
         showLastUpdateAuthor: true,
         editUrl: 'https://github.com/10up/gutenberg-best-practices/tree/main/',
+        sidebarCollapsed: false,
       },
     ],
     [
@@ -64,6 +66,7 @@ const config = {
         showLastUpdateTime: true,
         showLastUpdateAuthor: true,
         editUrl: 'https://github.com/10up/gutenberg-best-practices/tree/main/',
+        sidebarCollapsed: false,
       },
     ],
     [
