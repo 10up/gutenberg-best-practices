@@ -7,7 +7,7 @@ There is no core API for block extensions. When we refer to block extensions her
 
 The Block Editor Handbook has a full list of the [available block filters in the Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/).
 
-Luckily we don't have to manually use all the filters every time anymore. The 10up/block-components package comes with a `registerBlockExtention` API which allows you to get up and running much faster.
+Luckily we don't have to manually use all the filters every time anymore. The 10up/block-components package comes with a `registerBlockExtension` API which allows you to get up and running much faster.
 
 ## Why use Block Extensions?
 The ability to extend blocks is one of the superpowers of the editor. Essentially the entire [block supports](./block-supports.md) system is build using block extensions. The concept is, that you can add custom attributes and editorial controls to one or more blocks at the same time. 
@@ -22,6 +22,11 @@ Lets say we have a design where we want to be able to have different background 
 Now the client comes and also wants the ability to choose between green, blue, and red variants of these patterns. 
 
 Because of the limitation of the block styles API you would now have to duplicate each of the variants twice to create a style for each of the combinations.
+
+:::tip
+As a rule of thumb a block should never have more than 4 block styles.
+:::
+
 ![](/img/block-extenstions-before.png)
 
 This can be avoided by creating the same options as block extensions. Instead of nine almost identical block styles that take over the entire screen you can register two attributes. One for the pattern shape and one for the pattern color. And then add settings to the settings sidebar for them. 
@@ -30,8 +35,68 @@ This can be avoided by creating the same options as block extensions. Instead of
 
 And if you need to extend this even further by adding a sizing control to the pattern or more different variants it is much easier than adding more and more block styles.
 
-## Using `registerBlockExtention`
+## Using `registerBlockExtension`
+The `registerBlockExtension` API makes it much easier to register these block extensions. Instead of having to manually hook into 4 different hooks you _just_ need to call the `registerBlockExtension` function and pass it a few options
 
+```js
+import { registerBlockExtension } from '@10up/block-components';
+
+/**
+ * BlockEdit
+ *
+ * a react component that will get mounted in the editor when the block
+ * is selected. It is recommended to use Slots like `BlockControls` or
+ * `InspectorControls` in here to put settings into the blocks
+ * toolbar or sidebar.
+ *
+ * @param {object} props block props
+ * @returns {JSX}
+ */
+function BlockEdit(props) {...}
+
+/**
+ * generateClassNames
+ *
+ * a function to generate the new className string that should
+ * get added to the wrapping element of the block.
+ *
+ * @param {object} attributes block attributes
+ * @returns {string}
+ */
+function generateClassNames(attributes) {...}
+
+registerBlockExtension(
+	'core/group',
+	{
+		extensionName: 'background-patterns',
+		attributes: {
+			hasBackgroundPattern: {
+				type: 'boolean',
+				default: false,
+			},
+			backgroundPatternShape: {
+				type: 'string',
+				default: 'dots',
+			},
+			backgroundPatternColor: {
+				type: 'string',
+				default: 'green'
+			}
+		},
+		classNameGenerator: generateClassNames,
+		Edit: BlockEdit,
+	}
+);
+```
+
+### Options
+| Name                       | Type       | Description                                       |
+|----------------------------|------------|---------------------------------------------------|
+| blockName                  | `string`   | Name of the block the options should get added to |
+| options.extensionName      | `string`   | Unique Identifier of the option added    |
+| options.attributes         | `object`   | Block Attributes that should get added to the block |
+| options.classNameGenerator | `funciton` | Funciton that gets passed the attributes of the block to generate a class name string |
+| options.Edit               | `funciton` | BlockEdit component like in `registerBlockType` only without the actual block. So onyl using slots like the `InspectorControls` is advised. |
 
 ## Manually using the hooks
 ### Common filters
