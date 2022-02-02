@@ -99,3 +99,8 @@ import { unregisterBlockVariation } from '@wordpress/blocks';
 
 unregisterBlockVariation( 'core/embed', 'youtube' );
 ```
+
+## Links
+
+- [Block Editor Handbook - Block Variations Reference](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/)
+- [Using Gutenberg Block Variations in the WordPress Block Editor](https://richtabor.com/block-variations/)
