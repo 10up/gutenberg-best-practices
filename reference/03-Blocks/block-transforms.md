@@ -47,8 +47,6 @@ registerBlockType(
         }
     }
 )
-
-
 ```
 
 ### Transformations Types
@@ -84,7 +82,7 @@ A transformation of type `block` is an object that takes the following parameter
 
 #### Example: from Paragraph block to Heading block
 
-To declare this transformation we add the following code into the heading block configuration, which uses the `createBlock` function from the [`wp-blocks` package](/packages/blocks/README.md#createBlock).
+To declare this transformation we add the following code into the heading block configuration, which uses the `createBlock` function from the [`wp-blocks` package](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#createblock).
 
 ```js
 import { createBlock } from '@wordpress/blocks';

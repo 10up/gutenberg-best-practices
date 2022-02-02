@@ -12,7 +12,7 @@ This is where the block editor allows you to build your own custom blocks.
 
 ## When to build custom blocks
 
-This really depends on the project you are working on. You can find an entire deep dive on [how to decide what to build](../../guides/choose-your-adventure.md). In short, custom blocks allow you to cater the user experience ot the clients needs.
+This really depends on the project you are working on. You can find an entire deep dive on [how to decide what to build](/guides/choose-your-adventure). In short, custom blocks allow you to cater the user experience ot the clients needs.
 
 In short custom blocks are the solution if you either need to add special functionality that isn't already covered by core blocks and also when the editorial user experience should be more tailored to the specific needs of the client.
 
