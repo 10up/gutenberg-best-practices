@@ -10,7 +10,7 @@ The two first and most important questions to answer before diving in and choosi
 2. _**"What are their goals?"**_ - as in do they want to share information in a strict format or do they need flexibility over teh page design
 
 When you are building editorial experiences it is important to understand the goals of the people you are crafting these experiences for. There are clients who _just_ want to share their content and don't want to worry about how things are going to look. That is what they hired us for. And there are other clients that essentially want a page builder that has their defaults set but gives them freedom to design every aspect of their page.
-![](/img/flexibility-scale.png)
+![Scale from Simplicity to Flexibility with Client needs leaning towards simplicity](/img/flexibility-scale.png)
 
 This also isn't a black or white question. Most clients fall somewhere in between these two extremes. Nevertheless it is crucial to get these questions answered as early in the process as possible in order to make the right editorial decisions for the client.
 
@@ -19,13 +19,13 @@ This also isn't a black or white question. Most clients fall somewhere in betwee
 Depending on what the answer to these first questions is, you can figure out whether your client needs a system that is super composable build out of individual atomic pieces that they then can use to build whatever they want & need to. Or whether they need more structure.
 
 Looking at this design for example. There are several ways in which you can approach building this in the editor.
-![](/img/sample-design-boxes.png)
+![Design Mockup showing a row with three boxes](/img/sample-design-boxes.png)
 
 ### 1. Using Core Blocks
 
 This design could be build entirely using core blocks.
 
-```
+```plaintext
 Group
     Heading
     Columns
@@ -45,7 +45,11 @@ Group
 
 ### 2.a Using Core Blocks + a Block Pattern
 
-YOu can easily enhance the experience by also adding a block pattern for this arrangement of core blocks. This allows editors to quickly and easily create this section whilst leaving them the flexibility to change everything to their liking.
+You can easily enhance the experience by also adding a block pattern for this arrangement of core blocks. This allows editors to quickly and easily create this section whilst leaving them the flexibility to change everything to their liking.
+
+:::caution
+As mentioned in the [block pattern reference](../reference/03-Blocks/block-patterns.md) patterns have no connection to what created them. So any updates you make to the pattern in the future will not update instances that were created before you updated it.
+:::caution
 
 ### 2.b Using Core Blocks + a Block Pattern with Restrictions
 
@@ -57,6 +61,6 @@ There are also valid reasons why the client needs an even more locked down exper
 
 This Icon Card block can then be inserted inside the columns block with a heading placed above.
 
-:::note
-The custom block should also get a block pattern created to make it even easier to insert the entire design on the page.
-:::
+:::info
+The custom block should also get a block pattern created to make it even easier to insert the entire design on the page. Since we build dynamic blocks at 10up we now also don't have the issue of not being able to update markup in patterns anymore. Because we can update the markup of our dynamic block which gets reflected everywhere.
+:::info
