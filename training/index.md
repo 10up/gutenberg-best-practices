@@ -59,31 +59,14 @@ The `10up-theme` build system requires node version **14** in order to build suc
 
 ## Lessons
 
-* [Lesson 1: Anatomy of a block](overview)
-* [Lesson 2: A Simple CTA block](cta-lesson)
-* [Lesson 3: Block Styles](styles)
-* [Lesson 4: Block Variations](variations)
-* [Lesson 5: Inner Blocks / Block Nesting](inner-blocks)
-* [Lesson 6: Rich Text Formats](rich-text-formats)
-* [Lesson 7: Slot Fill](slot-fill)
-
-## Build Your Own
-
-After going through the lessons, it's time to put all your newly learned skills together and build a block by yourself. Spend no more than ~4 hours on this block. Submit what you build to your Director of Engineering for review.
-
-### What to Build
-
-Your task is to build a block called "Author Byline". The block should show the author of the current post next to their avatar image. There should be a block setting for hiding the avatar image.
-
-To start you should make a clone of the [10up WP Scaffold](https://github.com/10up/wp-scaffold). The block should be created as a part of the theme.
-
-### Technical Specifications
-
-* Built as a dynamic block
-* Following 10up Best Practices
-* Follows block building patterns shown in the [10up WP Scaffold example block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block).
-
-If you get stuck or have questions, please post in the [`#10up-gutenberg`](https://10up.slack.com/archives/C8Z3WMN1K) Slack channel.
+* [Lesson 1: Anatomy of a block](./01-overview.md)
+* [Lesson 2: A Simple CTA block](./02-cta-lesson.md)
+* [Lesson 3: Block Styles](./03-styles.md)
+* [Lesson 4: Block Variations](./04-variations.md)
+* [Lesson 5: Inner Blocks / Block Nesting](./05-inner-blocks.md)
+* [Lesson 6: Rich Text Formats](./06-rich-text-formats.md)
+* [Lesson 7: Slot Fill](./07-slot-fill.md)
+* [Lesson 8: Build your own](./08-build-your-own.md)
 
 ## Support
 
