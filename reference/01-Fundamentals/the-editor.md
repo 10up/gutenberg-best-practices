@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # A Recap of the WordPress Block Editor
 
-![](/img/gutenberg-interface-sketch.png)
+![Block Editor Sketch](/img/gutenberg-interface-sketch.png)
 
 The editor is the main interface through which one interacts with their website. It is the gateway through which you can share your message with the world. So the editorial experience is essential in creating a pleasant supportive experience that allows you to focus just on what you want to share.
 
@@ -21,9 +21,12 @@ Insert an image of the editor to show the different sections
 
 ### Top Toolbar
 
-![](/img/gutenberg-toolbar.png)
+![Block Editor Toolbar](/img/gutenberg-toolbar.png)
 The top toolbar is a place for page level tools and interface related toggles. You can insert
 
 ### Sidebar
 
-![](/img/gutenberg-sidebar.png)
+![Block Editor Sidebar](/img/gutenberg-sidebar.png)
+The settings sidebar has two tabs. The first one is for page level controls. This is where any settings that impact the overall page are placed.
+
+The second tab is for the currently selected block. It houses advanced controls that allow you to control the appearance of the selected block.
