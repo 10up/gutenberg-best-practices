@@ -23,9 +23,22 @@ function theme_setup() {
 add_action( 'after_setup_theme', 'theme_setup' );
 ```
 
-:::info
-If we need to load custom fonts from an external source we also need to add a separate `add_editor_style` call for the stylesheet loading the font.
-:::note
+The stylesheets that get added via the `add_editor_style` function get automatically parsed by WordPress and get scoped to the `.editor-styles-wrapper` class. This means that you cannot target anything outside of the `.editor-styles-wrapper` in that stylesheet since core will override that. The transformed parsed and transformed stylesheet then gets inlined in the editor.
+
+:::tip
+If you need to load custom fonts from an external source you also need to add a separate `add_editor_style` call for the stylesheet loading the font.
+:::tip
+
+<details>
+<summary>Enqueueing order on the page:</summary>
+<p>
+
+Looking at the DOM we can see that the stylesheets get inlined in a particular order. It first loads the ones added via the `add_editor_style` function, followed by the inline styles generated from the values defined in [`theme.json`](./theme-json.mdx).
+
+</p>
+</details>
+
+In cases where you need to load custom style overrides for the admin interface in the editor you can still do that with the `enqueue_block_editor_assets` hook.
 
 ## Block specific styles
 
