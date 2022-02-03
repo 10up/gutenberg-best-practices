@@ -2,27 +2,23 @@
 sidebar_label: Theme.json
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Global Settings & Styles (`theme.json`)
 
-Theme.json has been introduced in WordPress 5.8 as the way to control the overall appearance and settings of blocks. These settings and style presets get applied both in the editor and on the frontend of the site. 
+Theme.json has been introduced in WordPress 5.8 as the way to control the overall appearance and settings of blocks. These settings and style presets get applied both in the editor and on the frontend of the site.
 
 :::tip
 Add the `$schema` key to your `theme.json` files:
+
 ```json
 {
     "$schema": "https://schemas.wp.org/trunk/theme.json"
 }
 ```
+
 This will give you autocomplete and inline documentation while working on `theme.json` files.
 
 _You can interchange `trunk` with a specific WordPress version like so: `https://schemas.wp.org/wp/5.9/theme.json`_
 :::
-
-<Tabs>
-<TabItem label="Input" value="input">
 
 ```json title="theme.json"
 {
@@ -46,9 +42,6 @@ _You can interchange `trunk` with a specific WordPress version like so: `https:/
 }
 ```
 
-</TabItem>
-<TabItem label="Output" value="output">
-
 ```css title="generated custom properties"
 body {
     --wp--preset--color--black: #000000;
@@ -56,17 +49,15 @@ body {
 }
 ```
 
-</TabItem>
-</Tabs>
-
-## Undersanding the cascade
+## Understanding the cascade
 
 ![Global Styles Overview](/img/global-styles-input-output.png)
 
 ## Using the values from `theme.json` custom blocks
-You can access the settings & values defined in `theme.json` via the `useSetting` hook. This hook accepts a `string` as its parameter which is used as the path for a setting. This means that it checks through the different specificity levels whether a value has been defined for this key. 
 
-It first checks whether the user has defined something, then whether the block has defined something in its settings, following the global settings in `theme.json`. Of none of these palces have any value it will use the defaul value specified in core. 
+You can access the settings & values defined in `theme.json` via the `useSetting` hook. This hook accepts a `string` as its parameter which is used as the path for a setting. This means that it checks through the different specificity levels whether a value has been defined for this key.
+
+It first checks whether the user has defined something, then whether the block has defined something in its settings, following the global settings in `theme.json`. Of none of these palaces have any value it will use the default value specified in core.
 
 ```js
 import { useSetting } from '@wordpress/block-editor';
@@ -77,6 +68,7 @@ export function BlockEdit() {
     // ...
 }
 ```
+
 <details>
     <summary>Example:</summary>
 <p>
@@ -102,11 +94,12 @@ export function BlockEdit() {
 }
 ```
 
-Using `useSetting('typography.dropCap')` would only return `true` if it is being called from within the `core/paragraph` block. 
+Using `useSetting('typography.dropCap')` would only return `true` if it is being called from within the `core/paragraph` block.
 
 </p>
 </details>
 
-## Links:
+## Links
+
 - [Block Editor Handbook - Global Settings & Styles (theme.json)](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/)
 - [Block Editor Handbook - Theme JSON API Reference](https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/theme-json-living/)

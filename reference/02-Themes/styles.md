@@ -33,7 +33,7 @@ If you need to load custom fonts from an external source you also need to add a 
 <summary>Enqueueing order on the page:</summary>
 <p>
 
-Looking at the DOM we can see that the stylesheets get inlined in a particular order. It first loads the ones added via the `add_editor_style` function, followed by the inline styles generated from the values defined in [`theme.json`](./theme-json.mdx).
+Looking at the DOM we can see that the stylesheets get inlined in a particular order. It first loads the ones added via the `add_editor_style` function, followed by the inline styles generated from the values defined in [`theme.json`](./theme-json.md).
 
 </p>
 </details>
