@@ -6,6 +6,35 @@ sidebar_label: Theme.json
 
 Theme.json has been introduced in WordPress 5.8 as the way to control the overall appearance and settings of blocks. These settings and style presets get applied both in the editor and on the frontend of the site.
 
+## When to use `theme.json`
+
+By default any new WordPress Theme at 10up includes a `theme.json` file with some minimal configuration. It is recommended to keep this file and use it to control which settings should be exposed on each block in the editor. Theme.json is the easiest mechanism of controlling what options should be exposed.
+
+## How to use `theme.json`
+
+The `theme.json` file gets added to the root directory of a Theme. There are two main areas that you can control with the `theme.json` file. Settings and styles. Both of these can have properties defined on the global level, meaning applying to the entire site with all it's blocks, or on the block level where you can target individual block types.
+
+```json
+{
+    "settings": {
+        // Global settings get defined here...
+
+        "blocks": {
+            // Block specific settings get defined here...
+        }
+    },
+
+    "styles" : {
+        // Global styles get defined here...
+
+        "blocks": {
+            // Block specific styles get defined here...
+        }
+    }
+
+}
+```
+
 :::tip
 Add the `$schema` key to your `theme.json` files:
 
@@ -50,6 +79,8 @@ body {
 ```
 
 ## Understanding the cascade
+
+These settings and styles exist at three levels, each overwriting the specificity of the previous layer. At the root there is the default core `theme.json` file which houses all the default values for everything. All the properties in this core `theme.json` file can be overwritten via the `theme.json` file of a theme. Finally there also is the third layer which is the user generated `theme.json` that comes out of the global styles panel in the site editor. This only impacts "Block Based Themes" which allow users to define colors, fonts, ect. manually using the Site Editor.
 
 ![Global Styles Overview](/img/global-styles-input-output.png)
 
