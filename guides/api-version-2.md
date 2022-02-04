@@ -1,6 +1,6 @@
 # A Quick Guide for Gutenberg API Version 2
 
-First of all there is no need to feark out. I know API Version 2 sounds scary like everything is changing but that is not the case. In fact if you don't want to nothing has to change. API Version 2 is opt in and therefore does not impact anything if you don't want it to. But there are good reasons why you may want to use it.
+First of all there is no need to freak out. I know API Version 2 sounds scary like everything is changing but that is not the case. In fact if you don't want to nothing has to change. API Version 2 is opt in and therefore does not impact anything if you don't want it to. But there are good reasons why you may want to use it.
 
 ## Benefits
 
