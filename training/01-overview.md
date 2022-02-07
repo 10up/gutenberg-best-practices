@@ -56,7 +56,7 @@ In our custom blocks, we define the attributes we want to use, save them to the 
 
 You can think about attributes as fields or data — a heading, a title, a description, a url, an array of Post IDs, an image ID, a boolean toggle, etc — are all common examples of attributes. In each of these instances, we want to save the attribute's value in the editor and then output them in our templates.
 
-## Anatomy of a Block
+## File structure of a block
 
 It takes a village (of files) to build a block. Luckily, our 10up scaffold has everything neatly in place for you. The scaffold comes with a [starter block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block)
  that shows everything in place.
