@@ -8,8 +8,6 @@ The very first thing you need to know about blocks is about the Block Editor its
 
 ## The Block Editor
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/flrWBgXBNDE" title="Gutenberg Interface Tour" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowFullScreen></iframe>
-
 So that we are all on the same page with block terminology, here is a list of the important components of a block that you will be dealing with:
 
 ![The Block Editor](/img/gutenberg-interface-sketch.png)
@@ -18,11 +16,37 @@ So that we are all on the same page with block terminology, here is a list of th
 2. **Toolbar** — Every block has a toolbar that is shown anchored directly above it when the block is selected. This toolbar contains secondary controls that are commonly used such as formatting or alignment controls.
 3. **Inspector** - This section is called many different names — "Inspector Panel", "Settings Sidebar", "Block Sidebar", etc. In Gutenberg language, it is simply known as the "Inspector". This is where any additional controls for a block live. These controls should not be _required_ for a block to work. Every option should have sensible defaults that can get overwritten if needed.
 
+To get a full overview of the editor interface and the anatomy of a block you can view the dedicated reference articles here:
+
+- [The Editor](/reference/01-Fundamentals/the-editor.md)
+- [Anatomy of a Block](/reference/01-Fundamentals/a-block.md)
+
 Now that we have a handle on the interface terminology, let's jump into what blocks are made of.
 
 ## The Tech Stack
 
-A common point of confusion with the block editor is how it relates to React.js. Custom blocks that we build are plain ole' HTML, CSS, and PHP on the frontend of the website. In the Block Editor (e.g. when editing a post), the interface and all of the blocks are written in React.js. If you are writing markup for the frontend or styling a block, React.js is not involved.
+A common point of confusion with the block editor is how it relates to [React.js](https://reactjs.org). The editor itself is build in react and therefore the editor interface of any core or custom blocks are also powered by it. What's saved to the database though is plain HTML that gets rendered on the frontend of the site.
+
+At 10up we are mostly building dynamic blocks. This means that we don't store the markup in the database, but rather use PHP to generate the markup for the frontend rendering dynamically on the server.
+
+<details>
+<summary>Learn more about why 10up is building dynamic blocks</summary>
+<p>
+
+Most of the core blocks are build as static blocks. That means that they define a `save` method in their block registration which is used to generate the HTML markup that gets saved to the database.
+
+This system cannot be used when you are working with dynamic data like rendering a list of the latest posts. Therefore the editor also allows blocks to define a `render_callback`. This render callback gets invoked every time the block gets rendered and therefore allows you to build the dynamic markup live on the server.
+
+The problem when using static blocks however is, that all the markup is saved to the database. So when new options get added to a block, or when something in the markup needs to get changed this leads to a deprecation issue. When the block editor loads it parses the content and tries to generate the markup which should get saved to the database again. It then compares this newly generated string with what already exists in the database. And when the expected result does not match the actual result an error is thrown and the block shows a deprecation warning.
+
+This can be managed by adding a `deprecation` to the block which allows it to recognize previous versions of itself and migrate them over to the new syntax.
+
+However these migrations only get applied once a block is re opened in the editor and saved. Which means that it is not possible to make a side wide change that should affect all instances of a block.
+
+Since managing the deprecations in a client environment where things are changing a lot is a large effort and we often need the ability to rollout changes site wide without having to manually re save every post dynamic blocks where the markup gets generated at the time of loading the page get around these issues. All that is saved in the database is a HTML comment containing the block name and a serialized JSON object containing all of the blocks attributes.
+
+</p>
+</details>
 
 ## Block Attributes
 
