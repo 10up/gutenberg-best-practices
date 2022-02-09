@@ -29,14 +29,14 @@ In redux and therefore in the WordPress Data API there is the concept of a Store
 
 The editor does not only have one global data store but rather multiple different stores that each focus on different areas of the site. These stores can be refereed to by their namespace or you can import the store object from the individual packages.
 
-| Namespace           | Description |
-|---------------------|-------------|
-| `core`              | WordPress Core Data - Interact with global settings etc. |
-| `core/blocks`       | Block Types Data - Interact with all the registered blocks, styles etc. |
-| `core/block-editor` | The Block Editor’s Data - Interact with the block editor. Insert, move, remove etc. |
-| `core/editor`       | The Post Editor’s Data - Interact with the current post like getting the post type. |
-| `core/edit-post`    | The Editor’s UI Data - Interact with the editor interface. Toggle interface areas etc. |
-| `core/notices`      | Notices Data  - Interact with notices in the editor. |
+| Namespace           | Name | Purpose |
+|---------------------|------|---------|
+| `core`              | WordPress Core Data | Interact with global settings etc. |
+| `core/blocks`       | Block Types Data | Interact with all the registered blocks, styles etc. |
+| `core/block-editor` | The Block Editor’s Data | Interact with the block editor. Insert, move, remove etc. |
+| `core/editor`       | The Post Editor’s Data | Interact with the current post like getting the post type. |
+| `core/edit-post`    | The Editor’s UI Data | Interact with the editor interface. Toggle interface areas etc. |
+| `core/notices`      | Notices Data  | Interact with notices in the editor. |
 
 ## Interacting with Stores
 
@@ -129,6 +129,8 @@ Under the hood the Data API uses the Rest API. With the very important differenc
 
 :::note
 The hooks `useSelect` and `useDispatch` can only be used inside of react components.
+
+If you want to interact with the data api from regular functions you can use the `select`, `dispatch`, and `subscribe` functions exported from the `@wordpress/data` package.
 :::
 
 ### Get the current post type and selected post template
