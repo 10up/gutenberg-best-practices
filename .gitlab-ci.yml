@@ -1,0 +1,28 @@
+image: docker.10up.com/10up-build/deploy-container:latest
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules_cache
+
+build:
+  stage: build
+  script:
+    - nvm use 14
+    - npm install
+    - npm run build
+  when: always
+
+deploy_gutenberg:
+  stage: deploy
+  environment:
+    name: gutenberg
+    url: https://gutenberg.10up.com
+  script:
+    - bash ./deploy-scripts/deploy-gutenberg.sh
+  only:
+    - main
+  allow_failure: false
