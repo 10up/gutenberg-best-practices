@@ -162,5 +162,21 @@ useEffect(() => {
     if (!hasBlock) {
         insertBlocks( createBlock( BLOCK_NAME ) );
     }
-});
+}, [ blocks ]);
+```
+
+### Read and Write post meta values
+
+```js
+import { useSelect, useDispatch } from '@wordpress/data';
+import { store as editorStore } from '@wordpress/editor';
+
+const { editPost } = useDispatch( editorStore );
+const meta = useSelect((select) => select( editorStore ).getEditedPostAttribute('meta'));
+
+function setMetaValue(key, value) {
+    editPost({
+        meta: { [key]: value },
+    });
+}
 ```
