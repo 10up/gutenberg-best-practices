@@ -11,9 +11,7 @@ cache:
 build:
   stage: build
   script:
-    - nvm use 14
-    - npm install
-    - npm run build
+    - bash ./deploy-scripts/build.sh
   when: always
 
 deploy_gutenberg:
@@ -22,6 +20,7 @@ deploy_gutenberg:
     name: gutenberg
     url: https://gutenberg.10up.com
   script:
+    - bash ./deploy-scripts/build.sh
     - bash ./deploy-scripts/deploy-gutenberg.sh
   only:
     - main
