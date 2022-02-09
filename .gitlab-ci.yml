@@ -17,6 +17,7 @@ build:
 deploy_gutenberg:
   stage: deploy
   environment:
+    name: gutenberg
     url: https://gutenberg.10up.com
   script:
     - bash ./deploy-scripts/deploy-gutenberg.sh
