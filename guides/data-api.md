@@ -25,18 +25,18 @@ In redux and therefore in the WordPress Data API there is the concept of a Store
 
 ## Stores in WordPress
 
-![](/img/data-api-core-stores.png)
+![List of the various Core Data Stores](/img/data-api-core-stores.png)
 
 The editor does not only have one global data store but rather multiple different stores that each focus on different areas of the site. These stores can be refereed to by their namespace or you can import the store object from the individual packages.
 
-| Namespace           | Description                                                                            |
-|---------------------|----------------------------------------------------------------------------------------|
-| `core`              | WordPress Core Data - Interact with global settings etc.                               |
-| `core/blocks`       | Block Types Data - Interact with all the registered blocks, styles etc.                |
-| `core/block-editor` | The Block Editor’s Data - Interact with the block editor. Insert, move, remove etc.    |
-| `core/editor`       | The Post Editor’s Data - Interact with the current post like getting the post type.    |
+| Namespace           | Description |
+|---------------------|-------------|
+| `core`              | WordPress Core Data - Interact with global settings etc. |
+| `core/blocks`       | Block Types Data - Interact with all the registered blocks, styles etc. |
+| `core/block-editor` | The Block Editor’s Data - Interact with the block editor. Insert, move, remove etc. |
+| `core/editor`       | The Post Editor’s Data - Interact with the current post like getting the post type. |
 | `core/edit-post`    | The Editor’s UI Data - Interact with the editor interface. Toggle interface areas etc. |
-| `core/notices`      | Notices Data  - Interact with notices in the editor.                                   |
+| `core/notices`      | Notices Data  - Interact with notices in the editor. |
 
 ## Interacting with Stores
 
@@ -95,7 +95,7 @@ const { something, somethingElse } = useSelect( function(select) {
 
 ### Handling Error & Loading States
 
-![](/img/data-api-loading-error.png)
+![Loading & Error Icons](/img/data-api-loading-error.png)
 
 You get get access to whether or not a select statement has been resolved by using the `hasFinishedResolution` selector that is provided on every core store.
 
