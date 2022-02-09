@@ -104,5 +104,5 @@ If you are interested in finding our more about this you can see the implementat
 
 ## Links
 
-- [Inner Blocks Reference](/reference/03-Blocks/inner-blocks.md)
+- [Inner Blocks Reference](../reference/03-Blocks/inner-blocks.md)
 - [Block Editor Handbook - API Version Reference](https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-api-versions.md)
