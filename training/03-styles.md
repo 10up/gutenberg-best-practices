@@ -12,7 +12,7 @@ In many of our projects at 10up, we need to change the style of some of the core
 
 You might have noticed that some blocks have a Styles Panel in their Inspector. The core Image block, for example, comes with these two styles: `default` and `rounded`.
 
-![alt text](/img/core-image-styles.png "Core Image block styles")
+![ore Image block styles](/img/core-image-styles.png "Core Image block styles")
 
 Other blocks, like the List block for example, do not ship with any styles.
 
@@ -20,17 +20,17 @@ Other blocks, like the List block for example, do not ship with any styles.
 
 Imagine you were working on a project that had three image styles: square, rounded and slightly-rounded. Here's how it looks in the design:
 
-![alt text](/img/core-image-variations.png "Core Image block styles")
+![Core Image block styles](/img/core-image-variations.jpg "Core Image block styles")
 
  Out of the box, WordPress gives us two of these styles, but we don't currently have a way to achieve the "slightly rounded" image.
 
 Here's the first two that ship with the editor:
 
 <em>Square</em>
-![alt text](/img/core-image-square.png "Square Image block styles")
+![Square Image block styles](/img/core-image-square.png "Square Image block styles")
 
 <em>Rounded</em>
-![alt text](/img/core-image-rounded.png "Rounded Image block styles")
+![Rounded Image block styles](/img/core-image-rounded.png "Rounded Image block styles")
 
 Let's see how to add a new style — slightly-rounded!
 

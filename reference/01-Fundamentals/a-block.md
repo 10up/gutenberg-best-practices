@@ -87,7 +87,7 @@ This actually is a pattern that you will see over and over again throughout this
 
 ### Selected
 
-![](/img/block-selected-state.png)
+![Image Block in selected State](/img/block-selected-state.jpg)
 
 In it's selected state the editor representation should be though of as the frontend representation with additional inline controls to modify the content of the block. This means that if a block for example provides different rich text areas for you to fill out they should all be shown with placeholder text. This way editors can see all the options and choose to fill in all the areas they want to.
 
@@ -107,6 +107,6 @@ This is super useful for any instanced where the child blocks are very tightly c
 
 ### Deselected
 
-![](/img/block-deselected-state.png)
+![Deselected Image Block](/img/block-deselected-state.jpg)
 
 As mentioned before the deselected state of a block should be a accurate representation of the frontend display. This includes font rendering, spacing within the block and in relationship to other blocks on the page. This should also be the case for the selected states but additional controls and placeholder elements may alter the spacing slightly.
