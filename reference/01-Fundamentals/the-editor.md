@@ -22,7 +22,7 @@ Insert an image of the editor to show the different sections
 ### Top Toolbar
 
 ![Block Editor Toolbar](/img/gutenberg-toolbar.png)
-The top toolbar is a place for page level tools and interface related toggles. You can insert
+The top toolbar is a place for page level tools and interface related toggles. On the left side you can open the block inserter, switch between different tools, get an overview of the structure of your post, and open the list view. On the right side you can save, publish, update or preview the post and toggle the main settings sidebar. Plugins can also register their own plugin panels to show up here. Finally through the kebab-menu in the right corner you can access additional options & settings panels.
 
 ### Sidebar
 
@@ -30,3 +30,7 @@ The top toolbar is a place for page level tools and interface related toggles. Y
 The settings sidebar has two tabs. The first one is for page level controls. This is where any settings that impact the overall page are placed.
 
 The second tab is for the currently selected block. It houses advanced controls that allow you to control the appearance of the selected block.
+
+![Sidebar Types](/img/block-editor-sidebar-panels.png)
+
+In either sidebar type there are two different types of Panels. Ones that are collapsible and ones that allow you to toggle on/off the controls within that section.
