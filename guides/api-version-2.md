@@ -34,18 +34,26 @@ In order get that benefit there are two things that we need to do.
     "description": "API Version 2",
     "icon": "block-default",
     "category": "common",
+    // highlight-start
     "apiVersion": 2,
+   // highlight-end
 }
 ```
 
 ```js title="edit.js"
+// highlight-start
 import { useBlockProps } from '@wordpress/block-editor';
+// highlight-end
 
 export function BlockEdit() {
+    // highlight-start
     const blockProps = useBlockProps();
+    // highlight-end
 
     return (
+        // highlight-start
         <div {...blockProps}>
+        // highlight-end
             <h2>Hello World</h2>
         </div>
     )
@@ -56,7 +64,7 @@ And that's it. If you are using static rendering you need to call `useBlockProps
 
 ## Next steps
 
-At least for me getting the markup of the editor to match with the frontend is super cool and something that I am always striving for. And one of the things that is sill a pain is working with InnerBlocks. But that is also about to change. There is a new hook called `useInnerBlocksProps` that allows us to control the markup for InnerBlock wrappers.
+Now that you are using API Version two you can also improve the markup of inner blocks areas. With the `useInnerBlocksProps` hook you can take complete control over the markup of inner block areas and therefore match the markup between the frontend and the editor.
 
 ```js title="edit.js"
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
@@ -73,7 +81,7 @@ export function BlockEdit() {
 };
 ```
 
-But we can take that even further. We don't even need to have them as two separate elements. We can pass blockProps as the first argument to `useInnerBlocksProps` giving us this:
+But you can take that even further. You don't even need to have them as two separate elements. You can pass blockProps as the first argument to `useInnerBlocksProps` giving you this:
 
 ```js title="edit.js"
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
@@ -98,9 +106,7 @@ The output created by that in the editor is this:
 </div>
 ```
 
-Which is mind-blowing for me because we are now 100% able to replicate the markup of the frontend in the editor. Which makes styling the editor like the frontend so much easier.
-
-If you are interested in finding our more about this you can see the implementation here: [https://github.com/WordPress/gutenberg/blob/c0ae9b28edc20b4262547297927abe007e255e24/packages/block-editor/src/components/inner-blocks/index.js#L136](https://github.com/WordPress/gutenberg/blob/c0ae9b28edc20b4262547297927abe007e255e24/packages/block-editor/src/components/inner-blocks/index.js#L136)
+This is a huge win because you are now able to completely replicate the markup of the frontend in the editor. Which makes styling the editor like the frontend so much easier.
 
 ## Links
 
