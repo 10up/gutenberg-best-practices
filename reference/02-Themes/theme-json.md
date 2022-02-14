@@ -49,8 +49,13 @@ This will give you autocomplete and inline documentation while working on `theme
 _You can interchange `trunk` with a specific WordPress version like so: `https://schemas.wp.org/wp/5.9/theme.json`_
 :::
 
+As mentioned earlier the `theme.json` file has two main purposes. It allows you to control which settings get displayed, and also define certain default values for styles. This styling mechanism is build on CSS custom properties.
+
+So when you define a custom color palette like so:
+
 ```json title="theme.json"
 {
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
     "version": 2,
     "settings": {
         "color": {
@@ -66,15 +71,34 @@ _You can interchange `trunk` with a specific WordPress version like so: `https:/
                     "color": "#ffffff"
                 }
             ]
+        },
+        "blocks": {
+            "core/paragraph": {
+                "color": {
+                    "palette": [
+                        {
+                            "name": "Red",
+                            "slug": "red",
+                            "color": "#ff0000"
+                        }
+                    ]
+                }
+            }
         }
     }
 }
 ```
 
+WordPress automatically generates and includes the following custom properties get added to the page:
+
 ```css title="generated custom properties"
 body {
     --wp--preset--color--black: #000000;
     --wp--preset--color--white: #ffffff;
+}
+
+.wp-block-paragraph {
+    --wp--preset--color--red: #ff0000;
 }
 ```
 
