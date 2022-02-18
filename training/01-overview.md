@@ -79,7 +79,7 @@ There is a lot going on here, but things should make more sense if we follow a s
 
 Let us look at the `customTitle` attribute:
 
-1. It is first defined as an attribute in [block.json](https://github.com/10up/wp-scaffold/blob/trunk/themes/10up-theme/includes/blocks/example-block/block.json#L15). This is essentially saying "I want to store a field in the database called `customTitle`" and use it in my templates. There are two instances below where you can see `customTitle` defined.
+1. It is first defined as an attribute in [block.json](https://github.com/10up/wp-scaffold/blob/trunk/themes/10up-theme/includes/blocks/example-block/block.json#L15). This is essentially saying "I want to store a field in the database called `customTitle` and use it in my templates. There are two instances below where you can see `customTitle` defined.
 
 The first, is the actual definition of the attribute. Here, we define the attribute and set [type validation](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/#type-validation).
 
