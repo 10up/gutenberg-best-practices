@@ -82,7 +82,7 @@ To do this, we need to manage three new pieces of data:
 2. The button text.
 3. The button link.
 
-Add three more attributes to the `cta-starter/block.json` file for each of the new pieces of data with a `default` value and the appropriate `type` as needed. ( Refer to `cta-complete/block,json` if you get stuck )
+Add three more attributes to the `cta-starter/block.json` file for each of the new pieces of data with a `default` value and the appropriate `type` as needed. ( Refer to `cta-complete/block.json` if you get stuck )
 
 :::note
 **One of them is NOT of the the type `string`**
