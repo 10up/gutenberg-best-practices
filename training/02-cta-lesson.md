@@ -2,6 +2,8 @@
 
 This lesson provides a partially completed block that needs to have some features added to it to match the existing `cta-complete` block. All of the setup and files have been pre-configured as the focus here is to work with a block on its own without adding confusion around build tools and file locations.
 
+These files can be found inside of the starter theme at: `/wp-content/themes/10up-theme/includes/blocks`.
+
 If you are stuck or need help, refer to the `cta-complete` block as reference or reach out to #10up-gutenberg in Slack for help
 
 ## Learning Outcomes
