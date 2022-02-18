@@ -141,7 +141,7 @@ You can see below the "Example Block" `block.json` from our 10up Scaffold that i
 	</div>
 ```
 
-3. Finally, we output our `customTitle` attribute in our frontend markup in [markup.php](https://github.com/10up/wp-scaffold/blob/trunk/themes/10up-theme/includes/blocks/example-block/markup.php#L29)!
+3. Finally, we output our `customTitle` attribute in our frontend markup in [markup.php](https://github.com/10up/wp-scaffold/blob/trunk/themes/10up-theme/includes/blocks/example-block/markup.php#L31)!
 
 ```php title="markup.php" {2}
 <h2 class="wp-block-example-block__title">
