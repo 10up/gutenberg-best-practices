@@ -60,6 +60,7 @@ Not sure what to use as values? Here you go:
 * `className="call-to-action-block__description"`
 * `tagName="p"`
 * `placeholder={__('Description here…', 'gutenberg-lessons')}`
+* `keepPlaceholderOnFocus="true"`
 * `value={description}`
 * `onChange={(description) => setAttributes({ description })}`
 :::tip
