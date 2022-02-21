@@ -2,6 +2,8 @@
 
 This lesson provides a partially completed block that needs to have some features added to it to match the existing `cta-complete` block. All of the setup and files have been pre-configured as the focus here is to work with a block on its own without adding confusion around build tools and file locations.
 
+These files can be found inside of the starter theme at: `/wp-content/themes/10up-theme/includes/blocks`.
+
 If you are stuck or need help, refer to the `cta-complete` block as reference or reach out to #10up-gutenberg in Slack for help
 
 ## Learning Outcomes
@@ -50,7 +52,7 @@ const {
 } = attributes;
 ```
 
-Next, in the same file, we can add a `RichText` component under the existing one for the title. This component can receive many props ( [see the docs here for the full list](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/rich-text) ) but for now, we only need to specific the `tagName`, the `value` and `onChange`. Although not required, let's also add `className`, `placeholder`, and `keepPlaceHolderOnFocus`. If you use the existing `RichText` being used for the the `title` attribute, be sure to update the any references to the `title` attribute to the new one we created. Once you have the attribute being saved and retrieved correctly, move on to the next task!
+Next, in the same file, we can add a `RichText` component under the existing one for the title. This component can receive many props ( [see the docs here for the full list](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/rich-text) ) but for now, we only need to specify the `tagName`, the `value` and `onChange`. Although not required, let's also add `className`, `placeholder`, and `keepPlaceHolderOnFocus`. If you use the existing `RichText` being used for the the `title` attribute, be sure to update the any references to the `title` attribute to the new one we created. Once you have the attribute being saved and retrieved correctly, move on to the next task!
 
 :::tip
 Not sure what to use as values? Here you go:
@@ -58,6 +60,7 @@ Not sure what to use as values? Here you go:
 * `className="call-to-action-block__description"`
 * `tagName="p"`
 * `placeholder={__('Description here…', 'gutenberg-lessons')}`
+* `keepPlaceholderOnFocus="true"`
 * `value={description}`
 * `onChange={(description) => setAttributes({ description })}`
 :::tip
@@ -79,7 +82,7 @@ To do this, we need to manage three new pieces of data:
 2. The button text.
 3. The button link.
 
-Add three more attributes to the `cta-starter/block.json` file for each of the new pieces of data with a `default` value and the appropriate `type` as needed. ( Refer to `cta-complete/block,json` if you get stuck )
+Add three more attributes to the `cta-starter/block.json` file for each of the new pieces of data with a `default` value and the appropriate `type` as needed. ( Refer to `cta-complete/block.json` if you get stuck )
 
 :::note
 **One of them is NOT of the the type `string`**
@@ -100,7 +103,7 @@ Attributes we are adding:
 
 **BONUS:** Set the "example" output for each of these new attributes!
 
-Next, we need to add a `ToggleControl` ( [docs](https://developer.wordpress.org/block-editor/reference-guides/components/toggle-control/) ) to the Inspector Sidebar for the block. FYI, there are lots of useful pre-built components like this one you can use. Reference the [pre-built components](https://developer.wordpress.org/block-editor/reference-guides/components/) before building any new ones. The `InspectorControls` component has already been added to the `cta-starter/edit.js` for you, this is special type of component that uses a concept call SlotFill. This is how we can add the code here, but have it appear in the Block Inspector sidebar. All of the imports have already been setup for you so you can just add the new `ToggleControl` inside the `PanelBody` (don't forget to add your new attributes to the `attribute` object at the top of the `ExampleBockEdit` call!). Set the props for the component to update the attribute that controls if the the CTA is enabled ( Refer to `cta-complete/block,json` if you get stuck )
+Next, we need to add a `ToggleControl` ( [docs](https://developer.wordpress.org/block-editor/reference-guides/components/toggle-control/) ) to the Inspector Sidebar for the block. FYI, there are lots of useful pre-built components like this one you can use. Reference the [pre-built components](https://developer.wordpress.org/block-editor/reference-guides/components/) before building any new ones. The `InspectorControls` component has already been added to the `cta-starter/edit.js` for you, this is special type of component that uses a concept call SlotFill. This is how we can add the code here, but have it appear in the Block Inspector sidebar. All of the imports have already been setup for you so you can just add the new `ToggleControl` inside the `PanelBody` (don't forget to add your new attributes to the `attribute` object at the top of the `ExampleBockEdit` call!). Set the props for the component to update the attribute that controls if the the CTA is enabled ( Refer to `cta-complete/block.json` if you get stuck )
 
 :::tip
 place `ToggleControl` inside `PanelBody`:
