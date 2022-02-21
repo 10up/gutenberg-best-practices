@@ -38,7 +38,7 @@ cd gutenberg-training-test/wordpress && rm -rf wp-content && git clone git@gitla
 3. Navigate to the theme directory and install dependencies
 
 ```bash
-cd wp-content/themes/10up-theme && npm install && npm run start
+cd wp-content/themes/10up-theme && npm install && npm run build
 ```
 
 4. Activate the 10up-theme in WordPress

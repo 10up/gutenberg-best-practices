@@ -27,9 +27,11 @@ Imagine you were working on a project that had three image styles: square, round
 Here's the first two that ship with the editor:
 
 <em>Square</em>
+
 ![Square Image block styles](/img/core-image-square.png "Square Image block styles")
 
 <em>Rounded</em>
+
 ![Rounded Image block styles](/img/core-image-rounded.png "Rounded Image block styles")
 
 Let's see how to add a new style — slightly-rounded!
