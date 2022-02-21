@@ -70,4 +70,4 @@ The `10up-theme` build system requires node version **14** in order to build suc
 
 ## Support
 
-If you run into issues with this training project, feel free to reach out in Slack to [`#10up-gutenberg`](https://10up.slack.com/archives/C8Z3WMN1K). We also welcome bug reports, suggestions and contributions via the [Issues tab in Gitlab](https://gitlab.10up.com/exercises/gutenberg-lessons/-/issues).
+If you run into issues with this training project, feel free to reach out in Slack to [`#10up-gutenberg`](https://10up.slack.com/archives/C8Z3WMN1K). We also welcome bug reports, suggestions and contributions via the [Issues & Discussions tab in GitHub](https://github.com/10up/gutenberg-best-practices/issues).
