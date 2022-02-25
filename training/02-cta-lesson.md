@@ -36,7 +36,9 @@ Add a new attribute to the `cta-starter/block.json` file that will store the `de
 
 ### 2: Adding a RichText component to manage the new attribute
 
-We want the user to be able to enter the description and manage formatting of the text in the blocks `edit` property. To do that, we first need to be sure our attributes are listed in the top of the `ExampleBlockEdit` call in the the `cta-starter/edit.js` file. We need to be sure `description` is included in the `attributes` object below:
+We want the user to be able to visually edit the description right inline. In order to do this we need to add the actual editable text field to the markup of the block in the editor. This markup gets defined in the `ExampleBlockEdit` function in the `cta-starter/edit.js` file.
+
+Before we can work with the `description` value we need to actually access the current value of the attribute. Gutenberg passes in an object containing the block attributes, a callback function to set the attributes to a new value and some other helpful values. To make it easier to work with we can use object deconstruction to get access to only the values we actually want to use. In this example we have only pulled out the `title` so far but now need to access the `description` the same way.
 
 ```js
 const {
@@ -45,10 +47,9 @@ const {
 } = props;
 
 const {
+	// highlight-start
 	title,
-	ctaText,
-	ctaLink,
-	showCTALink,
+	// highlight-end
 } = attributes;
 ```
 
