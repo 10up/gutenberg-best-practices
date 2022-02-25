@@ -34,6 +34,8 @@
   --ifm-container-width: 65ch;
   --ifm-heading-font-family: 'Cabin', sans-serif;
   --ifm-font-family-base: 'Cabin', sans-serif;
+
+  --ifm-leading-desktop: 1.5;
 }
 
 .docusaurus-highlight-code-line {
