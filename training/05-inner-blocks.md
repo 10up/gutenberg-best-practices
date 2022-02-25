@@ -95,7 +95,7 @@ You should end up with this:
 </div>
 ```
 
-**CONNECT BLOCK TO BUILD SCRIPTS**
+### Connect block to build scripts
 
 As always, you should have `npm run watch` running in your terminal. Making this change, did it do anything? Let's check the editor. Search the block inserter for `Inner Blocks One - Starter`... is it found? Only see `Inner Blocks One - Complete`? That is because these files are not being targeted by our build scripts. Let's fix that.
 
