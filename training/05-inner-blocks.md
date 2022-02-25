@@ -198,7 +198,7 @@ To rig this up, let's go to our [`markup.php`](https://gitlab.10up.com/exercises
 echo $args['content']; // phpcs:disable
 ```
 
-From here we are most of the way there. You are not able to insert any blocks you want and the content actually gets saved into the database and shows on the frontend.
+From here we are most of the way there. You are now able to insert any blocks you want and the content actually gets saved into the database and shows on the frontend.
 
 There are a few things to keep in mind though to improve the User Experience of our block.
 
