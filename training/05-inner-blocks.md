@@ -329,6 +329,7 @@ Now that you have build two blocks that use `InnerBlocks` take a look at the [Co
 
 ## Further Reading
 
-- [Nested Blocks: Using InnerBlocks](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/nested-blocks-inner-blocks/)
-- [Inner Blocks Component Reference](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/inner-blocks#innerblocks)
+- [Inner Blocks - 10up Gutenberg Best Practices](../reference/Blocks/inner-blocks)
+- [Nested Blocks: Using InnerBlocks - Block Editor Handbook](https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/nested-blocks-inner-blocks/)
+- [Inner Blocks - Component Reference](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/inner-blocks#innerblocks)
 - [API Version 2 - useBlockProps & useInnerBlocksProps](https://internal.10up.com/blog/2021/06/23/a-quick-guide-for-gutenberg-api-version-2/)

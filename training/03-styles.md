@@ -130,4 +130,5 @@ That's a quick tour of block Styles. Let's quickly summarize the most important 
 
 ## Further reading
 
-* [Block Styles](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/)
+* [Block Styles - 10up Gutenberg Best Practices](../reference/Blocks/block-styles)
+* [Block Styles - Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/)

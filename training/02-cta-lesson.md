@@ -130,13 +130,18 @@ Once that is in-place, we want to add a `URLInput` component to the Inspector Si
 
 :::tip
 
-* We want to display the `URLInput` component just inder our `ToggleControl` and _ONLY_ if `showCTALink` is `true`. In React, we can do something like `{showCTALink && ( ... )}`
-* `URLInput` component props:
-  * `label={__('URL', 'gutenberg-lessons')}`
-  * `value={ctaLink}`
-  * `onChange={(ctaLink) => {
+* We want to display the `URLInput` component just under our `ToggleControl` and **only** if `showCTALink` is `true`. In React, we can do something like `{showCTALink && ( ... )}`
+
+```jsx
+<UrlInput
+	label={__('URL', 'gutenberg-lessons')}
+	value={ctaLink}
+	onChange={(ctaLink) => {
 		setAttributes({ ctaLink });
-	}}`
+	}}
+/>
+```
+
 :::tip
 
 The next step is to add a new `RichText` component below the one for the `description` field that will manage the text of the CTA button. Be sure that this is only shown if the feature is enabled and that it sets and retrieves the associated attribute correctly.
