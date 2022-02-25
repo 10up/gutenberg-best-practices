@@ -47,7 +47,7 @@ registerBlockStyle( 'core/image', {
 
 Once the style is registered it automatically adds a class name to the wrapping element of the block following the convention `is-style-${style-name}`.
 
-You can also unregister block styles. Again this is possible both in JS and in PHP via the [`unregister_block_style`]([unregister_block_style](https://developer.wordpress.org/reference/functions/unregister_block_style/) & `unregisterBlockStyle` functions:
+You can also unregister block styles. Again this is possible both in JS and in PHP via the [`unregister_block_style`](https://developer.wordpress.org/reference/functions/unregister_block_style/) & `unregisterBlockStyle` functions:
 
 ```php title="In PHP:"
 unregister_block_style( 'core/image', 'rounded' );
