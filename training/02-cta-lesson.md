@@ -112,7 +112,7 @@ Next, we need to add a [`ToggleControl`](https://developer.wordpress.org/block-e
 
 _FYI, there are lots of useful pre-built components like this one you can use. Reference the [pre-built components](https://developer.wordpress.org/block-editor/reference-guides/components/) before building any new ones._
 
-The `InspectorControls` component has already been added to the `cta-starter/edit.js` for you, this is special type of component that uses a concept call SlotFill. This is how we can add the code here, but have it appear in the Block Inspector sidebar. All of the imports have already been setup for you so you can just add the new `ToggleControl` inside the `PanelBody` (don't forget to add your new attributes to the `attribute` object at the top of the `ExampleBockEdit` call!). Set the props for the component to update the attribute that controls if the the CTA is enabled ( Refer to `cta-complete/block.json` if you get stuck )
+The `InspectorControls` component has already been added to the `cta-starter/edit.js` for you, this is special type of component that uses a concept call SlotFill. This is how we can add the code here, but have it appear in the Block Inspector sidebar. All of the imports have already been setup for you so you can just add the new `ToggleControl` inside the `PanelBody` (don't forget to add your new attributes to the `attribute` object at the top of the `ExampleBockEdit` call!). Set the props for the component to update the attribute that controls if the the CTA is enabled ( Refer to `cta-complete/edit.js` if you get stuck )
 
 :::tip
 place `ToggleControl` inside `PanelBody`:
