@@ -9,7 +9,7 @@ export default function LayoutWrapper(props) {
     const isInBrowser = useIsBrowser();
 
     if ( !isInBrowser ) {
-        return null;
+        return <Layout {...props} />;
     }
 
   const {
