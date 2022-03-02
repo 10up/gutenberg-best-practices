@@ -2,8 +2,15 @@ import React from 'react';
 import Layout from '@theme-original/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { getCookie } from '../../helper';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 export default function LayoutWrapper(props) {
+
+    const isInBrowser = useIsBrowser();
+
+    if ( !isInBrowser ) {
+        return <Layout {...props} />;
+    }
 
   const {
     siteConfig: { url, customFields: {googleSSOClientId} },

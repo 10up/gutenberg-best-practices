@@ -1,6 +1,14 @@
 import { setCookie } from '../helper';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 export default function Login() {
+
+    const isInBrowser = useIsBrowser();
+
+    if ( !isInBrowser ) {
+        return null;
+    }
+
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     
