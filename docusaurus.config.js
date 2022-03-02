@@ -14,7 +14,10 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: '10up', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  projectName: 'gutenberg-best-practices', // Usually your repo name.
+  customFields: {
+    googleSSOClientId: '545286342627-v7efdkqetgq7fsuk9s7a9t4becq2ckeb',
+  },
 
   presets: [
     [
@@ -110,6 +113,11 @@ const config = {
             position: 'right',
             label: 'Guides',
             docsPluginId: 'guides'
+          },
+          {
+            label: 'Logout 🔓',
+            position: 'right',
+            to: 'logout',
           }
         ],
       },
