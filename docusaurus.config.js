@@ -16,6 +16,7 @@ const config = {
   organizationName: '10up', // Usually your GitHub org/user name.
   projectName: 'gutenberg-best-practices', // Usually your repo name.
   customFields: {
+    tenupSSOProxy: 'https://ssoproxy.10uplabs.com/wp-login.php',
     googleSSOClientId: '545286342627-v7efdkqetgq7fsuk9s7a9t4becq2ckeb',
   },
 
