@@ -31,7 +31,7 @@ function VerifyLogin() {
             verificationUrl.searchParams.set('email', email);
 
             // verify that the nonce is valid
-            fetch(verificationUrl, { mode: 'no-cors' }).then((response) => {
+            fetch(verificationUrl).then((response) => {
                 if (response.status === 200) {
                     setCookie({ name: '10up-sso-login', value: JSON.stringify({ fullName: urlParams.get('full_name') }) });
                     window.location.replace(urlParams.get('return_to'));
