@@ -62,14 +62,14 @@ function VerifyLogin(props) {
 		loginUrl.searchParams.set('flowName', 'GeneralOAuthFlow');
 
 		window.location.replace(loginUrl);
+	}
+	
+	
+	if (!hasCookie || !isAuthenticated) {
+		redirectToLogin();
 
 		// ensure that the page is not rendered for non logged in users
 		return null;
-	}
-
-
-	if (!hasCookie || !isAuthenticated) {
-		redirectToLogin();
 	}
 
 	return (
