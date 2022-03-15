@@ -8,7 +8,7 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 export default function LayoutWrapper(props) {
 
 	return <BrowserOnly fallback={<div>Authenticating...</div>}>
-		{() => <VerifyLogin />}
+		{() => <VerifyLogin {...props} />}
 	</BrowserOnly>;
 }
 
