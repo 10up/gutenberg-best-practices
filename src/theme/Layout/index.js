@@ -23,7 +23,6 @@ function VerifyLogin(props) {
 
 	useEffect(() => {
 		if ( hasCookie ) {
-			console.log( authCookie );
 			const nonce = authCookie.nonce;
 			const email = authCookie.email;
 
