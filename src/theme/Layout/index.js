@@ -16,7 +16,7 @@ function VerifyLogin(props) {
 	const {
 		siteConfig: { url, customFields: { googleSSOClientId, tenupSSOProxy } },
 	} = useDocusaurusContext();
-	
+
 	const authCookie = getCookie('10up-sso-login');
 	const hasCookie = !!authCookie;
 
@@ -26,9 +26,8 @@ function VerifyLogin(props) {
 	const [isAuthenticated, setIsAuthenticated] = useState(hasCookie);
 
 	useEffect(() => {
-		if ( hasCookie ) {
-			const nonce = authCookie.nonce;
-			const email = authCookie.email;
+		if (hasCookie) {
+			const { nonce, email } = authCookie;
 
 			const verificationUrl = new URL(tenupSSOProxy);
 			verificationUrl.searchParams.set('action', '10up-verify');
@@ -44,7 +43,7 @@ function VerifyLogin(props) {
 				}
 			});
 		}
-	}, [authCookie]);
+	}, [authCookie, tenupSSOProxy, setIsAuthenticated]);
 
 	function redirectToLogin() {
 		const returnUrl = new URL(`${url}/login`);
@@ -68,17 +67,12 @@ function VerifyLogin(props) {
 		return null;
 	}
 
-	if (!hasCookie) {
-		redirectToLogin();
-	}
 
-	if ( !isAuthenticated ) {
+	if (!hasCookie || !isAuthenticated) {
 		redirectToLogin();
 	}
 
 	return (
-		<>
-			<Layout {...props} />
-		</>
+		<Layout {...props} />
 	);
 }
