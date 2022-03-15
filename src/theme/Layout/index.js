@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '@theme-original/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { getCookie } from '../../helper';
+import { deleteCookie, getCookie } from '../../helper';
 import { useEffect, useState } from 'react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
@@ -36,6 +36,7 @@ function VerifyLogin(props) {
 					setIsAuthenticated(true);
 				} else {
 					console.error('Login verification failed');
+					deleteCookie('10up-sso-login');
 				}
 			});
 		}
