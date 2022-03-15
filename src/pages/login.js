@@ -33,7 +33,7 @@ function VerifyLogin() {
             // verify that the nonce is valid
             fetch(verificationUrl).then((response) => {
                 if (response.status === 200) {
-                    setCookie({ name: '10up-sso-login', value: JSON.stringify({ fullName: urlParams.get('full_name') }) });
+                    setCookie({ name: '10up-sso-login', value: JSON.stringify({ fullName: urlParams.get('full_name'), nonce, email }) });
                     window.location.replace(urlParams.get('return_to'));
                 } else {
                     console.error('Login verification failed');
