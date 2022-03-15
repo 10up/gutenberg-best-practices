@@ -1,4 +1,4 @@
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import React from 'react';
 import { deleteCookie } from '../helper';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 
