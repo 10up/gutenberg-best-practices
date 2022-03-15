@@ -16,10 +16,14 @@ function VerifyLogin(props) {
 	const {
 		siteConfig: { url, customFields: { googleSSOClientId, tenupSSOProxy } },
 	} = useDocusaurusContext();
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+	
 	const authCookie = getCookie('10up-sso-login');
 	const hasCookie = !!authCookie;
+
+	// assume that the user is logged in if they have the cookie
+	// this assumption will get validated once the component is mounted and if incorrect the user will be logged out
+	// this is not the most secure option but it prevents a jarring experience for the user when they are logged in
+	const [isAuthenticated, setIsAuthenticated] = useState(hasCookie);
 
 	useEffect(() => {
 		if ( hasCookie ) {
@@ -69,7 +73,7 @@ function VerifyLogin(props) {
 	}
 
 	if ( !isAuthenticated ) {
-		return <div>Authenticating...</div>;
+		redirectToLogin();
 	}
 
 	return (
