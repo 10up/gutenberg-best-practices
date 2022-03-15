@@ -1,4 +1,3 @@
-import React from 'react';
 import { deleteCookie } from '../helper';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 
@@ -13,7 +12,7 @@ export default function Logout() {
 
     deleteCookie('10up-sso-login');
 
-    return (
-        <p>You have been logged out successfully.</p>
-    );
+    window.location.replace('https://10up.com');
+
+    return null;
 }
