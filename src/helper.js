@@ -11,7 +11,11 @@ export const getCookie = (cookieName) => {
 		const [name, value] = cookies[index].split('=');
 
 		if (cookieName === name.trim()) {
-			return JSON.parse(decodeURIComponent(value.trim()));
+			if ( value ) {
+				return JSON.parse(decodeURIComponent(value.trim()));
+			} else {
+				return null;
+			}
 		}
 	}
 
