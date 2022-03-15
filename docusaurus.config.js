@@ -127,15 +127,15 @@ const config = {
             items: [
               {
                 label: 'Reference',
-                to: '/reference/index',
+                to: '/reference',
               },
               {
                 label: 'Training',
-                to: '/training/index',
+                to: '/training',
               },
               {
                 label: 'Guides',
-                to: '/guides/index',
+                to: '/guides',
               },
             ],
           },
