@@ -11,13 +11,9 @@ export default function Logout() {
         return null;
     }
 
-    const {
-        siteConfig: { url },
-      } = useDocusaurusContext();
-    
     deleteCookie('10up-sso-login');
 
-    window.location.replace( url );
-
-    return null;
+    return (
+        <p>You have been logged out successfully.</p>
+    );
 }
