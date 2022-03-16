@@ -7,6 +7,12 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export default function LayoutWrapper(props) {
 
+	if (process.env.NODE_ENV === 'development') {
+		return (
+			<Layout {...props} />
+		)
+	}
+
 	return <BrowserOnly fallback={<div>Authenticating...</div>}>
 		{() => <VerifyLogin {...props} />}
 	</BrowserOnly>;
