@@ -3,7 +3,9 @@ sidebar_label: Using WordPress packages on the frontend
 ---
 # Using `@wordpress` packages on the frontend
 
-As part of the gutenberg project WordPress has gained much more than just the editor itself. The gutenberg repository currently houses more than 80 individual packages. These packages span everything from the actual react components, utilities to calculate word count, end-to-end test utilities and much more. Naturally there is the desire to also use some of these packages in the frontend code we are shipping. There are however several things to watch out though as this is not as trivial as it seems.
+As part of the gutenberg project WordPress has gained much more than just the editor itself. The gutenberg repository currently houses more than 80 individual packages. These packages span everything from the actual react components, utilities to calculate word count, end-to-end test utilities and much more. Naturally there is the desire to also use some of these packages in the frontend code we are shipping. However, because there are many caveats when trying to use them on the frontend which is why it is generally **not recommenced** to do so.
+
+You can find a list of `@wordpress/` packages that are the exception to this rule and that can be used in the [Useful packages outside of the editor](#useful-packages-outside-of-the-editor) section.
 
 :::warning
 Thw `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not super optimized for frontend performance and size. Many of the packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
