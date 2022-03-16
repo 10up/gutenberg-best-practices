@@ -1,4 +1,3 @@
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { deleteCookie } from '../helper';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 
@@ -11,13 +10,9 @@ export default function Logout() {
         return null;
     }
 
-    const {
-        siteConfig: { url },
-      } = useDocusaurusContext();
-    
     deleteCookie('10up-sso-login');
 
-    window.location.replace( url );
+    window.location.replace('https://10up.com');
 
     return null;
 }

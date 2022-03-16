@@ -11,7 +11,11 @@ export const getCookie = (cookieName) => {
 		const [name, value] = cookies[index].split('=');
 
 		if (cookieName === name.trim()) {
-			return decodeURIComponent(value.trim());
+			if ( value ) {
+				return JSON.parse(decodeURIComponent(value.trim()));
+			} else {
+				return null;
+			}
 		}
 	}
 
@@ -25,16 +29,11 @@ export const getCookie = (cookieName) => {
  * @param {Object} options cookie value options
  */
 export function setCookie(options = {}) {
-	// Manage options prop with fallbacks
-	//  @param {string} name - name of the cookie
-	//  @param {string} value - value that should be stored in the cookie
-	//  @param {number} seconds - seconds that will be used for the max age. Defaults to Ten years
-	//  @param {string} path - path for which the cookie will be set for. Defaults to '/'
-	//  @param {boolean} force - set regardless of GDPR tracking cookie. Defaults to false
 	const {
 		name = '',
 		value = '',
 		path = '/',
+		expire = '',
 	} = options;
 
 	if (typeof name !== 'string' || name === '') {
@@ -43,7 +42,7 @@ export function setCookie(options = {}) {
 		return;
 	}
 
-	document.cookie = `${name}=${encodeURIComponent(value)}; path=${path}; Secure`;
+	document.cookie = `${name}=${encodeURIComponent(value)}; path=${path}; Secure; ${expire}`;
 }
 
 /**
@@ -55,7 +54,6 @@ export function deleteCookie(cookieName) {
 	setCookie({
 		name: cookieName,
 		value: '',
-		seconds: -1,
-		force: true,
+		expire: 'expires=Thu, 01 Jan 1970 00:00:01 GMT',
 	});
 }
