@@ -1,13 +1,13 @@
 ---
-sidebar_label: Using wordpress packages on the frontend
+sidebar_label: Using WordPress packages on the frontend
 ---
 # Using `@wordpress` packages on the frontend
 
-As part of the gutenberg project WordPress has gained much more than just the editor itself. The gutenberg repository currently houses more than 80 individual packages. These packages span everything from the actual react components, utilities to calculate word count, end-to-end test utilities and much more. Naturally there is the desire to also use some of these packages in the frontend code we are shipping. There are some things to watch out though as this is not as trivial as it seems.
+As part of the gutenberg project WordPress has gained much more than just the editor itself. The gutenberg repository currently houses more than 80 individual packages. These packages span everything from the actual react components, utilities to calculate word count, end-to-end test utilities and much more. Naturally there is the desire to also use some of these packages in the frontend code we are shipping. There are however several things to watch out though as this is not as trivial as it seems.
 
-:::caution
-When using any of the `@wordpress/` packages in your frontend bundle you should not use the version bundled with WordPress but instead add it as an NPM dependency.
-:::caution
+:::warning
+Thw `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not super optimized for frontend performance and size. Many of the packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
+:::warning
 
 ## Bundle size
 
@@ -36,50 +36,13 @@ This means that even if any of your other frontend dependencies tries to load so
 
 The [`@wordpress/packages`](https://developer.wordpress.org/block-editor/reference-guides/packages/) can also be divided into some different groups. There are some that are dependant on being used in the editor. The entire [`@wordpress/block-editor`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/) package for example should not be used outside of the editor because it depends on the surrounding architecture like the data api being setup correctly etc.
 
-As a rule of thumb any package that includes _editor_ in it's name should not be used outside of the editor.
+:::caution
+As a rule of thumb any package that includes _editor_ in it's name should **not** be used outside of the editor.
+:::caution
 
 ## Useful packages outside of the editor
 
 There are some packages that suit themselves very well for being used outside of the editor. This list is not comprehensive and if something is not listed here it doesn't mean that it cannot be used on the frontend. These are just some good examples of packages that showed they work well on the frontend.
-
-### [`@wordpress/api-fetch`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/)
-
-The [`@wordpress/api-fetch`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/) package is great for making it easier to talk to the WordPress REST API from your frontend code. It allows you to configure middlewares to for example define the root url of your project to define that throughout the entire frontend bundle.
-
-```js
-import apiFetch from '@wordpress/api-fetch';
-
-const rootURL = 'http://my-wordpress-site/wp-json/';
-apiFetch.use( apiFetch.createRootURLMiddleware( rootURL ) );
-```
-
-To make the above even better we can use [`wp_localize_script`](https://developer.wordpress.org/reference/functions/wp_localize_script/) to pass the `rest_base` value to the frontend code as a variable:
-
-```php
-wp_localize_script(
-    'frontend',
-    'tenupTheme',
-    [
-        'restBase' => get_rest_url(),
-    ]
-);
-```
-
-```js
-import apiFetch from '@wordpress/api-fetch';
-
-const rootURL = window.tenupTheme.restBase;
-apiFetch.use( apiFetch.createRootURLMiddleware( rootURL ) );
-```
-
-or if you need to deal with authenticated request has a build in middleware to work with nonces:
-
-```js
-import apiFetch from '@wordpress/api-fetch';
-
-const nonce = 'nonce value';
-apiFetch.use( apiFetch.createNonceMiddleware( nonce ) );
-```
 
 ### [`@wordpress/dom-ready`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dom-ready/)
 
