@@ -1,6 +1,10 @@
 # Lesson 4: Block variations
 
-In the last lesson, we learned how to add styles to blocks. In this lesson, we're going to learn how to organize core and custom blocks into variations for easy reuse.
+In the last lesson, we learned how to add styles to blocks. In this lesson, we're going to learn how to create block variations to help our editors get up and running more quickly.
+
+There is a thin line between when you should use block variations and when you should use block patterns. You often times can implement a design as either or with similar effects.
+
+As a rule of thumb you can think of pattern as being more about layout & visual representation whilst variations are more about functionality.
 
 ## Learning Outcomes
 
@@ -10,7 +14,23 @@ In the last lesson, we learned how to add styles to blocks. In this lesson, we'r
 
 ## What are "block variations"?
 
-[Block Variations](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/) is the api that allows you to create blocks that are _similar_ to existing blocks, but have differences that you can define. You could create a variation of the Group block, for example, that has different attributes, pre-defined classnames, and even InnerBlocks.
+[Block Variations](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/) is the api that allows you to create blocks that are _similar_ to existing blocks, but have differences that you can define. You could create a variation of the Group block, for example, that has different default values of attributes, pre-defined classnames, and even InnerBlocks.
+
+In WordPress Core you can find block variations when looking at the embed blocks. Under the hood in the codebase there only is one core embed block. And all the various branded embeds are all variations of that one block.
+
+![Core Embed block Variations in the Inserter](/img/embed-block-variations-overview.png)
+
+Another example is the core columns block. WordPress uses variations to allow editors to quickly choose from a predefined list of variations when selecting what column layout you want to get started with.
+
+![Core Columns Variation Picker](/img/columns-block-variations-picker.png)
+
+As you can see from these two examples teh API is quite versatile because it allows you to define the scope for where block variations should be shown. In the case of the Embed blocks the scope is set to `inserter` because you want editors to be able to choose from the different variants when they look at all the available blocks.
+
+The Columns block on the other hand sets the scope to `block` and uses the blocks initial setup state to allow the editor to choose which variant the'd like to use.
+
+:::note
+The default `scope` is both `block` and `inserter`
+:::note
 
 ## Exercise Overview
 
