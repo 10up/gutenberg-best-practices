@@ -1,6 +1,6 @@
-# Lesson 4: Block variations
+# Lesson 5: Block variations
 
-In the last lesson, we learned how to add styles to blocks. In this lesson, we're going to learn how to create block variations to help our editors get up and running more quickly.
+In the last lessons, we learned how to add styles to blocks, and when to utilize patterns. In this lesson, we're going to learn how to create block variations to help our editors get up and running more quickly.
 
 There is a thin line between when you should use block variations and when you should use block patterns. You often times can implement a design as either or with similar effects.
 

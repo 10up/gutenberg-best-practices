@@ -1,4 +1,4 @@
-# Lesson 5: Inner Blocks / Nested Blocks
+# Lesson 6: Inner Blocks / Nested Blocks
 
 ## Learning Outcomes
 
