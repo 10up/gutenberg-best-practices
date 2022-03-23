@@ -1,6 +1,10 @@
 # Lesson 3: Block styles
 
-In many of our projects at 10up, we need to change the style of some of the core blocks that ship with the block editor. Typically, we want to remove block styles that aren't needed, or add ones that help us achieve elements of the project's design.
+In many of our projects at 10up, we need to change the style of some of the core blocks that ship with the block editor. Typically, we want to remove block styles that aren't needed, or add ones that help us achieve elements of the project's design. Block Styles have a rather narrow use-case though as other options like [extending a block](/reference/Blocks/block-extensions) often time creates a better user experience.
+
+:::tip
+A block should **never** have more than 4 block styles
+:::tip
 
 ## Learning Outcomes
 
@@ -12,7 +16,7 @@ In many of our projects at 10up, we need to change the style of some of the core
 
 You might have noticed that some blocks have a Styles Panel in their Inspector. The core Image block, for example, comes with these two styles: `default` and `rounded`.
 
-![ore Image block styles](/img/core-image-styles.png "Core Image block styles")
+![Core Image block styles](/img/image-block-block-styles.png )
 
 Other blocks, like the List block for example, do not ship with any styles.
 
@@ -26,23 +30,29 @@ Imagine you were working on a project that had three image styles: square, round
 
 Here's the first two that ship with the editor:
 
-<em>Square</em>
+### Square
 
 ![Square Image block styles](/img/core-image-square.png "Square Image block styles")
 
-<em>Rounded</em>
+### Rounded
 
 ![Rounded Image block styles](/img/core-image-rounded.png "Rounded Image block styles")
 
 Let's see how to add a new style — slightly-rounded!
+
+:::caution
+This is a fictional example that actually showcases the pitfalls of Block Styles pretty well. In the real world this setting should probably be a block extension that allows the editor to change the Border Radius of the image.
+
+Because as soon as the client needs more different steps of rounded corners all you can do is add more and more block styles that all are very similar to one another. Leading to a worse user experience.
+:::caution
 
 ## Add a New Style
 
 Adding a new Style is pretty simple.
 
 1. Create an `image.js` file in `/includes/block-styles/`. Here's the [completed example](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/includes/block-styles/image.js).
-2. Use the `registerBlockStyle` function to select the `core/image` block, and add your custom style.
-3. Add the corresponding CSS to handle the display of your new slightly-rounded Image style. The editor adds the classname `is-style-slightly-rounded` for you to use.
+2. Use the [`registerBlockStyle`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/) function to add a new custom style to the `core/image` block.
+3. Add the corresponding CSS to handle the display of your new `slightly-rounded` Image style. WordPress generates a classname for each block styles that follows the pattern `is-style-${name}`. So in our case `is-style-slightly-rounded`.
 
 When we've done that, we can now use our new style and see it outputting as the design intended:
 
@@ -80,7 +90,7 @@ function registerImageStyles() {
 
 :::tip
 
-5. Call the function in the WordPress.dom ready:
+5. Call the function in the wp.domReady callback in order to avoid race conditions with WordPress Core:
 
 ```js
 wp.domReady(() => {
@@ -131,4 +141,5 @@ That's a quick tour of block Styles. Let's quickly summarize the most important 
 ## Further reading
 
 * [Block Styles - 10up Gutenberg Best Practices](../reference/Blocks/block-styles)
+* [The pitfall of Custom Block Styles in WordPress](../guides/pitfals-style-api)
 * [Block Styles - Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/)
