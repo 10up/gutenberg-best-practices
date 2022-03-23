@@ -122,4 +122,5 @@ That's a quick look of block variations. Let's quickly summarize the most import
 * [Block Variations - 10up Gutenberg Best Practices](../reference/Blocks/block-variations)
 * [Block Variations - Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/)
 * [How to use block variations in WordPress - CSS Tricks](https://css-tricks.com/how-to-use-block-variations-in-wordpress/)
+* [Using Gutenberg Block Variations - Rich Tabor](https://richtabor.com/block-variations/)
 * [BlockBook](https://youknowriad.github.io/blockbook/block/)
