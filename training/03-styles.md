@@ -108,7 +108,7 @@ Lots of core blocks come with styles. Depending on the client, the design, or th
 ### Steps (These steps have already been done for you. Please follow along as a reference.)
 
 1. Create a new `pullquote.js` file in `/includes/block-styles/`
-2. Use the `unRegisterBlockStyle` function to select the `core/pullquote` block, and remove the "Solid color" style.
+2. Use the `unregisterBlockStyle` function to select the `core/pullquote` block, and remove the "Solid color" style.
 3. Import your `pullquote.js` into `/includes/block-styles/index.js`
 
 After we've done that, we can see that the "Solid color" Style has now been removed:
