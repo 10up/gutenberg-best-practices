@@ -42,7 +42,7 @@ Adding a new Style is pretty simple.
 
 1. Create an `image.js` file in `/includes/block-styles/`. Here's the [completed example](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/includes/block-styles/image.js).
 2. Use the `registerBlockStyle` function to select the `core/image` block, and add your custom style.
-3. Add the corresponding CSS to handle the display of your new slightly-rounded Image style. The editor adds the classname `is-style-slightly-rounded` for you to use.
+3. Add the corresponding CSS to handle the display of your new slightly-rounded Image style. The editor adds the classname `is-style-slightly-rounded` for you to use. The classname added starts with `is-style-` and ends with whatever you entered for the `name` key (in this case: `slightly-rounded`). 
 
 When we've done that, we can now use our new style and see it outputting as the design intended:
 
@@ -89,7 +89,7 @@ wp.domReady(() => {
 ```
 
 6. Next, we need to be sure this custom style registration is imported. See the [index.js](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/includes/block-styles/index.js) file found in `block-styles` and add the above file name as an import (`import './cta-starter';`);
-7. Add a style using the new `is-style-thick-border` classname. This has already been done for you in the [`call-to-action.css`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/assets/css/frontend/components/blocks/call-to-action.css) file.
+7. In the Editor, edit your block and apply the new style. This will add the classname: `is-style-thick-border` to the block output. There are styles associated with this classname created for you here: [`call-to-action.css`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/assets/css/frontend/components/blocks/call-to-action.css) file.
 
 And voila! We've added a new style for our custom block!
 
