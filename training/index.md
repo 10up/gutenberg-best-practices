@@ -62,11 +62,12 @@ The `10up-theme` build system requires node version **14** in order to build suc
 * [Lesson 1: Anatomy of a block](./01-overview.md)
 * [Lesson 2: A Simple CTA block](./02-cta-lesson.md)
 * [Lesson 3: Block Styles](./03-styles.md)
-* [Lesson 4: Block Variations](./04-variations.md)
-* [Lesson 5: Inner Blocks / Block Nesting](./05-inner-blocks.md)
-* [Lesson 6: Rich Text Formats](./06-rich-text-formats.md)
-* [Lesson 7: Slot Fill](./07-slot-fill.md)
-* [Lesson 8: Build your own](./08-build-your-own.md)
+* [Lesson 4: Block Patterns](./04-patterns.md)
+* [Lesson 5: Block Variations](./04-variations.md)
+* [Lesson 6: Inner Blocks / Block Nesting](./05-inner-blocks.md)
+* [Lesson 7: Rich Text Formats](./06-rich-text-formats.md)
+* [Lesson 8: Slot Fill](./07-slot-fill.md)
+* [Lesson 9: Build your own](./08-build-your-own.md)
 
 ## Support
 
