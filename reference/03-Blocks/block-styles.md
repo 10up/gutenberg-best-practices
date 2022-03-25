@@ -9,7 +9,7 @@ Block styles are a relatively simple API that allows you to add different visual
 !["Style Variations Picker within Gutenberg showing Default and Rounded as options"](/img/image-block-styles.png)
 
 :::caution
-Block Styles come with many cravats though and should be used very sparingly. Instead [block extensions](block-extensions) should be used in most cases because of the increased flexibility.
+Block Styles come with many caveats though and should be used very sparingly. Instead [block extensions](block-extensions) should be used in most cases because of the increased flexibility.
 :::caution
 
 ## User Experience

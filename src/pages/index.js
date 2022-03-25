@@ -14,10 +14,16 @@ export default function Home() {
       description="Description will go into a meta tag in <head />">
       <main>
         <header className={styles.heroBanner}>
-          <img src="img/final-g-wapuu-white.svg" height="120" className={styles.wapuu} />
+          <img src="img/final-g-wapuu-white.svg" height="120" className={styles.wapuu} alt="Gutenberg Wapuu" />
           <h1>Welcome to the 10up Gutenberg Best Practices!</h1>
         </header>
         <section className={styles.grid}>
+        <article className={styles.gridItem}>
+            <h2>
+              📚
+              <Link to="/reference"> Reference</Link>
+            </h2>
+          </article>
           <article className={styles.gridItem}>
             <h2>
              🧑‍🏫
@@ -28,12 +34,6 @@ export default function Home() {
             <h2>
               🚀
               <Link to="/guides"> Guides</Link>
-            </h2>
-          </article>
-          <article className={styles.gridItem}>
-            <h2>
-              📚
-              <Link to="/reference"> Reference</Link>
             </h2>
           </article>
         </section>

@@ -52,7 +52,7 @@ Adding a new Style is pretty simple.
 
 1. Create an `image.js` file in `/includes/block-styles/`. Here's the [completed example](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/includes/block-styles/image.js).
 2. Use the [`registerBlockStyle`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/) function to add a new custom style to the `core/image` block.
-3. Add the corresponding CSS to handle the display of your new `slightly-rounded` Image style. WordPress generates a classname for each block styles that follows the pattern `is-style-${name}`. So in our case `is-style-slightly-rounded`.
+3. Add the corresponding CSS to handle the display of your new `slightly-rounded` Image style. WordPress generates a classname that starts with `is-style-` and ends with whatever you entered for the `name` key (in this case: `slightly-rounded`).
 
 When we've done that, we can now use our new style and see it outputting as the design intended:
 
@@ -99,7 +99,7 @@ wp.domReady(() => {
 ```
 
 6. Next, we need to be sure this custom style registration is imported. See the [index.js](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/includes/block-styles/index.js) file found in `block-styles` and add the above file name as an import (`import './cta-starter';`);
-7. Add a style using the new `is-style-thick-border` classname. This has already been done for you in the [`call-to-action.css`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/assets/css/frontend/components/blocks/call-to-action.css) file.
+7. In the Editor, edit your block and apply the new style. This will add the classname: `is-style-thick-border` to the block output. There are styles associated with this classname created for you here: [`call-to-action.css`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/10up-theme/assets/css/frontend/components/blocks/call-to-action.css) file.
 
 And voila! We've added a new style for our custom block!
 
@@ -118,7 +118,7 @@ Lots of core blocks come with styles. Depending on the client, the design, or th
 ### Steps (These steps have already been done for you. Please follow along as a reference.)
 
 1. Create a new `pullquote.js` file in `/includes/block-styles/`
-2. Use the `unRegisterBlockStyle` function to select the `core/pullquote` block, and remove the "Solid color" style.
+2. Use the `unregisterBlockStyle` function to select the `core/pullquote` block, and remove the "Solid color" style.
 3. Import your `pullquote.js` into `/includes/block-styles/index.js`
 
 After we've done that, we can see that the "Solid color" Style has now been removed:
