@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Block Styles
 
-Block styles are a relatively simple API that allows you to add different visual styles to a block. In Core the image for example allows you to select a rounded style to round the corners of the image.
+Block styles are a relatively simple API that allows you to add different visual styles to a block. In Core, the image block, for example allows you to select a rounded style to round the corners of the image.
 
 !["Style Variations Picker within Gutenberg showing Default and Rounded as options"](/img/image-block-styles.png)
 
@@ -14,7 +14,7 @@ Block Styles come with many caveats though and should be used very sparingly. In
 
 ## User Experience
 
-In the editor styles are the first thing a user sees in the blocks setting sidebar. They are shown very prominently. So initially it seems like a great spot to place to put controls. This is only true as long as there are no more than 4 styles present. After that point the experience becomes too cluttered and overwhelming.
+In the editor, styles are the first thing a user sees in the blocks setting sidebar. They are shown very prominently. So initially it seems like a great spot to put controls. This is only true as long as there are no more than 4 styles present. After that point the experience becomes too cluttered and overwhelming.
 
 :::warning
 Additionally the style options have one fatal flaw. Only one of them can be active at a time. And most things that end up becoming styles are things that you down the line would love to combine. And that is a downfall that happens very quickly.
