@@ -28,15 +28,16 @@ We need a way to "package up" all those elements so editors can easily insert it
 
 For our example, we need to combine these four blocks for easy use in the editor. Let's break down what we're looking at here into actual blocks:
 
-!["Block Variation breakdown"](/img/variations-block-cta-2.png)
+!["Block Variation breakdown"](/img/block-patterns-structure-diagram.png)
 
 On first glance, it looked like we just needed 4 blocks. But we actually need a couple of more for wrapping. Here's the breakdown:
 
 1. A Group block to contain the whole thing
 2. A Heading block
 3. A Paragraph block
-4. A Columns block to contain our CTA blocks
-5. Our two CTA blocks
+4. A Columns block
+5. Two Column blocks
+6. Our two CTA blocks
 
 ## Takeaways
 
