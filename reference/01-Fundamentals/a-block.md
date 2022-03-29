@@ -77,7 +77,7 @@ A block may exist in several different states in the editor. Depending on what s
 
 The initial setup state is one that not all blocks will or even should have. But it is a common pattern that gets used whenever a block relies on a core piece of data before it can start displaying it's main interface.
 
-A great examples of this in the core blocks for example is the cover block. The cover relies on a background image or some background color. When neither of the two is selected there is not much you can do with the block. Therefore it presents you with a placeholder to select a background image or color and once you have completed this step you are not represented with all the options.
+A great examples of this in the core blocks for example is the cover block. The cover relies on a background image or some background color. When neither of the two is selected there is not much you can do with the block. Therefore it presents you with a placeholder to select a background image or color and once you have completed this step you are represented with all the options.
 
 This pattern of having a placeholder also allows you to make it easier for your editors in very complex block to not overwhelm them when they start inserting the block. If you look at the core columns block the first thing you get to see is a placeholder where you can select the layout of columns you want to start with. You can of course change that easily later in the settings sidebar but you don't need to and can get up and running without having to interact with the advanced options in the sidebar at all.
 

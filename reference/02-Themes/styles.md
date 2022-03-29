@@ -23,7 +23,7 @@ function theme_setup() {
 add_action( 'after_setup_theme', 'theme_setup' );
 ```
 
-The stylesheets that get added via the `add_editor_style` function get automatically parsed by WordPress and get scoped to the `.editor-styles-wrapper` class. This means that you cannot target anything outside of the `.editor-styles-wrapper` in that stylesheet since core will override that. The transformed parsed and transformed stylesheet then gets inlined in the editor.
+The stylesheets that get added via the `add_editor_style` function get automatically parsed by WordPress and get scoped to the `.editor-styles-wrapper` class. This means that you cannot target anything outside of the `.editor-styles-wrapper` in that stylesheet since core will override that. The parsed and transformed stylesheet then gets inlined in the editor.
 
 :::tip
 If you need to load custom fonts from an external source you also need to add a separate `add_editor_style` call for the stylesheet loading the font.
