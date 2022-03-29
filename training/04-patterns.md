@@ -24,6 +24,12 @@ In general they are best suited for predefined sections in a page.
 
 We need a way to "package up" all those elements so editors can easily insert it whenever they want. Thankfully we can, with block patterns!
 
+:::info
+The approach taught in this lesson requires WordPress 6.0. In order to get it working prior to this we have [polyfilled the core functionality into the `tenup-theme` of the gutenberg training](https://gitlab.10up.com/exercises/gutenberg-lessons/blob/6e356ca9f084d602a562cf682109cc97f7e75c0b/themes/tenup-theme/includes/blocks.php#L181-316).
+
+In order to manually register patterns you need to register each pattern using the [`register_block_pattern`](https://developer.wordpress.org/reference/functions/register_block_pattern/) function.
+:::info
+
 ## Breaking it Down
 
 For our example, we need to combine these four blocks for easy use in the editor. Let's break down what we're looking at here into actual blocks:
@@ -39,8 +45,94 @@ On first glance, it looked like we just needed 4 blocks. But we actually need a 
 5. Two Column blocks
 6. Our two CTA blocks
 
+## Creating our pattern
+
+Creating patterns actually needs very little code. And it all starts from within the editor. You can get started by building out the structure you want your pattern to have within the editor.
+
+Once you are happy with how the blocks look and feel across breakpoint you can click on the dropdown menu in the blocks toolbar to copy the block.
+
+![Block Toolbar Context menu highlighting the copy button.](/img/block-pattern-save.png)
+
+If you paste that content into your text editor you will find that you actually get the complete block markup including the serialized html comments containing all of the blocks attributes.
+
+<details>
+<summary>Learn more about block markup</summary>
+
+When we copy the block we get the serialized html. But what does that even mean? Below you can see an example of some markup that was generated when copying a block from the editor. In fact this also is how blocks get stored in the database.
+
+```html title="Copied Block Markup"
+<!-- wp:group {"className":"is-style-application-ctas"} -->
+<div class="wp-block-group is-style-application-ctas">
+	<!-- wp:heading {"placeholder":"Getting started with your application"} -->
+	<h2>This is a Heading</h2>
+	<!-- /wp:heading -->
+
+	<!-- wp:paragraph {"placeholder":"Add the description text here...","className":"application-ctas__description"} -->
+	<p class="application-ctas__description">And this is a Paragraph</p>
+	<!-- /wp:paragraph -->
+
+	<!-- wp:columns -->
+	<div class="wp-block-columns">
+		<!-- wp:column -->
+		<div class="wp-block-column">
+			<!-- wp:gutenberg-lessons/cta-complete /-->
+		</div>
+		<!-- /wp:column -->
+
+		<!-- wp:column -->
+		<div class="wp-block-column">
+			<!-- wp:gutenberg-lessons/cta-complete /-->
+		</div>
+		<!-- /wp:column --></div>
+	<!-- /wp:columns -->
+</div>
+<!-- /wp:group -->
+
+```
+
+Each block gets wrapped by a html comment. These comments are what we mean when we say serialized content. They start with the name of the block, followed by a JSON object containing all the blocks attributes. Well at least all the ones that are not clearly identifiable by something else in the blocks markup.
+
+In the paragraph for example the text content within the `p` tag is automatically parsed as the value of the `content` attribute, so there is no need to put it into the JSON object.
+
+The `className` attribute on the other hand is impossible to parse because there may be other classnames coming from the block itself or some extension that it only works when the attribute is stored in the JSON object.
+</details>
+
+Since WordPress 6.0 patterns can be registered super easily by _just_ creating a PHP file inside the `pattern` folder at the root directory of a theme. This PHP file needs to have a comment header with some metadata and then just the markup of the blocks themselves.
+
+### Pattern document headers
+
+Each Pattern must have a PHP Document comment at the top of the file containing the metadata of the pattern. `Title` and `Slug` are mandatory but you can also specify things like a `Description` etc.
+
+```php title="/patterns/example.php"
+<?php
+/**
+ * Title: Example Pattern
+ * Slug: tenup-theme/example-pattern
+ * Categories: text
+ * Description: example description
+ * Keywords: example, test
+ */
+
+?>
+```
+
+With this info try taking the design outlined above and transform that into a new pattern called `Application CTAs - Exercise`.
+
 ## Takeaways
+
+- Patterns are really just a configuration of blocks that is saved for reuse
+- You can register patterns by placing a PHP file into the `patterns` directory in the root directory of a theme
+- They are great to get clients up and running quickly with a design
 
 ## Next steps
 
+As you have seen because the patterns are written in PHP we can break out of the HTML markup and use dynamic data in our patterns. Try to register a block pattern that uses an image block somewhere within.
+
+Because patterns need to work across environments they cannot rely on a piece of content in the Media Library. But we also don't want our clients to have a broken image link in their pattern.
+
+Try to replace the image url with a dynamically generated url of the image file located at `assets/images/10up-screenshot.jpg` in the `tenup-theme`.
+
 ## Further reading
+
+- [Block Patterns - 10up Gutenberg Best Practice](../reference/03-Blocks/block-patterns.md)
+- [Patterns - Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/)
