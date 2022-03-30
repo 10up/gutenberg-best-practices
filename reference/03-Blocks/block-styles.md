@@ -6,7 +6,7 @@ sidebar_position: 2
 
 Block styles are a relatively simple API that allows you to add different visual styles to a block. In Core, the image block, for example allows you to select a rounded style to round the corners of the image.
 
-!["Style Variations Picker within Gutenberg showing Default and Rounded as options"](/img/image-block-styles.png)
+!["Style Variations Picker within Gutenberg showing Default and Rounded as options"](../../static//img/image-block-styles.png)
 
 :::caution
 Block Styles come with many caveats though and should be used very sparingly. Instead [block extensions](block-extensions) should be used in most cases because of the increased flexibility.
