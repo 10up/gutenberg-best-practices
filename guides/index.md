@@ -5,7 +5,7 @@ sidebar_label: Introduction
 
 # Guides
 
-![Deep Dive](/img/deep-dive.png)
+![Deep Dive](../static/img/deep-dive.png)
 
 This section of the Gutenberg Best Practices is meant as a collection of individual deep dive articles.
 

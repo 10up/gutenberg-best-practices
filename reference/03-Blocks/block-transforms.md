@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # Block Transforms
 
-![Block Transforms of the Core Paragraph](/img/block-transforms.png)
+![Block Transforms of the Core Paragraph](../../static/img/block-transforms.png)
 
 Block Transforms is the API that allows a block to be transformed _from_ and _to_ other blocks, as well as _from_ other entities. Existing entities that work with this API include shortcodes, files, regular expressions, and raw DOM nodes.
 

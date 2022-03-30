@@ -9,11 +9,11 @@ sidebar_label: Working with the WordPress Data API
 
 The Data API in WordPress is used to manage the global application state within the editor. It is a wrapper around the popular state management library [Redux](https://redux.js.org).  
 
-![Redux API Design](/img/redux-api-design.png)
+![Redux API Design](../static/img/redux-api-design.png)
 
 In redux and therefore in the WordPress Data API there is the concept of a Store that manages the global application state. This global state can only be updated by dispatching actions on the store. These actions will then get consumed by reducers to determine what the next version of the state should look like. If you want to access the state you can subscribe to the store and receive the value of the current state every time it is being updated.
 
-![Redux API Design Simplified](/img/redux-api-design-simplified.png)
+![Redux API Design Simplified](../static/img/redux-api-design-simplified.png)
 </details>
 
 ## Basics and terminology
@@ -25,7 +25,7 @@ In redux and therefore in the WordPress Data API there is the concept of a Store
 
 ## Stores in WordPress
 
-![List of the various Core Data Stores](/img/data-api-core-stores.png)
+![List of the various Core Data Stores](../static/img/data-api-core-stores.png)
 
 The editor does not only have one global data store but rather multiple different stores that each focus on different areas of the site. These stores can be refereed to by their namespace or you can import the store object from the individual packages.
 
@@ -95,7 +95,7 @@ const { something, somethingElse } = useSelect( function(select) {
 
 ### Handling Error & Loading States
 
-![Loading & Error Icons](/img/data-api-loading-error.png)
+![Loading & Error Icons](../static/img/data-api-loading-error.png)
 
 You get get access to whether or not a select statement has been resolved by using the `hasFinishedResolution` selector that is provided on every core store.
 
@@ -123,7 +123,7 @@ const something = useSelect( function(select) {
 
 Under the hood the Data API uses the Rest API. With the very important difference that changes you make to values only actually get saved to the database when the post is saved. If you were to interface with the Rest API directly to manipulate information about a post that data would be updated and saved immediately without getting a preview or being aware of it. That is why it is always preferred to use the Data API when you are trying to manipulate anything.
 
-![How the Data API interacts with the WordPress Database](/img/data-api-wordpress-db.png)
+![How the Data API interacts with the WordPress Database](../static/img/data-api-wordpress-db.png)
 
 ## Examples
 

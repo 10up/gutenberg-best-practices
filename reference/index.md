@@ -5,7 +5,7 @@ sidebar_label: Introduction
 
 # Block Editor Reference
 
-![](/img/reference-icon.png)
+![Books on a bookshelf](../static/img/reference-icon.png)
 
 Welcome to the Block Editor Reference! :wave:
 

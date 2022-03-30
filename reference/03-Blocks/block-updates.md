@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # Block Updates
 
-![Block Migration Illustration](/img/block-migration.jpg)
+![Block Migration Illustration](../../static/img/block-migration.jpg)
 
 ## How do you handle updates to existing blocks?
 
