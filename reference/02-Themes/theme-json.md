@@ -106,7 +106,7 @@ body {
 
 These settings and styles exist at three levels, each overwriting the specificity of the previous layer. At the root there is the default core `theme.json` file which houses all the default values for everything. All the properties in this core `theme.json` file can be overwritten via the `theme.json` file of a theme. Finally there also is the third layer which is the user generated `theme.json` that comes out of the global styles panel in the site editor. This only impacts "Block Based Themes" which allow users to define colors, fonts, ect. manually using the Site Editor.
 
-![Global Styles Overview](/img/global-styles-input-output.png)
+![Global Styles Overview](../../static//img/global-styles-input-output.png)
 
 ## Using the values from `theme.json` custom blocks
 

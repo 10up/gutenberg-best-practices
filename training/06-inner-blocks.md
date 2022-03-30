@@ -12,7 +12,7 @@ Inner Blocks in WordPress let you nest blocks within other blocks. You may have 
 
 The [Group block](https://developer.wordpress.org/block-editor/reference-guides/core-blocks/#group) for example is meant to be a wrapper for other blocks. It creates a container with some options like a background color for that section and allows you to insert other blocks into that wrapper. Other examples of this kind of nesting can be found in the the [Media & Text](https://developer.wordpress.org/block-editor/reference-guides/core-blocks/#media-text) and the [Cover Block](https://developer.wordpress.org/block-editor/reference-guides/core-blocks/#cover). They all allow you to place other blocks within an inner blocks area.
 
-![Editor List View showing a Core Group block with a Heading and Paragraph nested within.](/img/inner-blocks-core-group-screenshot.jpg)
+![Editor List View showing a Core Group block with a Heading and Paragraph nested within.](../static/img/inner-blocks-core-group-screenshot.jpg)
 
 There is another great use-case for inner blocks. We can see that when looking at the core columns block. It may seem very similar at first because it also allows you to place blocks within the columns.
 
@@ -22,7 +22,7 @@ Instead of storing a very complicated array of the columns with all their option
 
 Another example of this is the core buttons block. It only allows button blocks as it's children and uses inner blocks to allow editors to add, move and remove the individual button blocks.
 
-![Editor List View showing a Core Columns block with three nested Column Blocks that each have their own child blocks within.](/img/inner-blocks-core-columns-screenshot.jpg)
+![Editor List View showing a Core Columns block with three nested Column Blocks that each have their own child blocks within.](../static/img/inner-blocks-core-columns-screenshot.jpg)
 
 ## Exercise Overview
 
@@ -32,13 +32,13 @@ In this lesson we are going to build two different blocks ("Hero" Block and "Car
 
 First we will take a look at how we can use inner blocks to allow an editor to place anything they want into a predefined area of your component. In this example we have a "simple" design of a "Hero" component that has an image at the top with a content area that overlaps the image.
 
-![Hero Block Mockup](/img/inner-blocks-one-mockup.png)
+![Hero Block Mockup](../static/img/inner-blocks-one-mockup.png)
 
 The client wants to be able to place other blocks into the content area of the "Hero" component to make it as flexible as possible for them.
 
 For the "Hero" Block we need to define an area of our markup where other blocks can get inserted.
 
-![Hero Block Scribble](/img/inner-blocks-one-scribble.png)
+![Hero Block Scribble](../static/img/inner-blocks-one-scribble.png)
 
 To get started there is a starter block scaffolded out located in the blocks folder of the theme with the name [`inner-blocks-one-starter`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks/inner-blocks-one-starter). If you are stuck you can take a look at the [`inner-blocks-one-completed`](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includesblocks/inner-blocks-one-completed) folder for a completed version of the block.
 
@@ -48,13 +48,13 @@ Most of the markup and block scaffolding already is in place. What is left to do
 
 The second block we will be building is a "Card Grid" component. This Card grid should allow editors to place as many card components into a grid that automatically reflows based on the screen size of the device they are using.
 
-![Card Grid Block Mockup](/img/inner-blocks-two-mockup.png)
+![Card Grid Block Mockup](../static/img/inner-blocks-two-mockup.png)
 
 The "Card Grid" consists of two elements. The actual grid that can contain the cards and then the individual cards. This is similar to how core has the Buttons block that contains individual Button blocks.
 
 So we can archive this by creating two different blocks. The "Card Grid" block that needs to define an inner block area where only the card block can get inserted. And then we need the card block that cannot get used anywhere outside of the "Card Grid".
 
-![Card Grid Block Scribble](/img/inner-blocks-two-scribble.png)
+![Card Grid Block Scribble](../static/img/inner-blocks-two-scribble.png)
 
 To get started there are two starter blocks scaffolded out located in the blocks folder of the theme with the name [`inner-blocks-two-card-grid-starter`](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/inner-blocks-two-card-grid-starter) and [`inner-blocks-two-card-starter`](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/inner-blocks-two-card-starter). If you are stuck you can take a look at the [`inner-blocks-two-card-grid-completed`](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/inner-blocks-two-card-grid-completed) and [`inner-blocks-two-card-completed`](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/inner-blocks-two-card-completed) folders for a completed version of the block.
 
@@ -227,7 +227,7 @@ Another thing that isn't great about the UX right now is that the initial state 
 
 We know that in an ideal case we want our editors to have a title and a paragraph inside the "Hero" so we can make that the default when the block is inserted.
 
-To achieve this we can define a `template` on the inner block area. The template gets defined the same way you already saw in [Lesson 4: Block Variations](/04-variations.md). It is an array with individual items also being represented as an array with the block name as the first element, the blocks attributes as the second and child blocks as the third element.
+To achieve this we can define a `template` on the inner block area. The template gets defined the same way you already saw in [Lesson 5: Block Variations](/05-variations.md). It is an array with individual items also being represented as an array with the block name as the first element, the blocks attributes as the second and child blocks as the third element.
 
 ```jsx
 return (

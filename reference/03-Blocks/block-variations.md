@@ -6,11 +6,11 @@ sidebar_position: 4
 
 Block variations are a great way to surface one block in multiple ways. The best example for block variations is the core embed block. There are all these different embed providers like YouTube, Vimeo, and many more. It would be a lot of duplicated code to create them all as individual blocks. Instead the block variations API allows you to define variants of a block. Each variant can set their own icon, title, and default values for its attributes & inner blocks.
 
-![Core Embed Variations shown in the Block Inserter](/img/core-embed-variations-inserter.png)
+![Core Embed Variations shown in the Block Inserter](../../static/img/core-embed-variations-inserter.png)
 
 Variations can also be used in a variations picker to choose between different predefined setups of a block. This is how the core columns block creates its initial setup state where the editor can choose from a predefined list of different variations.
 
-![Core Columns Block initial setup state](/img/block-variations-example.png)
+![Core Columns Block initial setup state](../../static/img/block-variations-example.png)
 
 ## Using Block Variations
 

@@ -63,11 +63,11 @@ The `tenup-theme` build system requires node version **16** in order to build su
 * [Lesson 2: A Simple CTA block](./02-cta-lesson.md)
 * [Lesson 3: Block Styles](./03-styles.md)
 * [Lesson 4: Block Patterns](./04-patterns.md)
-* [Lesson 5: Block Variations](./04-variations.md)
-* [Lesson 6: Inner Blocks / Block Nesting](./05-inner-blocks.md)
-* [Lesson 7: Rich Text Formats](./06-rich-text-formats.md)
-* [Lesson 8: Slot Fill](./07-slot-fill.md)
-* [Lesson 9: Build your own](./08-build-your-own.md)
+* [Lesson 5: Block Variations](./05-variations.md)
+* [Lesson 6: Inner Blocks / Block Nesting](./06-inner-blocks.md)
+* [Lesson 7: Rich Text Formats](./07-rich-text-formats.md)
+* [Lesson 8: Slot Fill](./08-slot-fill.md)
+* [Lesson 9: Build your own](./09-build-your-own.md)
 
 ## Support
 

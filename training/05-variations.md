@@ -17,11 +17,11 @@ As a rule of thumb you can think of pattern as being more about layout & visual 
 
 In WordPress Core you can find block variations when looking at the embed blocks. Under the hood in the codebase there only is one core embed block. And all the various branded embeds are all variations of that one block.
 
-![Core Embed block Variations in the Inserter](/img/embed-block-variations-overview.png)
+![Core Embed block Variations in the Inserter](../static/img/embed-block-variations-overview.png)
 
 Another example is the core columns block. WordPress uses variations to allow editors to quickly choose from a predefined list of variations when selecting what column layout you want to get started with.
 
-![Core Columns Variation Picker](/img/columns-block-variations-picker.png)
+![Core Columns Variation Picker](../static/img/columns-block-variations-picker.png)
 
 As you can see from these two examples teh API is quite versatile because it allows you to define the scope for where block variations should be shown. In the case of the Embed blocks the scope is set to `inserter` because you want editors to be able to choose from the different variants when they look at all the available blocks.
 

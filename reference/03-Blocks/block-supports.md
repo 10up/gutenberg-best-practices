@@ -10,7 +10,7 @@ Opting into any of these features will register additional attributes on the blo
 
 ## anchor
 
-![Editor showing the Anchor Text Control in the Advanced Settings Sidebar](/img/supports-anchor.png)
+![Editor showing the Anchor Text Control in the Advanced Settings Sidebar](../../static//img/supports-anchor.png)
 
 - Type: `boolean`
 - Default value: `false`
@@ -29,7 +29,7 @@ This doesn't work with dynamic blocks yet. If you need to add Anchor support to 
 
 ## align
 
-![Block Toolbar with Block alignment controls configures](/img/supports-align.png)
+![Block Toolbar with Block alignment controls configures](../../static//img/supports-align.png)
 
 - Type: `boolean` or `array`
 - Default value: `false`
@@ -97,7 +97,7 @@ In general it is recommended for consistency sake to stick with the core generat
 
 ## color
 
-![Block Editor Sidebar showing the Color Settings Panel](/img/supports-color.png)
+![Block Editor Sidebar showing the Color Settings Panel](../../static//img/supports-color.png)
 
 - Type: `Object`
 - Default value: null
@@ -367,7 +367,7 @@ When the block declares support for `color.text`, the attributes definition is e
 
 ## customClassName
 
-![Block Editor Sidebar showing the custom class name setting](/img/supports-classname.png)
+![Block Editor Sidebar showing the custom class name setting](../../static//img/supports-classname.png)
 
 - Type: `boolean`
 - Default value: `true`
@@ -383,7 +383,7 @@ This property adds a field to define a custom className for the block's wrapper.
 
 ## defaultStylePicker
 
-![Block Editor Sidebar showing the default style picker](/img/supports-default-style-picker.png)
+![Block Editor Sidebar showing the default style picker](../../static//img/supports-default-style-picker.png)
 
 - Type: `boolean`
 - Default value: `true`
@@ -399,7 +399,7 @@ When the style picker is shown, the user can set a default style for a block typ
 
 ## html
 
-![Block Toolbar showing the Edit as HTML option](/img/supports-edit-html.png)
+![Block Toolbar showing the Edit as HTML option](../../static//img/supports-edit-html.png)
 
 - Type: `boolean`
 - Default value: `true`
@@ -457,7 +457,7 @@ A block may want to disable the ability of being converted into a reusable block
 
 ## spacing
 
-![Block Editor Sidebar showing the Dimension Control panel](/img/supports-dimension.png)
+![Block Editor Sidebar showing the Dimension Control panel](../../static//img/supports-dimension.png)
 
 - Type: `Object`
 - Default value: null
@@ -493,7 +493,7 @@ A spacing property may define an array of allowable sides that can be configured
 
 ## typography
 
-![Block Editor Sidebar showing the Typography Settings panel](/img/supports-typography.png)
+![Block Editor Sidebar showing the Typography Settings panel](../../static//img/supports-typography.png)
 
 - Type: `Object`
 - Default value: `null`

@@ -20,7 +20,7 @@ In general they are best suited for predefined sections in a page.
 
 10up has a lot of clients in higher-ed. These clients obviously devote a lot of attention to the student application process. Imagine you're working with one of these clients and they want to re-purpose the work we did on the CTA block from [Lesson 1](02-cta-lesson.md). On most pages, they want to include this pattern of blocks: a heading, a description and two CTA blocks side by side. Here's what they want:
 
-!["Block Variation, CTA block"](/img/variations-block-cta-1.png)
+!["Block Variation, CTA block"](../static/img/variations-block-cta-1.png)
 
 We need a way to "package up" all those elements so editors can easily insert it whenever they want. Thankfully we can, with block patterns!
 
@@ -34,7 +34,7 @@ In order to manually register patterns you need to register each pattern using t
 
 For our example, we need to combine these four blocks for easy use in the editor. Let's break down what we're looking at here into actual blocks:
 
-!["Block Variation breakdown"](/img/block-patterns-structure-diagram.png)
+!["Block Variation breakdown"](../static/img/block-patterns-structure-diagram.png)
 
 On first glance, it looked like we just needed 4 blocks. But we actually need a couple of more for wrapping. Here's the breakdown:
 
@@ -51,7 +51,7 @@ Creating patterns actually needs very little code. And it all starts from within
 
 Once you are happy with how the blocks look and feel across breakpoint you can click on the dropdown menu in the blocks toolbar to copy the block.
 
-![Block Toolbar Context menu highlighting the copy button.](/img/block-pattern-save.png)
+![Block Toolbar Context menu highlighting the copy button.](../static/img/block-pattern-save.png)
 
 If you paste that content into your text editor you will find that you actually get the complete block markup including the serialized html comments containing all of the blocks attributes.
 
