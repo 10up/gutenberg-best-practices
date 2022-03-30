@@ -77,6 +77,8 @@ mapBlocks.forEach( mapBlock => {
 } );
 ```
 
+## Making it dynamic
+
 At this point we had the static map rendering on both the frontend and in the editor. All that was left to do was create some dynamic data that we saved to the blocks attributes and then pass them in as the second argument to our `renderMap` function. All we need to do in order to ensure that the editor view re-renders every time the attributes change is to make sure the relevant attributes get added to the dependency array of the `useEffect` hook.
 
 ```jsx
@@ -113,6 +115,8 @@ function BlockEdit(props) {
 
 ![Dynamic Map Editor View](../static/img/dynamic-map-editor-view.png)
 
+## Making it reusable
+
 In this case we actually ended up having the legend above the map and the markers for the cities be their own individual SVGs rendered by D3 and so we created a little helper react hook to make it easier working with the refs.
 
 ```js title="useD3.js"
@@ -131,5 +135,7 @@ export const useD3 = (callback, dependencies = []) => {
     return ref;
 }
 ```
+
+## Other examples
 
 You can see another example of this by looking at the Apple Maps Block plugin that 10up has. We use a [similar approach there to get the map rendered in the editor](https://github.com/10up/maps-block-apple/blob/0b128ee79d1f67aca986ccc865584d179bc2c98a/src/edit.js#L25-L56).
