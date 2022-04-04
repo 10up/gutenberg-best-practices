@@ -145,6 +145,10 @@ const config = {
               {
                 label: 'Slack Channel',
                 href: 'https://10up.slack.com/archives/C8Z3WMN1K',
+              },
+              {
+                label: 'GitHub Discussions',
+                href: 'https://github.com/10up/gutenberg-best-practices/discussions/',
               }
             ],
           },
