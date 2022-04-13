@@ -140,6 +140,6 @@ That's a quick tour of block Styles. Let's quickly summarize the most important 
 
 ## Further reading
 
-* [Block Styles - 10up Gutenberg Best Practices](../reference/Blocks/block-styles)
-* [The pitfall of Custom Block Styles in WordPress](../guides/pitfals-style-api)
+* [Block Styles - 10up Gutenberg Best Practices](/reference/Blocks/block-styles)
+* [The pitfall of Custom Block Styles in WordPress](/guides/pitfals-style-api)
 * [Block Styles - Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/)
