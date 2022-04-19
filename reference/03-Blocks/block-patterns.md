@@ -81,70 +81,6 @@ register_block_pattern(
 ); 
 ```
 
-## Locking Patterns
-
-You can also use patterns to lock down some aspects of the editorial experience. When creating a pattern you can restrict the ability for a user to move and or remove certain blocks. Additionally you can also restrict what types of blocks are allowed to be used within a columns or group block.
-
-With these controls it becomes much easier to create a refined controlled editorial experience.
-
-### Locking the ability to remove / move a block
-
-Individual blocks can lock down their ability to be moved and or removed. This is done via an attribute that is added by WordPress to every single block called `lock`. The `lock` attribute is an object that accepts two properties: `move` and `remove`. Both of them are `Boolean` values. There is no UI to control the lock state of a block. It can only be controlled via code.
-
-In a pattern you can set these attributes via the html comment of the block where you can set its attributes.
-
-```php
-<!-- wp:columns -->
-<div class="wp-block-columns">
-    // highlight-start
-    <!-- wp:column { "lock": { "move": false, "remove": false } } -->
-    // highlight-end
-    <div class="wp-block-column">
-        ...
-    </div>
-    <!-- /wp:column -->
-
-    // highlight-start
-    <!-- wp:column { "lock": { "move": false, "remove": false } } -->
-    // highlight-end
-    <div class="wp-block-column">
-        ...
-    </div>
-    <!-- /wp:column -->
-</div>
-<!-- /wp:columns -->
-```
-
-### Restricting which inner blocks can be used
-
-The core column, group, and cover block support the ability to restrict which blocks are allowed within the inner blocks area. This is being done via two attributes that exist on the se blocks. The `allowedBlocks` and `templateLock` attributes can be set via the html comment in patterns to restrict which blocks can be inserted within a specific pattern. And with the ability to also define a `templateLock` you can even make it so that editors cannot move or remove any of the children within a column for example.
-
-```php
-<!-- wp:columns -->
-<div class="wp-block-columns">
-    // highlight-start
-    <!-- wp:column { "allowedBlocks": [ "core/image" ], "templateLock": "all" } } -->
-    // highlight-end
-    <div class="wp-block-column">
-        ...
-    </div>
-    <!-- /wp:column -->
-
-    // highlight-start
-    <!-- wp:column { "allowedBlocks": [ "core/heading", "core/paragraph" ], "templateLock": "all" } } -->
-    // highlight-end
-    <div class="wp-block-column">
-        ...
-    </div>
-    <!-- /wp:column -->
-</div>
-<!-- /wp:columns -->
-```
-
-:::tip
-Since these patterns are php files you can make the `allowedBlocks` list filterable via an `apply_filters` hook.
-:::tip
-
 ## Caveats with using Block Patterns
 
 :::caution
@@ -154,3 +90,7 @@ There is one item that you need to be aware about in regards to Block Patterns. 
 If you find an issue with the markup of a pattern that you want to fix it is only going to impact new instances of the pattern that are created after you updated it. And you will have to manually go into every instance that was created using the pattern and make the update manually, or create an update script to update it in the database directly.
 
 If you want to get around this limitation you can of course also build block patterns made up of [custom-blocks](./custom-blocks) that don't actually store their markup in the database. That way you can get the benefits of both worlds.
+
+## Links
+
+- [Block Locking - 10up Gutenberg Reference](./block-locking.md)
