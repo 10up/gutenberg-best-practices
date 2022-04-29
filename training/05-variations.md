@@ -23,7 +23,7 @@ Another example is the core columns block. WordPress uses variations to allow ed
 
 ![Core Columns Variation Picker](../static/img/columns-block-variations-picker.png)
 
-As you can see from these two examples teh API is quite versatile because it allows you to define the scope for where block variations should be shown. In the case of the Embed blocks the scope is set to `inserter` because you want editors to be able to choose from the different variants when they look at all the available blocks.
+As you can see from these two examples, the API is quite versatile because it allows you to define the scope for where block variations should be shown. In the case of the Embed blocks the scope is set to `inserter` because you want editors to be able to choose from the different variants when they look at all the available blocks.
 
 The Columns block on the other hand sets the scope to `block` and uses the blocks initial setup state to allow the editor to choose which variant the'd like to use.
 
