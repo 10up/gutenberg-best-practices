@@ -133,7 +133,7 @@ Once that is in-place, we want to add a `URLInput` component to the Inspector Si
 * We want to display the `URLInput` component just under our `ToggleControl` and **only** if `showCTALink` is `true`. In React, we can do something like `{showCTALink && ( ... )}`
 
 ```jsx
-<UrlInput
+<URLInput
 	label={__('URL', 'gutenberg-lessons')}
 	value={ctaLink}
 	onChange={(ctaLink) => {
