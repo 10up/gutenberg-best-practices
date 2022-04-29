@@ -21,33 +21,43 @@ We will allow the **editor** to add it in the block editor. This is important no
 
 ## Create the new block
 
-We want to create a "micro component". A very small component that will output just the information we want. In our case, this is the length of the post in words:
+We want to create a "micro component". A very small component that will output just the information we want. In our case, this is the length of the post in words. If we put aside the regular files/code we need to add for each component like block.json, index.js, edit.js etc, we can focus just on the important part:
+
+ * How to know which post we are working with?
+ * How to get the data we want
+ * How to add it to the query loop.
+
+First - **get the ID** of the post we need to get data from. This happens by telling WordPress about what "context" we need. Let's add this in the `block.json` file:
+
+```
+"usesContext": ["postId"],
+```
+
+Here, we get the postId provided by the block parent. If our block is added straight into a post, then we get that post's ID. If the block is added in the query loop, then for each post in the query loop, we get it's ID. Just what we needed!
+
+Second - **How do we get the data?** Let's create our block and look at it's parts:
 
 ```jsx
-/**
- * WordPress dependencies
- */
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import { count as wordCount } from '@wordpress/wordcount';
 
 const PostLength = ({ context: { postId } }) => {
-	const siteTitle = useSelect((select) => {
+	const postData = useSelect((select) => {
 		return select('core').getEntityRecord('postType', 'post', postId);
 	}, []);
 
 	return (
 		<span>
-			{__('Words:')} {wordCount(siteTitle.content.raw)}
+			{__('Words:')} {wordCount(postData.content.raw)}
 		</span>
 	);
 };
 export default PostLength;
 ```
 
-The important bit here is that we are getting the ID where the component is used. This can be the current post you edit if it's added directly or the post in the query. But in order  to access this postID, we need to say we need it in the block.json file by adding it in an array to the usesContext property:
+In the props, you can see that we will receive context in which we will find the postID. The same postID we requested in the block.json file. Next, we want some more information, not just the ID. `getEntityRecord()` will give us just that. With useSelect, we will grab a post by it's ID and return the result inside `postData`.
 
-```
-"usesContext": ["postId"],
-```
+The final step would be to apply the functionality of our component and count the words. For this we will use the build-in function from WordPress wordCount and pass in the content of the post.
 
+![The block inserted in the editor](../static/img/block-words-count.png)
