@@ -40,7 +40,7 @@ In order to add a Fill to any of the available Slots, we first need to register 
 
 ### 2. Prepare the post meta for the REST API
 
-In order to access or save post meta in Gutenberg, the meta needs to be exposed to the REST API. For the lesson, this has already been done in [includes/core.php](https://gitlab.10up.com/exercises/gutenberg-lessons/-/tree/trunk/themes/10up-theme/includes/core.php#L35) but this is a very important step as without it, meta will not be saved to the database.
+In order to access or save post meta in Gutenberg, the meta needs to be exposed to the REST API. For the lesson, this has already been done in [includes/core.php](https://gitlab.10up.com/exercises/gutenberg-lessons/-/blob/trunk/themes/tenup-theme/includes/core.php#L37) but this is a very important step as without it, meta will not be saved to the database.
 
 ### 3. Add the ToggleControl component
 
