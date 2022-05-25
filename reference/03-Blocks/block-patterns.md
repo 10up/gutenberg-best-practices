@@ -18,7 +18,26 @@ In general they are best suited for predefined sections in a page.
 
 ## How to create block Patterns
 
-Adding patterns also is very easy from a development perspective. The [`register_block_pattern`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/#register_block_pattern) API allows you to easily register your own patterns that will get shown in the Pattern Picker.
+Adding patterns also is very easy from a development perspective. Since WordPress 6.0 you can create patterns by placing a php file into the `patterns` directory of your theme. This file needs to have a header comment with some required metadata in order to load.
+
+```php title="patterns/hello-world.php"
+<?php
+/**
+ * Title: Hello World
+ * Slug: tenup-theme/hello-world
+ * Categories: text
+ * Description: example description
+ * Keywords: example, test
+ */
+
+?>
+
+<!-- wp:paragraph -->
+<p>Hello World!</p>
+<!-- /wp:paragraph -->
+```
+
+There also still is the [`register_block_pattern`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/#register_block_pattern) API allows you to manually register your patterns.
 
 ```php title="includes/blocks.php"
 register_block_pattern(
@@ -93,4 +112,6 @@ If you want to get around this limitation you can of course also build block pat
 
 ## Links
 
+- [New features for working with patterns and themes in WordPress 6.0](https://make.wordpress.org/core/2022/05/02/new-features-for-working-with-patterns-and-themes-in-wordpress-6-0/)
 - [Block Locking - 10up Gutenberg Reference](./block-locking.md)
+- [Patterns - Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/)
