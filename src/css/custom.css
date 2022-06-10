@@ -36,6 +36,7 @@
   --ifm-font-family-base: 'Cabin', sans-serif;
 
   --ifm-leading-desktop: 1.5;
+  --docusaurus-highlighted-code-line-bg: #e0e0e0;
 }
 
 .docusaurus-highlight-code-line {
