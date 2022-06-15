@@ -15,10 +15,6 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: '10up', // Usually your GitHub org/user name.
   projectName: 'gutenberg-best-practices', // Usually your repo name.
-  customFields: {
-    tenupSSOProxy: 'https://ssoproxy.10uplabs.com/wp-login.php',
-    googleSSOClientId: '633588772255-vbpba3ca5254j0n6d9pf3a552pcbkr8q',
-  },
 
   presets: [
     [
@@ -103,11 +99,6 @@ const config = {
             position: 'right',
             label: 'Guides',
             docsPluginId: 'guides'
-          },
-          {
-            label: 'Logout 🔓',
-            position: 'right',
-            to: 'logout',
           }
         ],
       },
