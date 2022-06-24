@@ -28,6 +28,7 @@ export default function Home() {
               <Link to="/reference"> Reference</Link>
             </h2>
 			<p>This is where you will find detailed information about how we approach building blocks at 10up. The reference documentation is structured into a few different sections.</p>
+			<Link to={'/reference'}>Quick access</Link>
           </article>
           <article className={`${styles.gridItem} home_grid-item`}>
 		  <img src={trainingSketch} alt="" />
@@ -35,6 +36,7 @@ export default function Home() {
               <Link to="/training"> Training</Link>
             </h2>
 			<p>The purpose of this project is to help you build and customize (Gutenberg) blocks. This training applies to all engineering disciplines at 10up.</p>
+			<Link to="/training">I am ready!</Link>
           </article>
           <article className={`${styles.gridItem} home_grid-item`}>
 			<img src={guideSketch} alt="" />
@@ -42,6 +44,7 @@ export default function Home() {
               <Link to="/guides"> Guides</Link>
             </h2>
 			<p>This section of the Gutenberg Best Practices is meant as a collection of individual deep dive articles. You are also welcome to contribute article so this guide!</p>
+			<Link to="/guides">Give me the details</Link>
           </article>
         </section>
       </main>

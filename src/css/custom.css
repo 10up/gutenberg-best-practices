@@ -115,3 +115,7 @@ main > .container {
 	object-fit: contain;
 	margin-bottom: 1rem;;
 }
+
+.home_grid-item h2 a {
+	color: black;
+}
