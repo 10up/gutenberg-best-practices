@@ -13,7 +13,6 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --g2-color-blue: #3E58E1;
   --g2-color-light-blue: #CCE3EB;
   --g2-color-lime: #33F078;
   --g2-color-red: #E26F56;
@@ -22,21 +21,30 @@
   --g2-color-slate: #40464D;
   --g2-color-black: #1E1E1E;
 
-  --ifm-color-primary: var(--g2-color-blue);
+  --ifm-color-primary: #DF2B26;
   --ifm-color-primary-dark: #2543dd;
   --ifm-color-primary-darker: #213dd3;
   --ifm-color-primary-darkest: #1b32ae;
   --ifm-color-primary-light: #576de5;
   --ifm-color-primary-lighter: #6378e7;
   --ifm-color-primary-lightest: #8998ed;
+  --ifm-footer-background-color: #fff;
   --ifm-code-font-size: 95%;
   --ifm-container-width-xl: 80ch;
   --ifm-container-width: 65ch;
-  --ifm-heading-font-family: 'Cabin', sans-serif;
-  --ifm-font-family-base: 'Cabin', sans-serif;
+  --ifm-heading-font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  --ifm-font-family-base: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 
   --ifm-leading-desktop: 1.5;
   --docusaurus-highlighted-code-line-bg: #e0e0e0;
+}
+
+aside.theme-doc-sidebar-container {
+	background-color: #FBFBFB;
+}
+
+footer.footer {
+	border-top: 1px solid #DDDDDD;
 }
 
 .docusaurus-highlight-code-line {
