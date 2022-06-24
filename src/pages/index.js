@@ -8,6 +8,7 @@ import styles from './index.module.css';
 import guideSketch from '@site/static/img/guides-sketch.png';
 import referenceSketch from '@site/static/img/reference-sketch.png';
 import trainingSketch from '@site/static/img/training-sketch.png';
+import gotQuestionsImage from '@site/static/img/got-questions.png';
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
@@ -16,13 +17,13 @@ export default function Home() {
       title={`${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
       <main>
-        <header className={styles.heroBanner}>
+        <header className={`${styles.heroBanner} home__hero-banner`}>
           <h1>Welcome to the 10up Gutenberg Best Practices!</h1>
 		  <p>The go-to place for all your Gutenberg questions</p>
 		  <SearchBar className={styles.searchBar} />
         </header>
         <section className={styles.grid}>
-        <article className={`${styles.gridItem} home_grid-item`}>
+          <article className={`${styles.gridItem} home_grid-item`}>
 			<img src={referenceSketch} alt="" />
             <h2>
               <Link to="/reference"> Reference</Link>
@@ -47,6 +48,12 @@ export default function Home() {
 			<Link to="/guides">Give me the details</Link>
           </article>
         </section>
+		<hr />
+		<section className='got-questions'>
+			<h2>Got a question?</h2>
+			<img src={gotQuestionsImage} alt="" className='got-questions__image' />
+			<Link href='https://github.com/10up/gutenberg-best-practices/discussions'>Head to our Discussions board</Link>
+		</section>
       </main>
     </Layout>
   );
