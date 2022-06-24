@@ -5,7 +5,7 @@ sidebar_label: Introduction
 
 # Block Editor Reference
 
-![Books on a bookshelf](../static/img/reference-icon.png)
+![Books on a bookshelf](../static/img/block-reference-sketch.png)
 
 Welcome to the Block Editor Reference! :wave:
 
