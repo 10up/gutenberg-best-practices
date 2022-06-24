@@ -65,3 +65,45 @@ main > .container {
   aspect-ratio: 16/9;
   height: auto;
 }
+
+.footer-join {
+	text-align: center;
+	padding-top: var(--ifm-spacing-vertical);
+	padding-bottom: var(--ifm-spacing-vertical);
+}
+
+.footer-join p {
+	margin-bottom: 0;
+}
+
+.footer-join p a {
+	margin-left: 0.75rem;
+	text-decoration: underline;
+	text-underline-offset: 0.1rem;
+}
+
+.footer-legal {
+	background-color: #FBFBFB;
+	border: none;
+	border-top: none;
+	padding-top: var(--ifm-spacing-vertical);
+	padding-bottom: var(--ifm-spacing-vertical);
+}
+
+.footer-legal p {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.footer-legal p a {
+	text-decoration: underline;
+	text-underline-offset: 0.1rem;
+	color: #000;
+}
+
+.home_grid-item img {
+	height: 6rem;
+	width: 6rem;
+	object-fit: contain;
+	margin-bottom: 1rem;;
+}
