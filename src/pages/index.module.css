@@ -7,8 +7,13 @@
   padding: 4rem 0;
   text-align: center;
   position: relative;
-  background-color: var(--g2-color-slate);
-  color: #fff;
+  background-color: #FFE5E5;
+  border-radius: 32px;
+  margin: 1rem;
+}
+
+.searchBar {
+	background-color: red;
 }
 
 .wapuu {
@@ -20,7 +25,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
-  max-width: min(90vw, var(--ifm-container-width-xl));
+  max-width: min(90vw, calc(var(--ifm-container-width-xl) + 300px));
   margin: 4rem auto;
 }
 
