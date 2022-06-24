@@ -119,3 +119,20 @@ main > .container {
 .home_grid-item h2 a {
 	color: black;
 }
+
+.home__hero-banner .navbar__search input {
+	background-color: #fff;
+	border-radius: 11px;
+    height: 2rem;
+    display: block;
+    width: 500px;
+    border: 2px solid black;
+    padding: 1.5rem 1rem;
+	background-position: calc( 100% - 1rem ) center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.home__hero-banner [class="searchHintContainer_node_modules-@easyops-cn-docusaurus-search-local-dist-client-client-theme-SearchBar-SearchBar-module"] {
+	display: none !important;
+}
