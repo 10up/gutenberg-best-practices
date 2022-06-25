@@ -7,7 +7,7 @@ sidebar_label: How to Choose what to Build
 The two first and most important questions to answer before diving in and choosing how to implement a design in WordPress are:
 
 1. _**"Who is going to use this?"**_ - as in who are the people that are going to be doing content entry
-2. _**"What are their goals?"**_ - as in do they want to share information in a strict format or do they need flexibility over teh page design
+2. _**"What are their goals?"**_ - as in do they want to share information in a strict format or do they need flexibility over the page design
 
 When you are building editorial experiences it is important to understand the goals of the people you are crafting these experiences for. There are clients who _just_ want to share their content and don't want to worry about how things are going to look. That is what they hired us for. And there are other clients that essentially want a page builder that has their defaults set but gives them freedom to design every aspect of their page.
 ![Scale from Simplicity to Flexibility with Client needs leaning towards simplicity](../static/img/flexibility-scale.png)
