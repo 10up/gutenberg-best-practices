@@ -46,8 +46,20 @@
   position: relative;
 }
 
+.gridItem img {
+  max-height: 6rem;
+  max-width: 8rem;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
 .gridLink {
   margin-top: auto;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 966px) {
@@ -58,10 +70,4 @@
   .grid {
     grid-template-columns: repeat(1, 1fr);
   }
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

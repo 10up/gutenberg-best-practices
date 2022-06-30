@@ -1,0 +1,40 @@
+.footer {
+  padding-inline: 0;
+}
+
+.footerJoin {
+  text-align: center;
+  padding-top: var(--ifm-spacing-vertical);
+  padding-bottom: var(--ifm-spacing-vertical);
+  border-top: 1px solid var(--ifm-color-gray-200);
+  border-bottom: 1px solid var(--ifm-color-gray-200);
+}
+
+.footerJoin p {
+  margin-bottom: 0;
+}
+
+.footerJoin p a {
+  margin-left: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 0.1rem;
+}
+
+.footerLegal {
+  background-color: #fbfbfb;
+  border: none;
+  border-top: none;
+  padding-top: var(--ifm-spacing-vertical);
+  padding-bottom: var(--ifm-spacing-vertical);
+}
+
+.footerLegal p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.footerLegal p a {
+  text-decoration: underline;
+  text-underline-offset: 0.1rem;
+  color: #000;
+}

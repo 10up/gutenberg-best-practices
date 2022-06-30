@@ -18,18 +18,18 @@ export default function Home() {
       description="Description will go into a meta tag in <head />"
     >
       <main>
-        <header className={`${styles.heroBanner} home__hero-banner`}>
+        <header className={`${styles.heroBanner} home__heroBanner`}>
           <h1>Welcome to the 10up Gutenberg Best Practices!</h1>
           <p>The go-to place for all your Gutenberg questions</p>
           <SearchBar className={styles.searchBar} />
         </header>
         <section className={`${styles.grid} content-wrapper`}>
-          <article className={`${styles.gridItem} home_grid-item`}>
+          <article className={`${styles.gridItem} homeGrid__item`}>
             <img
               src={referenceSketch}
               alt="Hand drawn papers"
-              width={96}
-              height={96}
+              width={279}
+              height={344}
             />
             <h2>Reference</h2>
             <p>
@@ -41,12 +41,12 @@ export default function Home() {
               Quick access
             </Link>
           </article>
-          <article className={`${styles.gridItem} home_grid-item`}>
+          <article className={`${styles.gridItem} homeGrid__item`}>
             <img
               src={trainingSketch}
               alt="Hand drawn lifting weights"
-              width={96}
-              height={96}
+              width={320}
+              height={153}
             />
             <h2>Training</h2>
             <p>
@@ -58,12 +58,12 @@ export default function Home() {
               I am ready!
             </Link>
           </article>
-          <article className={`${styles.gridItem} home_grid-item`}>
+          <article className={`${styles.gridItem} homeGrid__item`}>
             <img
               src={guideSketch}
               alt="Two hand drawn books with light bulb over them"
-              width={96}
-              height={96}
+              width={176}
+              height={237}
             />
             <h2>Guides</h2>
             <p>
@@ -79,13 +79,13 @@ export default function Home() {
 
         <hr />
 
-        <section className="got-questions">
+        <section className="gotQuestions">
           <h2>Got a question?</h2>
-          <div className="got-questions__wrapper">
+          <div className="gotQuestions__wrapper">
             <img
               src={gotQuestionsImage}
               alt=""
-              className="got-questions__image"
+              className="gotQuestions__image"
               width={663}
               height={250}
             />
