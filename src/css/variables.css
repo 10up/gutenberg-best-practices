@@ -10,28 +10,27 @@
   
   --ifm-footer-link-color: var(--ifm-color-black);
   --ifm-color-primary: #df2b26;
-  --ifm-color-primary-dark: #2543dd;
+  --ifm-color-primary-dark: #B5130E;
   --ifm-color-primary-darker: #213dd3;
-  --ifm-color-primary-darkest: #1b32ae;
-  --ifm-color-primary-light: #576de5;
-  --ifm-color-primary-lighter: #6378e7;
-  --ifm-color-primary-lightest: #8998ed;
+  --ifm-color-primary-darkest: #8A0400;
+  --ifm-color-primary-light: #FE4641;
+  --ifm-color-primary-lighter: #FF6662;
+  --ifm-color-primary-lightest: #FF918E;
   --ifm-footer-background-color: #fff;
   --ifm-link-decoration: underline;
   --ifm-code-font-size: 95%;
   --ifm-container-width-xl: 80ch;
   --ifm-container-width: 65ch;
-  --ifm-heading-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --ifm-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --ifm-heading-font-family: var(--ifm-font-family-base);
   --ifm-h1-font-size: 2.625rem;
   --ifm-h2-font-size: 2rem;
   --ifm-heading-font-weight: var(--ifm-font-weight-semibold);
+  --ifm-hr-background-color: var(--ifm-color-gray-200);
+  --ifm-leading-desktop: 1.5;
+  
   --wide-width: min(calc(100vw - 2.5rem), calc(var(--ifm-container-width-xl) + 300px));
 
-  --ifm-hr-background-color: var(--ifm-color-gray-200);
-
-  --ifm-leading-desktop: 1.5;
   --docusaurus-highlighted-code-line-bg: #e0e0e0;
 }

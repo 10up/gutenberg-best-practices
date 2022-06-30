@@ -15,6 +15,7 @@
 @import "global-site";
 @import "global-header";
 @import "global-footer";
+@import "global-sidebar";
 @import "homepage-search";
 @import "homepage-components";
 
