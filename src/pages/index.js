@@ -14,8 +14,8 @@ import contribBlock from "@site/static/img/contrib-block.png";
 import contribBlock2x from "@site/static/img/contrib-block@2x.png";
 import contribDocs from "@site/static/img/contrib-docs.png";
 import contribDocs2x from "@site/static/img/contrib-docs@2x.png";
-import contribExamples from "@site/static/img/contrib-examples.png";
-import contribExamples2x from "@site/static/img/contrib-examples@2x.png";
+import contribScaffold from "@site/static/img/contrib-scaffold.png";
+import contribScaffold2x from "@site/static/img/contrib-scaffold@2x.png";
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
@@ -176,7 +176,12 @@ export default function Home() {
                   height={89}
                   alt="10up block components GitHub Read me introduction"
                 />
-                <p>Contribute to the block components</p>
+                <p>
+                  Contribute to the{" "}
+                  <Link to="https://github.com/10up/block-components">
+                    block components
+                  </Link>
+                </p>
               </div>
               <div className="contributing__half">
                 <img
@@ -186,17 +191,27 @@ export default function Home() {
                   height={89}
                   alt="Open pull request in the docs project in Github"
                 />
-                <p>Edit this documentation</p>
+                <p>
+                  Edit this{" "}
+                  <Link to="https://github.com/10up/gutenberg-best-practices">
+                    documentation
+                  </Link>
+                </p>
               </div>
               <div className="contributing__full">
                 <img
-                  src={contribExamples}
-                  srcSet={contribExamples2x + " 2x"}
+                  src={contribScaffold}
+                  srcSet={contribScaffold2x + " 2x"}
                   width={1040}
                   height={376}
-                  alt="List of open pull requests for block examples in Github"
+                  alt="List of open pull requests for WP Scaffold in Github"
                 />
-                <p>Submit block examples</p>
+                <p>
+                  Expand the{" "}
+                  <Link to="https://github.com/10up/wp-scaffold">
+                    WP Scaffold theme
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
