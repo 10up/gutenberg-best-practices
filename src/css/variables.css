@@ -29,6 +29,8 @@
   --ifm-heading-font-weight: var(--ifm-font-weight-semibold);
   --ifm-hr-background-color: var(--ifm-color-gray-200);
   --ifm-leading-desktop: 1.5;
+  --ifm-menu-color-background-active: white;
+  --ifm-navbar-height: 4.375rem;
   
   --wide-width: min(calc(100vw - 2.5rem), calc(var(--ifm-container-width-xl) + 300px));
 
