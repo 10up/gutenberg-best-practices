@@ -14,9 +14,11 @@ export default function FooterWrapper(props) {
       </footer>
       <Footer {...props} />
       <footer className="footer footer-legal">
-        <p>
-          <a href="https://10up.com">10up.com</a>
-        </p>
+        <div className="content-wrapper">
+          <p>
+            <a href="https://10up.com">10up.com</a>
+          </p>
+        </div>
       </footer>
     </>
   );

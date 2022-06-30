@@ -40,7 +40,7 @@
   --ifm-h1-font-size: 2.625rem;
   --ifm-h2-font-size: 2rem;
   --ifm-heading-font-weight: var(--ifm-font-weight-semibold);
-  --wide-width: min(90vw, calc(var(--ifm-container-width-xl) + 300px));
+  --wide-width: min(calc(100vw - 2.5rem), calc(var(--ifm-container-width-xl) + 300px));
 
   --ifm-hr-background-color: var(--ifm-color-gray-200);
 
@@ -79,6 +79,11 @@ main > .container {
   width: 100%;
   aspect-ratio: 16/9;
   height: auto;
+}
+
+.content-wrapper {
+  width: var(--wide-width);
+  margin-inline: auto;
 }
 
 .footer-join {
@@ -167,12 +172,20 @@ a {
 
 .got-questions {
   margin: 5rem auto;
-  max-width: var(--wide-width);
   text-align: center;
-  background-image: url("/img/background-pattern-questionmarks.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+}
+
+.got-questions__wrapper {
+  position: relative;
+}
+
+.got-questions__wrapper svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
 }
 
 .got-questions__image {

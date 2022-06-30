@@ -33,8 +33,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
-  max-width: min(90vw, calc(var(--ifm-container-width-xl) + 300px));
-  margin: 6rem auto;
+  margin-block: 6rem;
 }
 
 .gridItem {
