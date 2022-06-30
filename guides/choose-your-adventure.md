@@ -4,6 +4,8 @@ sidebar_label: How to Choose what to Build
 
 # A Complete Guide on How to Choose what to Build
 
+![Decide how to build a block](../static/img/what-to-build.png)
+
 The two first and most important questions to answer before diving in and choosing how to implement a design in WordPress are:
 
 1. _**"Who is going to use this?"**_ - as in who are the people that are going to be doing content entry
