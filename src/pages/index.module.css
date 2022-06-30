@@ -4,12 +4,20 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 6rem 0;
   text-align: center;
   position: relative;
   background-color: #FFE5E5;
-  border-radius: 32px;
+  border-radius: 2rem;
   margin: 1rem;
+}
+
+.heroBanner p {
+  font-size: 1.25rem;
+}
+
+.heroBanner h1 {
+  margin-bottom: 0;
 }
 
 .searchBar {
@@ -26,29 +34,21 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
   max-width: min(90vw, calc(var(--ifm-container-width-xl) + 300px));
-  margin: 4rem auto;
+  margin: 6rem auto;
 }
 
 .gridItem {
-  border: 2px solid var(--g2-color-blue);
-  padding: 1rem;
-  border-radius: 6px;
+  border-radius: 0.5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 300px;
   position: relative;
 }
 
-.gridItem a::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.gridLink {
+  margin-top: auto;
 }
 
 @media screen and (max-width: 966px) {
