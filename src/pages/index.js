@@ -10,6 +10,13 @@ import referenceSketch from "@site/static/img/reference-sketch.png";
 import trainingSketch from "@site/static/img/training-sketch.png";
 import gotQuestionsImage from "@site/static/img/got-questions.png";
 
+import contribBlock from "@site/static/img/contrib-block.png";
+import contribBlock2x from "@site/static/img/contrib-block@2x.png";
+import contribDocs from "@site/static/img/contrib-docs.png";
+import contribDocs2x from "@site/static/img/contrib-docs@2x.png";
+import contribExamples from "@site/static/img/contrib-examples.png";
+import contribExamples2x from "@site/static/img/contrib-examples@2x.png";
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -153,6 +160,46 @@ export default function Home() {
           <Link href="https://github.com/10up/gutenberg-best-practices/discussions">
             Head to our Discussions board
           </Link>
+        </section>
+
+        <section className="content-wrapper">
+          <div className="contributing">
+            <header className="contributing__heading">
+              <h2>You can help us grow our pool of knowledge</h2>
+            </header>
+            <div className="contributing__grid">
+              <div className="contributing__half">
+                <img
+                  src={contribBlock}
+                  srcSet={contribBlock2x + " 2x"}
+                  width={500}
+                  height={89}
+                  alt="10up block components GitHub Read me introduction"
+                />
+                <p>Contribute to the block components</p>
+              </div>
+              <div className="contributing__half">
+                <img
+                  src={contribDocs}
+                  srcSet={contribDocs2x + " 2x"}
+                  width={500}
+                  height={89}
+                  alt="Open pull request in the docs project in Github"
+                />
+                <p>Edit this documentation</p>
+              </div>
+              <div className="contributing__full">
+                <img
+                  src={contribExamples}
+                  srcSet={contribExamples2x + " 2x"}
+                  width={1040}
+                  height={376}
+                  alt="List of open pull requests for block examples in Github"
+                />
+                <p>Submit block examples</p>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
     </Layout>
