@@ -7,7 +7,8 @@
   --g2-color-paper: #efefef;
   --g2-color-slate: #40464d;
   --g2-color-black: #1e1e1e;
-
+  
+  --ifm-footer-link-color: var(--ifm-color-black);
   --ifm-color-primary: #df2b26;
   --ifm-color-primary-dark: #2543dd;
   --ifm-color-primary-darker: #213dd3;

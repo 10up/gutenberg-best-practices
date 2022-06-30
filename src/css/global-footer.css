@@ -8,6 +8,8 @@
   padding-bottom: var(--ifm-spacing-vertical);
   border-top: 1px solid var(--ifm-color-gray-200);
   border-bottom: 1px solid var(--ifm-color-gray-200);
+  background-color: var(--ifm-color-primary);
+  color: var(--ifm-color-white);
 }
 
 .footerJoin p {
@@ -18,6 +20,7 @@
   margin-left: 0.75rem;
   text-decoration: underline;
   text-underline-offset: 0.1rem;
+  color: inherit;
 }
 
 .footerLegal {
@@ -34,7 +37,16 @@
 }
 
 .footerLegal p a {
-  text-decoration: underline;
+  color: var(--ifm-footer-link-color);
   text-underline-offset: 0.1rem;
-  color: #000;
+}
+
+.footer__links a {
+  text-underline-offset: 0.1rem;
+  text-decoration: underline;
+}
+
+.footerLegal__copyright {
+  margin-left: 1rem;
+  display: inline-block;
 }
