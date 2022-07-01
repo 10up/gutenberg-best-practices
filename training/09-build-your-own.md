@@ -1,6 +1,6 @@
 # Lesson 9: Build Your Own
 
-After going through the lessons, it's time to put all your newly learned skills together and build a block by yourself. Spend no more than ~4 hours on this block. If you are a 10up employee, submit what you build to your Director of Engineering for review.
+After going through the lessons, it's time to put all your newly learned skills together and build a block by yourself. Spend no more than ~4 hours on this block.
 
 ## What to Build
 
@@ -13,5 +13,3 @@ To start you should make a clone of the [10up WP Scaffold](https://github.com/10
 * Built as a dynamic block
 * Following 10up Best Practices
 * Follows block building patterns shown in the [10up WP Scaffold example block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block).
-
-If you are a 10up employee and get stuck or have questions, please post in the [`#10up-gutenberg`](https://10up.slack.com/archives/C8Z3WMN1K) Slack channel.
