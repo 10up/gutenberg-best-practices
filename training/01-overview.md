@@ -41,7 +41,7 @@ The problem when using static blocks however is, that all the markup is saved to
 
 This can be managed by adding a `deprecation` to the block which allows it to recognize previous versions of itself and migrate them over to the new syntax.
 
-However these migrations only get applied once a block is re opened in the editor and saved. Which means that it is not possible to make a side wide change that should affect all instances of a block.
+However these migrations only get applied once a block is re opened in the editor and saved. Which means that it is not possible to make a site wide change that should affect all instances of a block.
 
 Since managing the deprecations in a client environment where things are changing a lot is a large effort and we often need the ability to rollout changes site wide without having to manually re save every post dynamic blocks where the markup gets generated at the time of loading the page get around these issues. All that is saved in the database is a HTML comment containing the block name and a serialized JSON object containing all of the blocks attributes.
 
