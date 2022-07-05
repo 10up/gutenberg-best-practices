@@ -45,3 +45,8 @@ section + hr {
 a {
 	font-weight: var(--ifm-font-weight-semibold);
 }
+
+/* Stops iOS from zooming the code too much (bug) */
+pre {
+  -webkit-text-size-adjust: none;
+}
