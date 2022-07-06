@@ -65,3 +65,7 @@
   }
 
 }
+
+.home__heroBanner .navbar__search [class^="searchHintContainer_"] {
+	display: none;
+}
