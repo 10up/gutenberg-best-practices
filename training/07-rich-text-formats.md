@@ -40,7 +40,7 @@ Let's say we get the following design on a project:
 ![Design showing text with some areas being highlighted by a gradient background](../static/img/text-format-design.png)
 The client wants to be able to highlight text across their site with a gradient text color. This should not be limited to specific blocks but be available for any text on the page.
 
-There is already a starter file for this component that can be found under `themes/10up-theme/includes/text-formats/gradient-starter.js`. It contains all the imports that we need and what still needs to be done is calling the `registerFormatType` function with the correct information to register our format.
+There is already a starter file for this component that can be found under `themes/tenup-theme/includes/text-formats/gradient-starter.js`. It contains all the imports that we need and what still needs to be done is calling the `registerFormatType` function with the correct information to register our format.
 
 ## Takeaways
 
