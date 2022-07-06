@@ -50,7 +50,7 @@ Because as soon as the client needs more different steps of rounded corners all 
 
 Adding a new Style is pretty simple.
 
-1. Create an `image.js` file in `/includes/block-styles/`. Here's the [completed example](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/10up-theme/includes/block-styles/image.js).
+1. Create an `image.js` file in `/includes/block-styles/`. Here's the [completed example](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-styles/image.js).
 2. Use the [`registerBlockStyle`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-styles/) function to add a new custom style to the `core/image` block.
 3. Add the corresponding CSS to handle the display of your new `slightly-rounded` Image style. WordPress generates a classname that starts with `is-style-` and ends with whatever you entered for the `name` key (in this case: `slightly-rounded`).
 
@@ -64,7 +64,7 @@ You can also add Styles to custom blocks that you create. Let's add a new style 
 
 ![alt text](../static/img/cta-block-style.png "Slightly Rounded Image block style")
 
-It looks a lot like the registering a Style for a core block. Follow the steps below to create your own custom block style. If you get stuck you can reference the same [custom block style registration](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/10up-theme/includes/block-styles/cta.js) applied to the `cta-complete` block.:
+It looks a lot like the registering a Style for a core block. Follow the steps below to create your own custom block style. If you get stuck you can reference the same [custom block style registration](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-styles/cta.js) applied to the `cta-complete` block.:
 
 1. Create a new `cta-starter.js` file in `/includes/block-styles/`
 2. Import `registerBlockStyle` from WordPress:
@@ -98,8 +98,8 @@ wp.domReady(() => {
 });
 ```
 
-6. Next, we need to be sure this custom style registration is imported. See the [index.js](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/10up-theme/includes/block-styles/index.js) file found in `block-styles` and add the above file name as an import (`import './cta-starter';`);
-7. In the Editor, edit your block and apply the new style. This will add the classname: `is-style-thick-border` to the block output. There are styles associated with this classname created for you here: [`call-to-action.css`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/10up-theme/assets/css/frontend/components/blocks/call-to-action.css) file.
+6. Next, we need to be sure this custom style registration is imported. See the [index.js](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-styles/index.js) file found in `block-styles` and add the above file name as an import (`import './cta-starter';`);
+7. In the Editor, edit your block and apply the new style. This will add the classname: `is-style-thick-border` to the block output. There are styles associated with this classname created for you here: [`call-to-action.css`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/assets/css/frontend/components/blocks/call-to-action.css) file.
 
 And voila! We've added a new style for our custom block!
 
