@@ -19,9 +19,6 @@ export default function FooterWrapper(props) {
         <div className="content-wrapper">
           <p>
             <a href="https://10up.com">10up.com</a>
-            <span className="footerLegal__copyright">
-              (c) Copyright information if such has to be posted here - 2022
-            </span>
           </p>
         </div>
       </footer>
