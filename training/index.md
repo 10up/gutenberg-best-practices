@@ -29,10 +29,10 @@ For this training we recommend the usage of [10up-docker](https://github.com/10u
 10updocker create gutenberg-training
 ```
 
-2. Clone the [`gutenberg-lessons`](https://gitlab.10up.com/exercises/gutenberg-lessons) repository into the `wordpress` directory replacing the `wp-content` folder
+2. Clone the [`gutenberg-lessons`](https://github.com/10up/gutenberg-lessons) repository into the `wordpress` directory replacing the `wp-content` folder
 
 ```bash
-cd gutenberg-training-test/wordpress && rm -rf wp-content && git clone git@gitlab.10up.com:exercises/gutenberg-lessons.git wp-content
+cd gutenberg-training-test/wordpress && rm -rf wp-content && git clone git@github.com:10up/gutenberg-lessons.git wp-content
 ```
 
 3. Navigate to the theme directory and install dependencies

@@ -25,7 +25,7 @@ In general they are best suited for predefined sections in a page.
 We need a way to "package up" all those elements so editors can easily insert it whenever they want. Thankfully we can, with block patterns!
 
 :::info
-The approach taught in this lesson requires WordPress 6.0. In order to get it working prior to this we have [polyfilled the core functionality into the `tenup-theme` of the gutenberg training](https://gitlab.10up.com/exercises/gutenberg-lessons/blob/6e356ca9f084d602a562cf682109cc97f7e75c0b/themes/tenup-theme/includes/blocks.php#L181-316).
+The approach taught in this lesson requires WordPress 6.0. In order to get it working prior to this we have [polyfilled the core functionality into the `tenup-theme` of the gutenberg training](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks.php#L181-L316).
 
 In order to manually register patterns you need to register each pattern using the [`register_block_pattern`](https://developer.wordpress.org/reference/functions/register_block_pattern/) function.
 :::info
