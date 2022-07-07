@@ -75,6 +75,7 @@ In these instances, WordPress will not automatically enqueue the script for us. 
  * @package tenup/theme
  */
 
+// highlight-next-line
 wp_enqueue_script('namespace-example-view-script');
 ?>
 
