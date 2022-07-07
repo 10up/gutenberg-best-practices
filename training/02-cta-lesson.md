@@ -4,7 +4,7 @@ This lesson provides a partially completed block that needs to have some feature
 
 These files can be found inside of the starter theme at: `/wp-content/themes/tenup-theme/includes/blocks`.
 
-If you are stuck or need help, refer to the `cta-complete` block as reference or reach out to #10up-gutenberg in Slack for help
+If you are stuck or need help, refer to the `cta-complete` block as a reference or reach out to #10up-gutenberg in Slack for help
 
 ## Learning Outcomes
 
@@ -36,9 +36,9 @@ Add a new attribute to the `cta-starter/block.json` file that will store the `de
 
 ### 2: Adding a RichText component to manage the new attribute
 
-We want the user to be able to visually edit the description right inline. In order to do this we need to add the actual editable text field to the markup of the block in the editor. This markup gets defined in the `ExampleBlockEdit` function in the `cta-starter/edit.js` file.
+We want the user to be able to visually edit the description right inline. To do this we need to add the actual editable text field to the markup of the block in the editor. This markup gets defined in the `ExampleBlockEdit` function in the `cta-starter/edit.js` file.
 
-Before we can work with the `description` value we need to actually access the current value of the attribute. Gutenberg passes in an object containing the block attributes, a callback function to set the attributes to a new value and some other helpful values. To make it easier to work with we can use object deconstruction to get access to only the values we actually want to use. In this example we have only pulled out the `title` so far but now need to access the `description` the same way.
+Before we can work with the `description` value we need to access the current value of the attribute. Gutenberg passes in an object containing the block attributes, a callback function to set the attributes to a new value and some other helpful values. To make it easier to work with we can use object deconstruction to get access to only the values we want to use. In this example, we have only pulled out the `title` so far but now need to access the `description` the same way.
 
 ```js
 const {
@@ -53,7 +53,7 @@ const {
 } = attributes;
 ```
 
-Next, in the same file, we can add a `RichText` component under the existing one for the title. This component can receive many props ( [see the docs here for the full list](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/rich-text) ) but for now, we only need to specify the `tagName`, the `value` and `onChange`. Although not required, let's also add `className`, and `placeholder`. If you use the existing `RichText` being used for the the `title` attribute, be sure to update the any references to the `title` attribute to the new one we created. Once you have the attribute being saved and retrieved correctly, move on to the next task!
+Next, in the same file, we can add a `RichText` component under the existing one for the title. This component can receive many props ( [see the docs here for the full list](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/rich-text) ) but for now, we only need to specify the `tagName`, the `value` and `onChange`. Although not required, let's also add `className`, and `placeholder`. If you use the existing `RichText` being used for the `title` attribute, be sure to update any references to the `title` attribute to the new one we created. Once you have the attribute saved and retrieved correctly, move on to the next task!
 
 :::tip
 Not sure what to use as values? Here you go:
@@ -90,7 +90,7 @@ To do this, we need to manage three new pieces of data:
 Add three more attributes to the `cta-starter/block.json` file for each of the new pieces of data with a `default` value and the appropriate `type` as needed. ( Refer to `cta-complete/block.json` if you get stuck )
 
 :::note
-**One of them is NOT of the the type `string`**
+**One of them is**NOT of the type `string`**
 :::note
 
 :::tip
@@ -112,7 +112,7 @@ Next, we need to add a [`ToggleControl`](https://developer.wordpress.org/block-e
 
 _FYI, there are lots of useful pre-built components like this one you can use. Reference the [pre-built components](https://developer.wordpress.org/block-editor/reference-guides/components/) before building any new ones._
 
-The `InspectorControls` component has already been added to the `cta-starter/edit.js` for you, this is special type of component that uses a concept call SlotFill. This is how we can add the code here, but have it appear in the Block Inspector sidebar. All of the imports have already been setup for you so you can just add the new `ToggleControl` inside the `PanelBody` (don't forget to add your new attributes to the `attribute` object at the top of the `ExampleBockEdit` call!). Set the props for the component to update the attribute that controls if the the CTA is enabled ( Refer to `cta-complete/edit.js` if you get stuck )
+The `InspectorControls` component has already been added to the `cta-starter/edit.js` for you, this is a special type of component that uses a concept called SlotFill. This is how we can add the code here, but have it appear in the Block Inspector sidebar. All of the imports have already been set up for you so you can just add the new `ToggleControl` inside the `PanelBody` (don't forget to add your new attributes to the `attribute` object at the top of the `ExampleBockEdit` call!). Set the props for the component to update the attribute that controls if CTA is enabled ( Refer to `cta-complete/edit.js` if you get stuck )
 
 :::tip
 place `ToggleControl` inside `PanelBody`:
@@ -176,7 +176,7 @@ You may see in the primary div in the class declaration the following: `<?php ec
 
 ## Next Steps
 
-Congratulations! If you're here, you've created a block that should look and function the same as the `cta-complete` block. For this part of the training, get creative and add your own feature to the block. Some ideas:
+Congratulations! If you're here, you've created a block that should look and function the same as the `cta-complete` block. For this part of the training, get creative and add your feature to the block. Some ideas:
 
 1. Change the style of the block if the "Show CTA" toggle is turned on.
 2. Convert the toggle to a [radio control](https://developer.wordpress.org/block-editor/reference-guides/components/radio-control/).

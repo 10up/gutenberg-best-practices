@@ -41,7 +41,7 @@ Here's the first two that ship with the editor:
 Let's see how to add a new style — slightly-rounded!
 
 :::caution
-This is a fictional example that actually showcases the pitfalls of Block Styles pretty well. In the real world this setting should probably be a block extension that allows the editor to change the Border Radius of the image.
+This is a fictional example that showcases the pitfalls of Block Styles pretty well. In the real world, this setting should probably be a block extension that allows the editor to change the Border Radius of the image.
 
 Because as soon as the client needs more different steps of rounded corners all you can do is add more and more block styles that all are very similar to one another. Leading to a worse user experience.
 :::caution
@@ -64,7 +64,7 @@ You can also add Styles to custom blocks that you create. Let's add a new style 
 
 ![alt text](../static/img/cta-block-style.png "Slightly Rounded Image block style")
 
-It looks a lot like the registering a Style for a core block. Follow the steps below to create your own custom block style. If you get stuck you can reference the same [custom block style registration](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-styles/cta.js) applied to the `cta-complete` block.:
+It looks a lot like registering a Style for a core block. Follow the steps below to create your own custom block style. If you get stuck you can reference the same [custom block style registration](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-styles/cta.js) applied to the `cta-complete` block.:
 
 1. Create a new `cta-starter.js` file in `/includes/block-styles/`
 2. Import `registerBlockStyle` from WordPress:
@@ -90,7 +90,7 @@ function registerImageStyles() {
 
 :::tip
 
-5. Call the function in the wp.domReady callback in order to avoid race conditions with WordPress Core:
+5. Call the function in the `wp.`domReady` callback to avoid race conditions with WordPress Core:
 
 ```js
 wp.domReady(() => {
@@ -104,7 +104,7 @@ wp.domReady(() => {
 And voila! We've added a new style for our custom block!
 
 :::note
-For training purposes, this replicates the custom styles already in place for the `cta-complete` block. This type of replication we would typically not do in a real world environment.
+For training purposes, this replicates the custom styles already in place for the `cta-complete` block. This type of replication we would typically not do in a real-world environment.
 :::note
 
 ![alt text](../static/img/cta-block-thick-border.png "Thick border CTA style")
