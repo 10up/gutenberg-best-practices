@@ -40,7 +40,7 @@ For the "Hero" Block we need to define an area of our markup where other blocks 
 
 ![Hero Block Scribble](../static/img/inner-blocks-one-scribble.png)
 
-To get started there is a starter block scaffolded out located in the blocks folder of the theme with the name [`inner-blocks-one-starter`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter). If you are stuck you can take a look at the [`inner-blocks-one-completed`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-completed) folder for a completed version of the block.
+To get started there is a starter block scaffolded out located in the blocks folder of the theme with the name [`inner-blocks-one-starter`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter). If you are stuck you can take a look at the [`inner-blocks-one-complete`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-complete) folder for a completed version of the block.
 
 Most of the markup and block scaffolding already is in place. What is left to do is wire up the `InnerBlock` area both in the editor and on the frontend. You will find comments outlining where the inner blocks area should go in both the [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/edit.js) and the [`markup.php`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/markup.php) files. We go through these steps below in our [`Using Inner Blocks` section](#using-inner-blocks).
 
@@ -56,7 +56,7 @@ So we can archive this by creating two different blocks. The "Card Grid" block n
 
 ![Card Grid Block Scribble](../static/img/inner-blocks-two-scribble.png)
 
-To get started there are two starter blocks scaffolded out located in the blocks folder of the theme with the name [`inner-blocks-two-card-grid-starter`](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter) and [`inner-blocks-two-card-starter`](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-starter). If you are stuck you can take a look at the [`inner-blocks-two-card-grid-completed`](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-completed) and [`inner-blocks-two-card-completed`](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-completed) folders for a completed version of the block.
+To get started there are two starter blocks scaffolded out located in the blocks folder of the theme with the name [`inner-blocks-two-card-grid-starter`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter) and [`inner-blocks-two-card-starter`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-starter). If you are stuck you can take a look at the [`inner-blocks-two-card-grid-complete`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-complete) and [`inner-blocks-two-card-complete`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-complete) folders for a completed version of the block.
 
 As in the first example, most of the markup and block are already scaffolded out. The inner blocks area needs to get added and configured again and the "Card" block needs to get hidden from the inserter unless it is being used within the "Card Grid" block. We go through these steps below in our [`Using Inner Blocks` section](#using-inner-blocks).
 
@@ -64,7 +64,7 @@ As in the first example, most of the markup and block are already scaffolded out
 
 Inner Blocks are the name of a react component that is part of the "Block Editor" package. We can import it into our block edit component and use it within the markup of our block.
 
-In the block one starter [`edit.js`](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/edit.js) file, do the following:
+In the block one starter [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/edit.js) file, do the following:
 
 Update the import to include `InnerBlocks`:
 
@@ -99,7 +99,7 @@ You should end up with this:
 
 As always, you should have `npm run watch` running in your terminal. Making this change, did it do anything? Let's check the editor. Search the block inserter for `Inner Blocks One - Starter`... is it found? Only see `Inner Blocks One - Complete`? That is because these files are not being targeted by our build scripts. Let's fix that.
 
-First, look at the [`package.json`](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/package.json) file. You will see in that file an object `@10up/scripts` and within another object of `entry`. This `entry` object contains the entry points for [`@10up/toolkit`](https://github.com/10up/10up-toolkit) (used in many of our internal projects, including our default scaffolding). As you can see here, targeted directories to compile blocks. In particular, you can see `inner-blocks-one-complete-block` listed. First, to get this block rigged up, we want to add  `"inner-blocks-one-starter-block": "./includes/blocks/inner-blocks-one-starter/index.js"` to the package json:
+First, look at the [`package.json`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/package.json) file. You will see in that file an object `@10up/scripts` and within another object of `entry`. This `entry` object contains the entry points for [`@10up/toolkit`](https://github.com/10up/10up-toolkit) (used in many of our internal projects, including our default scaffolding). As you can see here, targeted directories to compile blocks. In particular, you can see `inner-blocks-one-complete-block` listed. First, to get this block rigged up, we want to add  `"inner-blocks-one-starter-block": "./includes/blocks/inner-blocks-one-starter/index.js"` to the package json:
 
 ```json title="package.json" {15}
     "entry": {
@@ -149,7 +149,7 @@ InnerBlocksTwoCardComplete\register();
 CTAStarter\register();
 ```
 
-Let's test that and see if it works. Stop your task runner in the terminal and restart it. Now, go back to the [`edit.js`](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/edit.js) file and save. You should see the task runner update in the terminal.
+Let's test that and see if it works. Stop your task runner in the terminal and restart it. Now, go back to the [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/edit.js) file and save. You should see the task runner update in the terminal.
 
 With this done you can already go to the editor and see that there is now a Block Appender rendering inside your block that allows you to insert any blocks you want (you may have to refresh the page).
 
@@ -247,7 +247,7 @@ return (
 Before continuing, be sure you have done the following for the `inner-blocks-two-card-starter` and the `inner-blocks-two-card-grid-starter.` (per our guidance above):
 :::note
 
-1. Add the block entry file paths in [`package.json`](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/package.json)
+1. Add the block entry file paths in [`package.json`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/package.json)
 2. Register the blocks in [`blocks.php`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks.php) (Remember, there are two steps to this).
 3. Add `<InnerBlocks />` to [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) (Don't forget to import `InnerBlocks` at the top of the file).
 4. Update the `save` method in the [`index.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) file (`save: () => <InnerBlocks.Content />`).
