@@ -165,7 +165,7 @@ The intention for any block we create at 10up is to have the Block Editor experi
 
 :::tip
 
-* Add `description`, and conditionally shown `ctaLink`.
+* Add `description`, and conditionally show `ctaLink`.
 * All data needed should be passed found in $attributes.
 * Don't forget class names.
 :::tip
