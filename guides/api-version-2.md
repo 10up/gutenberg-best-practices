@@ -110,5 +110,5 @@ This is a huge win because you are now able to completely replicate the markup o
 
 ## Links
 
-- [Inner Blocks Reference](../reference/03-Blocks/inner-blocks.md)
+- [Inner Blocks Reference](../reference/Blocks/inner-blocks)
 - [Block Editor Handbook - API Version Reference](https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-api-versions.md)

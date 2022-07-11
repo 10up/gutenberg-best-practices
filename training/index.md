@@ -37,10 +37,10 @@ For this training we recommend the usage of [10up-docker](https://github.com/10u
 cd gutenberg-training-test/wordpress && rm -rf wp-content && git clone git@github.com:10up/gutenberg-lessons.git wp-content
 ```
 
-3. Navigate to the theme directory and install dependencies
+1. Install the dependencies and build the assets
 
 ```bash
-cd wp-content/themes/tenup-theme && npm install && npm run build
+cd npm install && npm run build
 ```
 
 4. Activate the tenup-theme in WordPress
@@ -57,6 +57,8 @@ npm run watch
 
 :::caution
 The `tenup-theme` build system requires node version **16** in order to build successfully. If you have [`nvm`](https://github.com/nvm-sh/nvm) installed it should auto-detect which version to use.
+
+Also you need to run the steps from within the `wp-content` folder. Not the Theme.
 :::caution
 
 ## Lessons
