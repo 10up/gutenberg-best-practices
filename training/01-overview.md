@@ -58,10 +58,10 @@ You can think about attributes as fields or data — a heading, a title, a descr
 
 ## File structure of a block
 
-It takes a village (of files) to build a block. Luckily, our 10up scaffold has everything neatly in place for you. The scaffold comes with a [starter block](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/example-block)
+It takes a village (of files) to build a block. Luckily, our 10up scaffold has everything neatly in place for you. The scaffold comes with a [starter block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block)
  that shows everything in place.
 
-### The [10up Starter block](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/example-block)
+### The [10up Starter block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block)
 
 The various pieces of this starter block are:
 
@@ -154,7 +154,7 @@ That was a quick tour of the block editor, some of the common lingo, and a peek 
 
 1. Blocks live in the block editor. Most blocks have two places to control their settings: the **Toolbar** above the block and the **Inspector** located in the right sidebar.
 2. Blocks use and store **Attributes**. Think of attributes in the same way you would think about custom fields.
-3. Our scaffolding has a specific structure for blocks. The example block ships with our [WP Scaffold](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/example-block) repository.
+3. Our scaffolding has a specific structure for blocks. The example block ships with our [WP Scaffold](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block) repository.
 
 ## Further Reading
 
