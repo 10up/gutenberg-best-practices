@@ -6,7 +6,7 @@ sidebar_label: Add Meta Information to Query Loop
 
 The query loop in Gutenberg allows us to pull posts based on specific parameters. But it comes with a rather limited set of data that it can show. For most custom projects, we want to add *more* information like: author name, author profile image, content length in minutes and more.
 
-![How the query selector "initial" view looks like](../static/img/query-selector-initial.png)
+![Using useSelect](../static/img/useselect.png)
 
 Let's imagine we build a "Writers" site where authors can publish their short fiction. We want to showcase how long each work is in words, a common way to measure. So, we will create a new "Micro block" that will output only the words count of a blog post inside the query loop.
 
