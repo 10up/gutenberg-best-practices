@@ -3,7 +3,7 @@ sidebar_position: 0
 sidebar_label: Introduction
 title: 10up | Block Editor Reference
 description: Detailed information about how we approach building blocks at 10up
-image: ../static/img/block-reference-sketch.png
+image: /img/block-reference-sketch.png
 keywords: [gutenberg, wordpress block editor, reference]
 ---
 
