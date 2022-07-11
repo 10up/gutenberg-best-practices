@@ -33,7 +33,7 @@ To have a JavaScript file that only gets enqueued on the page if the block is pr
 This automatically takes the JS file that is located at the relative file path and registers it using the `wp_register_script` function. The script gets the handle `namespace-example-view-script`. The handle is generated using the block namespace, followed by the block name, with the suffix `-view-script` added at the end.
 
 :::note
-WordPress expects and file that is provided via a relative file path to also have a `.asset.php` file next to it with the script dependencies and generated version number. Both `@wordpress/scripts` and `10up-toolkit` do this automatically for you using the `@wordpress/dependency-extraction-webpack-plugin`.
+WordPress expects a file that is provided via a relative file path to also have a `.asset.php` file next to it with the script dependencies and generated version number. Both `@wordpress/scripts` and `10up-toolkit` do this automatically for you using the `@wordpress/dependency-extraction-webpack-plugin`.
 :::note
 
 If your script relies on additional non-WordPress dependencies like a 3rd party library that cannot be installed via NPM you can also handle the registration of the view script manually and only provide the script handle you registered to the `viewScript` in the `block.json` file.
