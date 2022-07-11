@@ -11,7 +11,7 @@ In order to add your new options to another block you need to do a few things:
 - Add the new property / class name to the block in the editor
 - Add the new property / class name to the block on the frontend
 
-To simplify all these steps the `@10up/block-components` library has a handy function called `registerBlockExtension` which allows you to do all these things.
+To simplify all these steps the [`@10up/block-components`](https://github.com/10up/block-components) library has a handy function called [`registerBlockExtension`](https://github.com/10up/block-components/tree/develop/api/register-block-extension) which allows you to do all these things.
 
 ### Defining new attributes
 
