@@ -43,7 +43,7 @@ $asset_file_name    = 'view-script';
 $asset_dependencies = ( include NAMESPACE_PATH . "dist/$asset_file_name.asset.php" );
 wp_register_script(
 	'my-custom-view-script-handle',
-	MAPS_BLOCK_APPLE_URL . "dist/$asset_file_name.js",
+	THEME_URL . "dist/$asset_file_name.js",
 	// highlight-next-line
 	array_merge( $asset_dependencies['dependencies'], [ 'custom-dependency' ] ),
 	$asset_dependencies['version'],
