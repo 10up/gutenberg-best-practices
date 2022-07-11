@@ -66,7 +66,7 @@ wp_register_script(
 
 Out of the box, this mechanism works great for static blocks that store their markup in the Database. However, most of the blocks we are building at 10up get built as dynamic blocks, using the PHP `render_callback` to create the markup on the server.
 
-In these instances, WordPress will not automatically enqueue the script for us. So we manually need to add the `wp_enqueue_script` function to our `render_callback`. In the 10up theme scaffold this has been abstracted away into the `markup.php` file located in the blocks folder.
+In these instances, WordPress will not automatically enqueue the script for us. So we manually need to add the `wp_enqueue_script` function to our `render_callback`. In the [10up theme scaffold](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme) this has been abstracted away into the `markup.php` file located in the blocks folder.
 
 ```php title="blocks.php"
 <?php
