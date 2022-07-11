@@ -18,8 +18,8 @@ So that we are all on the same page with block terminology, here is a list of th
 
 To get a full overview of the editor interface and the anatomy of a block you can view the dedicated reference articles here:
 
-- [The Editor](../reference/01-Fundamentals/the-editor.md)
-- [Anatomy of a Block](../reference/01-Fundamentals/a-block.md)
+- [The Editor](../reference/Fundamentals/the-editor)
+- [Anatomy of a Block](../reference/Fundamentals/a-block)
 
 Now that we have a handle on the interface terminology, let's jump into what blocks are made of.
 

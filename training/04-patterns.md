@@ -135,5 +135,5 @@ Try to replace the image url with a dynamically generated url of the image file 
 
 ## Further reading
 
-- [Block Patterns - 10up Gutenberg Best Practice](../reference/03-Blocks/block-patterns.md)
+- [Block Patterns - 10up Gutenberg Best Practice](../reference/Blocks/block-patterns)
 - [Patterns - Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/)
