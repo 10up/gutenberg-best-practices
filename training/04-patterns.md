@@ -22,12 +22,12 @@ In general they are best suited for predefined sections in a page.
 
 !["Block Variation, CTA block"](../static/img/variations-block-cta-1.png)
 
-We need a way to "package up" all those elements so editors can easily insert it whenever they want. Thankfully we can, with block patterns!
+We need a way to "package up" all those elements so editors can easily insert them whenever they want. Thankfully we can, with block patterns!
 
 :::info
-The approach taught in this lesson requires WordPress 6.0. In order to get it working prior to this we have [polyfilled the core functionality into the `tenup-theme` of the gutenberg training](https://gitlab.10up.com/exercises/gutenberg-lessons/blob/6e356ca9f084d602a562cf682109cc97f7e75c0b/themes/tenup-theme/includes/blocks.php#L181-316).
+The approach taught in this lesson requires WordPress 6.0. In order to get it working before this, we have [polyfilled the core functionality into the `tenup-theme` of the gutenberg training](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks.php#L181-L316).
 
-In order to manually register patterns you need to register each pattern using the [`register_block_pattern`](https://developer.wordpress.org/reference/functions/register_block_pattern/) function.
+In order to manually register patterns, you need to register each pattern using the [`register_block_pattern`](https://developer.wordpress.org/reference/functions/register_block_pattern/) function.
 :::info
 
 ## Breaking it Down
@@ -47,7 +47,7 @@ On first glance, it looked like we just needed 4 blocks. But we actually need a 
 
 ## Creating our pattern
 
-Creating patterns actually needs very little code. And it all starts from within the editor. You can get started by building out the structure you want your pattern to have within the editor.
+Creating patterns needs very little code. And it all starts from within the editor. You can get started by building out the structure you want your pattern to have within the editor.
 
 Once you are happy with how the blocks look and feel across breakpoint you can click on the dropdown menu in the blocks toolbar to copy the block.
 
@@ -58,7 +58,7 @@ If you paste that content into your text editor you will find that you actually 
 <details>
 <summary>Learn more about block markup</summary>
 
-When we copy the block we get the serialized html. But what does that even mean? Below you can see an example of some markup that was generated when copying a block from the editor. In fact this also is how blocks get stored in the database.
+When we copy the block we get the serialized html. But what does that even mean? Below you can see an example of some markup that was generated when copying a block from the editor. In fact, this also is how blocks get stored in the database.
 
 ```html title="Copied Block Markup"
 <!-- wp:group {"className":"is-style-application-ctas"} -->
@@ -90,11 +90,11 @@ When we copy the block we get the serialized html. But what does that even mean?
 
 ```
 
-Each block gets wrapped by a html comment. These comments are what we mean when we say serialized content. They start with the name of the block, followed by a JSON object containing all the blocks attributes. Well at least all the ones that are not clearly identifiable by something else in the blocks markup.
+Each block gets wrapped by an HTML comment. These comments are what we mean when we say serialized content. They start with the name of the block, followed by a JSON object containing all the block's attributes. Well, at least all the ones that are not identifiable by something else in the block markup.
 
 In the paragraph for example the text content within the `p` tag is automatically parsed as the value of the `content` attribute, so there is no need to put it into the JSON object.
 
-The `className` attribute on the other hand is impossible to parse because there may be other classnames coming from the block itself or some extension that it only works when the attribute is stored in the JSON object.
+The `className` attribute on the other hand is impossible to parse because there may be other classnames coming from the block itself or some extension that only works when the attribute is stored in the JSON object.
 </details>
 
 Since WordPress 6.0 patterns can be registered super easily by _just_ creating a PHP file inside the `pattern` folder at the root directory of a theme. This PHP file needs to have a comment header with some metadata and then just the markup of the blocks themselves.
@@ -120,7 +120,8 @@ With this info try taking the design outlined above and transform that into a ne
 
 ## Takeaways
 
-- Patterns are really just a configuration of blocks that is saved for reuse
+Patterns are just a configuration of blocks that are saved for reuse
+
 - You can register patterns by placing a PHP file into the `patterns` directory in the root directory of a theme
 - They are great to get clients up and running quickly with a design
 

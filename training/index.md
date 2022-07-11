@@ -1,6 +1,8 @@
 ---
 sidebar_position: 0
 sidebar_label: Introduction
+description: A short description of this page
+keywords: [gutenberg, wordpress block editor, training, course]
 ---
 
 # 10up Gutenberg Training
@@ -29,10 +31,10 @@ For this training we recommend the usage of [10up-docker](https://github.com/10u
 10updocker create gutenberg-training
 ```
 
-2. Clone the [`gutenberg-lessons`](https://gitlab.10up.com/exercises/gutenberg-lessons) repository into the `wordpress` directory replacing the `wp-content` folder
+2. Clone the [`gutenberg-lessons`](https://github.com/10up/gutenberg-lessons) repository into the `wordpress` directory replacing the `wp-content` folder
 
 ```bash
-cd gutenberg-training-test/wordpress && rm -rf wp-content && git clone git@gitlab.10up.com:exercises/gutenberg-lessons.git wp-content
+cd gutenberg-training-test/wordpress && rm -rf wp-content && git clone git@github.com:10up/gutenberg-lessons.git wp-content
 ```
 
 3. Navigate to the theme directory and install dependencies
@@ -54,7 +56,7 @@ npm run watch
 ```
 
 :::caution
-The `tenup-theme` build system requires node version **16** in order to build successfully. If you have [`nvm`](https://github.com/nvm-sh/nvm) installed it should auto detect the which version to use.
+The `tenup-theme` build system requires node version **16** in order to build successfully. If you have [`nvm`](https://github.com/nvm-sh/nvm) installed it should auto-detect which version to use.
 :::caution
 
 ## Lessons
@@ -71,4 +73,4 @@ The `tenup-theme` build system requires node version **16** in order to build su
 
 ## Support
 
-If you run into issues with this training project, feel free to reach out in Slack to [`#10up-gutenberg`](https://10up.slack.com/archives/C8Z3WMN1K). We also welcome bug reports, suggestions and contributions via the [Issues & Discussions tab in GitHub](https://github.com/10up/gutenberg-best-practices/issues).
+If you run into issues with this training project, feel free to reach out in Slack to [`#10up-gutenberg`](https://10up.slack.com/archives/C8Z3WMN1K). We also welcome bug reports, suggestions and contributions via the [Issues & Discussions tab on GitHub](https://github.com/10up/gutenberg-best-practices/issues).

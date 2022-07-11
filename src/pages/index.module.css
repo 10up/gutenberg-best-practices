@@ -4,11 +4,20 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 6rem 0;
   text-align: center;
   position: relative;
-  background-color: var(--g2-color-slate);
-  color: #fff;
+  background-color: #FFE5E5;
+  border-radius: 2rem;
+  margin-inline: 1rem;
+}
+
+.heroBanner p {
+  font-size: 1.25rem;
+}
+
+.heroBanner h1 {
+  margin-bottom: 0;
 }
 
 .wapuu {
@@ -20,30 +29,33 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
-  max-width: min(90vw, var(--ifm-container-width-xl));
-  margin: 4rem auto;
+  margin-block: 6rem;
 }
 
 .gridItem {
-  border: 2px solid var(--g2-color-blue);
-  padding: 1rem;
-  border-radius: 6px;
+  border-radius: 0.5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 300px;
   position: relative;
 }
 
-.gridItem a::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.gridItem img {
+  max-height: 6rem;
+  max-width: 8rem;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.gridLink {
+  margin-top: auto;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 966px) {
@@ -54,10 +66,4 @@
   .grid {
     grid-template-columns: repeat(1, 1fr);
   }
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
