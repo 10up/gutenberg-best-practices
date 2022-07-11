@@ -1,6 +1,8 @@
 ---
 sidebar_position: 0
 sidebar_label: Introduction
+description: A short description of this page
+keywords: [gutenberg, wordpress block editor, training, course]
 ---
 
 # 10up Gutenberg Training
