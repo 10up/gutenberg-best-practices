@@ -12,4 +12,4 @@ To start you should make a clone of the [10up WP Scaffold](https://github.com/10
 
 * Built as a dynamic block
 * Following 10up Best Practices
-* Follows block building patterns shown in the [10up WP Scaffold example block](https://github.com/10up/wp-scaffold/tree/trunk/themes/tenup-theme/includes/blocks/example-block).
+* Follows block building patterns shown in the [10up WP Scaffold example block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block).
