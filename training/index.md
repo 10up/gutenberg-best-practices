@@ -37,7 +37,7 @@ For this training we recommend the usage of [10up-docker](https://github.com/10u
 cd gutenberg-training-test/wordpress && rm -rf wp-content && git clone git@github.com:10up/gutenberg-lessons.git wp-content
 ```
 
-1. Install the dependencies and build the assets
+3. Install the dependencies and build the assets
 
 ```bash
 cd npm install && npm run build
