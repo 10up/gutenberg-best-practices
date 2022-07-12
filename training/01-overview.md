@@ -84,10 +84,10 @@ The first is the actual definition of the attribute. Here, we define the attribu
 
 ```json {2-4} title="block.json"
 "attributes":{
-		"customTitle": {
-			"type" : "string"
-		}
-	},
+	"customTitle": {
+		"type" : "string"
+	}
+},
 ```
 
 The second, within `example: {}` is not setting or defining the attribute. Instead, it is an optional (but recommended) setting that enables a rich text preview of what the block looks like when you hover over it in the Block Inserter and also in the Block Switcher. If no data is set in `example`, the provided preview just reads "No Preview Available."
@@ -129,15 +129,15 @@ You can see below the "Example Block" `block.json` from our 10up Scaffold that i
 1. Then we wrap it in some markup and watch for changes in a `<RichText>` element in [edit.js](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/edit.js#L28). Pay close attention to the last two lines of the `<RichText>` element. We are defining the value and then redefining the value when it is changed.
 
 ```jsx title="edit.js" {6-7}
-	<div className={className}>
-		<RichText
-			className="wp-block-example-block__title"
-			tagName="h2"
-			placeholder={__('Custom Title')}
-			value={currentTitle}
-			onChange={(customTitle) => setAttributes({ customTitle })}
-		/>
-	</div>
+<div className={className}>
+	<RichText
+		className="wp-block-example-block__title"
+		tagName="h2"
+		placeholder={__('Custom Title')}
+		value={currentTitle}
+		onChange={(customTitle) => setAttributes({ customTitle })}
+	/>
+</div>
 ```
 
 3. Finally, we output our `customTitle` attribute in our frontend markup in [markup.php](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/markup.php#L31)!

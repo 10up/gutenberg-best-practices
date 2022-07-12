@@ -49,17 +49,21 @@ cd npm install && npm run build
 10updocker wp theme activate tenup-theme
 ```
 
-5. Start watching for file changes that you will make
-
-```bash
-npm run watch
-```
+You can now navigate to the editor of your WordPress installation and see the Example Block with the Completed Examples show up in the Block Picker.
 
 :::caution
 The `tenup-theme` build system requires node version **16** in order to build successfully. If you have [`nvm`](https://github.com/nvm-sh/nvm) installed it should auto-detect which version to use.
 
-Also you need to run the steps from within the `wp-content` folder. Not the Theme.
+Also make sure that you are running your npm commands from the `wp-content` folder. Not from the Theme folder.
 :::caution
+
+If you want to have your code automatically compile again and even hot reload directly in the editor when you make any changes you can start the watch mode. Before that works you need to enable the [WordPress Debug](https://wordpress.org/support/article/debugging-in-wordpress/) mode by setting `WP_DEBUG` and `SCRIPT_DEBUG` in your `wp-config.php` file to true.
+
+Once that is done you can start the watch mode by running:
+
+```bash
+npm run watch
+```
 
 ## Lessons
 

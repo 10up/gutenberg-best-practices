@@ -102,6 +102,10 @@ body {
 }
 ```
 
+:::tip
+By default WordPress [cashes the Stylesheet](https://github.com/WordPress/wordpress-develop/blob/9b105d92a4b769f396ba798db1f106abab75001f/src/wp-includes/global-styles-and-settings.php#L91-L97) that gets generated out of `theme.json`. For development purposes you can bypass that cashing by enabling [debug mode](https://wordpress.org/support/article/debugging-in-wordpress) via the `WP_DEBUG` global in your `wp-config.php`. (`SCRIPT_DEBUG` also achieves the same thing)
+:::
+
 ## Understanding the cascade
 
 These settings and styles exist at three levels, each overwriting the specificity of the previous layer. At the root there is the default core `theme.json` file which houses all the default values for everything. All the properties in this core `theme.json` file can be overwritten via the `theme.json` file of a theme. Finally there also is the third layer which is the user generated `theme.json` that comes out of the global styles panel in the site editor. This only impacts "Block Based Themes" which allow users to define colors, fonts, ect. manually using the Site Editor.
