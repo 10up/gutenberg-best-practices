@@ -1,0 +1,22 @@
+name: Deploy Production Website
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install NPM Dependencies
+        run: npm ci
+
+      - name: Build Assets
+        run: npm run build
+
+      - name: Deploy Website
+        run: rsync -vrxc --delete build/ github@147.182.201.45:/var/www/gutenberg.10up.com/
