@@ -37,7 +37,7 @@ Let's say we have a client that needs to use the columns block in a 4 columns la
 Of course, you could skip the setup and manually configure it to have 4 25% wide columns, but our client needs to use it very often and adding a new option for 25/25/25/25 would be a big time saver for them.
 
 :::note
-If you get stuck you can take a look at the completed example located in the [`includes/block-variations`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-variations/four-columns-variation-completed.js) folder of the tenup theme.
+If you get stuck, you can take a look at the completed example located in the [`includes/block-variations`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-variations/four-columns-variation-completed.js) folder of the tenup theme.
 :::note
 
 1. Create a new file in the `includes/block-variations` folder called `four-columns-equal.js`

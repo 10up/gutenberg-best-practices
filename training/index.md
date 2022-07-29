@@ -23,7 +23,7 @@ For resources on learning JavaScript and React.js, look through this [internal d
 
 ## Project Setup
 
-For this training we recommend the usage of [10up-docker](https://github.com/10up/wp-local-docker-v2) for the local environment. To get everything setup on your computer follow these steps here:
+For this training, we recommend the usage of [10up-docker](https://github.com/10up/wp-local-docker-v2) for the local environment. To get everything setup on your computer follow these steps here:
 
 1. Create a local WordPress installation with the domain `gutenberg-training.test`
 
@@ -54,7 +54,7 @@ You can now navigate to the editor of your WordPress installation and see the Ex
 :::caution
 The `tenup-theme` build system requires node version **16** in order to build successfully. If you have [`nvm`](https://github.com/nvm-sh/nvm) installed it should auto-detect which version to use.
 
-Also make sure that you are running your npm commands from the `wp-content` folder. Not from the Theme folder.
+Also, make sure that you are running your npm commands from the `wp-content` folder. Not from the Theme folder.
 :::caution
 
 If you want to have your code automatically compile again and even hot reload directly in the editor when you make any changes you can start the watch mode. Before that works you need to enable the [WordPress Debug](https://wordpress.org/support/article/debugging-in-wordpress/) mode by setting `WP_DEBUG` and `SCRIPT_DEBUG` in your `wp-config.php` file to true.

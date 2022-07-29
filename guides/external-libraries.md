@@ -1,10 +1,10 @@
 # Working with External Libraries in Custom Blocks
 
-We can sometimes find ourselves with the need to integrate a 3rd party library into a Custom Block. In a recent example I needed to integrate an interactive Map into the editor. The Map itself would be rendered using [D3.js](https://d3js.org). It should give editors the ability to change a percentage value for every state of the United States which would corelate to a color coating of that state.
+We can sometimes find ourselves with the need to integrate a 3rd party library into a Custom Block. In a recent example, I needed to integrate an interactive Map into the editor. The Map itself would be rendered using [D3.js](https://d3js.org). It should give editors the ability to change a percentage value for every state of the United States which would correlate to a color coating of that state.
 
 ![Map of the United States with some states highlighted](../static/img/dynamic-map-frontend.png)
 
-Our goals was as always to have the editor match the frontend as much as possible. So in this case we wanted the map to fully render in the editor and provide `RangeControl` sliders in the sidebar for each state in order to change the percentage value between 0 and 15 in the blocks settings sidebar.
+Our goal was as always to have the editor match the frontend as much as possible. So in this case we wanted the map to fully render in the editor and provide `RangeControl` sliders in the sidebar for each state in order to change the percentage value between 0 and 15 in the blocks settings sidebar.
 
 ## How do you render some non react content inside a react application?
 
@@ -125,13 +125,13 @@ import * as d3 from 'd3';
 
 export const useD3 = (callback, dependencies = []) => {
     const ref = useRef();
-    
+
     useEffect(() => {
         if ( ref.current ) {
             callback(d3.select(ref.current));
         }
     }, dependencies);
-    
+
     return ref;
 }
 ```

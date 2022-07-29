@@ -26,7 +26,7 @@ Another example of this is the core buttons block. It only allows button blocks 
 
 ## Exercise Overview
 
-In this lesson, we are going to build two different blocks ("Hero" Block and "Card Grid" blocks) to take a look at what use-cases inner blocks can solve. Both of these blocks have a `starter` folder that already contains a lot of the skeleton for these blocks. But the actual `InnerBlocks` need to get added to the components to make them work. If you get stuck you can always take a peek at the `completed` folder for a complete version of the block.
+In this lesson, we are going to build two different blocks ("Hero" Block and "Card Grid" blocks) to take a look at what use-cases inner blocks can solve. Both of these blocks have a `starter` folder that already contains a lot of the skeleton for these blocks. But the actual `InnerBlocks` need to get added to the components to make them work. If you get stuck, you can always take a peek at the `completed` folder for a complete version of the block.
 
 ### 1. "Hero" Block
 
@@ -186,15 +186,15 @@ Now that the content is saved in the database we also need to somehow use this c
 To rig this up, let's go to our [`markup.php`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/markup.php) file. If we look down at the content container, we will see the comment `// The inner blocks content should get rendered here.` Replace this comment with the following:
 
 ```php title="markup.php"
-/*
-	* the $args['content'] is the html generated from innerBlocks
-	* it is being created from the save method in JS or the render_callback
-	* in php and is sanitized.
-	*
-	* Re sanitizing it through `wp_kses_post` causes
-	* embed blocks to break and other core filters don't apply.
-	* therefore no additional sanitization is done and it is being output as is
-	*/
+/**
+ * the $args['content'] is the html generated from innerBlocks
+ * it is being created from the save method in JS or the render_callback
+ * in php and is sanitized.
+ *
+ * Re sanitizing it through `wp_kses_post` causes
+ * embed blocks to break and other core filters don't apply.
+ * therefore no additional sanitization is done and it is being output as is
+ */
 echo $args['content']; // phpcs:disable
 ```
 
