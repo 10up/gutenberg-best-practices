@@ -90,7 +90,7 @@ To do this, we need to manage three new pieces of data:
 Add three more attributes to the `cta-starter/block.json` file for each of the new pieces of data with a `default` value and the appropriate `type` as needed. ( Refer to `cta-complete/block.json` if you get stuck )
 
 :::note
-**One of them is**NOT of the type `string`**
+**One of them is** NOT of the type `string`
 :::note
 
 :::tip
@@ -126,7 +126,7 @@ place `ToggleControl` inside `PanelBody`:
 />
 ```
 
-Once that is in-place, we want to add a `URLInput` component to the Inspector Side bar. This will allow the user to set the URL that the CTA button links to. The issue here, is that we only want to show this new control if the attribute that stores if the CTA is enabled is set to true. Give this a try and again refer to the completed example if you get stuck.
+Once that is in-place, we want to add a `URLInput` component to the Inspector Side bar. This will allow the user to set the URL that the CTA button links to. The issue here is that we only want to show this new control if the attribute that stores if the CTA is enabled is set to true. Give this a try and again refer to the completed example if you get stuck.
 
 :::tip
 

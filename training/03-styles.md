@@ -64,7 +64,7 @@ You can also add Styles to custom blocks that you create. Let's add a new style 
 
 ![alt text](../static/img/cta-block-style.png "Slightly Rounded Image block style")
 
-It looks a lot like registering a Style for a core block. Follow the steps below to create your own custom block style. If you get stuck you can reference the same [custom block style registration](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-styles/cta.js) applied to the `cta-complete` block.:
+It looks a lot like registering a Style for a core block. Follow the steps below to create your own custom block style. If you get stuck, you can reference the same [custom block style registration](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-styles/cta.js) applied to the `cta-complete` block.:
 
 1. Create a new `cta-starter.js` file in `/includes/block-styles/`
 2. Import `registerBlockStyle` from WordPress:
@@ -74,7 +74,7 @@ It looks a lot like registering a Style for a core block. Follow the steps below
    ```
 
 3. Create a new function, `registerCTAStarterStyles()`
-4. Within this function, use the `registerBlockStyle` function to target the `gutenberg-lessons/cta-starter` block (the name to reference is found in the blocks' `block.json` file), and set the style "name" to `thick-border` and the style "label" to `Thick border`.
+4. Within this function, use the `registerBlockStyle` function to target the `gutenberg-lessons/cta-starter` block (the name to reference is found in the block's `block.json` file), and set the style "name" to `thick-border` and the style "label" to `Thick border`.
 
 :::tip
 Remember what we did for the core image block:
@@ -90,7 +90,7 @@ function registerImageStyles() {
 
 :::tip
 
-5. Call the function in the `wp.`domReady` callback to avoid race conditions with WordPress Core:
+5. Call the function in the `wp.domReady` callback to avoid race conditions with WordPress Core:
 
 ```js
 wp.domReady(() => {

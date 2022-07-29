@@ -58,7 +58,7 @@ If you paste that content into your text editor you will find that you actually 
 <details>
 <summary>Learn more about block markup</summary>
 
-When we copy the block we get the serialized html. But what does that even mean? Below you can see an example of some markup that was generated when copying a block from the editor. In fact, this also is how blocks get stored in the database.
+When we copy the block we get the serialized html. But what does that even mean? Below you can see an example of some markup that was generated when copying a block from the editor. In fact, this is how blocks get stored in the database.
 
 ```html title="Copied Block Markup"
 <!-- wp:group {"className":"is-style-application-ctas"} -->
@@ -106,7 +106,7 @@ Each Pattern must have a PHP Document comment at the top of the file containing 
 ```php title="/patterns/example.php"
 <?php
 /**
- * Title: Example Pattern
+ * Title: Application CTAs - Exercise
  * Slug: tenup-theme/example-pattern
  * Categories: text
  * Description: example description

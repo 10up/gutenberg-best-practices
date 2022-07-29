@@ -593,7 +593,7 @@ When the block declares support for `lineHeight`, the attributes definition is e
 
 ## Working with Block Supports
 
-You can specify any of the these block supports in your `block.json` file under the `supports` key:
+You can specify any of these block supports in your `block.json` file under the `supports` key:
 
 ```json title="block.json"
 {

@@ -3,12 +3,12 @@ sidebar_label: Using WordPress packages on the frontend
 ---
 # Using `@wordpress` packages on the frontend
 
-As part of the gutenberg project WordPress has gained much more than just the editor itself. The gutenberg repository currently houses more than 80 individual packages. These packages span everything from the actual react components, utilities to calculate word count, end-to-end test utilities and much more. Naturally there is the desire to also use some of these packages in the frontend code we are shipping. However, because there are many caveats when trying to use them on the frontend which is why it is generally **not recommenced** to do so.
+As part of the gutenberg project WordPress has gained much more than just the editor itself. The gutenberg repository currently houses more than 80 individual packages. These packages span everything from the actual react components, utilities to calculate word count, end-to-end test utilities and much more. Naturally there is the desire to also use some of these packages in the frontend code we are shipping. However, because there are many caveats when trying to use them on the frontend which is why it is generally **not recommended** to do so.
 
 You can find a list of `@wordpress/` packages that are the exception to this rule and that can be used in the [Useful packages outside of the editor](#useful-packages-outside-of-the-editor) section.
 
 :::warning
-Thw `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not super optimized for frontend performance and size. Many of the packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
+The `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not super optimized for frontend performance and size. Many of the packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
 :::warning
 
 ## Bundle size
@@ -36,7 +36,7 @@ This means that even if any of your other frontend dependencies tries to load so
 
 ## Editor dependant packages
 
-The [`@wordpress/packages`](https://developer.wordpress.org/block-editor/reference-guides/packages/) can also be divided into some different groups. There are some that are dependant on being used in the editor. The entire [`@wordpress/block-editor`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/) package for example should not be used outside of the editor because it depends on the surrounding architecture like the data api being setup correctly etc.
+The [`@wordpress/packages`](https://developer.wordpress.org/block-editor/reference-guides/packages/) can also be divided into different groups. There are some that are dependant on being used in the editor. The entire [`@wordpress/block-editor`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/) package for example should not be used outside of the editor because it depends on the surrounding architecture like the data api being setup correctly etc.
 
 :::caution
 As a rule of thumb any package that includes _editor_ in it's name should **not** be used outside of the editor.
@@ -52,7 +52,7 @@ The [`@wordpress/dom-ready`](https://developer.wordpress.org/block-editor/refere
 
 ```js
 import domReady from '@wordpress/dom-ready';
- 
+
 domReady( function () {
     //do something after DOM loads.
 } );
@@ -68,26 +68,26 @@ Since we are not using the WordPress bundled version of the `i18n` package we wi
 
 ```php title="core.php"
 /**
-	 * Get the Translation strings used on Frontend JSs
-	 * the load_script_textdomain function handles loading the correct json file for the the current locale
-	 *
-	 * Because we are bundling the i18n package in our theme we need to manually call `setLocaleData` on the frontend.
-     * `wp_set_script_translations` calls `wp.i18n.setLocaleData` which is not the same instance of `i18n` as the one we
-     * bundle in the theme.
-	 *
-	 * @see https://core.trac.wordpress.org/browser/tags/5.8/src/wp-includes/class.wp-scripts.php#L591
-	 */
-	$json_translations = load_script_textdomain( 'frontend', 'tenup-theme', TENUP_THEME_PATH . 'languages' );
-	if ( ! $json_translations ) {
-		// Register empty locale data object to ensure the domain still exists.
-		$json_translations = '{ "locale_data": { "messages": { "": {} } } }';
-	}
-	// Localize JS translations
-	wp_localize_script(
-		'frontend',
-		'tenupThemeFrontendTranslations',
-		json_decode( $json_translations, true )
-	);
+ * Get the Translation strings used on Frontend JSs
+ * the load_script_textdomain function handles loading the correct json file for the the current locale
+ *
+ * Because we are bundling the i18n package in our theme we need to manually call `setLocaleData` on the frontend.
+ * `wp_set_script_translations` calls `wp.i18n.setLocaleData` which is not the same instance of `i18n` as the one we
+ * bundle in the theme.
+ *
+ * @see https://core.trac.wordpress.org/browser/tags/5.8/src/wp-includes/class.wp-scripts.php#L591
+ */
+$json_translations = load_script_textdomain( 'frontend', 'tenup-theme', TENUP_THEME_PATH . 'languages' );
+if ( ! $json_translations ) {
+	// Register empty locale data object to ensure the domain still exists.
+	$json_translations = '{ "locale_data": { "messages": { "": {} } } }';
+}
+// Localize JS translations
+wp_localize_script(
+	'frontend',
+	'tenupThemeFrontendTranslations',
+	json_decode( $json_translations, true )
+);
 ```
 
 ```js title="frontend.js"

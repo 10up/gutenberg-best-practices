@@ -16,7 +16,7 @@ function theme_setup() {
     add_theme_support( 'editor-styles' );
 
     // loads the actual stylesheet
-    // The path provided is relative to the themes root directors
+    // The path provided is relative to the themes root directory
     // you can also pass a URL for external stylesheets like a font etc.
  	add_editor_style( 'dist/css/style.css' );
 }
@@ -51,10 +51,10 @@ function theme_setup() {
         'handle' => 'my-theme-site-title',
         'src'    => get_theme_file_uri( 'assets/blocks/site-title.css' ),
     ];
- 
+
     // Add "path" to allow inlining asset if the theme opts-in.
     $args['path'] = get_theme_file_path( 'assets/blocks/site-title.css' );
- 
+
     // Enqueue asset.
     wp_enqueue_block_style( 'core/site-title', $args );
 }

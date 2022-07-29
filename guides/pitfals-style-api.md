@@ -173,14 +173,14 @@ const addSettingsToBlock = createHigherOrderComponent((BlockEdit) => {
                 {isSelected && (
                     <InspectorControls>
                         <PanelBody title="Background Pattern">
-                            <ToggleControl 
+                            <ToggleControl
                                 label="Show Background Pattern"
                                 checked={hasBackgroundPattern}
                                 onChange={ value => setAttributes( { hasBackgroundPattern: value } ) }
                             />
                             { hasBackgroundPattern && (
                                 <>
-                                    <SelectControl 
+                                    <SelectControl
                                         label="Pattern Shape"
                                         value={backgroundPatternShape}
                                         options={[

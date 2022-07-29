@@ -2,7 +2,7 @@
 
 ![Block Locking UI](../../static/img/block-locking-ui.gif)
 
-The Block Locking API was introduces in WordPress 5.9. With it blocks can be locked from being able to get moved and or removed from the editor. In WordPress 6.0 this API got a visual user interface so that editors can lock and unlock blocks themselves.
+The Block Locking API was introduced in WordPress 5.9. With it blocks can be locked from being able to get moved and or removed from the editor. In WordPress 6.0 this API got a visual user interface so that editors can lock and unlock blocks themselves.
 
 :::note
 Blocks can opt out of showing the block locking UI to the user via the `__experimentalLock` block supports option. There also is a way to override what users are able to use the block locking UI via the `__experimentalCanLockBlocks` editor setting.
@@ -38,7 +38,7 @@ In a pattern you can set these attributes via the html comment of the block wher
 
 ## Restricting which inner blocks can be used
 
-The core column, group, and cover block support the ability to restrict which blocks are allowed within the inner blocks area. This is being done via two attributes that exist on the se blocks. The `allowedBlocks` and `templateLock` attributes can be set via the html comment in patterns to restrict which blocks can be inserted within a specific pattern. And with the ability to also define a `templateLock` you can even make it so that editors cannot move or remove any of the children within a column for example.
+The core column, group, and cover block support the ability to restrict which blocks are allowed within the inner blocks area. This is being done via two attributes that exist on these blocks. The `allowedBlocks` and `templateLock` attributes can be set via the html comment in patterns to restrict which blocks can be inserted within a specific pattern. And with the ability to also define a `templateLock` you can even make it so that editors cannot move or remove any of the children within a column for example.
 
 ```php
 <!-- wp:columns -->

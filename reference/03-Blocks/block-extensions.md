@@ -14,7 +14,7 @@ Luckily we don't have to manually use all the filters every time anymore. The 10
 
 ## Why use Block Extensions?
 
-The ability to extend blocks is one of the superpowers of the editor. Essentially the entire [block supports](./block-supports.md) system is build using block extensions. The concept is, that you can add custom attributes and editorial controls to one or more blocks at the same time.
+The ability to extend blocks is one of the superpowers of the editor. Essentially the entire [block supports](./block-supports.md) system is built using block extensions. The concept is, that you can add custom attributes and editorial controls to one or more blocks at the same time.
 
 But it isn't just useful when you want to add one control to multiple blocks. It also comes in handy as a replacement for [block styles](./block-styles.md). As mentioned in that section the block styles api comes with big limitation that you cannot apply multiple styles at the same time and therefore cannot combine the effects they are having on the block. This is where being able to add your own settings to blocks comes in super handy.
 
@@ -22,7 +22,7 @@ Instead of having to add more and more block styles that essentially are just co
 
 ### Example
 
-Lets say we have a design where we want to be able to have different background patterns on a group block. This pattern can start out as just three different block styles. Dots, Squares, and triangles.
+Let's say we have a design where we want to be able to have different background patterns on a group block. This pattern can start out as just three different block styles. Dots, Squares, and triangles.
 
 Now the client comes and also wants the ability to choose between green, blue, and red variants of these patterns.
 
@@ -102,8 +102,8 @@ registerBlockExtension(
 | blockName                  | `string`   | Name of the block the options should get added to |
 | options.extensionName      | `string`   | Unique Identifier of the option added    |
 | options.attributes         | `object`   | Block Attributes that should get added to the block |
-| options.classNameGenerator | `funciton` | Funciton that gets passed the attributes of the block to generate a class name string |
-| options.Edit               | `funciton` | BlockEdit component like in `registerBlockType` only without the actual block. So onyl using slots like the `InspectorControls` is advised. |
+| options.classNameGenerator | `function` | Funciton that gets passed the attributes of the block to generate a class name string |
+| options.Edit               | `function` | BlockEdit component like in `registerBlockType` only without the actual block. So onyl using slots like the `InspectorControls` is advised. |
 
 ## Manually using the hooks
 

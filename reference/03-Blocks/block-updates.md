@@ -103,7 +103,7 @@ This `deprecated` array lists all of the deprecations your block has and each of
 					},
 				};
 			},
-			// check to see wether the block is eligible to get the migration
+			// check to see whether the block is eligible to get the migration
 			isEligible: (attributes) => attributes.categoryIds || attributes.tagIds
 		}
 	]
