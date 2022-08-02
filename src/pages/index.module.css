@@ -58,6 +58,21 @@
   justify-content: center;
 }
 
+h1 {
+	position: relative;
+}
+
+.beta {
+	display: inline-block;
+	position: relative;
+	top: -1.5em;
+	background-color: var(--ifm-color-primary);
+	color: #fff;
+	font-size: 0.4em;
+	padding: 5px 10px;
+	border-radius: 8px;
+}
+
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;

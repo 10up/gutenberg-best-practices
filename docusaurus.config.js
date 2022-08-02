@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-	title: '10up - Gutenberg Best Practices',
+	title: '10up - Gutenberg Best Practices (Beta)',
 	tagline: 'The central hub for everything Gutenberg related at 10up',
 	url: 'https://gutenberg.10up.com',
 	baseUrl: '/',
@@ -90,7 +90,7 @@ const config = {
 				disableSwitch: true,
 			},
 			navbar: {
-				title: 'Gutenberg Best Practices',
+				title: 'Gutenberg Best Practices (Beta)',
 				logo: {
 					src: 'img/10up-logo-full.svg'
 				},
