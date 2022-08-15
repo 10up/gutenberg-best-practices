@@ -30,7 +30,7 @@ For the placement of controls, and the various states of the block, it should fo
 
 ## How to build custom blocks
 
-At 10up the majority of custom blocks we develop blocks as dynamic blocks. That means that the markup gets generated on the server in PHP when a site is loaded instead of stored in the database. We also often bundle blocks as part of a theme instead of in their own plugin. The reason for this is that most of the blocks are very tied to the custom design and functionality ot the site. Even if the blocks were to live within a plugin, switching the theme would have detrimental effects to how the blocks look and work and therefore the additional overhead of maintaining separate plugins oftentimes is not worth it.
+At 10up the majority of custom blocks we develop blocks as dynamic blocks. That means that the markup gets generated on the server in PHP when a site is loaded instead of stored in the database. We also often bundle blocks as part of a theme instead of in their own plugin. The reason for this is that most of the blocks are very tied to the custom design and functionality of the site. Even if the blocks were to live within a plugin, switching the theme would have detrimental effects on how the blocks look and work. Therefore, the additional overhead of maintaining separate plugins is often not worth it.
 
 :::info
 These best practices only apply to closely monitored custom client builds. Blocks for open source projects should use static rendering as the default and should ship in plugins only.
