@@ -77,7 +77,7 @@ h1 {
   position: relative;
   top: -0.45em;
   background-color: var(--c-10up-secondary-dark);
-  color: #fff;
+  color: #000;
   font-size: 0.4em;
   padding: 5px 10px;
   border-radius: 8px;
