@@ -124,29 +124,10 @@ First, look at the [`package.json`](https://github.com/10up/gutenberg-lessons/tr
     }
 ```
 
-Second, we need to register the block in [`blocks.php`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks.php). There are two steps to this. Step one: find the comment `// Require custom blocks` and the line `require_once TENUP_THEME_BLOCK_DIR . '/inner-blocks-one-complete/register.php';`. We want to duplicate this line and reference the starter register file:
+Second, we need to set the `editorScript` property in [`block.json`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/block.json)
 
-```php title="includes/blocks.php"
-// Require custom blocks.
-require_once TENUP_THEME_BLOCK_DIR . '/cta-complete/register.php';
-require_once TENUP_THEME_BLOCK_DIR . '/cta-starter/register.php';
-require_once TENUP_THEME_BLOCK_DIR . '/inner-blocks-one-starter/register.php';
-require_once TENUP_THEME_BLOCK_DIR . '/inner-blocks-one-complete/register.php';
-require_once TENUP_THEME_BLOCK_DIR . '/inner-blocks-two-card-grid-complete/register.php';
-require_once TENUP_THEME_BLOCK_DIR . '/inner-blocks-two-card-complete/register.php';
-
-```
-
-Then, we want to find the section in the file that begins with the comment `// Call block register functions for each block.` Here you can see the `InnerBlocksOneComplete\register();` call. We want to replicate this and reference our starter block as `InnerBlocksOneStarter\register();`.
-
-```php title="includes/blocks.php"
-// Call block register functions for each block.
-CTAComplete\register();
-InnerBlocksOneStarter\register();
-InnerBlocksOneComplete\register();
-InnerBlocksTwoCardGridComplete\register();
-InnerBlocksTwoCardComplete\register();
-CTAStarter\register();
+```json
+"editorScript": "file:../../../dist/blocks/inner-blocks-one-starter-block/editor.js"
 ```
 
 Let's test that and see if it works. Stop your task runner in the terminal and restart it. Now, go back to the [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/edit.js) file and save. You should see the task runner update in the terminal.
@@ -187,7 +168,7 @@ To rig this up, let's go to our [`markup.php`](https://github.com/10up/gutenberg
 
 ```php title="markup.php"
 /**
- * the $args['content'] is the html generated from innerBlocks
+ * the $content is the html generated from innerBlocks
  * it is being created from the save method in JS or the render_callback
  * in php and is sanitized.
  *
@@ -195,7 +176,7 @@ To rig this up, let's go to our [`markup.php`](https://github.com/10up/gutenberg
  * embed blocks to break and other core filters don't apply.
  * therefore no additional sanitization is done and it is being output as is
  */
-echo $args['content']; // phpcs:disable
+echo $content; // phpcs:disable
 ```
 
 From here we are most of the way there. You are now able to insert any blocks you want and the content gets saved into the database and shows on the frontend.
@@ -248,10 +229,15 @@ Before continuing, be sure you have done the following for the `inner-blocks-two
 :::note
 
 1. Add the block entry file paths in [`package.json`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/package.json)
-2. Register the blocks in [`blocks.php`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks.php) (Remember, there are two steps to this).
-3. Add `<InnerBlocks />` to [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) (Don't forget to import `InnerBlocks` at the top of the file).
-4. Update the `save` method in the [`index.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) file (`save: () => <InnerBlocks.Content />`).
-5. Add the markup output in [`markup.php`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/markup.php) (`echo $args['content'];`).
+2. Add `<InnerBlocks />` to [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) (Don't forget to import `InnerBlocks` at the top of the file).
+3. Update the `save` method in the [`index.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) file (`save: () => <InnerBlocks.Content />`).
+4. Add the markup output in [`markup.php`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/markup.php) (`echo $content;`).
+5. Add `editorScript` and `editorStyle` properties in [`block.json`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/block.json)
+
+```json
+  "editorScript": "file:../../../dist/blocks/inner-blocks-two-card-grid-starter-block/editor.js",
+  "editorStyle": "file:../../../dist/blocks/inner-blocks-two-card-grid-starter-block/editor.css"
+```
 
 If you want to create parent/child relationships between blocks like we need to do for our "Card Grid" and "Card" blocks that consists of two things. For one, you need to define the `allowedBlocks` on the `InnerBlocks` in the parent block to only contain the child block you want to have show up. If the `allowedBlocks` array only contains one item the inserter will no longer show the block picker popover but instead directly insert that one block. Which is a nice little UX improvement we get for free.
 
