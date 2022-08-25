@@ -18,5 +18,14 @@ jobs:
       - name: Build Assets
         run: npm run build
 
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }} 
+          known_hosts: unnecessary
+          config: |
+            Host *
+            StrictHostKeyChecking no
+
       - name: Deploy Website
-        run: rsync -vrxc --delete build/ github@147.182.201.45:/var/www/gutenberg.10up.com/
+        run: rsync -vrxc --delete build/ gitlab@147.182.201.45:/var/www/gutenberg.10up.com/
