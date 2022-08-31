@@ -36,7 +36,7 @@ export default function FooterWrapper(props) {
             />
           </a>
           <p>Finely crafted by 10up, ©2022.<br />
-            <a href="https://github.com/10up/distributor/blob/master/README.md">Instructions &amp; Requirements</a> | <a href="https://github.com/10up/distributor/issues">Support</a> | <a href="https://10up.github.io/distributor/">Developer Documentation</a> | <a href="https://docs.google.com/document/d/1SC7f6WQs8xN4bJyZ51cn9DFcSf6BhxprfbF9JkYYgOE/edit">Privacy Policy</a></p>
+            <a href="https://docs.google.com/document/d/1SC7f6WQs8xN4bJyZ51cn9DFcSf6BhxprfbF9JkYYgOE/edit">Privacy Policy</a></p>
 
           <div className="social-media">
             <a href="https://www.facebook.com/10up.agency" title="10up on Facebook" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 0c8.837 0 16 7.163 16 16 0 8.159-6.107 14.892-14 15.876V20h5.5l.5-4h-6v-2a2 2 0 0 1 2-2h4V8h-4a6 6 0 0 0-6 6v2h-3v4h3v11.876C6.107 30.892 0 24.159 0 16 0 7.163 7.163 0 16 0z" /></svg></a>
