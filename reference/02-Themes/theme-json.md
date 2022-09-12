@@ -1,5 +1,6 @@
 ---
 sidebar_label: Theme.json
+sidebar_position: 2
 ---
 
 # Global Settings & Styles (`theme.json`)

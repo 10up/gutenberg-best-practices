@@ -1,5 +1,6 @@
 ---
 sidebar_label: Styling
+sidebar_position: 1
 ---
 
 # How to properly include styles?
