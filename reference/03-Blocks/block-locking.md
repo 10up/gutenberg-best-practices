@@ -70,7 +70,7 @@ Since these patterns are php files you can make the `allowedBlocks` list filtera
 
 ### For a specific block
 
-If you have a block that should not expose the block locking UI to any user you can opt out of it on a block level by setting the `supports.__experimentalLock` option to false.
+If you have a block that should not expose the block locking UI to any user you can opt out of it on a block level by setting the `supports.lock` option to false.
 
 ```json
 {
@@ -78,7 +78,7 @@ If you have a block that should not expose the block locking UI to any user you 
 	"title": "Example",
 	"supports": {
 		// highlight-next-line
-		"__experimentalLock": false
+		"lock": false
 	}
 }
 ```
