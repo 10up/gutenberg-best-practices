@@ -36,6 +36,10 @@ In a pattern you can set these attributes via the html comment of the block wher
 <!-- /wp:columns -->
 ```
 
+:::note
+You can also use these attributes in your custom blocks to set default values for the locking. For example if you have a page header block that should never get removed you can set the default value of the `lock` attribute to `{ remove: true }`
+:::note
+
 ## Restricting which inner blocks can be used
 
 The core column, group, and cover block support the ability to restrict which blocks are allowed within the inner blocks area. This is being done via two attributes that exist on these blocks. The `allowedBlocks` and `templateLock` attributes can be set via the html comment in patterns to restrict which blocks can be inserted within a specific pattern. And with the ability to also define a `templateLock` you can even make it so that editors cannot move or remove any of the children within a column for example.
