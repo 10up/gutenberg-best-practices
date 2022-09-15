@@ -5,7 +5,7 @@
 The Block Locking API was introduced in WordPress 5.9. With it blocks can be locked from being able to get moved and or removed from the editor. In WordPress 6.0 this API got a visual user interface so that editors can lock and unlock blocks themselves.
 
 :::note
-Blocks can opt out of showing the block locking UI to the user via the `__experimentalLock` block supports option. There also is a way to override what users are able to use the block locking UI via the `__experimentalCanLockBlocks` editor setting.
+Blocks can opt out of showing the block locking UI to the user via the `lock` block supports option. There also is a way to override what users are able to use the block locking UI via the `__experimentalCanLockBlocks` editor setting.
 :::note
 
 ## Locking the ability to remove / move a block
