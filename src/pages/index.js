@@ -26,18 +26,20 @@ export default function Home() {
     >
       <main>
         <header className={`${styles.heroBanner} home__heroBanner`}>
-          <h1>Welcome to the 10up Gutenberg Best Practices!</h1>
-          <p>The go-to place for all your Gutenberg questions</p>
+          <h1>Welcome to the 10up Gutenberg Best Practices! <span className={`${styles.beta}`}>Beta</span></h1>
+          <p>Tutorials, resources, references and example code for all things Gutenberg.</p>
           <SearchBar className={styles.searchBar} />
         </header>
         <section className={`${styles.grid} content-wrapper`}>
           <article className={`${styles.gridItem} homeGrid__item`}>
-            <img
-              src={referenceSketch}
-              alt="Hand drawn papers"
-              width={279}
-              height={344}
-            />
+            <Link to={"/reference"}>
+              <img
+                src={referenceSketch}
+                alt="Hand drawn papers"
+                width={279}
+                height={344}
+              />
+            </Link>
             <h2>Reference</h2>
             <p>
               This is where you will find detailed information about how we
@@ -49,12 +51,14 @@ export default function Home() {
             </Link>
           </article>
           <article className={`${styles.gridItem} homeGrid__item`}>
-            <img
-              src={trainingSketch}
-              alt="Hand drawn lifting weights"
-              width={320}
-              height={153}
-            />
+            <Link to="/training">
+              <img
+                src={trainingSketch}
+                alt="Hand drawn lifting weights"
+                width={320}
+                height={153}
+              />
+            </Link>
             <h2>Training</h2>
             <p>
               The purpose of this project is to help you build and customize
@@ -66,12 +70,14 @@ export default function Home() {
             </Link>
           </article>
           <article className={`${styles.gridItem} homeGrid__item`}>
-            <img
-              src={guideSketch}
-              alt="Two hand drawn books with light bulb over them"
-              width={176}
-              height={237}
-            />
+            <Link to="/guides">
+              <img
+                src={guideSketch}
+                alt="Two hand drawn books with light bulb over them"
+                width={176}
+                height={237}
+              />
+            </Link>
             <h2>Guides</h2>
             <p>
               This section of the Gutenberg Best Practices is meant as a
@@ -98,7 +104,7 @@ export default function Home() {
             />
           </div>
 
-          <Link href="https://github.com/10up/gutenberg-best-practices/discussions">
+          <Link className={styles.gridLink} href="https://github.com/10up/gutenberg-best-practices/discussions">
             Head to our Discussions board
           </Link>
         </section>
@@ -119,7 +125,7 @@ export default function Home() {
                 />
                 <p>
                   Contribute to the{" "}
-                  <Link to="https://github.com/10up/block-components">
+                  <Link className={styles.gridLink} to="https://github.com/10up/block-components">
                     block components
                   </Link>
                 </p>
@@ -134,7 +140,7 @@ export default function Home() {
                 />
                 <p>
                   Edit this{" "}
-                  <Link to="https://github.com/10up/gutenberg-best-practices">
+                  <Link className={styles.gridLink} to="https://github.com/10up/gutenberg-best-practices">
                     documentation
                   </Link>
                 </p>
@@ -149,7 +155,7 @@ export default function Home() {
                 />
                 <p>
                   Expand the{" "}
-                  <Link to="https://github.com/10up/wp-scaffold">
+                  <Link className={styles.gridLink} to="https://github.com/10up/wp-scaffold">
                     WP Scaffold theme
                   </Link>
                 </p>

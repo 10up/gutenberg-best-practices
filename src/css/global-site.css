@@ -43,7 +43,7 @@ section + hr {
 }
 
 a {
-	font-weight: var(--ifm-font-weight-semibold);
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
 /* Stops iOS from zooming the code too much (bug) */
@@ -52,5 +52,5 @@ pre {
 }
 
 :where(h1,h2,h3,h4,h5,h6) code {
-	font-size: 1em;
+  font-size: 1em;
 }
