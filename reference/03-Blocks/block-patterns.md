@@ -213,6 +213,13 @@ The powerful thing about this is, that the content of the block gets preserved a
 <!-- /wp:heading -->
 ```
 
+:::info
+The WPEngine Blog has published a [great article about Contextual Patterns](https://wpengine.com/builders/wordpress-contextual-patterns/) that goes into more details.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fW4xhwjfyeY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+:::info
+
 ## Content Only locked Patterns
 
 ![Content Only Locked Block Pattern showing the reduced interface](../../static//img/content-only-pattern.gif)
