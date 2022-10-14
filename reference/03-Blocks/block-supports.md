@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # Block Supports
 
-The Block Supports API allows a block to opt in or out of certain core features. These features come with
+The Block Supports API allows a block to opt in or out of certain core features.
 
 Opting into any of these features will register additional attributes on the block and provide the UI to manipulate that attribute.
 
