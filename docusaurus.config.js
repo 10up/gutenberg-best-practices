@@ -149,7 +149,7 @@ const config = {
 						title: 'Community',
 						items: [
 							{
-								label: 'Slack Channel',
+								label: 'Slack Channel (internal)',
 								href: 'https://10up.slack.com/archives/C8Z3WMN1K',
 							},
 							{
@@ -166,11 +166,11 @@ const config = {
 								href: 'https://github.com/10up/block-components',
 							},
 							{
-								label: 'Block Library',
+								label: 'Block Library (internal)',
 								href: 'https://github.com/10up/block-library',
 							},
 							{
-								label: 'Block Examples',
+								label: 'Block Examples (internal)',
 								href: 'https://github.com/10up/block-examples',
 							},
 							{
