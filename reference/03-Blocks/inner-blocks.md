@@ -26,7 +26,8 @@ function BlockEdit(props) {
 }
 ```
 
-There is a lot going on here. So lets tackle each of the items individually.
+There is a lot going on here. So let's tackle each of the items individually.
+
 The useBlockProps hook as described earlier allows us to get access to all the attributes that the block editor needs to attach to our outer most wrapping element of our block when loaded in the editor. It contains things like data attributes for the block type, the custom clientId and many more. We need to spread all these attributes onto the wrapping element so that gutenberg recognizes our block and can attach things like the Toolbar etc to it.
 
 The `useInnerBlocksProps` hook works in a very similar way. Instead of returning and object that contains the attributes of our wrapping element it contains the attributes that gutenberg needs to add things like the block appender etc to the element. Additionally the hook accepts a second argument which takes all the options for the inner blocks area like the allowed blocks list, initial block template and [more](https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components/inner-blocks#props).
