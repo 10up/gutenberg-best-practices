@@ -2,7 +2,7 @@
 
 The ability to create custom block styles for any block in Gutenberg is super cool. It is an easy API with a nice UI interface that allows us to quickly add some options to blocks.
 
-![](../static/img/block-extenstions-before.png)
+![Block Editor Sidebar showing 10 different style variations](../static/img/block-extenstions-before.png)
 
 ```js
 import { registerBlockStyle } from '@wordpress/blocks';
