@@ -22,7 +22,6 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
     >
       <main>
         <header className={`${styles.heroBanner} home__heroBanner`}>
