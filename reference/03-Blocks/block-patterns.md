@@ -260,6 +260,19 @@ Out of the box all settings of any block become inert when the content only lock
 
 This is archived by adding `"__experimentalRole": "content"` to the attribute definition of any attribute that should remain editable.
 
+```json
+{
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "",
+			// highlight-next-line
+			"__experimentalRole": "content"
+		}
+	}
+}
+```
+
 ## Caveats with using Block Patterns
 
 :::caution
