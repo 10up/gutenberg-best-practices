@@ -77,6 +77,25 @@ This property allows to enable [wide alignment](https://developer.wordpress.org/
 }
 ```
 
+
+ ## ariaLabel
+
+ - Type: `boolean`
+ - Default value: `false`
+
+ ARIA-labels let you define an accessible label for elements. This property allows enabling the definition of an aria-label for the block.
+ 
+ :::caution
+ This option does not add any UI to the block editor. It is purely there for developers to add aria-label definitions to patterns, variations etc. 
+ :::
+
+ ```js
+ supports: {
+ 	// Add the support for aria label attribute
+ 	ariaLabel: true
+ }
+ ```
+
 ## className
 
 - Type: `boolean`
