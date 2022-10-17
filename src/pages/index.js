@@ -81,7 +81,7 @@ export default function Home() {
             <p>
               This section of the Gutenberg Best Practices is meant as a
               collection of individual deep dive articles. You are also welcome
-              to contribute article so this guide!
+              to contribute articles to this guide!
             </p>
             <Link className={styles.gridLink} to="/guides">
               Give me the details

@@ -4,11 +4,11 @@ sidebar_label: Styling
 
 # How to properly include styles?
 
-First of all the goal we aim for here is parity between the editor and the frontend of the site. The stylesheet that gets loaded on the frontend of the site should also get loaded in the editor. And the expectation is that the markup matches between both environments.
+First of all the goal we aim for here is parity between the editor and the frontend of the site. The stylesheet that gets loaded on the frontend of the site should also get loaded in the editor. The expectation is that the markup matches between both environments.
 
 ## The main stylesheet
 
-In order for our stylesheet to get loaded in the editor including all its's variants like the Template Editor, Site Editor, and Widget Editor (some of which are already rendering the content in an iframe) we use the [`add_editor_style`](https://developer.wordpress.org/reference/functions/add_editor_style/) function.
+In order for our stylesheet to get loaded in the editor including all its variants like the Template Editor, Site Editor, and Widget Editor (some of which are already rendering the content in an iframe) we use the [`add_editor_style`](https://developer.wordpress.org/reference/functions/add_editor_style/) function.
 
 ```php
 function theme_setup() {

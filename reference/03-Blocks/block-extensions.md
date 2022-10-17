@@ -22,7 +22,7 @@ Instead of having to add more and more block styles that essentially are just co
 
 ### Example
 
-Let's say we have a design where we want to be able to have different background patterns on a group block. This pattern can start out as just three different block styles. Dots, Squares, and triangles.
+Let's say we have a design where we want to be able to have different background patterns on a group block. This pattern can start out as just three different block styles: dots, squares, and triangles.
 
 Now the client comes and also wants the ability to choose between green, blue, and red variants of these patterns.
 
@@ -34,7 +34,7 @@ As a rule of thumb a block should never have more than 4 block styles.
 
 ![Block Editor with the settings sidebar open. The entire sidebar is filled with block styles](../../static//img/block-extenstions-before.png)
 
-This can be avoided by creating the same options as block extensions. Instead of nine almost identical block styles that take over the entire screen you can register two attributes. One for the pattern shape and one for the pattern color. And then add settings to the settings sidebar for them.
+This can be avoided by creating the same options as block extensions. Instead of nine almost identical block styles that take over the entire screen you can register two attributes: one for the pattern shape and one for the pattern color, and then add settings to the settings sidebar for them.
 
 ![Block Editor with the settings sidebar open. The re are two new settings that replace the style variations. A toggle and a dropdown](../../static//img/block-extenstions-after.png)
 

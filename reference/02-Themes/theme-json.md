@@ -12,7 +12,7 @@ By default any new WordPress Theme at 10up includes a `theme.json` file with som
 
 ## How to use `theme.json`
 
-The `theme.json` file gets added to the root directory of a Theme. There are two main areas that you can control with the `theme.json` file. Settings and styles. Both of these can have properties defined on the global level, meaning applying to the entire site with all it's blocks, or on the block level where you can target individual block types.
+The `theme.json` file gets added to the root directory of a Theme. There are two main areas that you can control with the `theme.json` file: settings and styles. Both of these can have properties defined on the global level, meaning applying to the entire site with all its blocks, or on the block level where you can target individual block types.
 
 ```json
 {

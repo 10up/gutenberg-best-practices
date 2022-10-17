@@ -59,6 +59,7 @@ The content of the block is an inline editable representation of the block. Depe
 ### Settings Sidebar
 
 ![Settings Sidebar](../../static/img/block-settings-sidebar.png)
+
 The settings sidebar housed additional secondary controls. What is placed in here should never be mandatory in order to use a block. Instead the block should operate with sensible defaults in place and if an editor wants to dig down deeper and configure more details of how the block looks & behaves this is where they can go.
 
 :::caution
@@ -75,7 +76,7 @@ A block may exist in several different states in the editor. Depending on what s
 
 ![Initial Setup State](../../static/img/block-initial-setup-state.png)
 
-The initial setup state is one that not all blocks will or even should have. But it is a common pattern that gets used whenever a block relies on a core piece of data before it can start displaying it's main interface.
+The initial setup state is one that not all blocks will or even should have. But it is a common pattern that gets used whenever a block relies on a core piece of data before it can start displaying its main interface.
 
 A great examples of this in the core blocks for example is the cover block. The cover relies on a background image or some background color. When neither of the two is selected there is not much you can do with the block. Therefore it presents you with a placeholder to select a background image or color and once you have completed this step you are represented with all the options.
 
@@ -89,19 +90,19 @@ This actually is a pattern that you will see over and over again throughout this
 
 ![Image Block in selected State](../../static/img/block-selected-state.jpg)
 
-In it's selected state the editor representation should be though of as the frontend representation with additional inline controls to modify the content of the block. This means that if a block for example provides different rich text areas for you to fill out they should all be shown with placeholder text. This way editors can see all the options and choose to fill in all the areas they want to.
+In its selected state the editor representation should be though of as the frontend representation with additional inline controls to modify the content of the block. This means that if a block for example provides different rich text areas for you to fill out they should all be shown with placeholder text. This way editors can see all the options and choose to fill in all the areas they want to.
 
 Once they deselect the block all the fields they have not filled in will disappear and the block becomes a true 1to1 representation of how it looks on the frontend.
 
 As an example for this you can take a look at the core image block. When the block is selected it shows you the placeholder for the image description. If you don't provide a description and deselect the block it will no longer show the placeholder.
 
-Another key piece of the selected experience for a block is that it's [toolbar](#block-toolbar) is shown. Editors can choose to either have the toolbar anchored to the top of the currently selected block or to the top of the editor canvas. _(The default is at the top of the block)_
+Another key piece of the selected experience for a block is that its [toolbar](#block-toolbar) is shown. Editors can choose to either have the toolbar anchored to the top of the currently selected block or to the top of the editor canvas. _(The default is at the top of the block)_
 
 The [toolbar](#block-toolbar) should provide the editor with any additional options that are commonly used.
 
 #### Selected Descendent
 
-When a block has child blocks selected it should behave the same as in it's deselected state. The only difference is that there may be reasons for the parent block to provide additional options to a child blocks toolbar. You can see this pattern being used in the core columns block for example where the individual column blocks toolbar still allows you to change the vertical alignment of the overall columns block.
+When a block has child blocks selected it should behave the same as in its deselected state. The only difference is that there may be reasons for the parent block to provide additional options to a child blocks toolbar. You can see this pattern being used in the core columns block for example where the individual column blocks toolbar still allows you to change the vertical alignment of the overall columns block.
 
 This is super useful for any instanced where the child blocks are very tightly coupled with the parent block and you can hereby prevent the editors from constantly having to switch between the parent and child block. Use sparingly though since it can also easily become confusing.
 
