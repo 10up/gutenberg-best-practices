@@ -677,3 +677,93 @@ function render_block() {
     );
 }
 ```
+
+## Creating custom block supports
+
+As you can already see from all the core block supports these are super powerful for sharing functionality across multiple blocks at the same time. Therefore it can be useful to create custom block supports.
+
+Similar to blocks themselves, block supports need to get registered both in PHP and JS in order to apply to both static and dynamic blocks.
+
+### Registering a block support in JS
+
+If we want to register a block support there are a few different things we need to take care of in JavaScript. We need to register any additional attributes for all the blocks that added the block support, we need to create a UI for the additional attributes, add the additional props like `className` and or `style` to the block wrapper element in the editor, and finally add the additional props like `className` and or `style` to the saved markup that gets generated from a static block.
+
+WordPress provides some hooks that allow us to hook into the various places. You can find more detail about these hooks in the [Block Extension](https://gutenberg.10up.com/reference/Blocks/block-extensions#manually-using-the-hooks) reference.
+
+WordPress also exports a helper function to check whether a block has a certain block support.
+
+```js
+import { hasBlockSupport } from '@wordpress/blocks';
+
+hasExampleSupport = hasBlockSupport( 'core/paragraph', 'example' );
+```
+
+:::info
+Essentially [Block Extensions](https://gutenberg.10up.com/reference/Blocks/block-extensions) are very similar to block supports. The only difference being that block supports get controlled via the `supports` options whilst block extensions don't use this additional control step.
+:::
+
+### Registering a block support in PHP
+
+In PHP our block support needs to take care of two things, it needs to register any additional attributes for the blocks that opted into the support, and it needs to generate the additional attributes which should get output when the block calls the `get_block_wrapper_attributes` function.
+
+```php
+/**
+ * Registers the example attribute for block types that support it.
+ *
+ * @param WP_Block_Type $block_type Block Type.
+ */
+function namespace_register_example_support( $block_type ) {
+	$has_example_support = _wp_array_get( $block_type->supports, [ 'example' ], true );
+	if ( ! $has_example_support ) {
+		return;
+	}
+
+	if ( ! $block_type->attributes ) {
+		$block_type->attributes = [];
+	}
+
+	if ( ! array_key_exists( 'example', $block_type->attributes ) ) {
+		$block_type->attributes['example'] = [
+			'type' => 'string',
+		];
+	}
+}
+
+/**
+ * Add the example attribute to the output.
+ *
+ * @param WP_Block_Type $block_type Block Type.
+ * @param array         $block_attributes Block attributes.
+ *
+ * @return array Block example.
+ */
+function namespace_apply_example_support( $block_type, $block_attributes ) {
+	if ( ! $block_attributes ) {
+		return [];
+	}
+
+	$has_example_support = _wp_array_get( $block_type->supports, [ 'example' ], true );
+	if ( ! $has_example_support ) {
+		return [];
+	}
+
+	$has_example = array_key_exists( 'example', $block_attributes );
+	if ( ! $has_example ) {
+		return [];
+	}
+
+	return [ 'class' => $block_attributes['example'] ];
+}
+
+WP_Block_Supports::get_instance()->register(
+	'example',
+	[
+		'register_attribute' => 'namespace_register_example_support',
+		'apply'              => 'namespace_apply_example_support',
+	]
+);
+```
+
+:::info
+Block supports can only generate additional class names, or inline styles. So in the `apply` function the returned array may only contain the `class` and or `style` properties.
+:::
