@@ -77,16 +77,15 @@ This property allows to enable [wide alignment](https://developer.wordpress.org/
 }
 ```
 
+## ariaLabel
 
- ## ariaLabel
-
- - Type: `boolean`
- - Default value: `false`
+- Type: `boolean`
+- Default value: `false`
 
  ARIA-labels let you define an accessible label for elements. This property allows enabling the definition of an aria-label for the block.
- 
+
  :::caution
- This option does not add any UI to the block editor. It is purely there for developers to add aria-label definitions to patterns, variations etc. 
+ This option does not add any UI to the block editor. It is purely there for developers to add aria-label definitions to patterns, variations etc.
  :::
 
  ```js
@@ -471,6 +470,22 @@ A block may want to disable the ability of being converted into a reusable block
 "supports": {
     // Don't allow the block to be converted into a reusable block.
     "reusable": false,
+}
+```
+
+## lock
+
+![Block Toolbar showing a lock icon next to the block icon](../../static//img/block-lock-activated.png)
+
+- Type: `boolean`
+- Default value: `true`
+
+A block may want to disable the ability to toggle the lock state. It can be locked/unlocked by a user from the block "Options" dropdown by default. To disable this behavior, set `lock` to `false`.
+
+```js
+supports: {
+	// Remove support for locking UI.
+	lock: false
 }
 ```
 
