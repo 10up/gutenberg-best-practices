@@ -158,7 +158,49 @@ Using `useSetting('typography.dropCap')` would only return `true` if it is being
 </p>
 </details>
 
+## Filtering `theme.json` data
+
+Starting in WordPress 6.1 it is possible to filter the values of `theme.json` on the server. There are 4 different hooks for the 4 different layers or `theme.json`. Default, Blocks, Theme, and User.
+
+- `wp_theme_json_data_default`: hooks into the default data provided by WordPress
+- `wp_theme_json_data_blocks`: hooks into the data provided by the blocks
+- `wp_theme_json_data_theme`: hooks into the data provided by the theme
+- `wp_theme_json_data_user`: hooks into the data provided by the user
+
+Each of these filters receives an instance of the `WP_Theme_JSON_Data` class with the data for the respective layer. To provide new data, the filter callback needs to use the `update_with( $new_data )` method, where `$new_data` is a valid `theme.json`-like structure.
+
+As with any `theme.json`, the new data needs to declare which `version` of the `theme.json` is using, so it can correctly be migrated.
+
+```php
+function filter_theme_json_theme( $theme_json ){
+	$new_data = array(
+		'version'  => 2,
+		'settings' => array(
+			'color' => array(
+				'text'       => false,
+				'palette'    => array(
+					array(
+						'slug'  => 'foreground',
+						'color' => 'black',
+						'name'  => __( 'Foreground', 'theme-domain' ),
+					),
+					array(
+						'slug'  => 'background',
+						'color' => 'white',
+						'name'  => __( 'Background', 'theme-domain' ),
+					),
+				),
+			),
+		),
+	);
+
+	return $theme_json->update_with( $new_data );
+}
+add_filter( 'wp_theme_json_data_theme', 'filter_theme_json_theme' );
+```
+
 ## Links
 
 - [Block Editor Handbook - Global Settings & Styles (theme.json)](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/)
 - [Block Editor Handbook - Theme JSON API Reference](https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/theme-json-living/)
+- [Filters for theme.json data - WordPress 6.1 Dev Note](https://make.wordpress.org/core/2022/10/10/filters-for-theme-json-data/)
