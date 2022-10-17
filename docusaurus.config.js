@@ -166,10 +166,6 @@ const config = {
 								href: 'https://github.com/10up/block-components',
 							},
 							{
-								label: 'Block Library (internal)',
-								href: 'https://github.com/10up/block-library',
-							},
-							{
 								label: 'Block Examples (internal)',
 								href: 'https://github.com/10up/block-examples',
 							},
