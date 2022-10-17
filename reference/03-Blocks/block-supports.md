@@ -498,6 +498,7 @@ supports: {
 - Subproperties:
   - `margin`: type `boolean` or `array`, default value `false`
   - `padding`: type `boolean` or `array`, default value `false`
+  - `blockGap`: type `boolean` or `array`, default value `false`
 
 This value signals that a block supports some of the CSS style properties related to spacing. When it does, the block editor will show UI controls for the user to set their values, if [the theme declares support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#cover-block-padding).
 
@@ -506,6 +507,7 @@ This value signals that a block supports some of the CSS style properties relate
     "spacing": {
         "margin": true,  // Enable margin UI control.
         "padding": true, // Enable padding UI control.
+		"blockGap": true,  // Enables block spacing UI control.
     }
 }
 ```
@@ -519,6 +521,7 @@ When the block declares support for a specific spacing property, the attributes 
     "spacing": {
         "margin": [ "top", "bottom" ], // Enable margin for arbitrary sides.
         "padding": true,               // Enable padding for all sides.
+		"blockGap": [ "horizontal", "vertical" ],  // Enables axial (column/row) block spacing controls
     }
 }
 ```
