@@ -23,6 +23,10 @@ const config = {
 			({
 				docs: false,
 				blog: false,
+				gtag: {
+					trackingID: 'G-WF1Z7JSCXS',
+					anonymizeIP: true,
+				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
 				},
