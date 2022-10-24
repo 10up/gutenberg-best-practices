@@ -1,5 +1,6 @@
 ---
 sidebar_label: Using WordPress packages on the frontend
+title: Using WordPress packages on the frontend
 ---
 # Using `@wordpress` packages on the frontend
 
