@@ -47,6 +47,28 @@ As a rule of thumb any package that includes _editor_ in it's name should **not*
 
 There are some packages that suit themselves very well for being used outside of the editor. This list is not comprehensive and if something is not listed here it doesn't mean that it cannot be used on the frontend. These are just some good examples of packages that showed they work well on the frontend.
 
+### [`@wordpress/api-fetch`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/)
+
+This is a nifty utility to make requests to the WordPress REST API. It is a wrapper around the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API and prefixes each `path` with the REST API root URL. Unlike fetch, [`@wordpress/api-fetch`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/) will also parse the data automatically (can also be disabled) to JSON format.
+
+```js
+import apiFetch from '@wordpress/api-fetch';
+
+// GET
+apiFetch( { path: '/wp/v2/posts' } ).then( ( posts ) => {
+    console.log( posts );
+} );
+
+// POST
+apiFetch( {
+    path: '/wp/v2/posts/1',
+    method: 'POST',
+    data: { title: 'New Post Title' },
+} ).then( ( res ) => {
+    console.log( res );
+} );
+```
+
 ### [`@wordpress/dom-ready`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dom-ready/)
 
 The [`@wordpress/dom-ready`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dom-ready/) package is a simple utility function that makes it super simple to only invoke a callback once the dom is loaded.
@@ -60,6 +82,23 @@ domReady( function () {
 ```
 
 If you look at the [source code for the package](https://github.com/WordPress/gutenberg/blob/71a63fd636b871b73e475821f94fa634e7550b92/packages/dom-ready/src/index.js#L31-L45) it really is nothing more than an event listener for the `DOMContentLoaded` event with additional checks for the `document.readyState` `complete` or `interactive`.
+
+### [`@wordpress/hooks`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/)
+
+The [`@wordpress/hooks`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/) package is a lightweight Event Manager for JavaScript. The API is meant to be as close as possible to the WordPress php hooks API. It is a great way to add extensibility to your JavaScript code. 
+
+This package lets you add filters (to be able to change the value of a variable) and actions (to be able to run some code) to your JavaScript code.
+
+### [`@wordpress/html-entities`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-html-entities/)
+
+The [`@wordpress/html-entities`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-html-entities/) is super useful when working with data from the WordPress REST API. You might want to decode HTML entities to get the final rendered value. This is specially handy if you need to use `innerHTML` or `dangerouslySetInnerHTML` if you are using React.
+
+```js
+import { decodeEntities } from '@wordpress/html-entities';
+
+const result = decodeEntities( '&aacute;' );
+console.log( result ); // result will be "á"
+```
 
 ### [`@wordpress/i18n`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/)
 
@@ -116,16 +155,39 @@ export function setTranslationData() {
 	localeData[''].domain = domain;
 	setLocaleData(localeData, domain);
 }
-
 ```
 
-### [`@wordpress/html-entities`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-html-entities/)
+### [`@wordpress/url`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-url%20/)
 
-The [`@wordpress/html-entities`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-html-entities/) package is super useful when working with data from the WordPress REST API when you manually need to decode html entities because you may not want to use the `rendered` value due to having to use `innerHTML` or  `dangerouslySetInnerHTML` if you are using react.
+This package is a collection of utility functions for working with URLs. It is a great way to manipulate URLs, extract information  or even validate them in JavaScript.
 
-```js
-import { decodeEntities } from '@wordpress/html-entities';
+The current list of utilities is:
 
-const result = decodeEntities( '&aacute;' );
-console.log( result ); // result will be "á"
-```
+* `addQueryArgs`
+* `buildQueryString`
+* `cleanForSlug`
+* `filterURLForDisplay`
+* `getAuthority`
+* `getFilename`
+* `getFragment`
+* `getPath`
+* `getPathAndQueryString`
+* `getProtocol`
+* `getQueryArg`
+* `getQueryArgs`
+* `getQueryString`
+* `hasQueryArg`
+* `isEmail`
+* `isURL`
+* `isValidAuthority`
+* `isValidFragment`
+* `isValidPath`
+* `isValidProtocol`
+* `isValidQueryString`
+* `normalizePath`
+* `prependHTTP`
+* `removeQueryArgs`
+* `safeDecodeURI`
+* `safeDecodeURIComponent`
+
+We find the functions related to query arguments to be the most useful! 
