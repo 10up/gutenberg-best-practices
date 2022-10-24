@@ -132,7 +132,7 @@ You can see below the "Example Block" `block.json` from our 10up Scaffold that i
 }
 ```
 
-1. Then we wrap it in some markup and watch for changes in a `<RichText>` element in [edit.js](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/edit.js#L28). Pay close attention to the last two lines of the `<RichText>` element. We are defining the value and then redefining the value when it is changed.
+1. Then we wrap it in some markup and watch for changes in a `<RichText>` element in [edit.js](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/edit.js#L28). Pay close attention to the last two lines of the `<RichText>` element. We are telling the RichText component what the current current value it should display is. And then telling it what to do whenever the value it is changed.
 
 ```jsx title="edit.js" {6-7}
 import { useBlockProps, RichText } from '@wordpress/block-editor';
