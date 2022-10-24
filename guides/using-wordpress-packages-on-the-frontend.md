@@ -33,7 +33,7 @@ Speaking of [`lodash`](https://lodash.com) one pitfall is, that the [Dependency 
 There are some `@wordpress/` packages, like the [`@wordpress/icons`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-icons/) package, that are not bundled in WordPress and therefore don't get externalized. You can view the [excluded list in the GitHub repo](https://github.com/WordPress/gutenberg/blob/b1f2064d64df4db70a379c690ee1e28ebef8b86d/packages/dependency-extraction-webpack-plugin/lib/util.js#L2-L6).
 :::info
 
-This means that even if any of your other frontend dependencies tries to load something from lodash the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) will pick that up and add [`lodash`](https://lodash.com) to your dependency array.
+This means that even if any of your other frontend dependencies try to load something from lodash the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) will pick that up and add [`lodash`](https://lodash.com) to your dependency array.
 
 ## Editor dependant packages
 
