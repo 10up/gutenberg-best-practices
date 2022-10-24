@@ -9,14 +9,14 @@ As part of the Gutenberg project WordPress has gained much more than just the ed
 You can find a list of `@wordpress/` packages that are the exception to this rule and that can be used in the [Useful packages outside of the editor](#useful-packages-outside-of-the-editor) section.
 
 :::warning
-The `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not super optimized for frontend performance and size. Many of the packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
+The `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not super optimized for frontend performance and size. Some packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
 :::warning
 
 ## Bundle size
 
-One of the pitfalls of using the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) is that you don't see the size of the externalized WordPress packages. They are not a part of your bundle but instead get added as an additional script that gets loaded before yours. And these WordPress bundled scripts don't allow you to do any sort of tree shaking.
+One of the pitfalls of using the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) is that you don't see the size of the externalized WordPress packages. They are not a part of your bundle but instead get added as an additional script that gets loaded before yours. Given these packages are bundled via WodPress, they don't allow you to do any sort of tree shaking.
 
-This is especially problematic because they often rely on individual functions from [`lodash`](https://lodash.com) but therefore load all of lodash as a result. Which is a heavy import.
+This is especially problematic because they often rely on individual functions from [`lodash`](https://lodash.com) but therefore load all of lodash as a result which is a heavy import.
 
 Speaking of [`lodash`](https://lodash.com) one pitfall is, that the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) externalizes more than just the `@wordpress/*` dependencies. It externalizes all these imports:
 
