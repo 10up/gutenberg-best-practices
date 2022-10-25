@@ -49,24 +49,38 @@ There are some packages that suit themselves very well for being used outside of
 
 ### [`@wordpress/api-fetch`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/)
 
-This is a nifty utility to make requests to the WordPress REST API. It is a wrapper around the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API and prefixes each `path` with the REST API root URL. Unlike fetch, [`@wordpress/api-fetch`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/) will also parse the data automatically (can also be disabled) to JSON format.
+The [`@wordpress/api-fetch`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/) package is great for making it easier to talk to the WordPress REST API from your frontend code. It allows you to configure middlewares so, for example, you could define the root URL of your project to define it throughout the entire frontend bundle.
 
 ```js
 import apiFetch from '@wordpress/api-fetch';
+const rootURL = 'http://my-wordpress-site/wp-json/';
+apiFetch.use( apiFetch.createRootURLMiddleware( rootURL ) );
+```
 
-// GET
-apiFetch( { path: '/wp/v2/posts' } ).then( ( posts ) => {
-    console.log( posts );
-} );
+To make the above even better we can use [`wp_localize_script`](https://developer.wordpress.org/reference/functions/wp_localize_script/) to pass the `rest_base` value to the frontend code as a variable:
 
-// POST
-apiFetch( {
-    path: '/wp/v2/posts/1',
-    method: 'POST',
-    data: { title: 'New Post Title' },
-} ).then( ( res ) => {
-    console.log( res );
-} );
+```php
+wp_localize_script(
+    'frontend',
+    'tenupTheme',
+    [
+        'restBase' => get_rest_url(),
+    ]
+);
+```
+
+```js
+import apiFetch from '@wordpress/api-fetch';
+const rootURL = window.tenupTheme.restBase;
+apiFetch.use( apiFetch.createRootURLMiddleware( rootURL ) );
+```
+
+Or if you need to deal with authenticated requests, you can also create a middleware to work with nonces:
+
+```js
+import apiFetch from '@wordpress/api-fetch';
+const nonce = 'nonce value';
+apiFetch.use( apiFetch.createNonceMiddleware( nonce ) );
 ```
 
 ### [`@wordpress/dom-ready`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dom-ready/)
