@@ -258,7 +258,7 @@ You can enable this content only mode for a pattern by setting the `templateLock
 
 Out of the box all settings of any block become inert when the content only locking gets applied. Only settings that are specifically tagged as content become active.
 
-This is archived by adding `"__experimentalRole": "content"` to the attribute definition of any attribute that should remain editable.
+This is achieved by adding `"__experimentalRole": "content"` to the attribute definition of any attribute that should remain editable.
 
 ```json
 {
