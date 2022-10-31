@@ -1,21 +1,22 @@
 ---
 sidebar_label: Using WordPress packages on the frontend
+title: Using WordPress packages on the frontend
 ---
 # Using `@wordpress` packages on the frontend
 
-As part of the gutenberg project WordPress has gained much more than just the editor itself. The gutenberg repository currently houses more than 80 individual packages. These packages span everything from the actual react components, utilities to calculate word count, end-to-end test utilities and much more. Naturally there is the desire to also use some of these packages in the frontend code we are shipping. However, because there are many caveats when trying to use them on the frontend which is why it is generally **not recommended** to do so.
+As part of the Gutenberg project WordPress has gained much more than just the editor itself. The Gutenberg repository currently houses more than 80 individual packages. These packages span everything from the actual React components, utilities to calculate word count, end-to-end test utilities and much more. Naturally there is the desire to also use some of these packages in the frontend code we are shipping. However, because there are many caveats when trying to use them on the frontend which is why it is generally **not recommended** to do so.
 
 You can find a list of `@wordpress/` packages that are the exception to this rule and that can be used in the [Useful packages outside of the editor](#useful-packages-outside-of-the-editor) section.
 
 :::warning
-The `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not super optimized for frontend performance and size. Many of the packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
+The `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not super optimized for frontend performance and size. Some packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
 :::warning
 
 ## Bundle size
 
-One of the pitfalls of using the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) is that you don't see the size of the externalized WordPress packages. They are not a part of your bundle but instead get added as an additional script that gets loaded before yours. And these WordPress bundled scripts don't allow you to do any sort of tree shaking.
+One of the pitfalls of using the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) is that you don't see the size of the externalized WordPress packages. They are not a part of your bundle but instead get added as an additional script that gets loaded before yours. Given these packages are bundled via WodPress, they don't allow you to do any sort of tree shaking.
 
-This is especially problematic because they often rely on individual functions from [`lodash`](https://lodash.com) but therefore load all of lodash as a result. Which is a heavy import.
+This is especially problematic because they often rely on individual functions from [`lodash`](https://lodash.com) but therefore load all of lodash as a result which is a heavy import.
 
 Speaking of [`lodash`](https://lodash.com) one pitfall is, that the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) externalizes more than just the `@wordpress/*` dependencies. It externalizes all these imports:
 
@@ -32,7 +33,7 @@ Speaking of [`lodash`](https://lodash.com) one pitfall is, that the [Dependency 
 There are some `@wordpress/` packages, like the [`@wordpress/icons`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-icons/) package, that are not bundled in WordPress and therefore don't get externalized. You can view the [excluded list in the GitHub repo](https://github.com/WordPress/gutenberg/blob/b1f2064d64df4db70a379c690ee1e28ebef8b86d/packages/dependency-extraction-webpack-plugin/lib/util.js#L2-L6).
 :::info
 
-This means that even if any of your other frontend dependencies tries to load something from lodash the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) will pick that up and add [`lodash`](https://lodash.com) to your dependency array.
+This means that even if any of your other frontend dependencies try to load something from lodash the [Dependency Extraction Webpack Plugin](https://www.npmjs.com/package/@wordpress/dependency-extraction-webpack-plugin) will pick that up and add [`lodash`](https://lodash.com) to your dependency array.
 
 ## Editor dependant packages
 
@@ -45,6 +46,42 @@ As a rule of thumb any package that includes _editor_ in it's name should **not*
 ## Useful packages outside of the editor
 
 There are some packages that suit themselves very well for being used outside of the editor. This list is not comprehensive and if something is not listed here it doesn't mean that it cannot be used on the frontend. These are just some good examples of packages that showed they work well on the frontend.
+
+### [`@wordpress/api-fetch`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/)
+
+The [`@wordpress/api-fetch`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-api-fetch/) package is great for making it easier to talk to the WordPress REST API from your frontend code. It allows you to configure middlewares so, for example, you could define the root URL of your project to define it throughout the entire frontend bundle.
+
+```js
+import apiFetch from '@wordpress/api-fetch';
+const rootURL = 'http://my-wordpress-site/wp-json/';
+apiFetch.use( apiFetch.createRootURLMiddleware( rootURL ) );
+```
+
+To make the above even better we can use [`wp_localize_script`](https://developer.wordpress.org/reference/functions/wp_localize_script/) to pass the `rest_base` value to the frontend code as a variable:
+
+```php
+wp_localize_script(
+    'frontend',
+    'tenupTheme',
+    [
+        'restBase' => get_rest_url(),
+    ]
+);
+```
+
+```js
+import apiFetch from '@wordpress/api-fetch';
+const rootURL = window.tenupTheme.restBase;
+apiFetch.use( apiFetch.createRootURLMiddleware( rootURL ) );
+```
+
+Or if you need to deal with authenticated requests, you can also create a middleware to work with nonces:
+
+```js
+import apiFetch from '@wordpress/api-fetch';
+const nonce = 'nonce value';
+apiFetch.use( apiFetch.createNonceMiddleware( nonce ) );
+```
 
 ### [`@wordpress/dom-ready`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dom-ready/)
 
@@ -59,6 +96,23 @@ domReady( function () {
 ```
 
 If you look at the [source code for the package](https://github.com/WordPress/gutenberg/blob/71a63fd636b871b73e475821f94fa634e7550b92/packages/dom-ready/src/index.js#L31-L45) it really is nothing more than an event listener for the `DOMContentLoaded` event with additional checks for the `document.readyState` `complete` or `interactive`.
+
+### [`@wordpress/hooks`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/)
+
+The [`@wordpress/hooks`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/) package is a lightweight Event Manager for JavaScript. The API is meant to be as close as possible to the WordPress php hooks API. It is a great way to add extensibility to your JavaScript code. 
+
+This package lets you add filters (to be able to change the value of a variable) and actions (to be able to run some code) to your JavaScript code.
+
+### [`@wordpress/html-entities`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-html-entities/)
+
+The [`@wordpress/html-entities`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-html-entities/) is super useful when working with data from the WordPress REST API. You might want to decode HTML entities to get the final rendered value. This is specially handy if you need to use `innerHTML` or `dangerouslySetInnerHTML` if you are using React.
+
+```js
+import { decodeEntities } from '@wordpress/html-entities';
+
+const result = decodeEntities( '&aacute;' );
+console.log( result ); // result will be "á"
+```
 
 ### [`@wordpress/i18n`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/)
 
@@ -115,16 +169,39 @@ export function setTranslationData() {
 	localeData[''].domain = domain;
 	setLocaleData(localeData, domain);
 }
-
 ```
 
-### [`@wordpress/html-entities`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-html-entities/)
+### [`@wordpress/url`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-url%20/)
 
-The [`@wordpress/html-entities`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-html-entities/) package is super useful when working with data from the WordPress REST API when you manually need to decode html entities because you may not want to use the `rendered` value due to having to use `innerHTML` or  `dangerouslySetInnerHTML` if you are using react.
+This package is a collection of utility functions for working with URLs. It is a great way to manipulate URLs, extract information  or even validate them in JavaScript.
 
-```js
-import { decodeEntities } from '@wordpress/html-entities';
+The current list of utilities is:
 
-const result = decodeEntities( '&aacute;' );
-console.log( result ); // result will be "á"
-```
+* `addQueryArgs`
+* `buildQueryString`
+* `cleanForSlug`
+* `filterURLForDisplay`
+* `getAuthority`
+* `getFilename`
+* `getFragment`
+* `getPath`
+* `getPathAndQueryString`
+* `getProtocol`
+* `getQueryArg`
+* `getQueryArgs`
+* `getQueryString`
+* `hasQueryArg`
+* `isEmail`
+* `isURL`
+* `isValidAuthority`
+* `isValidFragment`
+* `isValidPath`
+* `isValidProtocol`
+* `isValidQueryString`
+* `normalizePath`
+* `prependHTTP`
+* `removeQueryArgs`
+* `safeDecodeURI`
+* `safeDecodeURIComponent`
+
+We find the functions related to query arguments to be the most useful! 
