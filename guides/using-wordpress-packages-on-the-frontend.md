@@ -8,9 +8,11 @@ As part of the Gutenberg project WordPress has gained much more than just the ed
 
 You can find a list of `@wordpress/` packages that are the exception to this rule and that can be used in the [Useful packages outside of the editor](#useful-packages-outside-of-the-editor) section.
 
-:::warning
-The `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not super optimized for frontend performance and size. Some packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
-:::warning
+:::caution
+The `@wordpress/` dependencies are first and foremost designed to be used within the editor. Therefore they are not necessarily optimized for frontend performance and size. Some packages rely on [`lodash`](https://lodash.com) or [`moment`](https://momentjs.com) and therefore come with a **lot** of code.
+
+_Starting in WordPress 6.1 a lot of packages have dropped their reliance of `lodash`._
+:::caution
 
 ## Bundle size
 
@@ -99,7 +101,7 @@ If you look at the [source code for the package](https://github.com/WordPress/gu
 
 ### [`@wordpress/hooks`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/)
 
-The [`@wordpress/hooks`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/) package is a lightweight Event Manager for JavaScript. The API is meant to be as close as possible to the WordPress php hooks API. It is a great way to add extensibility to your JavaScript code. 
+The [`@wordpress/hooks`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-hooks/) package is a lightweight Event Manager for JavaScript. The API is meant to be as close as possible to the WordPress php hooks API. It is a great way to add extensibility to your JavaScript code.
 
 This package lets you add filters (to be able to change the value of a variable) and actions (to be able to run some code) to your JavaScript code.
 
@@ -118,90 +120,37 @@ console.log( result ); // result will be "á"
 
 Localizing strings within frontend js code always is a bit of a pain. Usually you would use [`wp_localize_script`](https://developer.wordpress.org/reference/functions/wp_localize_script/) in order to provide the localized strings as a variable. This gets rather difficult to manage though with plurals etc. Using the [`@wordpress/i18n`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/) package to manage frontend translations can solve this by providing the developers with the same `__`, `_n`, `_x`, etc. functions that they are used to from php.
 
-Since we are not using the WordPress bundled version of the `i18n` package we will manually need to load our script translations though like so:
-
-```php title="core.php"
-/**
- * Get the Translation strings used on Frontend JSs
- * the load_script_textdomain function handles loading the correct json file for the the current locale
- *
- * Because we are bundling the i18n package in our theme we need to manually call `setLocaleData` on the frontend.
- * `wp_set_script_translations` calls `wp.i18n.setLocaleData` which is not the same instance of `i18n` as the one we
- * bundle in the theme.
- *
- * @see https://core.trac.wordpress.org/browser/tags/5.8/src/wp-includes/class.wp-scripts.php#L591
- */
-$json_translations = load_script_textdomain( 'frontend', 'tenup-theme', TENUP_THEME_PATH . 'languages' );
-if ( ! $json_translations ) {
-	// Register empty locale data object to ensure the domain still exists.
-	$json_translations = '{ "locale_data": { "messages": { "": {} } } }';
-}
-// Localize JS translations
-wp_localize_script(
-	'frontend',
-	'tenupThemeFrontendTranslations',
-	json_decode( $json_translations, true )
-);
-```
-
-```js title="frontend.js"
-import { setLocaleData } from '@wordpress/i18n';
-
-/**
- * setTranslationData
- *
- * use the data supplied via `wp_localize_script` to manually set the locale data for the `i18n` package
- * This would normally happen automatically by using the `wp_set_script_translations` function in php but because
- * we are no longer using the `i18n` package bundled in WordPress core we need to manually replicate this behavior.
- *
- * @see https://core.trac.wordpress.org/browser/tags/5.8/src/wp-includes/class.wp-scripts.php#L591
- *
- * @return {void}
- */
-export function setTranslationData() {
-	if (!window.tenupThemeFrontendTranslations) {
-		return;
-	}
-
-	const domain = 'tenup-theme';
-	const translations = window.tenupThemeFrontendTranslations;
-	const localeData = translations.locale_data[domain] || translations.locale_data.messages;
-	localeData[''].domain = domain;
-	setLocaleData(localeData, domain);
-}
-```
-
 ### [`@wordpress/url`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-url%20/)
 
 This package is a collection of utility functions for working with URLs. It is a great way to manipulate URLs, extract information  or even validate them in JavaScript.
 
 The current list of utilities is:
 
-* `addQueryArgs`
-* `buildQueryString`
-* `cleanForSlug`
-* `filterURLForDisplay`
-* `getAuthority`
-* `getFilename`
-* `getFragment`
-* `getPath`
-* `getPathAndQueryString`
-* `getProtocol`
-* `getQueryArg`
-* `getQueryArgs`
-* `getQueryString`
-* `hasQueryArg`
-* `isEmail`
-* `isURL`
-* `isValidAuthority`
-* `isValidFragment`
-* `isValidPath`
-* `isValidProtocol`
-* `isValidQueryString`
-* `normalizePath`
-* `prependHTTP`
-* `removeQueryArgs`
-* `safeDecodeURI`
-* `safeDecodeURIComponent`
+- `addQueryArgs`
+- `buildQueryString`
+- `cleanForSlug`
+- `filterURLForDisplay`
+- `getAuthority`
+- `getFilename`
+- `getFragment`
+- `getPath`
+- `getPathAndQueryString`
+- `getProtocol`
+- `getQueryArg`
+- `getQueryArgs`
+- `getQueryString`
+- `hasQueryArg`
+- `isEmail`
+- `isURL`
+- `isValidAuthority`
+- `isValidFragment`
+- `isValidPath`
+- `isValidProtocol`
+- `isValidQueryString`
+- `normalizePath`
+- `prependHTTP`
+- `removeQueryArgs`
+- `safeDecodeURI`
+- `safeDecodeURIComponent`
 
-We find the functions related to query arguments to be the most useful! 
+We find the functions related to query arguments to be the most useful!
