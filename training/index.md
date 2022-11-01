@@ -65,6 +65,14 @@ Once that is done you can start the watch mode by running:
 npm run watch
 ```
 
+## The block setup in 10up's wp-scaffold
+
+The 10up `wp-scaffold` theme includes a few helpers that make working with custom blocks easier. For example the block registration happens automatically when you create a new folder with a `block.json` file in it inside the `includes/blocks/` directory of the theme.
+
+The registration also takes any block assets that are defined in the `block.json` file (`editorScript`, `viewScript`, `script`, `style`, and `editorStyle`) and automatically adds them to the list of entrypoints that get transpiled using [10up-toolkit](https://www.npmjs.com/package/10up-toolkit).
+
+If there is a `markup.php` file located inside the same directory as the `block.json`, it will automatically get added as the `render_callback` and therefore provide a quick way to build dynamic blocks.
+
 ## Lessons
 
 * [Lesson 1: Anatomy of a block](./01-overview.md)
