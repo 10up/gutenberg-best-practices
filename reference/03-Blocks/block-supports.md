@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # Block Supports
 
-The Block Supports API allows a block to opt in or out of certain core features. These features come with
+The Block Supports API allows a block to opt in or out of certain core features.
 
 Opting into any of these features will register additional attributes on the block and provide the UI to manipulate that attribute.
 
@@ -76,6 +76,24 @@ This property allows to enable [wide alignment](https://developer.wordpress.org/
     "alignWide": false
 }
 ```
+
+## ariaLabel
+
+- Type: `boolean`
+- Default value: `false`
+
+ ARIA-labels let you define an accessible label for elements. This property allows enabling the definition of an aria-label for the block.
+
+ :::caution
+ This option does not add any UI to the block editor. It is purely there for developers to add aria-label definitions to patterns, variations etc.
+ :::
+
+ ```js
+ supports: {
+ 	// Add the support for aria label attribute
+ 	ariaLabel: true
+ }
+ ```
 
 ## className
 
@@ -455,6 +473,22 @@ A block may want to disable the ability of being converted into a reusable block
 }
 ```
 
+## lock
+
+![Block Toolbar showing a lock icon next to the block icon](../../static//img/block-lock-activated.png)
+
+- Type: `boolean`
+- Default value: `true`
+
+A block may want to disable the ability to toggle the lock state. It can be locked/unlocked by a user from the block "Options" dropdown by default. To disable this behavior, set `lock` to `false`.
+
+```js
+supports: {
+	// Remove support for locking UI.
+	lock: false
+}
+```
+
 ## spacing
 
 ![Block Editor Sidebar showing the Dimension Control panel](../../static//img/supports-dimension.png)
@@ -464,6 +498,7 @@ A block may want to disable the ability of being converted into a reusable block
 - Subproperties:
   - `margin`: type `boolean` or `array`, default value `false`
   - `padding`: type `boolean` or `array`, default value `false`
+  - `blockGap`: type `boolean` or `array`, default value `false`
 
 This value signals that a block supports some of the CSS style properties related to spacing. When it does, the block editor will show UI controls for the user to set their values, if [the theme declares support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#cover-block-padding).
 
@@ -472,6 +507,7 @@ This value signals that a block supports some of the CSS style properties relate
     "spacing": {
         "margin": true,  // Enable margin UI control.
         "padding": true, // Enable padding UI control.
+		"blockGap": true,  // Enables block spacing UI control.
     }
 }
 ```
@@ -485,6 +521,7 @@ When the block declares support for a specific spacing property, the attributes 
     "spacing": {
         "margin": [ "top", "bottom" ], // Enable margin for arbitrary sides.
         "padding": true,               // Enable padding for all sides.
+		"blockGap": [ "horizontal", "vertical" ],  // Enables axial (column/row) block spacing controls
     }
 }
 ```
@@ -640,3 +677,93 @@ function render_block() {
     );
 }
 ```
+
+## Creating custom block supports
+
+As you can already see from all the core block supports these are super powerful for sharing functionality across multiple blocks at the same time. Therefore it can be useful to create custom block supports.
+
+Similar to blocks themselves, block supports need to get registered both in PHP and JS in order to apply to both static and dynamic blocks.
+
+### Registering a block support in JS
+
+If we want to register a block support there are a few different things we need to take care of in JavaScript. We need to register any additional attributes for all the blocks that added the block support, we need to create a UI for the additional attributes, add the additional props like `className` and or `style` to the block wrapper element in the editor, and finally add the additional props like `className` and or `style` to the saved markup that gets generated from a static block.
+
+WordPress provides some hooks that allow us to hook into the various places. You can find more detail about these hooks in the [Block Extension](https://gutenberg.10up.com/reference/Blocks/block-extensions#manually-using-the-hooks) reference.
+
+WordPress also exports a helper function to check whether a block has a certain block support.
+
+```js
+import { hasBlockSupport } from '@wordpress/blocks';
+
+hasExampleSupport = hasBlockSupport( 'core/paragraph', 'example' );
+```
+
+:::info
+Essentially [Block Extensions](https://gutenberg.10up.com/reference/Blocks/block-extensions) are very similar to block supports. The only difference being that block supports get controlled via the `supports` options whilst block extensions don't use this additional control step.
+:::
+
+### Registering a block support in PHP
+
+In PHP our block support needs to take care of two things, it needs to register any additional attributes for the blocks that opted into the support, and it needs to generate the additional attributes which should get output when the block calls the `get_block_wrapper_attributes` function.
+
+```php
+/**
+ * Registers the example attribute for block types that support it.
+ *
+ * @param WP_Block_Type $block_type Block Type.
+ */
+function namespace_register_example_support( $block_type ) {
+	$has_example_support = _wp_array_get( $block_type->supports, [ 'example' ], true );
+	if ( ! $has_example_support ) {
+		return;
+	}
+
+	if ( ! $block_type->attributes ) {
+		$block_type->attributes = [];
+	}
+
+	if ( ! array_key_exists( 'example', $block_type->attributes ) ) {
+		$block_type->attributes['example'] = [
+			'type' => 'string',
+		];
+	}
+}
+
+/**
+ * Add the example attribute to the output.
+ *
+ * @param WP_Block_Type $block_type Block Type.
+ * @param array         $block_attributes Block attributes.
+ *
+ * @return array Block example.
+ */
+function namespace_apply_example_support( $block_type, $block_attributes ) {
+	if ( ! $block_attributes ) {
+		return [];
+	}
+
+	$has_example_support = _wp_array_get( $block_type->supports, [ 'example' ], true );
+	if ( ! $has_example_support ) {
+		return [];
+	}
+
+	$has_example = array_key_exists( 'example', $block_attributes );
+	if ( ! $has_example ) {
+		return [];
+	}
+
+	return [ 'class' => $block_attributes['example'] ];
+}
+
+WP_Block_Supports::get_instance()->register(
+	'example',
+	[
+		'register_attribute' => 'namespace_register_example_support',
+		'apply'              => 'namespace_apply_example_support',
+	]
+);
+```
+
+:::info
+Block supports can only generate additional class names, or inline styles. So in the `apply` function the returned array may only contain the `class` and or `style` properties.
+:::

@@ -2,7 +2,7 @@
 
 The ability to create custom block styles for any block in Gutenberg is super cool. It is an easy API with a nice UI interface that allows us to quickly add some options to blocks.
 
-![](../static/img/block-extenstions-before.png)
+![Block Editor Sidebar showing 10 different style variations](../static/img/block-extenstions-before.png)
 
 ```js
 import { registerBlockStyle } from '@wordpress/blocks';
@@ -80,7 +80,7 @@ For the example that we have used for the block styles here, we wanted our users
 
 We want two new settings to be added to the block in our example. One option to choose the pattern and one for the color. And based on the selection we then need to add a custom class name to the block.
 
-![](../static/img/block-extenstions-after.png)
+![Block Editor Sidebar showing the extensions](../static/img/block-extenstions-after.png)
 
 The way we can achieve that is by using the hooks that Gutenberg provides and the `addFilter` function. We need to filter the block registration: `blocks.registerBlockType` to add any new attributes to the block, `editor.BlockEdit` to add out settings to the settings sidebar or toolbar, `editor.BlockListBlock` to add the generated class in the editor and `blocks.getSaveContent.extraProps` to add the class to the saved block markup.
 

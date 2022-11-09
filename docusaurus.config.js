@@ -23,6 +23,10 @@ const config = {
 			({
 				docs: false,
 				blog: false,
+				gtag: {
+					trackingID: 'G-WF1Z7JSCXS',
+					anonymizeIP: true,
+				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
 				},
@@ -149,7 +153,7 @@ const config = {
 						title: 'Community',
 						items: [
 							{
-								label: 'Slack Channel',
+								label: 'Slack Channel (internal)',
 								href: 'https://10up.slack.com/archives/C8Z3WMN1K',
 							},
 							{
@@ -166,11 +170,7 @@ const config = {
 								href: 'https://github.com/10up/block-components',
 							},
 							{
-								label: 'Block Library',
-								href: 'https://github.com/10up/block-library',
-							},
-							{
-								label: 'Block Examples',
+								label: 'Block Examples (internal)',
 								href: 'https://github.com/10up/block-examples',
 							},
 							{

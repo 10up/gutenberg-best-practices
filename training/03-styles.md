@@ -90,10 +90,12 @@ function registerImageStyles() {
 
 :::tip
 
-5. Call the function in the `wp.domReady` callback to avoid race conditions with WordPress Core:
+1. Pass the function to the `domReady` function from the `@wordpress/dom-ready` package. Registering our styles only once the DOM is fully loaded avoids race conditions with WordPress Core:
 
 ```js
-wp.domReady(() => {
+import domReady from '@wordpress/dom-ready';
+
+domReady(() => {
 	registerCTAStarterStyles();
 });
 ```
