@@ -66,20 +66,21 @@ Inner Blocks are the name of a react component that is part of the "Block Editor
 
 In the block one starter [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/edit.js) file, do the following:
 
-Update the import to include `InnerBlocks`:
+Update the import to include the `useInnerBlocksProps` hook:
 
 ```js
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 ```
 
-Then, use the example below to add the `InnerBlocks` component where the inner blocks should be located:
+Then, use the example below to add the `useInnerBlocksProps` hook where the inner blocks should be located:
 
 ```jsx
 const BlockEdit = () => {
 	const blockProps = useBlockProps();
+	const innerBlocksProps = useInnerBlocksProps();
 	return (
 		<div {...blockProps}>
-			<InnerBlocks />
+			<div {...innerBlocksProps} />
 		</div>
 	)
 }
@@ -87,48 +88,19 @@ const BlockEdit = () => {
 export default BlockEdit;
 ```
 
-You should end up with this:
-
-```jsx
-<div className={`${className}__content`}>
-	<InnerBlocks />
-</div>
-```
-
 ### Connect block to build scripts
 
 As always, you should have `npm run watch` running in your terminal. Making this change, did it do anything? Let's check the editor. Search the block inserter for `Inner Blocks One - Starter`... is it found? Only see `Inner Blocks One - Complete`? That is because these files are not being targeted by our build scripts. Let's fix that.
 
-First, look at the [`package.json`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/package.json) file. You will see in that file an object `10up-toolkit` and within another object of `entry`. This `entry` object contains the entry points for [`@10up/toolkit`](https://github.com/10up/10up-toolkit) (used in many of our internal projects, including our default scaffolding). As you can see here, targeted directories to compile blocks. In particular, you can see `inner-blocks-one-complete-block` listed. First, to get this block rigged up, we want to add  `"inner-blocks-one-starter-block": "./includes/blocks/inner-blocks-one-starter/index.js"` to the package json:
-
-```json title="package.json" {15}
-    "entry": {
-      "admin": "./assets/js/admin/admin.js",
-      "blocks": "./includes/blocks/blocks.js",
-      "frontend": "./assets/js/frontend/frontend.js",
-      "shared": "./assets/js/shared/shared.js",
-      "styleguide": "./assets/js/styleguide/styleguide.js",
-      "admin-style": "./assets/css/admin/admin-style.css",
-      "editor-style": "./assets/css/frontend/editor-style.css",
-      "shared-style": "./assets/css/shared/shared-style.css",
-      "style": "./assets/css/frontend/style.css",
-      "styleguide-style": "./assets/css/styleguide/styleguide.css",
-      "core-block-overrides": "./includes/core-block-overrides.js",
-      "rich-text-formats": "./includes/text-formats/index.js",
-      "cta-complete-block": "./includes/blocks/cta-complete/index.js",
-      "inner-blocks-one-starter-block": "./includes/blocks/inner-blocks-one-starter/index.js",
-      "inner-blocks-one-complete-block": "./includes/blocks/inner-blocks-one-complete/index.js",
-      "inner-blocks-two-card-grid-complete-block": "./includes/blocks/inner-blocks-two-card-grid-complete/index.js",
-      "inner-blocks-two-card-complete-block": "./includes/blocks/inner-blocks-two-card-complete/index.js",
-      "cta-starter-block": "./includes/blocks/cta-starter/index.js"
-    }
-```
-
-Second, we need to set the `editorScript` property in [`block.json`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/block.json)
+In order for 10up-toolkit to correctly pickup the JavaScript code for the block, we need to set the `editorScript` property in [`block.json`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/block.json)
 
 ```json
-"editorScript": "file:../../../dist/blocks/inner-blocks-one-starter-block/editor.js"
+"editorScript": "file:./index.js"
 ```
+
+:::note
+Adding the `file:` prefix lets 10up-toolkit and also WordPress itself know that you are referencing a relative file. You could also pass the handle of an already registered script as the editor script instead.
+:::
 
 Let's test that and see if it works. Stop your task runner in the terminal and restart it. Now, go back to the [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/edit.js) file and save. You should see the task runner update in the terminal.
 
@@ -145,7 +117,7 @@ We can fix this by replacing the `null` with the `<InnerBlocks.Content />` compo
  * WordPress dependencies
  */
 import { registerBlockType } from '@wordpress/blocks';
-import { InnerBlocks } from '@wordpress/block-editor';
+import { useInnerBlocksProps } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -162,9 +134,9 @@ registerBlockType(block.name, {
 });
 ```
 
-Now that the content is saved in the database we also need to somehow use this content in our markup in PHP. When we build blocks dynamically we provide the `register_block_type_from_metadata` function with a `render_callback`. This function gets called with three arguments from WordPress. The block attributes, the blocks content (inner blocks) as a markup string and the block as a `WP_Block` class. We are interested in the second parameter for this.
+Now that the content is saved in the database we also need to somehow use this content in our markup in PHP template. Inside our [`markup.php`[(<https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/markup.php>)] file we have access to a few variables. The `$attributes`, `$content`, `$block`, and `$context`. In this case we are interested in the `$content` variable which stores the saved markup from the editor.
 
-To rig this up, let's go to our [`markup.php`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/markup.php) file. If we look down at the content container, we will see the comment `// The inner blocks content should get rendered here.` Replace this comment with the following:
+If we look down at the content container, we will see the comment `// The inner blocks content should get rendered here.` Replace this comment with the following:
 
 ```php title="markup.php"
 /**
@@ -190,15 +162,22 @@ Right now editors are able to insert any block they want into the inner blocks a
 We can improve the UX by adding a list of allowed blocks to the inner blocks component.
 
 ```jsx {3-8}
-return (
-	<InnerBlocks
-		allowedBlocks={[
+const innerBlocksProps = useInnerBlocksProps(
+	{},
+	{
+		allowedBlocks: { [
 			'core/heading',
 			'core/paragraph',
 			'core/buttons',
 			'core/button',
-		]}
-	/>
+		] }
+	}
+);
+
+return (
+	<div {...blockProps}>
+		<div {...innerBlocksProps} />
+	</div>
 )
 ```
 
@@ -211,14 +190,20 @@ We know that in an ideal case we want our editors to have a title and a paragrap
 To achieve this we can define a `template` on the inner block area. The template gets defined the same way you already saw in [Lesson 5: Block Variations](/05-variations.md). It is an array with individual items also being represented as an array with the block name as the first element, the attributes of the block as the second and child blocks as the third element.
 
 ```jsx
-return (
-	<InnerBlocks
-		template={[
+const innerBlocksProps = useInnerBlocksProps(
+	{},
+	{
+		template: {[
 			['core/heading', { level: 2, placeholder: 'Insert your heading here...' }],
 			['core/paragraph', { placeholder: 'Write some description text here...' }],
-
 		]}
-	/>
+	}
+);
+
+return (
+	<div {...blockProps}>
+		<div {...innerBlocksProps} />
+	</div>
 )
 ```
 
@@ -228,38 +213,42 @@ return (
 Before continuing, be sure you have done the following for the `inner-blocks-two-card-starter` and the `inner-blocks-two-card-grid-starter.` (per our guidance above):
 :::note
 
-1. Add the block entry file paths in [`package.json`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/package.json)
-2. Add `<InnerBlocks />` to [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) (Don't forget to import `InnerBlocks` at the top of the file).
+1. Add `editorScript` property in [`block.json`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/block.json)
+2. Add `useInnerBlocksProps` to [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) (Don't forget to import `useInnerBlocksProps` at the top of the file).
 3. Update the `save` method in the [`index.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) file (`save: () => <InnerBlocks.Content />`).
 4. Add the markup output in [`markup.php`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/markup.php) (`echo $content;`).
-5. Add `editorScript` and `editorStyle` properties in [`block.json`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/block.json)
 
 ```json
-  "editorScript": "file:../../../dist/blocks/inner-blocks-two-card-grid-starter-block/editor.js",
-  "editorStyle": "file:../../../dist/blocks/inner-blocks-two-card-grid-starter-block/editor.css"
+  "editorScript": "file:./index.js"
 ```
 
-If you want to create parent/child relationships between blocks like we need to do for our "Card Grid" and "Card" blocks that consists of two things. For one, you need to define the `allowedBlocks` on the `InnerBlocks` in the parent block to only contain the child block you want to have show up. If the `allowedBlocks` array only contains one item the inserter will no longer show the block picker popover but instead directly insert that one block. Which is a nice little UX improvement we get for free.
+If you want to create parent/child relationships between blocks like we need to do for our "Card Grid" and "Card" blocks that consists of two things. For one, you need to define the `allowedBlocks` on the inner blocks area in the parent block to only contain the child block you want to have show up. If the `allowedBlocks` array only contains one item the inserter will no longer show the block picker popover but instead directly insert that one block. Which is a nice little UX improvement we get for free.
 
-So, for the "Card Grid" block, we want to update the [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) do define `allowedBlocks` for `<InnerBlocks />`:
+So, for the "Card Grid" block, we want to update the [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) do define `allowedBlocks` for the inner blocks area:
 
 ```jsx
-<InnerBlocks
-	allowedBlocks={['gutenberg-lessons/inner-blocks-two-card-starter']}
-/>
+const innerBlocksProps = useInnerBlocksProps(
+	{},
+	{
+		allowedBlocks: ['gutenberg-lessons/inner-blocks-two-card-starter']
+	}
+);
 ```
 
-**BONUS**: To enhance our UX and better define the editorial output, let's add orientation and a template to `<InnerBlocks />` in [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js):
+**BONUS**: To enhance our UX and better define the editorial output, let's add orientation and a template to the inner blocks area in [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js):
 
 ```jsx
-<InnerBlocks
-	allowedBlocks={['gutenberg-lessons/inner-blocks-two-card-complete']}
-	orientation="horizontal"
-	template={[
-		['gutenberg-lessons/inner-blocks-two-card-starter'],
-		['gutenberg-lessons/inner-blocks-two-card-starter'],
-	]}
-/>
+const innerBlocksProps = useInnerBlocksProps(
+	{},
+	{
+		allowedBlocks: ['gutenberg-lessons/inner-blocks-two-card-complete']
+		orientation: "horizontal"
+		template: [
+			['gutenberg-lessons/inner-blocks-two-card-starter'],
+			['gutenberg-lessons/inner-blocks-two-card-starter'],
+		]
+	}
+);
 ```
 
 :::tip
@@ -283,27 +272,6 @@ So, let's go ahead and update the "Card" [`block.json`](https://github.com/10up/
 ```
 
 Now, when using the block inserter, you no longer see reference to the "Card" block, unless adding content to the "Card Grid" block.
-
-### Styling Considerations in the Editor
-
-One thing to be aware of when using `InnerBlocks` is that at the moment it makes it a bit more difficult to match styling between the editor and the frontend of the site because the `InnerBlocks` component in the editor wraps the markup of the child blocks in this markup:
-
-```html title="Markup in the Editor"
-<div class="block-editor-inner-blocks">
-	<div class="block-editor-block-list__layout">
-		<!-- Markup of the Child Blocks will get inserted here -->
-		<div class="block-list-appender">...</div>
-	</div>
-</div>
-```
-
-This means that we will have to adjust our styling between the frontend and the editor.
-
-In our "Card Grid" we use CSS Grid to make the main wrapper a grid container with the child blocks being direct children of the wrapper. In the editor however, this won't work because the `.block-editor-inner-blocks` and `.block-editor-block-list__layout` elements are inserted in between the wrapper and the children. So we need to get creating in our styles and override some of the frontend styles and add new ones to visually match the component in the editor.
-
-:::info
-There currently is a new experimental API in core called `__experimentalUseInnerBlocksProps` that will allow us to remove these additional elements and get markup parity between the editor and the frontend. But that API is not fully production-ready and may change in the future.
-:::info
 
 ## Takeaways
 
