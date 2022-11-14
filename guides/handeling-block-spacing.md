@@ -182,3 +182,70 @@ Additionally the `spacingScale` can be changed on a block by block basis.
 :::note
 By providing an empty `spacingScale` you are also removing all the spacing settings from a block even if it adds the support in its block supports options.
 :::
+
+## Making spacing sizes responsive
+
+In most cases the amount of spacing a component should get is dependant on the size of the viewport. Whilst core lacks actual responsive controls that would alow editors to override spacing settings for certain viewport sizes, there are other mechanisms we can use to make these spacing sizes responsive.
+
+### Fluid spacing values
+
+We can leverage [CSS `clamp`](https://developer.mozilla.org/en-US/docs/Web/CSS/clamp) to make the actual spacing size fluid.
+
+```json
+"spacingSizes": [
+	{
+		"name": "X-Small",
+		"slug": 30,
+		"size": "clamp(0.5rem, 5vw, 0.75rem)"
+	},
+	{
+		"name": "Small",
+		"slug": 40,
+		"size": "clamp(0.75rem, 5vw, 1rem)"
+	}, ...
+```
+
+### Overriding the spacing size value with custom css
+
+We can also override the value of a spacing size in a media query in our CSS. In order to do so we first need to make sure that the spacing size itself doesn't reference a straight up value but instead a custom property (CSS variable). Then we can use our custom CSS to override the value of that custom property.
+
+```json title="theme.json"
+{
+	"apiVersion": 2,
+	"settings": {
+		"custom": {
+			"spacing": {
+				"xs": '8px'
+			}
+		},
+		"spacing": {
+			"spacingSizes": [
+				{
+					"slug": "xs",
+					"name": "S",
+					"size": "var(--wp--custom--spacing--xs)"
+				},
+				...
+			]
+		}
+	}
+}
+```
+
+```css title="style.css"
+body {
+	--wp--custom--spacing--xs: 8px;
+
+	@media (--bp-medium) {
+		--wp--custom--spacing--xs: 12px;
+	}
+
+	@media (--bp-large) {
+		--wp--custom--spacing--xs: 16px;
+	}
+}
+```
+
+:::caution
+The CSS custom properties that get generated from Core are scoped to the `body` element rather than the `:root` element. Therefore we also need to scope our overrides to the `body` element
+:::
