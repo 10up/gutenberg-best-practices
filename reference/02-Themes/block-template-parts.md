@@ -11,7 +11,7 @@ Block based template parts are a big part of block based themes. But starting in
 
 ## What should block template parts be used for?
 
-Block template parts can be used to make any part of a website that isn't located within the content area of a post/page editable by blocks. Obvious examples of this are the site header or site footer are. But also any other elements such as the post author bio, a cta that should get displayed site wide at the bottom of any page, or even thinks like modals and notifications can be build using this feature.
+Block template parts can be used to make any part of a website that isn't located within the content area of a post/page editable by blocks. Obvious examples of this are the site header or the site footer. But also any other elements such as the post author bio, a CTA that should get displayed site wide at the bottom of any page, or even thinks like modals and notifications can be build using this feature.
 
 All existing block template parts can be edited in the template part editor. This instance of the editor features a resizable canvas that makes easy to quickly verify that the template part works across breakpoints.
 
@@ -91,7 +91,7 @@ To actually use this template part the theme author then needs to call the `bloc
 
 ## Caveats with using block template parts
 
-Block template parts feature wise are very similar to block based widget areas. Because the block based template parts feature has been build for the editor from the ground up it provides a better user experience and therefore should be pfeffererd in most instances.
+Block template parts feature-wise are very similar to block based widget areas. Because the block based template parts feature has been build for the editor from the ground up it provides a better user experience and therefore should be preffererd in most instances.
 
 Ideally both features shouldn't be used at the same time.
 
