@@ -104,7 +104,7 @@ body {
 ```
 
 :::tip
-By default WordPress [cashes the Stylesheet](https://github.com/WordPress/wordpress-develop/blob/9b105d92a4b769f396ba798db1f106abab75001f/src/wp-includes/global-styles-and-settings.php#L91-L97) that gets generated out of `theme.json`. For development purposes you can bypass that cashing by enabling [debug mode](https://wordpress.org/support/article/debugging-in-wordpress) via the `WP_DEBUG` global in your `wp-config.php`. (`SCRIPT_DEBUG` also achieves the same thing)
+By default WordPress [caches the Stylesheet](https://github.com/WordPress/wordpress-develop/blob/9b105d92a4b769f396ba798db1f106abab75001f/src/wp-includes/global-styles-and-settings.php#L91-L97) that gets generated out of `theme.json`. For development purposes you can bypass that caching by enabling [debug mode](https://wordpress.org/support/article/debugging-in-wordpress) via the `WP_DEBUG` global in your `wp-config.php`. (`SCRIPT_DEBUG` also achieves the same thing)
 :::
 
 ## Understanding the cascade
@@ -117,7 +117,7 @@ These settings and styles exist at three levels, each overwriting the specificit
 
 You can access the settings & values defined in `theme.json` via the `useSetting` hook. This hook accepts a `string` as its parameter which is used as the path for a setting. This means that it checks through the different specificity levels whether a value has been defined for this key.
 
-It first checks whether the user has defined something, then whether the block has defined something in its settings, following the global settings in `theme.json`. Of none of these palaces have any value it will use the default value specified in core.
+It first checks whether the user has defined something, then whether the block has defined something in its settings, following the global settings in `theme.json`. If none of these places have any value it will use the default value specified in core.
 
 ```js
 import { useSetting } from '@wordpress/block-editor';
