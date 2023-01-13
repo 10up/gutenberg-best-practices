@@ -1,5 +1,7 @@
 # Custom Post Types
 
+## Block Templates
+
 Working with blocks in the context of custom post types comes with some cool abilities. For one you can define `templates` for a custom post type, which essentially means it allows you to pre define the arrangement of blocks when a new post of that post type is created.
 
 ```php

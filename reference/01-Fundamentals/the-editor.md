@@ -17,8 +17,6 @@ But there are also other instances of the block editor being used throughout the
 
 No matter which instance of the editor you are working with the fundamental anatomy always stays the same. There always is the main editing canvas, a top toolbar and a settings sidebar on the side.
 
-Insert an image of the editor to show the different sections
-
 ### Top Toolbar
 
 ![Block Editor Toolbar](../../static//img/gutenberg-toolbar.png)

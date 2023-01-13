@@ -37,7 +37,29 @@ Adding patterns also is very easy from a development perspective. Since WordPres
 <!-- /wp:paragraph -->
 ```
 
-There also still is the [`register_block_pattern`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/#register_block_pattern) API allows you to manually register your patterns.
+### Available Options
+
+These options are available via either the metadata header when registering the pattern via the `patterns` folder in the root of the theme or via parameters of the [`register_block_pattern`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/#register_block_pattern) function.
+
+| Name             | Description |
+|------------------|-------------|
+| `Title`          | Title of the pattern *(required)* |
+| `Slug`           | Unique slug under which the pattern gets registered *(required)* |
+| `Description`    | Description of the pattern |
+| `Viewport Width` | Width of the iframe viewport when the pattern gets previewed |
+| `Categories`     | Comma separated pattern categories under which the pattern should get listed |
+| `Keywords`       | Comma separated keywords under which the pattern can be found |
+| `Block Types`    | Comma separated block types the pattern contains. gets used for contextual patterns. But also page level patterns / assigning patterns to template parts in block based themes use this setting. |
+| `Post Types`     | Comma separated post types the pattern should be limited to. *(defaults to all)* |
+| `Inserter`       | Whether or not the pattern should be shown in the inserter *(defaults to `true`)* |
+
+<details>
+<summary>
+
+Manually register block patterns. *(Also works for plugins)*
+</summary>
+
+Patterns don't need to get registered using the `patterns` directory. There also is a manual PHP api to achieve the same thing which can also be used from within plugins.
 
 ```php title="includes/blocks.php"
 register_block_pattern(
@@ -100,6 +122,157 @@ register_block_pattern(
 ); 
 ```
 
+</details>
+
+## Page Level Patterns
+
+Patterns can get marked as page level patterns. If a theme includes two or more page level patterns a modal will get shown to editors whenever they create a new page allowing them to choose one of the page level patterns as a starting point for the content they are entering.
+
+Editors can of course always dismiss this modal and start from scratch.
+
+A pattern can be marked as a page level pattern by adding `core/post-content` to the `Block Types` of the pattern.
+
+```php title="patterns/example.php"
+<?php
+ /**
+  * Title: Hello
+  * Slug: my-theme/hello
+  // highlight-next-line
+  * Block Types: core/post-content
+  * Categories: featured, text
+  */
+?>
+<!-- wp:heading -->
+  <h2>Hello</h2>
+<!-- /wp:heading -->
+```
+
+<details>
+<summary>
+
+You can completely disable this feature by manually removing the `core/post-content` option from the block types of each registered pattern
+</summary>
+
+```php title="functions.php"
+$patterns = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+foreach ( $patterns as $pattern ) {
+    if (
+        ! empty($pattern['blockTypes'] ) &&
+        in_array('core/post-content', $pattern['blockTypes'] )
+    ) {
+        unregister_block_pattern( $pattern['name'] );
+        $pattern['blockTypes'] = array_diff( $pattern['blockTypes'], array( 'core/post-content' ) );
+        register_block_pattern( $pattern['name'], $pattern );
+    }
+}
+```
+
+</details>
+
+## Post Type specific patterns
+
+Starting in WordPress 6.1, Block patterns can also be specific to any post type. This becomes especially useful when you have blocks that are also specific to certain post types. For example if you have a products custom post type with special blocks to display the price etc. you may want to also create various patterns that are specific to that post type. This is possible via the `Post Type` metadata.
+
+```php title="patterns/example.php"
+<?php
+ /**
+  * Title: Hello
+  * Slug: my-theme/hello
+  // highlight-next-line
+  * Post Types: products
+  * Categories: featured, text
+  */
+?>
+<!-- wp:heading -->
+  <h2>Hello</h2>
+<!-- /wp:heading -->
+```
+
+:::tip
+The ability to limit a pattern per post type ties in nicely with the option for page level patterns. When you **combine** the two you can present users with **different page level patterns** for **different post types**.
+:::tip
+
+## Contextual Patterns
+
+Patterns show up in a few places throughout the editor. One very powerful place is the block transforms menu. When a pattern declares that it contains a certain block type, it appears in the block transforms options for that block type and allows editors to quickly transform their block instance into the block pattern.
+
+The powerful thing about this is, that the content of the block gets preserved and automatically replaces the content of that block type inside the pattern.
+
+```php title="patterns/example.php"
+<?php
+ /**
+  * Title: Hello
+  * Slug: my-theme/hello
+  // highlight-next-line
+  * Block Types: core/heading
+  * Categories: featured, text
+  */
+?>
+<!-- wp:heading -->
+  <h2>Hello</h2>
+<!-- /wp:heading -->
+```
+
+:::info
+The WPEngine Blog has published a [great article about Contextual Patterns](https://wpengine.com/builders/wordpress-contextual-patterns/) that goes into more details.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fW4xhwjfyeY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+:::info
+
+## Content Only locked Patterns
+
+![Content Only Locked Block Pattern showing the reduced interface](../../static//img/content-only-pattern.gif)
+
+Locking block patterns allows us to share complex patterns with clients whilst only allowing them to edit certain parts of the pattern. This is super useful and can make the editing experience much less frustrating. Content only locking takes this concept to the next level.
+
+When a pattern enabled content only locking all the various options from the blocks within the pattern get removed and editors only get to interact with the actual content within the pattern.
+
+This goes so far as to hide any irrelevant nested blocks in the list view. And only presenting a streamlined block toolbar / sidebar to the editor. Editors to have the option to modify the underlying blocks by clicking on the "Modify" button in the blocks toolbar.
+
+![Block Toolbar showing a Modify Button](../../static//img/content-only-pattern-modify.png)
+
+You can enable this content only mode for a pattern by setting the `templateLock` attribute of the outermost block to `contentOnly`.
+
+```php title="patterns/example.php"
+<?php
+ /**
+  * Title: Hello
+  * Slug: my-theme/hello
+  * Block Types: core/heading
+  * Categories: featured, text
+  */
+?>
+
+// highlight-next-line
+<!-- wp:group {"templateLock":"contentOnly"} -->
+<div class="wp-block-group">
+	<!-- wp:heading -->
+	<h2>Hello</h2>
+	<!-- /wp:heading -->
+</div>
+<!-- /wp:group -->
+```
+
+### Updating Custom Blocks to work with in Content Only locked patterns
+
+Out of the box all settings of any block become inert when the content only locking gets applied. Only settings that are specifically tagged as content become active.
+
+This is achieved by adding `"__experimentalRole": "content"` to the attribute definition of any attribute that should remain editable.
+
+```json
+{
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "",
+			// highlight-next-line
+			"__experimentalRole": "content"
+		}
+	}
+}
+```
+
 ## Caveats with using Block Patterns
 
 :::caution
@@ -115,3 +288,6 @@ If you want to get around this limitation you can of course also build block pat
 - [New features for working with patterns and themes in WordPress 6.0](https://make.wordpress.org/core/2022/05/02/new-features-for-working-with-patterns-and-themes-in-wordpress-6-0/)
 - [Block Locking - 10up Gutenberg Reference](./block-locking.md)
 - [Patterns - Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/)
+- [New features for working with patterns and themes in WordPress 6.0](https://make.wordpress.org/core/2022/05/02/new-features-for-working-with-patterns-and-themes-in-wordpress-6-0/)
+- [What are Contextual Patterns in WordPress?](https://wpengine.com/builders/wordpress-contextual-patterns/)
+- [How to simplify WordPress patterns with content-only block editing](https://richtabor.com/content-only-editing/)

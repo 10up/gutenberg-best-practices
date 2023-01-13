@@ -13,7 +13,7 @@ By default any new WordPress Theme at 10up includes a `theme.json` file with som
 
 ## How to use `theme.json`
 
-The `theme.json` file gets added to the root directory of a Theme. There are two main areas that you can control with the `theme.json` file. Settings and styles. Both of these can have properties defined on the global level, meaning applying to the entire site with all it's blocks, or on the block level where you can target individual block types.
+The `theme.json` file gets added to the root directory of a Theme. There are two main areas that you can control with the `theme.json` file: settings and styles. Both of these can have properties defined on the global level, meaning applying to the entire site with all its blocks, or on the block level where you can target individual block types.
 
 ```json
 {
@@ -104,7 +104,7 @@ body {
 ```
 
 :::tip
-By default WordPress [cashes the Stylesheet](https://github.com/WordPress/wordpress-develop/blob/9b105d92a4b769f396ba798db1f106abab75001f/src/wp-includes/global-styles-and-settings.php#L91-L97) that gets generated out of `theme.json`. For development purposes you can bypass that cashing by enabling [debug mode](https://wordpress.org/support/article/debugging-in-wordpress) via the `WP_DEBUG` global in your `wp-config.php`. (`SCRIPT_DEBUG` also achieves the same thing)
+By default WordPress [caches the Stylesheet](https://github.com/WordPress/wordpress-develop/blob/9b105d92a4b769f396ba798db1f106abab75001f/src/wp-includes/global-styles-and-settings.php#L91-L97) that gets generated out of `theme.json`. For development purposes you can bypass that caching by enabling [debug mode](https://wordpress.org/support/article/debugging-in-wordpress) via the `WP_DEBUG` global in your `wp-config.php`. (`SCRIPT_DEBUG` also achieves the same thing)
 :::
 
 ## Understanding the cascade
@@ -117,7 +117,7 @@ These settings and styles exist at three levels, each overwriting the specificit
 
 You can access the settings & values defined in `theme.json` via the `useSetting` hook. This hook accepts a `string` as its parameter which is used as the path for a setting. This means that it checks through the different specificity levels whether a value has been defined for this key.
 
-It first checks whether the user has defined something, then whether the block has defined something in its settings, following the global settings in `theme.json`. Of none of these palaces have any value it will use the default value specified in core.
+It first checks whether the user has defined something, then whether the block has defined something in its settings, following the global settings in `theme.json`. If none of these places have any value it will use the default value specified in core.
 
 ```js
 import { useSetting } from '@wordpress/block-editor';
@@ -159,7 +159,49 @@ Using `useSetting('typography.dropCap')` would only return `true` if it is being
 </p>
 </details>
 
+## Filtering `theme.json` data
+
+Starting in WordPress 6.1 it is possible to filter the values of `theme.json` on the server. There are 4 different hooks for the 4 different layers or `theme.json`. Default, Blocks, Theme, and User.
+
+- `wp_theme_json_data_default`: hooks into the default data provided by WordPress
+- `wp_theme_json_data_blocks`: hooks into the data provided by the blocks
+- `wp_theme_json_data_theme`: hooks into the data provided by the theme
+- `wp_theme_json_data_user`: hooks into the data provided by the user
+
+Each of these filters receives an instance of the `WP_Theme_JSON_Data` class with the data for the respective layer. To provide new data, the filter callback needs to use the `update_with( $new_data )` method, where `$new_data` is a valid `theme.json`-like structure.
+
+As with any `theme.json`, the new data needs to declare which `version` of the `theme.json` is using, so it can correctly be migrated.
+
+```php
+function filter_theme_json_theme( $theme_json ){
+	$new_data = array(
+		'version'  => 2,
+		'settings' => array(
+			'color' => array(
+				'text'       => false,
+				'palette'    => array(
+					array(
+						'slug'  => 'foreground',
+						'color' => 'black',
+						'name'  => __( 'Foreground', 'theme-domain' ),
+					),
+					array(
+						'slug'  => 'background',
+						'color' => 'white',
+						'name'  => __( 'Background', 'theme-domain' ),
+					),
+				),
+			),
+		),
+	);
+
+	return $theme_json->update_with( $new_data );
+}
+add_filter( 'wp_theme_json_data_theme', 'filter_theme_json_theme' );
+```
+
 ## Links
 
 - [Block Editor Handbook - Global Settings & Styles (theme.json)](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/)
 - [Block Editor Handbook - Theme JSON API Reference](https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/theme-json-living/)
+- [Filters for theme.json data - WordPress 6.1 Dev Note](https://make.wordpress.org/core/2022/10/10/filters-for-theme-json-data/)
