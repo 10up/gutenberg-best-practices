@@ -40,7 +40,7 @@ cd gutenberg-training-test/wordpress && rm -rf wp-content && git clone git@githu
 3. Install the dependencies and build the assets
 
 ```bash
-cd npm install && npm run build
+cd wp-content && npm install && npm run build
 ```
 
 4. Activate the tenup-theme in WordPress
