@@ -11,11 +11,11 @@ However, as soon as you start to load larger libraries or a lot of custom JavaSc
 There are two ways we can solve this:
 
 1. Use [dynamic imports (Webpack code splitting)](https://webpack.js.org/guides/code-splitting/)
-2. Only enqueue block specific JS when the block is present on the page
+2. Only enqueue block-specific JS when the block is present on the page
 
 In this guide, we are taking a look at the second option as it often is the easier and more robust one of the two.
 
-## Only enqueueing block specific JS when the block is present on the page
+## Only enqueueing block-specific JS when the block is present on the page
 
 To have a JavaScript file that only gets enqueued on the page if the block is present, we can define a `viewScript` in the `block.json` file. This `viewScript` can either be a relative file path to the JS file or a script handle that should get enqueued.
 
@@ -24,9 +24,9 @@ To have a JavaScript file that only gets enqueued on the page if the block is pr
 	"apiVersion": 2,
 	"name": "namespace/example",
 	"title": "Example Block",
-	"editorScript": "file:../../../dist/js/blocks/example/editor.js",
+	"editorScript": "file:./index.js",
 	// highlight-next-line
-	"viewScript": "file:../../../dist/js/blocks/example/view.js"
+	"viewScript": "file:./view.js"
 }
 ```
 
@@ -62,24 +62,6 @@ wp_register_script(
 }
 ```
 
-### Working with dynamic blocks
-
-Out of the box, this mechanism works great for static blocks that store their markup in the Database. However, most of the blocks we are building at 10up get built as dynamic blocks, using the PHP `render_callback` to create the markup on the server.
-
-In these instances, WordPress will not automatically enqueue the script for us. So we manually need to add the `wp_enqueue_script` function to our `render_callback`. In the [10up theme scaffold](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme) this has been abstracted away into the `markup.php` file located in the blocks folder.
-
-```php title="blocks.php"
-<?php
-/**
- * Example Block Markup
- * @package tenup/theme
- */
-
-// highlight-next-line
-wp_enqueue_script('namespace-example-view-script');
-?>
-
-<section <?php echo get_block_wrapper_attributes(); ?>>
-	<h2>Hello World!</h2>
-</section>
-```
+:::info
+Since WordPress 6.1 Dynamic blocks also automatically enqueue the JS file on all pages where the block is being used. Previously that only worked for static blocks and dynamic ones needed to manually call `wp_enqueue_script` with the auto-generated view script handle.
+:::
