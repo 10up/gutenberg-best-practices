@@ -32,33 +32,24 @@ To have a JavaScript file that only gets enqueued on the page if the block is pr
 
 This automatically takes the JS file that is located at the relative file path and registers it using the `wp_register_script` function. The script gets the handle `namespace-example-view-script`. The handle is generated using the block namespace, followed by the block name, with the suffix `-view-script` added at the end.
 
+Every time the block gets used anywhere, WordPress will make sure to enqueue all the `viewScript` scripts and load them after the markup of the block. So you don't even need to check for any dom-ready event but can get started querying for the element right away.
+
 :::note
 WordPress expects a file that is provided via a relative file path to also have a `.asset.php` file next to it with the script dependencies and generated version number. Both `@wordpress/scripts` and `10up-toolkit` do this automatically for you using the `@wordpress/dependency-extraction-webpack-plugin`.
 :::note
 
-If your script relies on additional non-WordPress dependencies like a 3rd party library that cannot be installed via NPM you can also handle the registration of the view script manually and only provide the script handle you registered to the `viewScript` in the `block.json` file.
+### Enqueueing additional external dependencies
 
-```php
-$asset_file_name    = 'view-script';
-$asset_dependencies = ( include NAMESPACE_PATH . "dist/$asset_file_name.asset.php" );
-wp_register_script(
-	'my-custom-view-script-handle',
-	THEME_URL . "dist/$asset_file_name.js",
-	// highlight-next-line
-	array_merge( $asset_dependencies['dependencies'], [ 'custom-dependency' ] ),
-	$asset_dependencies['version'],
-	true
-);
-```
+If your script relies on additional non-WordPress dependencies like a 3rd party library that cannot be installed via NPM you can also pass multiple values to the `viewScript`. Each value can either be a relative file path starting with `file:` or the handle of a registered script.
 
 ```json title="block.json"
 {
 	"apiVersion": 2,
 	"name": "namespace/example",
 	"title": "Example Block",
-	"editorScript": "file:../../../dist/js/blocks/example/editor.js",
+	"editorScript": "file:./index.js",
 	// highlight-next-line
-	"viewScript": "my-custom-view-script-handle"
+	"viewScript": [ "file:./view.js", "my-custom-view-script-handle"]
 }
 ```
 
