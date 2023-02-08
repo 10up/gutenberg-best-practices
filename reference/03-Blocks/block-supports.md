@@ -68,7 +68,7 @@ When the block declares support for `align`, the attributes definition is extend
 - Type: `boolean`
 - Default value: `true`
 
-This property allows to enable [wide alignment](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#wide-alignment) for your theme. To disable this behavior for a single block, set this flag to `false`.
+This property allows to enable [wide alignment](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#wide-alignment) for your theme. To disable this behavior for a single block, set this flag to `false`.
 
 ```json
 "supports": {
@@ -178,7 +178,7 @@ When the block declares support for `color.background`, the attributes definitio
 
   When a user chooses from the list of preset background colors, the preset slug is stored in the `backgroundColor` attribute.
 
-  Background color presets are sourced from the `editor-color-palette` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#block-color-palettes).
+  Background color presets are sourced from the `editor-color-palette` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support#block-color-palettes).
 
   The block can apply a default preset background color by specifying its own attribute with a default e.g.:
 
@@ -226,7 +226,7 @@ This property adds UI controls which allow the user to apply a gradient backgrou
 }
 ```
 
-Gradient presets are sourced from `editor-gradient-presets` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#block-gradient-presets).
+Gradient presets are sourced from `editor-gradient-presets` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support#block-gradient-presets).
 
 When the block declares support for `color.gradient`, the attributes definition is extended to include two new attributes: `gradient` and `style`:
 
@@ -284,7 +284,7 @@ To enable link color support, set to `true`.
 }
 ```
 
-Link color presets are sourced from the `editor-color-palette` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#block-color-palettes).
+Link color presets are sourced from the `editor-color-palette` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support#block-color-palettes).
 
 When the block declares support for `color.link`, the attributes definition is extended to include two new attributes: `linkColor` and `style`:
 
@@ -345,7 +345,7 @@ To disable text color support while keeping other color supports enabled, set to
 }
 ```
 
-Text color presets are sourced from the `editor-color-palette` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#block-color-palettes).
+Text color presets are sourced from the `editor-color-palette` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support#block-color-palettes).
 
 When the block declares support for `color.text`, the attributes definition is extended to include two new attributes: `textColor` and `style`:
 
@@ -500,7 +500,7 @@ supports: {
   - `padding`: type `boolean` or `array`, default value `false`
   - `blockGap`: type `boolean` or `array`, default value `false`
 
-This value signals that a block supports some of the CSS style properties related to spacing. When it does, the block editor will show UI controls for the user to set their values, if [the theme declares support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#cover-block-padding).
+This value signals that a block supports some of the CSS style properties related to spacing. When it does, the block editor will show UI controls for the user to set their values, if [the theme declares support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support#cover-block-padding).
 
 ```json
 "supports": {
@@ -558,7 +558,7 @@ The presence of this object signals that a block supports some typography relate
 
 This value signals that a block supports the font-size CSS style property. When it does, the block editor will show an UI control for the user to set its value.
 
-The values shown in this control are the ones declared by the theme via the `editor-font-sizes` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#block-font-sizes), or the default ones if none are provided.
+The values shown in this control are the ones declared by the theme via the `editor-font-sizes` [theme support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support#block-font-sizes), or the default ones if none are provided.
 
 ```json
 "supports": {
@@ -602,7 +602,7 @@ attributes: {
 - Type: `boolean`
 - Default value: `false`
 
-This value signals that a block supports the line-height CSS style property. When it does, the block editor will show an UI control for the user to set its value if [the theme declares support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support.md#supporting-custom-line-heights).
+This value signals that a block supports the line-height CSS style property. When it does, the block editor will show an UI control for the user to set its value if [the theme declares support](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support#supporting-custom-line-heights).
 
 ```json
 "supports": {
