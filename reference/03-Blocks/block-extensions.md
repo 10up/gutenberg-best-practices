@@ -116,7 +116,7 @@ for adding new attributes / supports to a block.
 ```js
 import { addFilter } from '@wordpress/hooks';
 
-add_filter( 'blocks.registerBlockType', 'namespace/filter-name', function(settings, name) {...} );
+addFilter( 'blocks.registerBlockType', 'namespace/filter-name', function(settings, name) {...} );
 ```
 
 #### `editor.BlockEdit`
@@ -127,7 +127,7 @@ for adding custom controls to the blocks toolbar or settings sidebar.
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 
-add_filter( 'editor.BlockEdit', 'namespace/filter-name', createHigherOrderComponent((BlockEdit) => {...}) );
+addFilter( 'editor.BlockEdit', 'namespace/filter-name', createHigherOrderComponent((BlockEdit) => {...}) );
 ```
 
 #### `editor.BlockListBlock`
@@ -138,7 +138,7 @@ for adding additional properties to the wrapping element within the editor.
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 
-add_filter( 'editor.BlockListBlock', 'namespace/filter-name', createHigherOrderComponent((BlockList) => {...}) );
+addFilter( 'editor.BlockListBlock', 'namespace/filter-name', createHigherOrderComponent((BlockList) => {...}) );
 ```
 
 #### `blocks.getSaveContent.extraProps`
@@ -148,5 +148,5 @@ for adding additional properties to the wrapping element in the save method.
 ```js
 import { addFilter } from '@wordpress/hooks';
 
-add_filter( 'blocks.getSaveContent.extraProps', 'namespace/filter-name', function(props, block, attributes) {...} );
+addFilter( 'blocks.getSaveContent.extraProps', 'namespace/filter-name', function(props, block, attributes) {...} );
 ```
