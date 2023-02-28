@@ -103,7 +103,7 @@ registerBlockExtension(
 | options.extensionName      | `string`   | Unique Identifier of the option added    |
 | options.attributes         | `object`   | Block Attributes that should get added to the block |
 | options.classNameGenerator | `function` | Function that gets passed the attributes of the block to generate a class name string |
-| options.Edit               | `function` | BlockEdit component like in `registerBlockType` only without the actual block. So onyl using slots like the `InspectorControls` is advised. |
+| options.Edit               | `function` | BlockEdit component like in `registerBlockType` only without the actual block. So only using slots like the `InspectorControls` is advised. |
 
 ## Manually using the hooks
 
