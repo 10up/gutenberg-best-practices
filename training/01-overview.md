@@ -159,7 +159,7 @@ function BlockEdit(props) {
 
 ```
 
-3. Finally, we output our `customTitle` attribute in our frontend markup in [markup.php](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/markup.php#L31)!
+3. Finally, we output our `customTitle` attribute in our frontend markup in [markup.php](https://github.com/10up/wp-scaffold/blob/trunk/themes/10up-theme/includes/blocks/example-block/markup.php)!
 
 ```php title="markup.php" {2}
 <h2 <?php echo get_block_wrapper_attributes(); ?>>
