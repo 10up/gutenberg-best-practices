@@ -50,7 +50,7 @@ Follow the prompts within the terminal
 
 2. Move into the `gutenber-training-test` directory and clone the [`gutenberg-lessons`](https://github.com/10up/gutenberg-lessons) repository into the `wordpress` directory replacing the `wp-content` folder
 
-If not already in the `gutenberg-training-test` folder:
+If not already in the `gutenberg-training-test` directory:
 
 ```bash
 cd ~/wp-local-docker-sites/gutenberg-training-test/
@@ -76,7 +76,7 @@ cd wp-content && npm install && npm run build
 
 5. Navigate to your site [gutenberg-training.test](https://gutenberg-training.test/wp-admin) and view some of the sample blocks and patterns that have already been created within the Block Picker
 
-* To access the Block Picker click on a Page or a Post and click the "+" button to display all available blocks. At the bottom of the picker there is a row named "Completed Blocks" those are the custom blocks created. At the top of the picked clicking on "Patterns" will show the custom patterns that have been created.
+* To access the Block Picker click on a Page or a Post and click the "+" button to display all available blocks. At the bottom of the picker there is a row named "Completed Blocks" those are the custom blocks created. At the top of the picker clicking on "Patterns" will show the custom patterns that have been created.
 
 :::caution
 The `tenup-theme` build system requires node version **16** in order to build successfully. If you have [`nvm`](https://github.com/nvm-sh/nvm) installed it should auto-detect which version to use.
