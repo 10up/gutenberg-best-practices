@@ -30,11 +30,36 @@ For this training, we recommend the usage of [10up-docker](https://github.com/10
 ```bash
 10updocker create gutenberg-training
 ```
-
-2. Clone the [`gutenberg-lessons`](https://github.com/10up/gutenberg-lessons) repository into the `wordpress` directory replacing the `wp-content` folder
+Follow the prompts within the terminal
 
 ```bash
-cd gutenberg-training-test/wordpress && rm -rf wp-content && git clone git@github.com:10up/gutenberg-lessons.git wp-content
+? What is the primary hostname for your site? (Ex: docker.test) gutenberg-training.test
+? Are there additional domains the site should respond to? No
+? What version of PHP would you like to use? 8.0
+? Do you want to install WordPress? Yes
+? Select a WordPress installation type: Single Site
+? Site Name: gutenberg-training.test
+? Admin Username: admin
+? Admin Password: password
+? Admin Email: admin@example.com
+? Do you want to remove the default content? No
+? Do you want to set a proxy for media assets? (i.e. Serving /uploads/ directory assets
+ from a production site): No
+? Do you need Elasticsearch: No
+```
+
+2. Move into the `gutenber-training-test` directory and clone the [`gutenberg-lessons`](https://github.com/10up/gutenberg-lessons) repository into the `wordpress` directory replacing the `wp-content` folder
+
+If not already in the `gutenberg-training-test` directory:
+
+```bash
+cd ~/wp-local-docker-sites/gutenberg-training-test/
+```
+
+Then run:
+
+```bash
+cd wordpress && rm -rf wp-content && git clone git@github.com:10up/gutenberg-lessons.git wp-content
 ```
 
 3. Install the dependencies and build the assets
@@ -49,7 +74,9 @@ cd wp-content && npm install && npm run build
 10updocker wp theme activate tenup-theme
 ```
 
-You can now navigate to the editor of your WordPress installation and see the Example Block with the Completed Examples show up in the Block Picker.
+5. Navigate to your site [gutenberg-training.test](https://gutenberg-training.test/wp-admin) and view some of the sample blocks and patterns that have already been created within the Block Picker
+
+* To access the Block Picker click on a Page or a Post and click the "+" button to display all available blocks. At the bottom of the picker there is a row named "Completed Blocks" those are the custom blocks created. At the top of the picker clicking on "Patterns" will show the custom patterns that have been created.
 
 :::caution
 The `tenup-theme` build system requires node version **16** in order to build successfully. If you have [`nvm`](https://github.com/nvm-sh/nvm) installed it should auto-detect which version to use.
