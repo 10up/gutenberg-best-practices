@@ -7,7 +7,7 @@
 Both of these are **experimental**.
 
 ## Use Case:
-If you have controls that should exist within block support panels in the WP Admin block settings and you would like a fine grained ability on when to enable or have the user enable a specific control. This functionality also provides the benefit of resetting a control to a default state which can be helpful for users who may want to experiment with certain controls but have the ability to disable them independently.
+If you have custom controls that should exist within or be added to an existing block support panels group in the WP Admin block settings and you would like a fine grained ability on when to enable or have the user enable a specific control. This functionality also provides the benefit of resetting a control to a default state.
 
 ### Caveats:
 * When enabling the controls they must be tied to a block support panel group ie: `border`, `color`, `dimensions`, `typography` or `styles`.
@@ -17,9 +17,9 @@ these functions through to the panel’s `resetAll` callback to iterate over to 
 
 ## Code Example:
 The example below showcases three usages within an `edit.js` file within a custom block:
-1. Using a `ToolsPanelItem` to create a singular control that adjusts the alignment of a block within the typography group
-2. Using a `ToolsPanel` for multiple `ToolsPanelItem`'s in this situation there are multiple controls within the styles group that would be used together to create an animation
-3. Using a `ToolsPanelItem` to create a singular control that adjusts the width of the block inside the dimensions group it also has the `isShownByDefault` which means it will always be displayed inside the block settings and does not need to be clicked on to enable and display.
+1. Using a `ToolsPanelItem` to create a singular control that adjusts the alignment of a block within the `typography` group
+2. Using a `ToolsPanel` for multiple `ToolsPanelItem`'s in this situation there are multiple controls within the `styles` group that would be used together to create an animation
+3. Using a `ToolsPanelItem` to create a singular control that adjusts the width of the block inside the `dimensions` group it also has the `isShownByDefault` which means it will always be displayed inside the block settings and does not need to be clicked on to enable and display.
 
 ```bash
 import { __ } from '@wordpress/i18n';
