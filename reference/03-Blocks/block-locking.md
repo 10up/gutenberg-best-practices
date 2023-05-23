@@ -1,3 +1,6 @@
+---
+sidebar_position: 9
+---
 # Block Locking
 
 ![Block Locking UI](../../static/img/block-locking-ui.gif)
