@@ -38,7 +38,7 @@ wp.domReady(() => {
 ```
 
 ### Another Example - Variations:
-In this use case only `core/embed` has many variations of embeds available to a user but per client requirements only Vimeo and YouTube should be available as other platforms are not supported.
+In this use case only `core/embed` has many variations of embeds available to a user but per client requirements only Vimeo and YouTube should be available as other platforms are not supported. In this use case `unregisterBlockVariation` is used since it is related to a `variation` of a block.
 
 `block-variations/unregister-core-embed-variation.js`
 ```bash
