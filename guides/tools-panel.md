@@ -1,5 +1,8 @@
 # ToolsPanel and ToolsPanelItem
 
+## Preface:
+WordPress recently adopted a new UI approach for grouping related settings in the Inspector Controls sidebar. Instead of grouping the settings in PanelBody components which create an accordion based user experience, the new ToolPanel approach allows users to toggle individual settings from a semantic group. This reduces the number of unused controls shown to the user when they open a block sidebar. This approach also makes it much easier for block extenders (developers) to add additional settings into these semantic panels. For example: a block has a custom typography setting which isn't already in core such as, writing mode, you can create a block extension and add your own custom setting into the typography panel of a block.
+
 ## Reference Guide WordPress Documentation:
 * [ToolsPanel](https://developer.wordpress.org/block-editor/reference-guides/components/tools-panel/)
 * [ToolsPanelItem](https://developer.wordpress.org/block-editor/reference-guides/components/tools-panel-item/)
@@ -7,7 +10,7 @@
 Both of these are **experimental**.
 
 ## Use Case:
-If you have custom controls that should exist within or be added to an existing block support panels group in the WP Admin block settings and you would like a fine grained ability on when to enable or have the user enable a specific control. This functionality also provides the benefit of resetting a control to a default state.
+If you have custom controls that should exist within or be added to an existing block support panels group in the WP Admin block settings and you would like a fine grained ability on when to enable or have the user enable a specific control. This functionality also provides the benefit of resetting a control to a default state. Additionally new panels can be created using `ToolsPanel` as shown in the example below where a new `Animation` panel would be created.
 
 ### Caveats:
 * When enabling the controls they must be tied to a block support panel group ie: `border`, `color`, `dimensions`, `typography` or `styles`.
