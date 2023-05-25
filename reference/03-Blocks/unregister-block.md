@@ -44,7 +44,7 @@ wp.domReady(() => {
 Something that also comes up all the time is the need to remove individual block variations. The core embed block for example uses block variations to expose the various embed providers as separate items in the block inserted. If a client however has strict requirements to only ever embed videos using YouTube for example, we want to hide all the other embed providers. We can achieve that using the `unregisterBlockVariation` function.
 
 `block-variations/unregister-core-embed-variation.js`
-```bash
+```js
 const allowedEmbedBlocks = ['vimeo', 'youtube'];
 
 wp.domReady(function () {
