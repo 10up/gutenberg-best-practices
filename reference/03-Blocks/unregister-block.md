@@ -15,7 +15,7 @@ Gutenberg comes with a lot of core blocks. When creating custom builds for clien
 This example showcases how an array of blocks can be passed into a single function and looped through to disable multiple blocks at the same time. 
 
 `block-filters/unregister-blocks.js`
-```bash
+```js
 const { unregisterBlockType } = wp.blocks;
 
 const disallowedBlocks = [
