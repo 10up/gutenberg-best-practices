@@ -45,12 +45,16 @@ Something that also comes up all the time is the need to remove individual block
 
 `block-variations/unregister-core-embed-variation.js`
 ```js
+import domReady from '@wordpress/dom-ready';
+import { getBlockVariations, unregisterBlockVariation } from '@wordpress/blocks';
+
 const allowedEmbedBlocks = ['vimeo', 'youtube'];
 
-wp.domReady(function () {
-	wp.blocks.getBlockVariations('core/embed').forEach(function (blockVariation) {
-		if (allowedEmbedBlocks.indexOf(blockVariation.name) === -1) {
-			wp.blocks.unregisterBlockVariation('core/embed', blockVariation.name);
+domReady(() => {
+	const embedVariations = getBlockVariations('core/embed');
+	embedVariations.forEach(({name}) => {
+		if (allowedEmbedBlocks.includes(name)) {
+			unregisterBlockVariation('core/embed', name);
 		}
 	});
 });
