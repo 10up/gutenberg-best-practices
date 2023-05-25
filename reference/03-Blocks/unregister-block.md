@@ -16,7 +16,7 @@ This example showcases how an array of blocks can be passed into a single functi
 
 `block-filters/unregister-blocks.js`
 ```js
-const { unregisterBlockType } = wp.blocks;
+import { unregisterBlockType } from '@wordpress/blocks';
 
 const disallowedBlocks = [
 	'core/preformatted',
