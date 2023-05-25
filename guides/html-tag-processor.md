@@ -132,7 +132,7 @@ function maybe_insert_aria_label( string $content, array $block ) : string {
 }
 
 /**
- * Register accessibleText attribute to all blocks
+ * Register accessibleText attribute to core/button
  * Assists with ServerSideRender
  * REST API does data validation against the registered attributes
  * Prevents throwing an error when unknown attributes get passed in
@@ -141,7 +141,9 @@ function register_accessibletext_attribute_for_blocks() {
 	$registered_blocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
 
 	foreach ( $registered_blocks as $name => $block ) {
-		$block->attributes['accessibleText'] = array( 'type' => 'string' );
+		if ( 'core/button' === $block->name ) {
+			$block->attributes['accessibleText'] = array( 'type' => 'string' );
+		}
 	}
 }
 
