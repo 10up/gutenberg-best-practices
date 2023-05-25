@@ -94,8 +94,7 @@ registerBlockExtension(blockName, {
 });
 ```
 
-`block-overrides/core-button.php`
-```bash
+```php title="block-overrides/core-button.php"
 <?php
 /**
  * Core Button Block.
