@@ -14,11 +14,8 @@ Another issue is that the block extensions only apply to static blocks. When the
 
 To solve for all these usecases we can use the HTMLTagProcessor and the block render callbacks.
 
-### Caveats:
-* This was only introduced in WP 6.2 earlier versions do not have this capability
-
 ## Code Example:
-This example showcases how to use `WP_HTML_Tag_Processor` with new block attributes. This example extends the `core/button` block and adds in fields for `Accessible Text` and `Button Padding` these new fields can then be used within PHP to create filters with the `WP_HTML_Tag_Processor` to update values of the rendered block content. In this case add in an `aria-label` with the text provided and set the `padding` around the button with the value provided via the block settings.
+This example showcases how to use `WP_HTML_Tag_Processor` with new block attributes. This example extends the `core/button` block and adds in fields for `Accessible Text` this new field can then be used within PHP to create a filter with the `WP_HTML_Tag_Processor` to update the value of the rendered block content. In this case add in an `aria-label` with the text provided via the block settings.
 
 ```js title="block-filters/button.js"
 import { __ } from '@wordpress/i18n';
@@ -32,10 +29,7 @@ const additionalAttributes = {
 	accessibleText: {
 		type: 'string',
 		default: '',
-	},
-	padding: {
-		type: 'number',
-	},
+	}
 };
 
 /**
@@ -50,21 +44,12 @@ const additionalAttributes = {
  */
 const BlockEdit = (props) => {
 	const {
-		attributes: { accessibleText, padding },
+		attributes: { accessibleText },
 		setAttributes,
 	} = props;
 
 	return (
 		<InspectorControls>
-			<PanelBody title={__('Button Padding')}>
-				<RangeControl
-					value={padding}
-					onChange={(value) => setAttributes({ padding: value })}
-					initialPosition={0}
-					min={0}
-					max={20}
-				/>
-			</PanelBody>
 			<PanelBody title={__('Additional Information')}>
 				<TextareaControl
 					value={accessibleText}
@@ -110,7 +95,6 @@ namespace TenUpTheme\BlockOverrides\CoreButton;
  */
 function setup(): void {
 	add_filter( 'render_block_core/button', __NAMESPACE__ . '\maybe_insert_aria_label', 10, 2 );
-	add_filter( 'render_block_core/button', __NAMESPACE__ . '\maybe_insert_padding', 10, 2 );
 }
 
 /**
@@ -148,29 +132,20 @@ function maybe_insert_aria_label( string $content, array $block ) : string {
 }
 
 /**
- * Set the padding around a button via an inline style.
- *
- * @param string $content Block content.
- * @param array  $block   Block data.
- *
- * @return string
+ * Register accessibleText attribute to all blocks
+ * Assists with ServerSideRender
+ * REST API does data validation against the registered attributes
+ * Prevents throwing an error when unknown attributes get passed in
  */
-function maybe_insert_padding( string $content, array $block ) : string {
-	$number = $block['attrs']['padding'] ?? false;
-	// Set the default if value has not been adjusted in block settings
-	$number = $number ? intval( $number ) : 0;
-	if ( empty( $number ) ) {
-		return $content;
+function register_accessibletext_attribute_for_blocks() {
+	$registered_blocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
+
+	foreach ( $registered_blocks as $name => $block ) {
+		$block->attributes['accessibleText'] = array( 'type' => 'string' );
 	}
-
-	$button = new \WP_HTML_Tag_Processor( $content );
-
-	// No tag is selected until the $xyz->next_tag(); is called
-	$button->next_tag();
-	$button->set_attribute( 'style', 'padding:' . $number . 'px' );
-
-	return $button->get_updated_html();
 }
+
+add_filter( 'wp_loaded', __NAMESPACE__ . '\\register_accessibletext_attribute_for_blocks', 999 );
 ```
 
 This new methodology can replace the existing `str_replace` methodology where PHP files would handle searching the HTML provided and replacing it via a method like this: `return str_replace( '<a ', '<a aria-label="' . esc_attr( $text ) . '" ', $content );`. Instead the `WP_HTML_Tag_Processor` can be used and the HTML can be modified and returned via a method like this: `return $button->get_updated_html();`
