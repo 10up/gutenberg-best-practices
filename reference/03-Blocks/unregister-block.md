@@ -31,8 +31,11 @@ const disallowedBlocks = [
 ];
 
 wp.domReady(() => {
-	wp.blocks.getBlockTypes().forEach(function (blockType) {
-		if (disallowedBlocks.indexOf(blockType.name) !== -1) unregisterBlockType(blockType.name);
+	const blocks = getBlockTypes();
+	blocks.forEach(({ name }) {
+		if (disallowedBlocks.includes(name)) {
+			unregisterBlockType(name);
+		}
 	});
 });
 ```
