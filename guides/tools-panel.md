@@ -24,7 +24,7 @@ The example below showcases three usages within an `edit.js` file within a custo
 2. Using a `ToolsPanel` for multiple `ToolsPanelItem`'s in this situation there are multiple controls within the `styles` group that would be used together to create an animation
 3. Using a `ToolsPanelItem` to create a singular control that adjusts the width of the block inside the `dimensions` group it also has the `isShownByDefault` which means it will always be displayed inside the block settings and does not need to be clicked on to enable and display.
 
-```bash
+```js
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, useSetting, RichText } from '@wordpress/block-editor';
 import {
