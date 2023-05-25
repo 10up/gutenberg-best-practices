@@ -20,8 +20,7 @@ To solve for all these usecases we can use the HTMLTagProcessor and the block re
 ## Code Example:
 This example showcases how to use `WP_HTML_Tag_Processor` with new block attributes. This example extends the `core/button` block and adds in fields for `Accessible Text` and `Button Padding` these new fields can then be used within PHP to create filters with the `WP_HTML_Tag_Processor` to update values of the rendered block content. In this case add in an `aria-label` with the text provided and set the `padding` around the button with the value provided via the block settings.
 
-`block-filters/button.js`
-```bash
+```js title="block-filters/button.js"
 import { __ } from '@wordpress/i18n';
 import { registerBlockExtension } from '@10up/block-components';
 import { PanelBody, TextareaControl, RangeControl } from '@wordpress/components';
