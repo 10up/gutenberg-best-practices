@@ -10,11 +10,10 @@ WordPress recently adopted a new UI approach for grouping related settings in th
 Both of these are **experimental**.
 
 ## Use Case:
-If you have custom controls that should exist within or be added to an existing block support panels group in the WP Admin block settings and you would like a fine grained ability on when to enable or have the user enable a specific control. This functionality also provides the benefit of resetting a control to a default state. Additionally new panels can be created using `ToolsPanel` as shown in the example below where a new `Animation` panel would be created.
+If you have custom controls that should exist within or be added to an existing block support panels group (ie: `border`, `color`, `dimensions`, `typography` or `styles`) in the WP Admin block settings and you would like a fine grained ability on when to enable or have the user enable a specific control. This functionality also provides the benefit of resetting a control to a default state. Additionally new panels can be created using `ToolsPanel` as shown in the example below where a new `Animation` panel would be created.
 
 ### Caveats:
-* When enabling the controls they must be tied to a block support panel group ie: `border`, `color`, `dimensions`, `typography` or `styles`.
-* It is best to use a `ToolsPanel` if there will be multiple `ToolsPanelItem`'s within a specific block support panel group. `ToolsPanelItem` is preferred if there is just a singluar `ToolsPanelItem` within a group.
+* The `ToolsPanel` component can be used to create entirely new panels that can house `ToolsPanelItem`'s, or extensions can be made to an existing `ToolsPanel`'s by adding individual `ToolsPanelItem`'s to it.
 * `ToolsPanel` provides a `resetAll` function that can take each `ToolsPanelItem`'s singular `resetAllFilter` by passing an array of
 these functions through to the panel’s `resetAll` callback to iterate over to reset all data within that panel simultaneously.
 
