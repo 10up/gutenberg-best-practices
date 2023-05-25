@@ -63,7 +63,9 @@ domReady(() => {
 ## Allow List:
 Opposite to the approach of `unregisterBlockType` would be to create a PHP allow list. In this scenario a developer would curate the specific blocks that they want to have shown to an editor. In these situations it is advised to always include common utility blocks such as: `core/block`, `core/missing`, `core/pattern`, `core/template-part` to prevent issues with the block editor. 
 
-**NOTE** - When using an allow list it is advised to review WordPress releases for any changes in existing blocks. As an example WordPress 6.1 refactored the list block from one singular block to an inner blocks structure with a list item. Anyone that used an allow list at that point needed to go in and update it to include the core/list-item block.
+:::caution
+When using an allow list it is advised to review WordPress releases for any changes in existing blocks. As an example WordPress 6.1 refactored the list block from one singular block to an inner blocks structure with a list item. Anyone that used an allow list at that point needed to go in and update it to include the core/list-item block.
+::::
 
 ## Code Example:
 ```php
