@@ -1,3 +1,7 @@
+---
+sidebar_position: 9
+---
+
 # Block Locking
 
 ![Block Locking UI](../../static/img/block-locking-ui.gif)
@@ -5,7 +9,7 @@
 The Block Locking API was introduced in WordPress 5.9. With it blocks can be locked from being able to get moved and or removed from the editor. In WordPress 6.0 this API got a visual user interface so that editors can lock and unlock blocks themselves.
 
 :::note
-Blocks can opt out of showing the block locking UI to the user via the `lock` block supports option. There also is a way to override what users are able to use the block locking UI via the `__experimentalCanLockBlocks` editor setting.
+Blocks can opt out of showing the block locking UI to the user via the `lock` block supports option. There also is a way to override what users are able to use the block locking UI via the `canLockBlocks` editor setting.
 :::note
 
 ## Locking the ability to remove / move a block
@@ -96,17 +100,17 @@ add_filter(
 	'block_editor_settings_all',
 	static function( $settings, $context ) {
 		// Allow for the Editor role and above.
-		$settings['__experimentalCanLockBlocks'] = current_user_can( 'delete_others_posts' );
+		$settings['canLockBlocks'] = current_user_can( 'delete_others_posts' );
 
 		// Only enable for specific user(s).
 		$user = wp_get_current_user();
 		if ( in_array( $user->user_email, array( 'george@example.com' ), true ) ) {
-			$settings['__experimentalCanLockBlocks'] = false;
+			$settings['canLockBlocks'] = false;
 		}
 
 		// Disable for posts/pages.
 		if ( $context->post && $context->post->post_type === 'page' ) {
-			$settings['__experimentalCanLockBlocks'] = false;
+			$settings['canLockBlocks'] = false;
 		}
 
 		return $settings;
