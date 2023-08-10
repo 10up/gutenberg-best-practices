@@ -200,8 +200,44 @@ function filter_theme_json_theme( $theme_json ){
 add_filter( 'wp_theme_json_data_theme', 'filter_theme_json_theme' );
 ```
 
+## Filtering `theme.json` client side
+
+Having the filters available on the backend is great. But sometimes we need to be able to change settings based on contextual clues. That isn't possible on the server because we cannot access the actual state of the block consuming the `theme.json` settings on the server.
+
+In order to allow for these types of contextual settings a new client side hook called `blockEditor.useSetting.before` was introduced in WordPress 6.2.
+
+```js
+import { select } from  '@wordpress/data';
+import { addFilter } from '@wordpress/hooks';
+import { store as blockEditorStore } from '@wordpress/block-editor';
+
+/**
+ * Disable text color controls on Heading blocks
+ * when placed inside of Media & Text blocks.
+ */
+addFilter(
+	'blockEditor.useSetting.before',
+	'namespace/useSetting.before',
+	( settingValue, settingName, clientId, blockName ) => {
+		if ( blockName === 'core/heading' ) {
+			const { getBlockParents, getBlockName } = select( blockEditorStore );
+			const blockParents = getBlockParents( clientId, true );
+			const isNestedInMediaTextBlock = blockParents.some( ( ancestorId ) => getBlockName( ancestorId ) === 'core/media-text' );
+
+			if ( isNestedInMediaTextBlock && settingName === 'color.text' ) {
+			    return false;
+			}
+		}
+
+		return settingValue;
+	}
+);
+```
+
 ## Links
 
 - [Block Editor Handbook - Global Settings & Styles (theme.json)](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/)
 - [Block Editor Handbook - Theme JSON API Reference](https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/theme-json-living/)
 - [Filters for theme.json data - WordPress 6.1 Dev Note](https://make.wordpress.org/core/2022/10/10/filters-for-theme-json-data/)
+- [How to modify theme.json data using server-side filters - WordPress Developer Blog](https://developer.wordpress.org/news/2023/07/how-to-modify-theme-json-data-using-server-side-filters/)
+- [Customize settings for any block in WordPress 6.2 - WordPress 6.2 Dev Note](https://make.wordpress.org/core/2023/02/28/custom-settings-wordpress-6-2/)
