@@ -39,7 +39,7 @@ Looking at the DOM we can see that the stylesheets get inlined in a particular o
 </p>
 </details>
 
-In cases where you need to load custom style overrides for the admin interface in the editor you can still do that with the `enqueue_block_editor_assets` hook.
+In cases where you need to load custom style overrides for the **admin interface** in the editor you can still do that with the `enqueue_block_editor_assets` hook. If you need to load a stylesheet for content elements in the editor and `add_editor_style` isn't an option you can use the `enqueue_block_assets`. Assets enqueued on that hook get loaded both on the frontend and in the iframed editor. If you only want to load a stylesheet in the iframed editor you can wrap your enqueue statement in an `is_admin` check.
 
 ## Block specific styles
 
