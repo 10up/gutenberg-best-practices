@@ -8,10 +8,10 @@ sidebar_position: 10
 * [unregisterBlockType](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-blocks/#unregisterblocktype)
 
 ## Unregister Use Case:
-Gutenberg comes with a lot of core blocks and this can be overwhelming for certain editors. Due to this situations arise where it is necessary to disable some blocks so that an editor can not access them when creating new pages and posts. Removing certain blocks can aid these editors by reducing cognitive load and confusion. This can be done using the `unregisterBlockType` function and passing in the blocks which should be disallowed within a `.js` file. 
+Gutenberg comes with a lot of core blocks and this can be overwhelming for certain editors. Due to this situations arise where it is necessary to disable some blocks so that an editor can not access them when creating new pages and posts. Removing certain blocks can aid these editors by reducing cognitive load and confusion. This can be done using the `unregisterBlockType` function and passing in the blocks which should be disallowed within a `.js` file.
 
 ## Code Example:
-This example showcases how an array of blocks can be passed into a single function and looped through to disable multiple blocks at the same time. 
+This example showcases how an array of blocks can be passed into a single function and looped through to disable multiple blocks at the same time.
 
 `block-filters/unregister-blocks.js`
 ```js
@@ -32,7 +32,7 @@ const disallowedBlocks = [
 
 domReady(() => {
 	const blocks = getBlockTypes();
-	blocks.forEach(({ name }) {
+	blocks.forEach(({ name }) => {
 		if (disallowedBlocks.includes(name)) {
 			unregisterBlockType(name);
 		}
@@ -53,7 +53,7 @@ const allowedEmbedBlocks = ['vimeo', 'youtube'];
 domReady(() => {
 	const embedVariations = getBlockVariations('core/embed');
 	embedVariations.forEach(({name}) => {
-		if (allowedEmbedBlocks.includes(name)) {
+		if (!allowedEmbedBlocks.includes(name)) {
 			unregisterBlockVariation('core/embed', name);
 		}
 	});
@@ -61,7 +61,7 @@ domReady(() => {
 ```
 
 ## Allow List:
-Opposite to the approach of `unregisterBlockType` would be to create a PHP allow list. In this scenario a developer would curate the specific blocks that they want to have shown to an editor. In these situations it is advised to always include common utility blocks such as: `core/block`, `core/missing`, `core/pattern`, `core/template-part` to prevent issues with the block editor. 
+Opposite to the approach of `unregisterBlockType` would be to create a PHP allow list. In this scenario a developer would curate the specific blocks that they want to have shown to an editor. In these situations it is advised to always include common utility blocks such as: `core/block`, `core/missing`, `core/pattern`, `core/template-part` to prevent issues with the block editor.
 
 :::caution
 When using an allow list it is advised to review WordPress releases for any changes in existing blocks. As an example WordPress 6.1 refactored the list block from one singular block to an inner blocks structure with a list item. Anyone that used an allow list at that point needed to go in and update it to include the core/list-item block.
