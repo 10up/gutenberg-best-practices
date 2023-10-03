@@ -9,4 +9,4 @@ sidebar_label: Introduction
 
 This section of the Gutenberg Best Practices is meant as a collection of individual deep dive articles.
 
-You are also welcome to contribute article so this guide :) Just create a Pull Request on the GitHub repository.
+You are also welcome to contribute articles to this guide :) Just create a Pull Request on the GitHub repository.
