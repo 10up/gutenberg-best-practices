@@ -44,6 +44,7 @@ section + hr {
 
 a {
   font-weight: var(--ifm-font-weight-semibold);
+  text-underline-position: under;
 }
 
 /* Stops iOS from zooming the code too much (bug) */
