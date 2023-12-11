@@ -4,6 +4,16 @@
 	width: 100%;
 }
 
+.home__heroBanner .navbar__search span span {
+	width: 100%;
+  position: relative !important;
+  vertical-align: top !important;
+  max-width: 47.5rem;
+  padding: 1rem 1.5rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .home__heroBanner .navbar__search input::placeholder {
 	color: var(--ifm-color-content);
 }
