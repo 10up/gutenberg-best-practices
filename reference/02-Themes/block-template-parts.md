@@ -20,7 +20,7 @@ All existing block template parts can be edited in the template part editor. Thi
 :::info
 The block template part editor also features an iframed editor. So the preview is actually accurate for what will happen on the frontend of the site.
 
-If you are building custom blocks that utilize JavaScript DOM manipulations you can use this guide to learn more about how to work with this iframed context: <https://make.wordpress.org/core/2021/06/29/blocks-in-an-iframed-template-editor/>
+If you are building custom blocks that utilize JavaScript DOM manipulations you can use this guide to learn more about how to work with this iframed context: [https://make.wordpress.org/core/2021/06/29/blocks-in-an-iframed-template-editor/](https://make.wordpress.org/core/2021/06/29/blocks-in-an-iframed-template-editor/)
 :::
 
 ## How to enable block template parts
