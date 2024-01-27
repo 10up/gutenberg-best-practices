@@ -2,7 +2,7 @@
 
 This lesson provides a partially completed block that needs to have some features added to it to match the existing `cta-complete` block. All of the setup and files have been pre-configured as the focus here is to work with a block on its own without adding confusion around build tools and file locations.
 
-These files can be found inside of the starter theme at: `/wp-content/themes/tenup-theme/includes/blocks`.
+These files can be found inside of the starter theme at: `/wp-content/themes/10up-theme/includes/blocks`.
 
 If you are stuck or need help, refer to the `cta-complete` block as a reference or reach out to #10up-gutenberg in Slack for help
 
@@ -71,7 +71,7 @@ Not sure what to use as values? Here you go:
 :::tip
 
 :::note
-See that `setAttributes` call? That's a function that is provided by the block API to set attributes for the block you can read more about it [here](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/)
+See that `setAttributes` call? That's a function that is provided by the block API to set attributes for the block and you can read more about it [here](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/)
 :::note
 
 ### 3: Adding an optional field to the block
@@ -157,7 +157,7 @@ The next step is to add a new `RichText` component below the one for the `descri
   * `onChange={(ctaText) => setAttributes({ ctaText })}`
 :::tip
 
-**A quick note on block UX best practices:** Generally, speaking content such as text or setting a featured image should be input into the actual block and "settings" such as the CTA on/off toggle should be in the inspector toolbar.
+**A quick note on block UX best practices:** Generally speaking, content such as text or setting a featured image should be input into the actual block and "settings" such as the CTA on/off toggle should be in the inspector toolbar.
 
 ### 4: Rendering the front-end
 
