@@ -90,7 +90,7 @@ function registerImageStyles() {
 
 :::tip
 
-1. Pass the function to the `domReady` function from the `@wordpress/dom-ready` package. Registering our styles only once the DOM is fully loaded avoids race conditions with WordPress Core:
+5. Pass the function to the `domReady` function from the `@wordpress/dom-ready` package. Registering our styles only once the DOM is fully loaded avoids race conditions with WordPress Core:
 
 ```js
 import domReady from '@wordpress/dom-ready';
