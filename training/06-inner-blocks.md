@@ -134,7 +134,7 @@ registerBlockType(block.name, {
 });
 ```
 
-Now that the content is saved in the database we also need to somehow use this content in our markup in PHP template. Inside our [`markup.php`[(<https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/markup.php>)] file we have access to a few variables. The `$attributes`, `$content`, `$block`, and `$context`. In this case we are interested in the `$content` variable which stores the saved markup from the editor.
+Now that the content is saved in the database we also need to somehow use this content in our markup in PHP template. Inside our [markup.php](<https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-one-starter/markup.php>) file we have access to a few variables. The `$attributes`, `$content`, `$block`, and `$context`. In this case we are interested in the `$content` variable which stores the saved markup from the editor.
 
 If we look down at the content container, we will see the comment `// The inner blocks content should get rendered here.` Replace this comment with the following:
 
@@ -165,12 +165,12 @@ We can improve the UX by adding a list of allowed blocks to the inner blocks com
 const innerBlocksProps = useInnerBlocksProps(
 	{},
 	{
-		allowedBlocks: { [
+		allowedBlocks: [
 			'core/heading',
 			'core/paragraph',
 			'core/buttons',
 			'core/button',
-		] }
+		]
 	}
 );
 
@@ -193,10 +193,10 @@ To achieve this we can define a `template` on the inner block area. The template
 const innerBlocksProps = useInnerBlocksProps(
 	{},
 	{
-		template: {[
+		template: [
 			['core/heading', { level: 2, placeholder: 'Insert your heading here...' }],
 			['core/paragraph', { placeholder: 'Write some description text here...' }],
-		]}
+		]
 	}
 );
 
