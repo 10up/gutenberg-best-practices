@@ -165,12 +165,12 @@ We can improve the UX by adding a list of allowed blocks to the inner blocks com
 const innerBlocksProps = useInnerBlocksProps(
 	{},
 	{
-		allowedBlocks: { [
+		allowedBlocks: [
 			'core/heading',
 			'core/paragraph',
 			'core/buttons',
 			'core/button',
-		] }
+		]
 	}
 );
 
@@ -193,10 +193,10 @@ To achieve this we can define a `template` on the inner block area. The template
 const innerBlocksProps = useInnerBlocksProps(
 	{},
 	{
-		template: {[
+		template: [
 			['core/heading', { level: 2, placeholder: 'Insert your heading here...' }],
 			['core/paragraph', { placeholder: 'Write some description text here...' }],
-		]}
+		]
 	}
 );
 
