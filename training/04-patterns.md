@@ -97,7 +97,7 @@ In the paragraph for example the text content within the `p` tag is automaticall
 The `className` attribute on the other hand is impossible to parse because there may be other classnames coming from the block itself or some extension that only works when the attribute is stored in the JSON object.
 </details>
 
-Since WordPress 6.0 patterns can be registered super easily by _just_ creating a PHP file inside the `pattern` folder at the root directory of a theme. This PHP file needs to have a comment header with some metadata and then just the markup of the blocks themselves.
+Since WordPress 6.0 patterns can be registered super easily by _just_ creating a PHP file inside the `patterns` folder at the root directory of a theme. This PHP file needs to have a comment header with some metadata and then just the markup of the blocks themselves.
 
 ### Pattern document headers
 
