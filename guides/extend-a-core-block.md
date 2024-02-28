@@ -50,7 +50,7 @@ function generateClassName( attributes ) {
 
 :::caution
 If you extend dynamic blocks that don't store their markup in the database you will need to replicate the logic to add the class name on the frontend manually in php.
-:::caution
+:::
 
 ### Create Inline Style generator
 

@@ -51,7 +51,7 @@ You can easily enhance the editor experience by also adding a block pattern for 
 
 :::caution
 As mentioned in the [block pattern reference](../reference/Blocks/block-patterns) patterns have no connection to what created them. So any updates you make to the pattern in the future will not update instances that were created before you updated it.
-:::caution
+:::
 
 ### 2.b Using Core Blocks + a Block Pattern with Restrictions
 
@@ -65,4 +65,4 @@ This Icon Card block can then be inserted inside the columns block with a headin
 
 :::info
 The custom block should also get a block pattern created to make it even easier to insert the entire design on the page. Since we build dynamic blocks at 10up we now also don't have the issue of not being able to update markup in patterns anymore. Because we can update the markup of our dynamic block which gets reflected everywhere.
-:::info
+:::

@@ -6,7 +6,7 @@ sidebar_position: 3
 
 :::note
 There is no core API for block extensions. When we refer to block extensions here, we actually mean using the hooks provided in the block editor to add our own custom attributes and UI to existing blocks.
-:::note
+:::
 
 The Block Editor Handbook has a full list of the [available block filters in the Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/).
 

@@ -68,11 +68,11 @@ Not sure what to use as values? Here you go:
 />
 ```
 
-:::tip
+:::
 
 :::note
 See that `setAttributes` call? That's a function that is provided by the block API to set attributes for the block you can read more about it [here](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/)
-:::note
+:::
 
 ### 3: Adding an optional field to the block
 
@@ -91,7 +91,7 @@ Add three more attributes to the `cta-starter/block.json` file for each of the n
 
 :::note
 **One of them is** NOT of the type `string`
-:::note
+:::
 
 :::tip
 Attributes we are adding:
@@ -99,7 +99,8 @@ Attributes we are adding:
 * `showCTALink`
 * `ctaLink`
 * `ctaText`
-:::tip
+
+:::
 
 **BONUS:** Let's set some defaults for these new attributes:
 
@@ -116,7 +117,7 @@ The `InspectorControls` component has already been added to the `cta-starter/edi
 
 :::tip
 place `ToggleControl` inside `PanelBody`:
-:::tip
+:::
 
 ```jsx
 <ToggleControl
@@ -142,7 +143,7 @@ Once that is in-place, we want to add a `URLInput` component to the Inspector Si
 />
 ```
 
-:::tip
+:::
 
 The next step is to add a new `RichText` component below the one for the `description` field that will manage the text of the CTA button. Be sure that this is only shown if the feature is enabled and that it sets and retrieves the associated attribute correctly.
 
@@ -155,7 +156,8 @@ The next step is to add a new `RichText` component below the one for the `descri
   * `placeholder={__('CTA here…', 'gutenberg-lessons')}`
   * `value={ctaText}`
   * `onChange={(ctaText) => setAttributes({ ctaText })}`
-:::tip
+
+:::
 
 **A quick note on block UX best practices:** Generally, speaking content such as text or setting a featured image should be input into the actual block and "settings" such as the CTA on/off toggle should be in the inspector toolbar.
 
@@ -168,11 +170,12 @@ The intention for any block we create at 10up is to have the Block Editor experi
 * Add `description`, and conditionally show `ctaLink`.
 * All data needed should be passed found in $attributes.
 * Don't forget class names.
-:::tip
+
+:::
 
 :::caution
 You may see in the primary div in the class declaration the following: `<?php echo isset( $attributes['className'] ) ? esc_attr( $attributes['className'] ) : ''; ?>`. When a block is selected, within the block inspector controls (right sidebar), you will see a toggle for `Advanced` and, within that, an input to optionally add `Additional CSS class(es)`. This code included in the markup will display any custom / additional classes added here.
-:::caution
+:::
 
 ## Next Steps
 

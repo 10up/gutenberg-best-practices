@@ -114,11 +114,11 @@ With this every block that is newly created and also every existing block that g
 
 :::warning
 But be careful. Existing blocks on pages that don't get edited will still have the old attributes shape until they get updated. So your PHP markup will need to account for both instances.
-:::warning
+:::
 
 :::note
 the `isEligible` check is required since the block editor would use the saved markup by default. But since we don't save our markup this is the way we can tell the editor what deprecation needs to run.
-:::note
+:::
 
 ## Further reading
 

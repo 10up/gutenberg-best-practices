@@ -10,7 +10,7 @@ The Block Locking API was introduced in WordPress 5.9. With it blocks can be loc
 
 :::note
 Blocks can opt out of showing the block locking UI to the user via the `lock` block supports option. There also is a way to override what users are able to use the block locking UI via the `canLockBlocks` editor setting.
-:::note
+:::
 
 ## Locking the ability to remove / move a block
 
@@ -42,7 +42,7 @@ In a pattern you can set these attributes via the html comment of the block wher
 
 :::note
 You can also use these attributes in your custom blocks to set default values for the locking. For example if you have a page header block that should never get removed you can set the default value of the `lock` attribute to `{ remove: true }`
-:::note
+:::
 
 ## Restricting which inner blocks can be used
 
@@ -72,7 +72,7 @@ The core column, group, and cover block support the ability to restrict which bl
 
 :::tip
 Since these patterns are php files you can make the `allowedBlocks` list filterable via an `apply_filters` hook.
-:::tip
+:::
 
 ## Disabling the block locking UI
 

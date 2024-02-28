@@ -28,7 +28,7 @@ We need a way to "package up" all those elements so editors can easily insert th
 The approach taught in this lesson requires WordPress 6.0. In order to get it working before this, we have [polyfilled the core functionality into the `tenup-theme` of the gutenberg training](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks.php#L181-L316).
 
 In order to manually register patterns, you need to register each pattern using the [`register_block_pattern`](https://developer.wordpress.org/reference/functions/register_block_pattern/) function.
-:::info
+:::
 
 ## Breaking it Down
 

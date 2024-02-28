@@ -48,7 +48,7 @@ Import the `ToggleControl` component and add it inside the `PluginDocumentSettin
 
 :::warning
 **You will be updating all of the meta for the post, so be sure to combine the existing and new meta values when saving. If you get stuck, refer to the complete example.**
-:::note
+:::
 
 ### 4. Display the class on the frontend
 

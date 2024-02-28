@@ -18,7 +18,7 @@ Variations can be surfaced in three ways. They can be shown in the inserter, the
 
 :::note
 By default they are shown both in the inserter and the block.
-:::note
+:::
 
 Block variations can be declared during a block's registration by providing the `variations` key with a proper array of variations, as defined below. In addition, there are ways to register and unregister a `block variation` for a block, after its registration.
 
@@ -75,7 +75,7 @@ An object describing a variation defined for the block type can contain the foll
 
 :::info
 The main difference between block styles and block variations is that a block style just applies a CSS class to the block, so it can be styled in an alternative way. If we want to apply initial attributes or inner blocks, we fall in block variation territory.
-:::info
+:::
 
 To add a block variation use `registerBlockVariation()`.
 

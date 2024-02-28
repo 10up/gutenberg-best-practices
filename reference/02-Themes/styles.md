@@ -28,7 +28,7 @@ The stylesheets that get added via the `add_editor_style` function get automatic
 
 :::tip
 If you need to load custom fonts from an external source you also need to add a separate `add_editor_style` call for the stylesheet loading the font.
-:::tip
+:::
 
 <details>
 <summary>Enqueueing order on the page:</summary>
@@ -104,7 +104,7 @@ Please note that if a stylesheet opts-in to get inlined, that is no guarantee th
 If for example on a page there are 30 stylesheets that are 1kb each, and they all opt-in to be inlined, then only 20 of them will be converted from `<link rel="stylesheet"/>` to `<style>` elements. When the 20th stylesheet gets inlined the 20kb limit is reached and the inlining process stops. The remaining 10 stylesheets will continue functioning like before and remain `<link>` elements.
 
 If your theme opts-in to the separate block-styles, core block styles by default have `path` defined so they can all be inlined.
-:::note
+:::
 
 ## Links
 

@@ -190,7 +190,7 @@ Starting in WordPress 6.1, Block patterns can also be specific to any post type.
 
 :::tip
 The ability to limit a pattern per post type ties in nicely with the option for page level patterns. When you **combine** the two you can present users with **different page level patterns** for **different post types**.
-:::tip
+:::
 
 ## Contextual Patterns
 
@@ -218,7 +218,7 @@ The WPEngine Blog has published a [great article about Contextual Patterns](http
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fW4xhwjfyeY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-:::info
+:::
 
 ## Content Only locked Patterns
 
@@ -277,7 +277,7 @@ This is achieved by adding `"__experimentalRole": "content"` to the attribute de
 
 :::caution
 There is one item that you need to be aware about in regards to Block Patterns. Once they are inserted they have no link to the original block pattern that they were created by. On insertion they become regular blocks. Therefore it is not possible to adjust all occurrences of a block pattern after it has been used.
-:::caution
+:::
 
 If you find an issue with the markup of a pattern that you want to fix it is only going to impact new instances of the pattern that are created after you updated it. And you will have to manually go into every instance that was created using the pattern and make the update manually, or create an update script to update it in the database directly.
 
