@@ -36,7 +36,7 @@ Every time the block gets used anywhere, WordPress will make sure to enqueue all
 
 :::note
 WordPress expects a file that is provided via a relative file path to also have a `.asset.php` file next to it with the script dependencies and generated version number. Both `@wordpress/scripts` and `10up-toolkit` do this automatically for you using the `@wordpress/dependency-extraction-webpack-plugin`.
-:::note
+:::
 
 ### Enqueueing additional external dependencies
 

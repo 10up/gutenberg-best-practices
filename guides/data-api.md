@@ -55,7 +55,7 @@ import { store as packageStore } from '@wordpress/package';
 
 :::note
 `@wordpress/package` does not actually exist
-:::note
+:::
 
 You can then use this imported store object either by passing it to the `useDispatch` hook if you want to trigger actions on the store:
 

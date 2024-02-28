@@ -212,7 +212,7 @@ return (
 
 :::note
 Before continuing, be sure you have done the following for the `inner-blocks-two-card-starter` and the `inner-blocks-two-card-grid-starter.` (per our guidance above):
-:::note
+:::
 
 1. Add `editorScript` property in [`block.json`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/block.json)
 2. Add `useInnerBlocksProps` to [`edit.js`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/edit.js) (Don't forget to import `useInnerBlocksProps` at the top of the file).
@@ -254,7 +254,7 @@ const innerBlocksProps = useInnerBlocksProps(
 
 :::tip
 For the above, we have already included styles in the [`index.css`](https://github.com/10up/gutenberg-lessons/tree/trunk/themes/tenup-theme/includes/blocks/inner-blocks-two-card-grid-starter/index.css) to assist with our layout - more on this below.
-:::tip
+:::
 
 The second thing we need to do is make sure our "child" block, in this case, the "Card", doesn't appear in the regular inserter or that it cannot get moved anywhere outside of a "Card Grid". And for that, we can use the [`parent`](https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-registration.md#parent-optional) option in the `block.json` file. When you define a `parent` the block will no longer show up in the inserter and it also cannot get used anywhere outside of the defined parent.
 

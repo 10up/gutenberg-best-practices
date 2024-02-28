@@ -84,7 +84,7 @@ This pattern of having a placeholder also allows you to make it easier for your 
 
 :::info
 This actually is a pattern that you will see over and over again throughout this section. The settings sidebar should be treated as optional. Most editors should never have to open it and interact with the options in it. Everything they need to enter their content should be available inline.
-:::info
+:::
 
 ### Selected
 

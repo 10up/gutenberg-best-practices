@@ -28,7 +28,7 @@ The Columns block on the other hand sets the scope to `block` and uses the block
 
 :::note
 The default `scope` is both `block` and `inserter`
-:::note
+:::
 
 ## Exercise Overview
 
@@ -38,7 +38,7 @@ Of course, you could skip the setup and manually configure it to have 4 25% wide
 
 :::note
 If you get stuck, you can take a look at the completed example located in the [`includes/block-variations`](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-variations/four-columns-variation-completed.js) folder of the tenup theme.
-:::note
+:::
 
 1. Create a new file in the `includes/block-variations` folder called `four-columns-equal.js`
 2. import that new file into the `index.js` file inside the same folder

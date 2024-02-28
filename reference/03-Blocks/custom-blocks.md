@@ -36,7 +36,7 @@ At 10up the majority of custom blocks we develop blocks as dynamic blocks. We al
 These best practices only apply to closely monitored custom client builds. Blocks for open source projects should use static rendering as the default and should ship in plugins only.
 
 In general. If a block provides functionality it is better suited in a plugin. If it is a design / layout element specific to a theme it should be bundled with the theme.
-:::info
+:::
 
 ### Dynamic Blocks
 

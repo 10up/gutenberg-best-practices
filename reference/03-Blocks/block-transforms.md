@@ -20,7 +20,7 @@ You can solve this problem by essentially deprecating the two old blocks by sett
 
 :::info
 This is great because the old instances don't automatically get updated, but instead allow the editor to either leave them as is, or update them to the new variant whenever they want.
-:::info
+:::
 
 ## Adding Block Transformations
 
