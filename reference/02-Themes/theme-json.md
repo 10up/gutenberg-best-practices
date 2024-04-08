@@ -47,7 +47,7 @@ Add the `$schema` key to your `theme.json` files:
 
 This will give you autocomplete and inline documentation while working on `theme.json` files.
 
-_You can interchange `trunk` with a specific WordPress version like so: `https://schemas.wp.org/wp/5.9/theme.json`_
+_You can interchange `trunk` with a specific WordPress version like so: `https://schemas.wp.org/wp/6.5/theme.json`_
 :::
 
 As mentioned earlier the `theme.json` file has two main purposes. It allows you to control which settings get displayed, and also define certain default values for styles. This styling mechanism is build on CSS custom properties.
