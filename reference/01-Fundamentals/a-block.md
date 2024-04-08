@@ -62,6 +62,19 @@ The content of the block is an inline editable representation of the block. Depe
 
 The settings sidebar housed additional secondary controls. What is placed in here should never be mandatory in order to use a block. Instead the block should operate with sensible defaults in place and if an editor wants to dig down deeper and configure more details of how the block looks & behaves this is where they can go.
 
+The settings sidebar is split into two tabs. The "Settings" and the "Styles" tab. They only show up when the block actually has any controls that render in the respective tab.
+
+Any controls that change the visual appearance of the block should be placed inside the Styles tab. Whilst any settings that configure settings should go into the Settings tab.
+
+<details>
+<summary>How to place controls in these locations</summary>
+
+you can control in which location your UI should get rendered by changing the `group` prop of your `<InspectorControls>` component. The default value places a control in the main settings sidebar. Additionally there is a `styles` group to put controls into the styles tab. Or if you want to be more granular, each of the style sections from core also allow you to add additional settings in there like the `color` group for example which renders your control inside the color panel of the styles tab.
+
+You can find all of the available groups on GitHub here: [https://github.com/WordPress/gutenberg/blob/7c25dc48244c8ff0b2585c075359ef6a5868464e/packages/block-editor/src/components/inspector-controls/groups.js#L25-L39](https://github.com/WordPress/gutenberg/blob/7c25dc48244c8ff0b2585c075359ef6a5868464e/packages/block-editor/src/components/inspector-controls/groups.js#L25-L39)
+
+</details>
+
 :::caution
 The settings sidebar should **not** be the default place for every single option of the block.
 :::
