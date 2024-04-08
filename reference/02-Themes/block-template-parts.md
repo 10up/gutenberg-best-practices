@@ -91,7 +91,7 @@ To actually use this template part the theme author then needs to call the `bloc
 
 ## Caveats with using block template parts
 
-Block template parts feature-wise are very similar to block based widget areas. Because the block based template parts feature has been build for the editor from the ground up it provides a better user experience and therefore should be preffererd in most instances.
+Block template parts feature-wise are very similar to block based widget areas. Because the block based template parts feature has been build for the editor from the ground up it provides a better user experience and therefore should be preferred in most instances.
 
 Ideally both features shouldn't be used at the same time.
 
