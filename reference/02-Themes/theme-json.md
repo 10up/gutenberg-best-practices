@@ -117,15 +117,15 @@ These settings and styles exist at three levels, each overwriting the specificit
 
 ## Using the values from `theme.json` custom blocks
 
-You can access the settings & values defined in `theme.json` via the `useSetting` hook. This hook accepts a `string` as its parameter which is used as the path for a setting. This means that it checks through the different specificity levels whether a value has been defined for this key.
+You can access the settings & values defined in `theme.json` via the `useSettings` hook. This hook accepts a `string` as its parameter which is used as the path for a setting. This means that it checks through the different specificity levels whether a value has been defined for this key.
 
 It first checks whether the user has defined something, then whether the block has defined something in its settings, following the global settings in `theme.json`. If none of these places have any value it will use the default value specified in core.
 
 ```js
-import { useSetting } from '@wordpress/block-editor';
+import { useSettings } from '@wordpress/block-editor';
 
 export function BlockEdit() {
-    const isEnabled = useSetting( 'typography.dropCap' );
+    const [isEnabled] = useSettings( ['typography.dropCap'] );
 
     // ...
 }
@@ -156,7 +156,7 @@ export function BlockEdit() {
 }
 ```
 
-Using `useSetting('typography.dropCap')` would only return `true` if it is being called from within the `core/paragraph` block.
+Using `useSettings(['typography.dropCap'])` would only return `[true]` if it is being called from within the `core/paragraph` block.
 
 </p>
 </details>
