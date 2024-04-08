@@ -5,8 +5,6 @@ sidebar_position: 3
 
 # Loading Fonts using `theme.json`
 
-Since WordPress 5.9 it is possible to load typefaces via `theme.json`. Eventually the internal PHP API to register fonts will also become available to developers. But the mechanism in `theme.json` can be used already to make use of this new and improved font handling.
-
 ## Why use `theme.json` for controlling font loading?
 
 Using `theme.json` to handle the registration of fonts automatically makes sure the font files are properly enqueued everywhere in WordPress. It provides us with a simple API to control all aspects of how the font should get rendered and loaded. This also directly works for any iframed editors.
@@ -76,3 +74,29 @@ The resulting output on the page will be an inline style tag with the various `@
 	...
 </style>
 ```
+
+:::tip
+Most of the time you won't actually want to manually write all the JSON to add your fonts. Instead you can use the [Create Block Theme](https://wordpress.org/plugins/create-block-theme/) plugin to visually manage your fonts and then output the resulting `theme.json` file directly to your theme.
+:::
+
+## Font Library
+
+The font library is part of the Global Styles section inside the site editor of a block theme. It visually allows administrators to manage which fonts are installed on their site.
+
+The font library exposes available font collections in the UI. By default WordPress core includes a collection for Google Fonts. But any developer can add additional font collections in the same way using the `wp_register_font_collection` function.
+
+You can [learn more about registering custom font collections in the core documentation](https://make.wordpress.org/core/2024/03/14/new-feature-font-library/#adding-a-font-collection).
+
+:::caution
+On most client builds we don't actually want to rely on administrators adding random custom fonts. Because doing so can have very string negative side effects on both the visual appearance of a site but even more importantly the performance of a site. Therefore the best practice is to already define the correct fonts in the themes `theme.json` file and even disable the font library UI via this filter:
+
+```php
+function disable_font_library_ui( $editor_settings ) { 
+   	 $editor_settings['fontLibraryEnabled'] = false;
+   	 return $editor_settings; 
+}
+
+add_filter( 'block_editor_settings_all', 'disable_font_library_ui' );
+```
+
+:::
