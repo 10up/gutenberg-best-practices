@@ -3,6 +3,16 @@
 .home__heroBanner .navbar__search span {
 	width: 100%;
 }
+.home__heroBanner .navbar__search button {
+	top:2.4375rem !important
+}
+
+.home__heroBanner .navbar__search span span {
+	width: 100%;
+  position: relative !important;
+  max-width: 47.5rem;
+  margin: 10px auto auto auto;  
+}
 
 .home__heroBanner .navbar__search input::placeholder {
 	color: var(--ifm-color-content);
