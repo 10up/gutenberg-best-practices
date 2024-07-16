@@ -27,7 +27,7 @@ In redux and therefore in the WordPress Data API there is the concept of a Store
 
 ![List of the various Core Data Stores](../static/img/data-api-core-stores.png)
 
-The editor does not only have one global data store but rather multiple different stores that each focus on different areas of the site. These stores can be refereed to by their namespace or you can import the store object from the individual packages.
+The editor does not only have one global data store but rather multiple different stores that each focus on different areas of the site. These stores can be referred to by their namespace or you can import the store object from the individual packages.
 
 | Namespace           | Name | Purpose |
 |---------------------|------|---------|
