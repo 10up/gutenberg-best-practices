@@ -126,6 +126,16 @@ $additional_attributes = [
 
 If you change the value of `isActive` in the context the `is-active` class will get added or removed from the div.
 
+:::info
+The Interactivity API two different ways for keeping track of state. Context is used for local state. It is only available to the block itself and any child elements. The DOM is the source of truth here.
+
+There also is `state` which is global and shared across all instances of the block and can be accessed by other blocks as well.
+
+In this example we are using `context` because we only need the state to be available to the block itself.
+
+State also has one more trick up it's sleve. Unlike context, state also allows you to define derrived state. This is state that is calculated based on other state or even context values. So you can for example access the `context` inside a `state` getter and return a value based on that.
+:::
+
 ### Lets make it interactive
 
 Now that we have our context defined we can start to add some interactivity to our block. This is done by defining actions that can be triggered by the user.
