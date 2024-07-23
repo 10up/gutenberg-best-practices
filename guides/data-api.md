@@ -97,7 +97,7 @@ const { something, somethingElse } = useSelect( function(select) {
 
 ![Loading & Error Icons](../static/img/data-api-loading-error.png)
 
-You get get access to whether or not a select statement has been resolved by using the `hasFinishedResolution` selector that is provided on every core store.
+You can get access to whether or not a select statement has been resolved by using the `hasFinishedResolution` selector that is provided on every core store.
 
 The `hasFinishedResolution` selector takes the name of the selector you want to monitor as the first parameter and the parameters you provided the selector as the second parameter. Because of that it is a good pattern to put the parameter for the main selector into a variable on its own and list the parameter in an array. You can then use this array to spread the parameter into the selector itself and also provide them to the `hasFinishedResolution` selector.
 
