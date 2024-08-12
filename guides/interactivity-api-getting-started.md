@@ -60,11 +60,11 @@ First we need to tell WordPress that our block is making use of the Interactivit
 
 This lets WordPress know that there are special html data attributes that need to get processed before the HTML is printed on the page.
 
-Next we can setup the namespace of our interactive region. This is done by adding a `data-wp-interactivity` attribute to the root element of our block.
+Next we can setup the namespace of our interactive region. This is done by adding a `data-wp-interactive` attribute to the root element of our block.
 
 ```php
 $additional_attributes = [
-	'data-wp-interactivity' => 'namespace/block-name',
+	'data-wp-interactive' => 'namespace/block-name',
 ];
 
 ?>
@@ -114,8 +114,8 @@ To define out context we can again start in out markup. The `data-wp-context` at
 
 ```php
 $additional_attributes = [
-	'data-wp-interactivity' => 'namespace/block-name',
-	'data-wp-context'      => wp_json_encode(
+	'data-wp-interactive' => 'namespace/block-name',
+	'data-wp-context'     => wp_json_encode(
 		[
 			'isActive' => false,
 		],
@@ -158,8 +158,8 @@ In this example we define a new action called `toggle`. This action is now avail
 ```php
 <?php
 $additional_attributes = [
-	'data-wp-interactivity' => 'namespace/block-name',
-	'data-wp-context'       => wp_json_encode(
+	'data-wp-interactive' => 'namespace/block-name',
+	'data-wp-context'     => wp_json_encode(
 		[
 			'isActive' => false,
 		],
@@ -186,8 +186,8 @@ To make this more accessible we can also add a `data-wp-bind--` directive and bi
 ```php
 <?php
 $additional_attributes = [
-	'data-wp-interactivity' => 'namespace/block-name',
-	'data-wp-context'       => wp_json_encode(
+	'data-wp-interactive' => 'namespace/block-name',
+	'data-wp-context'     => wp_json_encode(
 		[
 			'isActive' => false,
 		],
