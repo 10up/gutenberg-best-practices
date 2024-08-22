@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 6
 ---
 
 # Block Transforms
@@ -12,7 +12,7 @@ This is super useful to allow editors to quickly switch between different types 
 
 ## When to use Block Transforms
 
-In theory most blocks should have block transformations defined. They make the live of the editors much easier. With the ability to transform one block into another one this can also be leveraged in order to not build overly complex blocks with too many options. Instead it is often easier and faster to build two separate blocks and allow the user to transform between them.
+In theory most blocks should have block transformations defined. They make the lives of the editors much easier. With the ability to transform one block into another one this can also be leveraged in order to not build overly complex blocks with too many options. Instead it is often easier and faster to build two separate blocks and allow the user to transform between them.
 
 Finally one more use-case is using the transforms in order to add a controlled update path for users. Let's imagine you have a project where you build a block two different blocks that work in slightly different ways. Further down the line in the project you find that the client now has new requirements that make these two blocks obsolete. Instead they want to replace the two blocks with one that can solve for both use-cases at the same time.
 
@@ -20,7 +20,7 @@ You can solve this problem by essentially deprecating the two old blocks by sett
 
 :::info
 This is great because the old instances don't automatically get updated, but instead allow the editor to either leave them as is, or update them to the new variant whenever they want.
-:::info
+:::
 
 ## Adding Block Transformations
 

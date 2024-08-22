@@ -4,7 +4,7 @@ In many of our projects at 10up, we need to change the style of some of the core
 
 :::tip
 A block should **never** have more than 4 block styles
-:::tip
+:::
 
 ## Learning Outcomes
 
@@ -44,7 +44,7 @@ Let's see how to add a new style — slightly-rounded!
 This is a fictional example that showcases the pitfalls of Block Styles pretty well. In the real world, this setting should probably be a block extension that allows the editor to change the Border Radius of the image.
 
 Because as soon as the client needs more different steps of rounded corners all you can do is add more and more block styles that all are very similar to one another. Leading to a worse user experience.
-:::caution
+:::
 
 ## Add a New Style
 
@@ -88,12 +88,14 @@ function registerImageStyles() {
 }
 ```
 
-:::tip
+:::
 
-5. Call the function in the `wp.domReady` callback to avoid race conditions with WordPress Core:
+1. Pass the function to the `domReady` function from the `@wordpress/dom-ready` package. Registering our styles only once the DOM is fully loaded avoids race conditions with WordPress Core:
 
 ```js
-wp.domReady(() => {
+import domReady from '@wordpress/dom-ready';
+
+domReady(() => {
 	registerCTAStarterStyles();
 });
 ```
@@ -105,7 +107,7 @@ And voila! We've added a new style for our custom block!
 
 :::note
 For training purposes, this replicates the custom styles already in place for the `cta-complete` block. This type of replication we would typically not do in a real-world environment.
-:::note
+:::
 
 ![alt text](../static/img/cta-block-thick-border.png "Thick border CTA style")
 

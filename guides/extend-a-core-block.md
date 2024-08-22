@@ -22,7 +22,14 @@ const newAttributes = {
     isLightbox: {
         type: 'boolean',
         default: false
-    }
+    },
+	focalPoint: {
+		type: 'object',
+		default: {
+			x: 0.5,
+			y: 0.5,
+		},
+	},
 };
 ```
 
@@ -43,7 +50,22 @@ function generateClassName( attributes ) {
 
 :::caution
 If you extend dynamic blocks that don't store their markup in the database you will need to replicate the logic to add the class name on the frontend manually in php.
-:::caution
+:::
+
+### Create Inline Style generator
+
+In certain use cases adding inline styles for a specific extended block may be a cleaner approach than adding a class to your block. In this use case the new inlineStyleGenerator function to generate inline styles that should be passed to the extended block.
+
+```js
+function generateInlineStyle(attributes) {
+	const { focalPoint } = attributes;
+	let style = { objectPosition: '50% 50%' };
+	if (focalPoint) {
+		style = { objectPosition: `${focalPoint.x * 100}% ${focalPoint.y * 100}%` };
+	}
+	return style;
+}
+```
 
 ### Create Editor User Interface
 
@@ -52,7 +74,7 @@ Finally you will need to define the editor UI you want for the new setting. This
 ```js
 function LightboxBlockEdit( props ) {
     const { attributes, setAttributes } = props;
-    const { isLightbox } = attributes;
+    const { isLightbox, focalPoint, url } = attributes;
 
     return (
         <InspectorControls>
@@ -62,6 +84,12 @@ function LightboxBlockEdit( props ) {
                     checked={ isLightbox }
                     onChange={ value => setAttributes({ isLightbox: value }) }
                 />
+				<FocalPointPicker
+					label="Focal Point" 
+					value={focalPoint}
+					onChange={(value) => setAttributes({ focalPoint: value })}
+					url={url}
+				/>
             </PanelBody>
         </InspectorControls>
     );
@@ -81,6 +109,24 @@ registerBlockExtension(
         extensionName: 'lightbox',
         attributes: newAttributes,
         classNameGenerator: generateClassName,
+		inlineStyleGenerator: generateInlineStyle,
+        Edit: LightboxBlockEdit
+    }
+);
+```
+
+Alternatively if the class name generator or inline style generator is not being used you can pass it an empty function with a return of null.
+
+```js
+import { registerBlockExtension } from '@10up/block-components';
+
+registerBlockExtension(
+    `core/gallery`,
+    {
+        extensionName: 'lightbox',
+        attributes: newAttributes,
+        classNameGenerator: () => null,
+		inlineStyleGenerator: ()=> null,
         Edit: LightboxBlockEdit
     }
 );

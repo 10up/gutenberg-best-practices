@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 7
 ---
 
 # Block Updates
@@ -25,7 +25,7 @@ If dynamic blocks define their `save` function to return `null` there still is s
 
 ### Updates to markup
 
-Like already mentioned above changing the markup of an already existing block isn't a concern. The markup itself is not stored in the database but instead is generated on the fly from our PHP templates. You have to be aware that every single instance of the block will be affected and get the new markup directly. There is no upgrade story here.
+As mentioned above, changing the markup of an already existing block isn't a concern. The markup itself is not stored in the database but instead is generated on the fly from our PHP templates. You have to be aware that every single instance of the block will be affected and get the new markup directly. There is no upgrade story here.
 
 ### Updates to attributes
 
@@ -33,7 +33,7 @@ When it comes to updating attributes it is not as simple. There are several thin
 
 #### Adding attributes
 
-To add a new setting / a new attribute to a block you need to think about what the default value for that attribute will be. If you want to introduce a new checkbox to enable some new functionality that is off by default or a toggle to remove something that is already there that is on by default it isn't a problem since the default value will apply for all already existing blocks. And editors then can go in and make updates to already existing instances of the block if they wish to use the new feature. So make sure to always choose sensible defaults that will get used by all the instances of the block that are already in production.
+To add a new setting / a new attribute to a block you need to think about what the default value for that attribute will be. If you want to introduce a new checkbox to enable some new functionality that is off by default, or a toggle to remove something that is already there that is on by default, it isn't a problem, since the default value will apply for all already existing blocks. And editors then can go in and make updates to already existing instances of the block if they wish to use the new feature. So make sure to always choose sensible defaults that will get used by all the instances of the block that are already in production.
 
 #### Updating existing attributes
 
@@ -114,11 +114,11 @@ With this every block that is newly created and also every existing block that g
 
 :::warning
 But be careful. Existing blocks on pages that don't get edited will still have the old attributes shape until they get updated. So your PHP markup will need to account for both instances.
-:::warning
+:::
 
 :::note
 the `isEligible` check is required since the block editor would use the saved markup by default. But since we don't save our markup this is the way we can tell the editor what deprecation needs to run.
-:::note
+:::
 
 ## Further reading
 

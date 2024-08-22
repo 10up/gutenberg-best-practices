@@ -10,7 +10,7 @@ Block styles are a relatively simple API that allows you to add different visual
 
 :::caution
 Block Styles come with many caveats though and should be used very sparingly. Instead [block extensions](block-extensions) should be used in most cases because of the increased flexibility.
-:::caution
+:::
 
 ## User Experience
 
@@ -20,7 +20,7 @@ In the editor, styles are the first thing a user sees in the blocks setting side
 Additionally the style options have one fatal flaw. Only one of them can be active at a time. And most things that end up becoming styles are things that you down the line would love to combine. And that is a downfall that happens very quickly.
 
 At the beginning of a project 2-4 styles get added to a block. And after using it for a moment the client comes back now wanting to combine the options from Style A and Style B. And at that point you would need to create a separate new style for the combination of A & B. And then someone else wants to use B & C and so on. Styles lead you into a corner very quickly.
-:::warning
+:::
 
 ## Developer Experience
 
@@ -61,7 +61,7 @@ unregisterBlockStyle( 'core/image', 'rounded' );
 
 :::caution
 Important: The PHP function `unregister_block_style` only unregisters styles that were registered on the server using `register_block_style`. The function does not unregister a style registered using client-side code.
-:::caution
+:::
 
 There is no actual API for checking which style is currently selected and there is no listener to subscribe to changes in the selected style.
 
@@ -69,4 +69,4 @@ There is no actual API for checking which style is currently selected and there 
 
 :::tip
 Most use-cases of Block Styles would be better suited as [block extensions](block-extensions).
-:::tip
+:::

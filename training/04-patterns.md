@@ -28,7 +28,7 @@ We need a way to "package up" all those elements so editors can easily insert th
 The approach taught in this lesson requires WordPress 6.0. In order to get it working before this, we have [polyfilled the core functionality into the `tenup-theme` of the gutenberg training](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/blocks.php#L181-L316).
 
 In order to manually register patterns, you need to register each pattern using the [`register_block_pattern`](https://developer.wordpress.org/reference/functions/register_block_pattern/) function.
-:::info
+:::
 
 ## Breaking it Down
 
@@ -97,7 +97,7 @@ In the paragraph for example the text content within the `p` tag is automaticall
 The `className` attribute on the other hand is impossible to parse because there may be other classnames coming from the block itself or some extension that only works when the attribute is stored in the JSON object.
 </details>
 
-Since WordPress 6.0 patterns can be registered super easily by _just_ creating a PHP file inside the `pattern` folder at the root directory of a theme. This PHP file needs to have a comment header with some metadata and then just the markup of the blocks themselves.
+Since WordPress 6.0 patterns can be registered super easily by _just_ creating a PHP file inside the `patterns` folder at the root directory of a theme. This PHP file needs to have a comment header with some metadata and then just the markup of the blocks themselves.
 
 ### Pattern document headers
 

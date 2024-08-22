@@ -6,7 +6,7 @@ sidebar_position: 3
 
 :::note
 There is no core API for block extensions. When we refer to block extensions here, we actually mean using the hooks provided in the block editor to add our own custom attributes and UI to existing blocks.
-:::note
+:::
 
 The Block Editor Handbook has a full list of the [available block filters in the Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/).
 
@@ -22,7 +22,7 @@ Instead of having to add more and more block styles that essentially are just co
 
 ### Example
 
-Let's say we have a design where we want to be able to have different background patterns on a group block. This pattern can start out as just three different block styles. Dots, Squares, and triangles.
+Let's say we have a design where we want to be able to have different background patterns on a group block. This pattern can start out as just three different block styles: dots, squares, and triangles.
 
 Now the client comes and also wants the ability to choose between green, blue, and red variants of these patterns.
 
@@ -34,7 +34,7 @@ As a rule of thumb a block should never have more than 4 block styles.
 
 ![Block Editor with the settings sidebar open. The entire sidebar is filled with block styles](../../static//img/block-extenstions-before.png)
 
-This can be avoided by creating the same options as block extensions. Instead of nine almost identical block styles that take over the entire screen you can register two attributes. One for the pattern shape and one for the pattern color. And then add settings to the settings sidebar for them.
+This can be avoided by creating the same options as block extensions. Instead of nine almost identical block styles that take over the entire screen you can register two attributes: one for the pattern shape and one for the pattern color, and then add settings to the settings sidebar for them.
 
 ![Block Editor with the settings sidebar open. The re are two new settings that replace the style variations. A toggle and a dropdown](../../static//img/block-extenstions-after.png)
 
@@ -102,8 +102,8 @@ registerBlockExtension(
 | blockName                  | `string`   | Name of the block the options should get added to |
 | options.extensionName      | `string`   | Unique Identifier of the option added    |
 | options.attributes         | `object`   | Block Attributes that should get added to the block |
-| options.classNameGenerator | `function` | Funciton that gets passed the attributes of the block to generate a class name string |
-| options.Edit               | `function` | BlockEdit component like in `registerBlockType` only without the actual block. So onyl using slots like the `InspectorControls` is advised. |
+| options.classNameGenerator | `function` | Function that gets passed the attributes of the block to generate a class name string |
+| options.Edit               | `function` | BlockEdit component like in `registerBlockType` only without the actual block. So only using slots like the `InspectorControls` is advised. |
 
 ## Manually using the hooks
 
@@ -116,7 +116,7 @@ for adding new attributes / supports to a block.
 ```js
 import { addFilter } from '@wordpress/hooks';
 
-add_filter( 'blocks.registerBlockType', 'namespace/filter-name', function(settings, name) {...} );
+addFilter( 'blocks.registerBlockType', 'namespace/filter-name', function(settings, name) {...} );
 ```
 
 #### `editor.BlockEdit`
@@ -127,7 +127,7 @@ for adding custom controls to the blocks toolbar or settings sidebar.
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 
-add_filter( 'editor.BlockEdit', 'namespace/filter-name', createHigherOrderComponent((BlockEdit) => {...}) );
+addFilter( 'editor.BlockEdit', 'namespace/filter-name', createHigherOrderComponent((BlockEdit) => {...}) );
 ```
 
 #### `editor.BlockListBlock`
@@ -138,7 +138,7 @@ for adding additional properties to the wrapping element within the editor.
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 
-add_filter( 'editor.BlockListBlock', 'namespace/filter-name', createHigherOrderComponent((BlockList) => {...}) );
+addFilter( 'editor.BlockListBlock', 'namespace/filter-name', createHigherOrderComponent((BlockList) => {...}) );
 ```
 
 #### `blocks.getSaveContent.extraProps`
@@ -148,5 +148,5 @@ for adding additional properties to the wrapping element in the save method.
 ```js
 import { addFilter } from '@wordpress/hooks';
 
-add_filter( 'blocks.getSaveContent.extraProps', 'namespace/filter-name', function(props, block, attributes) {...} );
+addFilter( 'blocks.getSaveContent.extraProps', 'namespace/filter-name', function(props, block, attributes) {...} );
 ```

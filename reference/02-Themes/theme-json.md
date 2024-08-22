@@ -1,5 +1,6 @@
 ---
 sidebar_label: Theme.json
+sidebar_position: 2
 ---
 
 # Global Settings & Styles (`theme.json`)
@@ -12,7 +13,7 @@ By default any new WordPress Theme at 10up includes a `theme.json` file with som
 
 ## How to use `theme.json`
 
-The `theme.json` file gets added to the root directory of a Theme. There are two main areas that you can control with the `theme.json` file. Settings and styles. Both of these can have properties defined on the global level, meaning applying to the entire site with all it's blocks, or on the block level where you can target individual block types.
+The `theme.json` file gets added to the root directory of a Theme. There are two main areas that you can control with the `theme.json` file: settings and styles. Both of these can have properties defined on the global level, meaning applying to the entire site with all its blocks, or on the block level where you can target individual block types.
 
 ```json
 {
@@ -46,7 +47,7 @@ Add the `$schema` key to your `theme.json` files:
 
 This will give you autocomplete and inline documentation while working on `theme.json` files.
 
-_You can interchange `trunk` with a specific WordPress version like so: `https://schemas.wp.org/wp/5.9/theme.json`_
+_You can interchange `trunk` with a specific WordPress version like so: `https://schemas.wp.org/wp/6.5/theme.json`_
 :::
 
 As mentioned earlier the `theme.json` file has two main purposes. It allows you to control which settings get displayed, and also define certain default values for styles. This styling mechanism is build on CSS custom properties.
@@ -103,7 +104,9 @@ body {
 ```
 
 :::tip
-By default WordPress [cashes the Stylesheet](https://github.com/WordPress/wordpress-develop/blob/9b105d92a4b769f396ba798db1f106abab75001f/src/wp-includes/global-styles-and-settings.php#L91-L97) that gets generated out of `theme.json`. For development purposes you can bypass that cashing by enabling [debug mode](https://wordpress.org/support/article/debugging-in-wordpress) via the `WP_DEBUG` global in your `wp-config.php`. (`SCRIPT_DEBUG` also achieves the same thing)
+By default WordPress [caches the Stylesheet](https://github.com/WordPress/wordpress-develop/blob/9b105d92a4b769f396ba798db1f106abab75001f/src/wp-includes/global-styles-and-settings.php#L91-L97) that gets generated out of `theme.json`. For development purposes you can bypass that caching by enabling [debug mode](https://wordpress.org/support/article/debugging-in-wordpress) via the `WP_DEBUG` global in your `wp-config.php`. (`SCRIPT_DEBUG` also achieves the same thing)
+
+Additionally setting the `WP_DEVELOPMENT_MODE` to `all` also is encouraged when working on both custom themes and plugins locally.
 :::
 
 ## Understanding the cascade
@@ -114,15 +117,15 @@ These settings and styles exist at three levels, each overwriting the specificit
 
 ## Using the values from `theme.json` custom blocks
 
-You can access the settings & values defined in `theme.json` via the `useSetting` hook. This hook accepts a `string` as its parameter which is used as the path for a setting. This means that it checks through the different specificity levels whether a value has been defined for this key.
+You can access the settings & values defined in `theme.json` via the `useSettings` hook. This hook accepts a `string` as its parameter which is used as the path for a setting. This means that it checks through the different specificity levels whether a value has been defined for this key.
 
-It first checks whether the user has defined something, then whether the block has defined something in its settings, following the global settings in `theme.json`. Of none of these palaces have any value it will use the default value specified in core.
+It first checks whether the user has defined something, then whether the block has defined something in its settings, following the global settings in `theme.json`. If none of these places have any value it will use the default value specified in core.
 
 ```js
-import { useSetting } from '@wordpress/block-editor';
+import { useSettings } from '@wordpress/block-editor';
 
 export function BlockEdit() {
-    const isEnabled = useSetting( 'typography.dropCap' );
+    const [isEnabled] = useSettings( ['typography.dropCap'] );
 
     // ...
 }
@@ -153,12 +156,90 @@ export function BlockEdit() {
 }
 ```
 
-Using `useSetting('typography.dropCap')` would only return `true` if it is being called from within the `core/paragraph` block.
+Using `useSettings(['typography.dropCap'])` would only return `[true]` if it is being called from within the `core/paragraph` block.
 
 </p>
 </details>
+
+## Filtering `theme.json` data
+
+Starting in WordPress 6.1 it is possible to filter the values of `theme.json` on the server. There are 4 different hooks for the 4 different layers or `theme.json`. Default, Blocks, Theme, and User.
+
+- `wp_theme_json_data_default`: hooks into the default data provided by WordPress
+- `wp_theme_json_data_blocks`: hooks into the data provided by the blocks
+- `wp_theme_json_data_theme`: hooks into the data provided by the theme
+- `wp_theme_json_data_user`: hooks into the data provided by the user
+
+Each of these filters receives an instance of the `WP_Theme_JSON_Data` class with the data for the respective layer. To provide new data, the filter callback needs to use the `update_with( $new_data )` method, where `$new_data` is a valid `theme.json`-like structure.
+
+As with any `theme.json`, the new data needs to declare which `version` of the `theme.json` is using, so it can correctly be migrated.
+
+```php
+function filter_theme_json_theme( $theme_json ){
+	$new_data = array(
+		'version'  => 2,
+		'settings' => array(
+			'color' => array(
+				'text'       => false,
+				'palette'    => array(
+					array(
+						'slug'  => 'foreground',
+						'color' => 'black',
+						'name'  => __( 'Foreground', 'theme-domain' ),
+					),
+					array(
+						'slug'  => 'background',
+						'color' => 'white',
+						'name'  => __( 'Background', 'theme-domain' ),
+					),
+				),
+			),
+		),
+	);
+
+	return $theme_json->update_with( $new_data );
+}
+add_filter( 'wp_theme_json_data_theme', 'filter_theme_json_theme' );
+```
+
+## Filtering `theme.json` client side
+
+Having the filters available on the backend is great. But sometimes we need to be able to change settings based on contextual clues. That isn't possible on the server because we cannot access the actual state of the block consuming the `theme.json` settings on the server.
+
+In order to allow for these types of contextual settings a new client side hook called `blockEditor.useSetting.before` was introduced in WordPress 6.2.
+
+```js
+import { select } from  '@wordpress/data';
+import { addFilter } from '@wordpress/hooks';
+import { store as blockEditorStore } from '@wordpress/block-editor';
+
+/**
+ * Disable text color controls on Heading blocks
+ * when placed inside of Media & Text blocks.
+ */
+addFilter(
+	'blockEditor.useSetting.before',
+	'namespace/useSetting.before',
+	( settingValue, settingName, clientId, blockName ) => {
+		if ( blockName === 'core/heading' ) {
+			const { getBlockParents, getBlockName } = select( blockEditorStore );
+			const blockParents = getBlockParents( clientId, true );
+			const isNestedInMediaTextBlock = blockParents.some( ( ancestorId ) => getBlockName( ancestorId ) === 'core/media-text' );
+
+			if ( isNestedInMediaTextBlock && settingName === 'color.text' ) {
+			    return false;
+			}
+		}
+
+		return settingValue;
+	}
+);
+```
 
 ## Links
 
 - [Block Editor Handbook - Global Settings & Styles (theme.json)](https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json/)
 - [Block Editor Handbook - Theme JSON API Reference](https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/theme-json-living/)
+- [Filters for theme.json data - WordPress 6.1 Dev Note](https://make.wordpress.org/core/2022/10/10/filters-for-theme-json-data/)
+- [How to modify theme.json data using server-side filters - WordPress Developer Blog](https://developer.wordpress.org/news/2023/07/how-to-modify-theme-json-data-using-server-side-filters/)
+- [Customize settings for any block in WordPress 6.2 - WordPress 6.2 Dev Note](https://make.wordpress.org/core/2023/02/28/custom-settings-wordpress-6-2/)
