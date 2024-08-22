@@ -32,7 +32,7 @@ main > .container {
 }
 
 .content-wrapper {
-  width: var(--wide-width);
+  width: var(--normal-width);
   margin-inline: auto;
 }
 
