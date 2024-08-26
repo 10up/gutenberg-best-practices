@@ -1,11 +1,27 @@
 /* Added in a separate file as the component isn't styled otherwise. */
 
+.navbar__search > * {
+  max-width: 47.5rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main-wrapper .navbar__search > button {
+  right: calc(50% - 47.5rem / 2 + 4rem);
+  width: auto;
+  background: var(--ifm-navbar-search-input-background-color);
+  border-radius: .25rem;
+  width: 2rem;
+  height: 2rem;
+  transition: background-color .2s;
+}
+
 .home__heroBanner .navbar__search span {
-	width: 100%;
+  width: 100%;
 }
 
 .home__heroBanner .navbar__search input::placeholder {
-	color: var(--ifm-color-content);
+  color: var(--ifm-color-content);
 }
 
 .home__heroBanner
@@ -19,7 +35,6 @@
   height: 4.875rem;
   display: block;
   width: 100%;
-  max-width: 47.5rem;
   border: 3px solid black;
   padding: 1rem 1.5rem;
   background-position: right 1.5rem center;
