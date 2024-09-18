@@ -43,7 +43,7 @@ When an Override enabled block is selected, after editing a **Reset** control is
 When the pattern itself *or* any of its Override enabled innerblocks are selected, the usual block Inspector Control "Settings" panel is replaced by a "Content" panel where we can select the blocks that allow for editing.
 
 ![The updated block settings for an override enabled Synced Pattern](../../static/img/block-pattern-synced-override-enabled.jpg)
-
+<br/>
 *The updated block settings for an override enabled Synced Pattern*
 
 On the next page, we'll take a look at what's going on under the hood of a Synced Pattern and learn how we can apply our own logic to manage the content of our Patterns using the Block Bindings API.

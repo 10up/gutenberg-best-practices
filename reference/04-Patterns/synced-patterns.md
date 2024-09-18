@@ -9,7 +9,7 @@ Block Patterns are an excellent way to quickly add common components across our 
 This is where Synced Patterns shine.  We can create a global component which can be edited once to then update across all instances where it is used.  For example an info card, a grid of logos, or perhaps a simple call to action are all excellent candidates which may require such a feature.  We will use the latter in our examples.
 
 ![Call to action example pattern](../../static/img/block-pattern-call-to-action-example.jpg)
-
+<br/>
 *A simple Call to Action block pattern*
 
 :::caution
@@ -29,7 +29,7 @@ To mark a pattern as Synced, you would follow these steps:
 That's it!  You can now find your component via the block inserter under the Patterns tab > My Patterns *(and any other categories you declared in step 3)*.
 
 ![The modal window for adding a new Pattern](../../static/img/block-pattern-add-new-modal.jpg)
-
+<br/>
 *The modal window for adding a new Pattern*
 
 ## Updating a Synced Pattern
@@ -43,7 +43,7 @@ To edit your Synced Pattern, you would do the following:
 5. You can return to the page you were editing using the **Back** button located near the title in the upper center of the screen.
 
 ![The block toolbar to edit your Synced Pattern](../../static/img/block-pattern-synced-edit-original.jpg)
-
+<br/>
 *The block toolbar to edit your Synced Pattern*
 
 ## Creating Synced Patterns for Theme Authors
@@ -53,6 +53,7 @@ As mentioned above, Synced Patterns have to be manually set in each environment 
 This limitation somewhat complicates their use and while there is no one size fits all approach for how to best handle this, lets walk through one workflow that could make this easier on the developer experience for theme authors.
 
 :::caution
+
 ### Ask yourself, is this the best approach?
 
 Synced Patterns can be trickier to maintain and come with special considerations.  Depending on your circumstances *(budget, ability, time, etc...)*, it might be easier as a theme author to add a pattern in a block template part for use in your page templates.  Or maybe you could create a simple custom block that renders your pattern instead.
@@ -117,6 +118,7 @@ In your themes `parts` directory, create a new file containing your pattern.  Pe
 [For more information on Block Template Parts, refer to this section of the Gutenberg Best Practices](../../reference/Themes/block-template-parts).
 
 :::info
+
 ### Why are we doing this?
 
 In the first step, we marked our pattern as hidden and disabled it from being inserted manually.  By doing so, we are ensuring that editors will never have access to the original, unsynced pattern and cannot use our themes component in posts or pages until it has been marked as Synced and added to the database.

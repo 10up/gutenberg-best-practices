@@ -46,6 +46,7 @@ wp:heading
 Here we can see our new attribute added to the block for **"binding"** that controls the synchronization.  In a Synced Pattern, the binded attribute is set as **"__default"**, which essentially means it's bound to all default supported attributes we initially set in our pattern.  In our Heading's case, that would mean the *content* attribute but for a Button it would mean *url*, *text*, *linkTarget*, and *rel*. We can also see it has a source set to **"core/pattern-overrides"**.  It is these attributes that we can alter using the Block Bindings API to create our own logic for managing our patterns content.
 
 ## Creating our own Bindings
+
 Let's say we are using our pattern on a post type about products where the individual items data is stored in various post meta fields.  Using the Block Bindings API, we can set defaults and use those meta fields to dynamically alter our patterns content.
 
 Let's quickly look at the structure of the attributes we will need to use on our blocks.  It's very similar to the one used on a Synced Pattern, with a notable difference in using our custom source (which we will create below) and then adding a key within the **args** object which allows for dynamic content.
@@ -222,17 +223,17 @@ Below is the full code from our example Call to Action.
 Here we can see that our Call to Action will display a nice fallback should our post meta fields be missing.
 
 ![Call to action with default settings applied](../../static/img/block-pattern-call-to-action-example.jpg)
-
+<br/>
 *Call to action with default settings applied*
 
 If we have our all of our desired data, we will display our custom content.
 
 ![An example of our populated post meta fields](../../static/img/block-pattern-bindings-post-meta-example.jpg)
-
+<br/>
 *An example of our populated post meta fields*
 
 ![Our dynamic Call to Action populated with our post meta fields](../../static/img/block-pattern-bindings-finished-example.jpg)
-
+<br/>
 *Our dynamic Call to Action populated with our post meta fields*
 
 ## Further reading
