@@ -122,4 +122,4 @@ add_filter(
 
 ## Links
 
-- [Locking in Custom Post Types](../04-custom-post-types.md)
+- [Locking in Custom Post Types](../05-custom-post-types.md)
