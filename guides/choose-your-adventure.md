@@ -50,7 +50,7 @@ Group
 You can easily enhance the editor experience by also adding a block pattern for this arrangement of core blocks. This allows editors to quickly and easily create this section whilst leaving them the flexibility to change everything to their liking.
 
 :::caution
-As mentioned in the [block pattern reference](../reference/Patterns/block-patterns) patterns have no connection to what created them. So any updates you make to the pattern in the future will not update instances that were created before you updated it.
+As mentioned in the [block pattern reference](../reference/Patterns/overview) patterns have no connection to what created them. So any updates you make to the pattern in the future will not update instances that were created before you updated it.
 :::
 
 ### 2.b Using Core Blocks + a Block Pattern with Restrictions
