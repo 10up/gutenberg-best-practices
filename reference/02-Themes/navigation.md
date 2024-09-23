@@ -11,7 +11,7 @@ Block-based themes changed how navigation areas are built. Instead of using `wp_
 
 The core navigation block stores the ID of the navigation post in its attributes. This way the block knows which navigation menu to display.
 
-Sadly, because of this reliance on the ID we loose the concept of navigation areas. In classic themes you could register a navigation area and then assign a menu to it in the Customizer. This is not possible anymore with block-based themes.
+Sadly, because of this reliance on the ID we lose the concept of navigation areas. In classic themes you could register a navigation area and then assign a menu to it in the Customizer. This is not possible anymore with block-based themes.
 
 That means we have to become a little creative when it comes to working with the ID's of navigation menus when working across multiple environments.
 
