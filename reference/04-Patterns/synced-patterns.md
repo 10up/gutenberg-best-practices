@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Synced Patterns
+# Synced Patterns (Reusable Blocks)
 
 Block Patterns are an excellent way to quickly add common components across our site. But what if we decide we want to update the language, link, or design used within that component?  With standard patterns, we'd have to manually find and replace every use, this might mean dozens or even thousands of instances on a larger site.
 
