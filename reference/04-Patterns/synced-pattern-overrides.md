@@ -21,6 +21,10 @@ In the case of our Call to Action pattern, we can override the Heading, Paragrap
 When using Synced Pattern Overrides, it is very important to know that our blocks are not optional, and we cannot display them conditionally.
 
 For example, we cannot use multiple Buttons in our pattern and have the ability to sometimes display just a single one.  Every block used in the original pattern will *always* render its markup, even if we leave its text content empty.
+
+Another example of this limitation is the lack of support on the List block.  As currently implemented, you would only ever be able to use the exact same amount of List Item blocks and they would not be optional.
+
+[Follow along on GitHub here](https://github.com/WordPress/gutenberg/issues/52018) to see the progress of inserting additional innerblocks within a `contentOnly` locked pattern.
 :::
 
 ## How to enable Overrides
