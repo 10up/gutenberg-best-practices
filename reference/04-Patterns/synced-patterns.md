@@ -146,7 +146,9 @@ One approach might be to:
 4. Optionally, you may want to also copy our updates back into the `patterns/call-to-action.php` file to keep that up to date.
 
 :::caution
-It is important to note this last step is a fairly major difference in traditional theme authoring.  Typically you'd rewrite your component locally first, push the updated codebase, *then* see your changes in the other environments.  Here, we must make our updates in all environments first, and essentially work backwards to update a Synced Pattern in our theme.
+It is important to note this last step is a fairly major difference in traditional theme authoring.  Typically you'd rewrite your component locally first, push the updated codebase, *then* see your changes in the other environments.  Here, we must make our updates in all environments first and essentially work backwards to update a Synced Pattern in our theme.
 
-This is another reason trying to maintain a Synced Pattern as a theme author should come with special consideration as  mentioned above.
+This is another reason trying to maintain a Synced Pattern as a theme author should come with special consideration as mentioned above.
+
+Because of these special considerations, we don't recommend the usage of Synced Patterns for most sites today.  [Follow along on GitHub here](https://github.com/WordPress/gutenberg/issues/59272) to see the progress of syncing Patterns within your theme someday.
 :::
