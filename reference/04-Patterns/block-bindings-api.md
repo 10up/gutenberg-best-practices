@@ -73,7 +73,23 @@ Much like Synced Pattern Overrides, when using the Block Bindings API it is very
 
 For example, if we bind our Heading's `content` attribute to post meta, but that post meta does not return a value, an empty `<h2>` tag will display on the frontend.  Similarly, we cannot use multiple Buttons in our pattern and have the ability to sometimes display just a single one.  Whatever blocks are given bindings, their markup will **always** be returned.
 
-Because of this, when creating your pattern and setting up your custom binding source, it is recommended to always set default values.  More on that below.
+The lack of being able to conditionally include content can also result in orphaned labels.  For example, if you were creating an info box for a product, you might have a list of features like so:
+
+**Product:** *Anvil*<br/>
+**Price:** *$99.99*<br/>
+**Manufacturer:** *Acme Co.*
+
+Typically in php you might be able to first check if a piece of post meta exists before rendering the full list item.  Here, we must always return our markup and so if you are not careful, you may end up with orphaned labels such as this:
+
+**Product:** *Anvil*<br/>
+**Price:**<br/>
+**Manufacturer:** *Acme Co.*
+
+Because of this, when creating your pattern and setting up your custom binding source, it is recommended to always set default values, for example:
+
+**Price:** *n/a*
+
+More on how to do that below.
 :::
 
 ### 1. Register our Post Meta
