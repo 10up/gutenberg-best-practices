@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 ---
 
 # Block Patterns
@@ -69,7 +70,7 @@ register_block_pattern(
         'description' => _x( 'Two horizontal buttons, the left button is filled in, and the right button is outlined.', 'Block pattern description', 'my-plugin' ),
         'content'     => "<!-- wp:buttons {\"align\":\"center\"} -->\n<div class=\"wp-block-buttons aligncenter\"><!-- wp:button {\"backgroundColor\":\"very-dark-gray\",\"borderRadius\":0} -->\n<div class=\"wp-block-button\"><a class=\"wp-block-button__link has-background has-very-dark-gray-background-color no-border-radius\">" . esc_html__( 'Button One', 'my-plugin' ) . "</a></div>\n<!-- /wp:button -->\n\n<!-- wp:button {\"textColor\":\"very-dark-gray\",\"borderRadius\":0,\"className\":\"is-style-outline\"} -->\n<div class=\"wp-block-button is-style-outline\"><a class=\"wp-block-button__link has-text-color has-very-dark-gray-color no-border-radius\">" . esc_html__( 'Button Two', 'my-plugin' ) . "</a></div>\n<!-- /wp:button --></div>\n<!-- /wp:buttons -->",
     )
-); 
+);
 ```
 
 To improve the developer experience it makes sense to move the actual `content` out into a separate php file that we include here. This makes it much more maintainable.
@@ -119,7 +120,7 @@ register_block_pattern(
         'description' => _x( 'Two horizontal buttons, the left button is filled in, and the right button is outlined.', 'Block pattern description', 'my-plugin' ),
         'content'     => get_pattern_content( 'buttons' );
     )
-); 
+);
 ```
 
 </details>
@@ -277,16 +278,19 @@ This is achieved by adding `"__experimentalRole": "content"` to the attribute de
 
 :::caution
 There is one item that you need to be aware about in regards to Block Patterns. Once they are inserted they have no link to the original block pattern that they were created by. On insertion they become regular blocks. Therefore it is not possible to adjust all occurrences of a block pattern after it has been used.
+
+WordPress does provide a way of handling this however by using the power of Synced Patterns.  [For more info on Synced Patterns, please see the next lesson](../Patterns/synced-patterns).
+
 :::
 
 If you find an issue with the markup of a pattern that you want to fix it is only going to impact new instances of the pattern that are created after you updated it. And you will have to manually go into every instance that was created using the pattern and make the update manually, or create an update script to update it in the database directly.
 
-If you want to get around this limitation you can of course also build block patterns made up of [custom-blocks](./custom-blocks) that don't actually store their markup in the database. That way you can get the benefits of both worlds.
+If you want to get around this limitation you can of course also build block patterns made up of [custom-blocks](../Blocks/custom-blocks) that don't actually store their markup in the database. That way you can get the benefits of both worlds.
 
 ## Links
 
 - [New features for working with patterns and themes in WordPress 6.0](https://make.wordpress.org/core/2022/05/02/new-features-for-working-with-patterns-and-themes-in-wordpress-6-0/)
-- [Block Locking - 10up Gutenberg Reference](./block-locking.md)
+- [Block Locking - 10up Gutenberg Reference](../03-Blocks/block-locking.md)
 - [Patterns - Block Editor Handbook](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-patterns/)
 - [New features for working with patterns and themes in WordPress 6.0](https://make.wordpress.org/core/2022/05/02/new-features-for-working-with-patterns-and-themes-in-wordpress-6-0/)
 - [What are Contextual Patterns in WordPress?](https://wpengine.com/builders/wordpress-contextual-patterns/)
