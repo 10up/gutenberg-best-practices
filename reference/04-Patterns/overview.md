@@ -278,6 +278,9 @@ This is achieved by adding `"__experimentalRole": "content"` to the attribute de
 
 :::caution
 There is one item that you need to be aware about in regards to Block Patterns. Once they are inserted they have no link to the original block pattern that they were created by. On insertion they become regular blocks. Therefore it is not possible to adjust all occurrences of a block pattern after it has been used.
+
+WordPress does provide a way of handling this however by using the power of Synced Patterns.  [For more info on Synced Patterns, please see the next lesson](../Patterns/synced-patterns).
+
 :::
 
 If you find an issue with the markup of a pattern that you want to fix it is only going to impact new instances of the pattern that are created after you updated it. And you will have to manually go into every instance that was created using the pattern and make the update manually, or create an update script to update it in the database directly.
