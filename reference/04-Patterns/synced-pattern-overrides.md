@@ -24,7 +24,7 @@ For example, we cannot use multiple Buttons in our pattern and have the ability 
 
 Another example of this limitation is the lack of support on the List block.  As currently implemented, you would only ever be able to use the exact same amount of List Item blocks and they would not be optional.
 
-[Follow along on GitHub here](https://github.com/WordPress/gutenberg/issues/52018) to see the progress of inserting additional innerblocks within a `contentOnly` locked pattern.
+[Follow along on GitHub here to see the progress of inserting additional innerblocks within a `contentOnly` locked pattern](https://github.com/WordPress/gutenberg/issues/52018).
 :::
 
 ## How to enable Overrides

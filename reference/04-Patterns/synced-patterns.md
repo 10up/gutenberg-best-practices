@@ -150,5 +150,5 @@ It is important to note this last step is a fairly major difference in tradition
 
 This is another reason trying to maintain a Synced Pattern as a theme author should come with special consideration as mentioned above.
 
-Because of these special considerations, we don't recommend the usage of Synced Patterns for most sites today.  [Follow along on GitHub here](https://github.com/WordPress/gutenberg/issues/59272) to see the progress of syncing Patterns within your theme someday.
+Because of these special considerations, we don't recommend the usage of Synced Patterns for most sites today.  [Follow along on GitHub here to see the progress of syncing Patterns within your theme someday](https://github.com/WordPress/gutenberg/issues/59272) .
 :::
