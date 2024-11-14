@@ -1,6 +1,6 @@
 ---
 sidebar_label: Fonts
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 # Loading Fonts using `theme.json`
