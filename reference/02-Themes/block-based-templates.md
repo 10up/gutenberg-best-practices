@@ -118,3 +118,14 @@ addFilter('editor.postContentBlockTypes', 'namespace/identifier', (blockTypes) =
 ```
 
 If you want to learn more about making your block support the `contentOnly` rendering mode there is a great article on the WordPress Developer Block you should check out: [https://developer.wordpress.org/news/2024/11/05/how-to-add-content-only-editing-support-to-a-block/](https://developer.wordpress.org/news/2024/11/05/how-to-add-content-only-editing-support-to-a-block/)
+
+## Choosing what's part of the template and what's not
+
+For a while there before block based themes, we moved more and more "template elements" such as page headers etc into the actual post content area because that was the only way to create a rich editing experience for these elements.
+
+However doing this came with several downsides such as:
+
+- In case of a redesign we now have that page header shored in thousands of individual posts and pages which makes updating it much harder.
+- We have to do custom work to ensure we are not duplicating the elements in the header when the post gets rendered in other contexts such as an RSS feed or Apple News.
+
+Now with the ability to preview the template and also have some individual elements inside these templates still be editable we can move these elements back into the template where they belong.
