@@ -1,6 +1,6 @@
 ---
 sidebar_label: Block Template Parts
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Block Template Parts
