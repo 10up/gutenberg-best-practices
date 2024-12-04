@@ -1,6 +1,6 @@
 ---
 sidebar_label: Navigation
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Navigation in Block-based Themes
