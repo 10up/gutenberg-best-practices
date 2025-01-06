@@ -14,7 +14,7 @@ If you are stuck or need help, refer to the `cta-complete` block as a reference 
 4. Displaying attributes on the frontend.
 
 Here's the completed CTA block that we're going to build:
-![alt text](../static/img/cta-complete.png "The completed CTA block")
+![alt text](../../static/img/cta-complete.png "The completed CTA block")
 
 ## Tasks
 
@@ -79,7 +79,7 @@ See that `setAttributes` call? That's a function that is provided by the block A
 Now that we know how to add new attributes and use `setAttributes` to update them, we can a more complicated feature - let's add an optional CTA button!
 
 When we're done, it will look like this:
-![alt text](../static/img/cta-complete-with-control.png "CTA block with Inspector control")
+![alt text](../../static/img/cta-complete-with-control.png "CTA block with Inspector control")
 
 To do this, we need to manage three new pieces of data:
 

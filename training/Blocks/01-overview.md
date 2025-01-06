@@ -10,7 +10,7 @@ The very first thing you need to know about blocks is about the Block Editor its
 
 So that we are all on the same page with block terminology, here is a list of the important components of a block that you will be dealing with:
 
-![The Block Editor](../static/img/gutenberg-interface-sketch.png)
+![The Block Editor](../../static/img/gutenberg-interface-sketch.png)
 
 1. **Block** — The content of posts within WordPress is composed of Blocks. These Blocks are either built and provided by WordPress Core, a 3rd party theme or plugin, or are custom-built blocks. Each Block is a visual representation of the content which allows you to visually edit your content inline.
 2. **Toolbar** — Every block has a toolbar that is shown anchored directly above it when the block is selected. This toolbar contains secondary controls that are commonly used such as formatting or alignment controls.

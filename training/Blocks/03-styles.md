@@ -16,7 +16,7 @@ A block should **never** have more than 4 block styles
 
 You might have noticed that some blocks have a Styles Panel in their Inspector. The core Image block, for example, comes with these two styles: `default` and `rounded`.
 
-![Core Image block styles](../static/img/image-block-block-styles.png )
+![Core Image block styles](../../static/img/image-block-block-styles.png )
 
 Other blocks, like the List block for example, do not ship with any styles.
 
@@ -24,7 +24,7 @@ Other blocks, like the List block for example, do not ship with any styles.
 
 Imagine you were working on a project that had three image styles: square, rounded and slightly-rounded. Here's how it looks in the design:
 
-![Core Image block styles](../static/img/core-image-variations.jpg "Core Image block styles")
+![Core Image block styles](../../static/img/core-image-variations.jpg "Core Image block styles")
 
  Out of the box, WordPress gives us two of these styles, but we don't currently have a way to achieve the "slightly rounded" image.
 
@@ -32,11 +32,11 @@ Here's the first two that ship with the editor:
 
 ### Square
 
-![Square Image block styles](../static/img/core-image-square.png "Square Image block styles")
+![Square Image block styles](../../static/img/core-image-square.png "Square Image block styles")
 
 ### Rounded
 
-![Rounded Image block styles](../static/img/core-image-rounded.png "Rounded Image block styles")
+![Rounded Image block styles](../../static/img/core-image-rounded.png "Rounded Image block styles")
 
 Let's see how to add a new style — slightly-rounded!
 
@@ -56,13 +56,13 @@ Adding a new Style is pretty simple.
 
 When we've done that, we can now use our new style and see it outputting as the design intended:
 
-![alt text](../static/img/core-image-slightly-rounded.png "Slightly Rounded Image block style")
+![alt text](../../static/img/core-image-slightly-rounded.png "Slightly Rounded Image block style")
 
 ## Adding Styles to Custom Blocks
 
 You can also add Styles to custom blocks that you create. Let's add a new style to the CTA block that we built in the previous lesson. Let's say we want to have the option of making the border super thick on our CTA block. Something like this:
 
-![alt text](../static/img/cta-block-style.png "Slightly Rounded Image block style")
+![alt text](../../static/img/cta-block-style.png "Slightly Rounded Image block style")
 
 It looks a lot like registering a Style for a core block. Follow the steps below to create your own custom block style. If you get stuck, you can reference the same [custom block style registration](https://github.com/10up/gutenberg-lessons/blob/trunk/themes/tenup-theme/includes/block-styles/cta.js) applied to the `cta-complete` block.:
 
@@ -109,13 +109,13 @@ And voila! We've added a new style for our custom block!
 For training purposes, this replicates the custom styles already in place for the `cta-complete` block. This type of replication we would typically not do in a real-world environment.
 :::
 
-![alt text](../static/img/cta-block-thick-border.png "Thick border CTA style")
+![alt text](../../static/img/cta-block-thick-border.png "Thick border CTA style")
 
 ## Remove an Unwanted Style
 
 Lots of core blocks come with styles. Depending on the client, the design, or the use case, you might want to remove any unnecessary styles. Let's use the core Pullquote block as an example — it comes with a "Solid color" Style, which we don't need.
 
-![alt text](../static/img/pullquote-core-block-style.png "Slightly Rounded Image block style")
+![alt text](../../static/img/pullquote-core-block-style.png "Slightly Rounded Image block style")
 
 ### Steps (These steps have already been done for you. Please follow along as a reference.)
 
@@ -124,7 +124,7 @@ Lots of core blocks come with styles. Depending on the client, the design, or th
 3. Import your `pullquote.js` into `/includes/block-styles/index.js`
 
 After we've done that, we can see that the "Solid color" Style has now been removed:
-![alt text](../static/img/pullquote-core-block-style-removed.png "Pullquote block with style removed")
+![alt text](../../static/img/pullquote-core-block-style-removed.png "Pullquote block with style removed")
 
 ## Takeaways
 

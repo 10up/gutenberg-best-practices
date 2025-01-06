@@ -30,7 +30,7 @@ We'll give the editor this control via a toggle in a Slot in the Inspector. In t
 
 Here's the result in the editor:
 
-![alt text](../static/img/slotfill-light-dark-mode.png "Light or dark mode")
+![alt text](../../static/img/slotfill-light-dark-mode.png "Light or dark mode")
 
 ## Tasks
 
