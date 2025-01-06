@@ -188,7 +188,7 @@ Another thing that isn't great about the UX right now is that the initial state 
 
 We know that in an ideal case we want our editors to have a title and a paragraph inside the "Hero" so we can make that the default when the block is inserted.
 
-To achieve this we can define a `template` on the inner block area. The template gets defined the same way you already saw in [Lesson 5: Block Variations](/05-variations.md). It is an array with individual items also being represented as an array with the block name as the first element, the attributes of the block as the second and child blocks as the third element.
+To achieve this we can define a `template` on the inner block area. The template gets defined the same way you already saw in [Lesson 5: Block Variations](./05-variations.md). It is an array with individual items also being represented as an array with the block name as the first element, the attributes of the block as the second and child blocks as the third element.
 
 ```jsx
 const innerBlocksProps = useInnerBlocksProps(
