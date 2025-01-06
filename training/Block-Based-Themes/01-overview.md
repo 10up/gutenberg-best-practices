@@ -91,7 +91,7 @@ Block markup is the HTML structure that defines a block. It includes the `<!-- w
 You **cannot use arbitrary HTML** in a block template. **It needs to be valid block markup**.
 :::
 
-If you need custom markup that isn't already available via any of the core blocks you can create it as a custom block. You can learn more about how to do that in the [Blocks section](../blocks).
+If you need custom markup that isn't already available via any of the core blocks you can create it as a custom block. You can learn more about how to do that in the [Blocks section](../Blocks/01-overview.md).
 
 Block based themes don't mean that we no longer write custom blocks. But rather that the custom blocks we do build are much more atomic rather that the big monolithic blocks that we might have built in the past.
 
@@ -151,3 +151,4 @@ Our theme scaffold is already setup for this and has a special `assets/css/block
 - You should use the `theme.json` file as the source of truth for your design tokens and settings, but write your styles in CSS files.
 - You should write your CSS for individual blocks in separate CSS files in the `assets/css/blocks` folder.
 - WordPress does some code splitting and critical CSS extraction for you in block based themes.
+- The [Create Block Theme plugin](https://wordpress.org/plugins/create-block-theme/) is a must-have for building block based themes.
