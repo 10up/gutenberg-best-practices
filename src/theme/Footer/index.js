@@ -1,6 +1,8 @@
 import React from 'react';
 import Footer from '@theme-original/Footer';
 
+const currentYear = new Date().getFullYear();
+
 export default function FooterWrapper(props) {
   return (
     <>
@@ -19,7 +21,7 @@ export default function FooterWrapper(props) {
           <div className="license">
             <p>
               Open source, MIT licensed.<br />
-              <span className="copyright">Copyright &copy; 2023</span>
+              <span className="copyright">Copyright &copy; {currentYear}</span>
             </p>
           </div>
         </div>
@@ -35,7 +37,7 @@ export default function FooterWrapper(props) {
               height="75"
             />
           </a>
-          <p>Finely crafted by 10up, ©2023.<br />
+          <p>Finely crafted by 10up, ©{currentYear}.<br />
             <a href="https://docs.google.com/document/d/1SC7f6WQs8xN4bJyZ51cn9DFcSf6BhxprfbF9JkYYgOE/edit">Privacy Policy</a></p>
 
           <div className="social-media">
