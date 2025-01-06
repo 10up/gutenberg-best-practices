@@ -65,7 +65,7 @@ One of the benefits of block templates is that unlike traditional templates, you
 
 In the sidebar of any post you can find a setting to switch between the different templates that are available for the post type. Clicking on this dropdown also reveals a "Show Template" button that will enable the preview.
 
-We can also enable this setting programatically via this little snippet:
+We can also enable this setting programmatically via this little snippet:
 
 ```js
 import { registerPlugin } from '@wordpress/plugins';
