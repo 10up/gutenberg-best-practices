@@ -25,7 +25,7 @@ export default function Home() {
     >
       <main>
         <header className={`${styles.heroBanner} home__heroBanner`}>
-          <h1>Welcome to the 10up Gutenberg Best Practices! <span className={`${styles.beta}`}>Beta</span></h1>
+          <h1>Welcome to the 10up Gutenberg Best Practices!</h1>
           <p>Tutorials, resources, references and example code for all things Gutenberg.</p>
           <SearchBar className={styles.searchBar} />
         </header>

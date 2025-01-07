@@ -72,17 +72,6 @@ h1 {
   position: relative;
 }
 
-.beta {
-  display: inline-block;
-  position: relative;
-  top: -0.45em;
-  background-color: var(--c-10up-secondary-dark);
-  color: #000;
-  font-size: 0.4em;
-  padding: 5px 10px;
-  border-radius: 8px;
-}
-
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
