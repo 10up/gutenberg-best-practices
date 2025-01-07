@@ -1,6 +1,6 @@
 # Lesson 1: Anatomy of a block based theme
 
-Block Based Themes (sometimes referred to as Full Site Editing) are a new way of building WordPress themes. Instead of using PHP templates, you build your theme using blocks. This means that everything in your theme is a block, from the header to the footer, and everything in between.
+Block Based Themes _(sometimes referred to as Full Site Editing or FSE for short)_ are a new way of building WordPress themes. Instead of using PHP templates, you build your theme using blocks. This means that everything in your theme is a block, from the header to the footer, and everything in between.
 
 In this lesson, we'll take a look at the anatomy of a block based theme, and how you can start building your own.
 

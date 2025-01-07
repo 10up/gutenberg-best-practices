@@ -10,3 +10,8 @@ keywords: [gutenberg, wordpress block editor, training, course, fse, full site e
 ## Overview
 
 On this page, you will find a collection of training courses designed to help you build and customize WordPress themes and blocks.
+
+## Courses
+
+- [Building Blocks](/training/Blocks/)
+- [Building Block-based Themes](/training/Block-Based-Themes/)
