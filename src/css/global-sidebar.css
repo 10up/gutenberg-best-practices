@@ -8,6 +8,10 @@
 	box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
 }
 
+.theme-doc-sidebar-container .menu {
+	padding: 0.5rem;
+}
+
 .menu__list {
 	font-size: .875rem;
 }
