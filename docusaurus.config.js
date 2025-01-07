@@ -7,8 +7,8 @@ const darkCodeTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-	title: '10up - Gutenberg Best Practices',
-	tagline: 'The central hub for everything Gutenberg related at 10up',
+	title: '10up - WP Block Editor Best Practices',
+	tagline: 'The central hub for everything Block Editor related at 10up',
 	url: 'https://gutenberg.10up.com',
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
@@ -95,7 +95,7 @@ const config = {
 				disableSwitch: true,
 			},
 			navbar: {
-				title: 'Gutenberg Best Practices',
+				title: 'Block Editor Best Practices',
 				logo: {
 					src: 'img/10up-logo-full.svg'
 				},

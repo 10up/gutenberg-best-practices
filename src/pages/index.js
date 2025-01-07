@@ -25,8 +25,8 @@ export default function Home() {
     >
       <main>
         <header className={`${styles.heroBanner} home__heroBanner`}>
-          <h1 style={{maxWidth: '30ch', textWrap: 'pretty', marginInline: 'auto'}}>Welcome to the 10up WordPress Block Editor Best Practices!</h1>
-          <p>Tutorials, resources, references and example code for all things WordPress Block Editor.</p>
+          <h1 style={{maxWidth: '30ch', textWrap: 'pretty', marginInline: 'auto'}}>Welcome to the 10up Block Editor Best Practices!</h1>
+          <p>Tutorials, resources, references and example code for all things Block Editor.</p>
           <SearchBar className={styles.searchBar} />
         </header>
         <section className={`${styles.grid} content-wrapper`}>
