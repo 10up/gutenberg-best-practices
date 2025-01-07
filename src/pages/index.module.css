@@ -40,6 +40,14 @@
   align-items: center;
   min-height: 300px;
   position: relative;
+
+  & h2 {
+	  text-wrap: pretty;
+  }
+
+  & p {
+	text-wrap: balance;
+  }
 }
 
 .gridItem img {

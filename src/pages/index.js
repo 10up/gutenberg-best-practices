@@ -25,8 +25,8 @@ export default function Home() {
     >
       <main>
         <header className={`${styles.heroBanner} home__heroBanner`}>
-          <h1>Welcome to the 10up Gutenberg Best Practices!</h1>
-          <p>Tutorials, resources, references and example code for all things Gutenberg.</p>
+          <h1 style={{maxWidth: '30ch', textWrap: 'pretty', marginInline: 'auto'}}>Welcome to the 10up WordPress Block Editor Best Practices!</h1>
+          <p>Tutorials, resources, references and example code for all things WordPress Block Editor.</p>
           <SearchBar className={styles.searchBar} />
         </header>
         <section className={`${styles.grid} content-wrapper`}>
@@ -79,7 +79,7 @@ export default function Home() {
             </Link>
             <h2>Guides</h2>
             <p>
-              This section of the Gutenberg Best Practices is meant as a
+              This section of the WordPress Block Editor Best Practices is meant as a
               collection of individual deep dive articles. You are also welcome
               to contribute articles to this guide!
             </p>
