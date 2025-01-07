@@ -14,4 +14,4 @@ On this page, you will find a collection of training courses designed to help yo
 ## Courses
 
 - [Building Blocks](/training/Blocks/)
-- [Building Block-based Themes](/training/Block-Based-Themes/)
+- [Building Block-based Themes](/training/Block-Based-Themes/) _(in progress)_
