@@ -85,6 +85,49 @@ const config = {
 
 			},
 		],
+		[
+			require.resolve('@docusaurus/plugin-client-redirects'),
+			{
+				redirects: [
+					{
+						to: '/training/Blocks/overview/',
+						from: '/training/overview/',
+					},
+					{
+						to: '/training/Blocks/cta-lesson/',
+						from: '/training/cta-lesson/',
+					},
+					{
+						to: '/training/Blocks/styles/',
+						from: '/training/styles/',
+					},
+					{
+						to: '/training/Blocks/patterns/',
+						from: '/training/patterns/',
+					},
+					{
+						to: '/training/Blocks/variations/',
+						from: '/training/variations/',
+					},
+					{
+						to: '/training/Blocks/inner-blocks/',
+						from: '/training/inner-blocks/',
+					},
+					{
+						to: '/training/Blocks/rich-text-formats/',
+						from: '/training/rich-text-formats/',
+					},
+					{
+						to: '/training/Blocks/slot-fill/',
+						from: '/training/slot-fill/',
+					},
+					{
+						to: '/training/Blocks/build-your-own/',
+						from: '/training/build-your-own/',
+					},
+				]
+			}
+		]
 	],
 
 	themeConfig:
