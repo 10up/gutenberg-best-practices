@@ -2,7 +2,7 @@
 
 ## Overview
 
-This lesson will guide you through using the `scaffold:block` command available in the [10up WP Scaffold](https://github.com/10up/wp-scaffold) setup. This command provides a structured way to generate Gutenberg blocks inside a theme or plugin without requiring manual setup.
+This lesson will guide you through using the `scaffold:block` command available in the [10up WP Scaffold](https://github.com/10up/wp-scaffold) setup. The command provides a structured way to generate Gutenberg blocks inside a theme or plugin without requiring manual setup.
 
 By the end of this lesson, you will:
 
