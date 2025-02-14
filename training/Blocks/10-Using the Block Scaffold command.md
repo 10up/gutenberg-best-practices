@@ -134,8 +134,7 @@ After making your changes, save the file. Future blocks scaffolded using `npm ru
 Instead of modifying existing blocks, you can **add new block types** (variants) inside `bin/create-block-template/index.js`. Variants allow you to introduce different configurations, such as an **interactive block**.
 
 :::info
-The `index.js` file inside `bin/create-block-template/` acts like a **`package.json` for block scaffolding**.
-It defines the **default settings** and **variants** that determine the files, attributes, and dependencies a block includes.
+The `index.js` file inside `bin/create-block-template/` contains all the information for dynamically building the **`block.json` file for the scaffolded blocks.** It defines the **default settings** and **variants** that determine the files, attributes, and dependencies a block includes.
 :::
 
 #### **Step 1: Define the variant**
