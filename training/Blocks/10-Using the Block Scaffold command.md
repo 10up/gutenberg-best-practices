@@ -56,6 +56,18 @@ Let's add a new block to your existing WordPress plugin:
 ? The dashicon to make it easier to identify your block (optional): block
 ? The category name to help users browse and discover your block: text
 ```
+
+:::tip
+If you prefer **not** to switch directories every time you scaffold a block inside your theme or plugin, you can run the command from the project root using the **workspace flag (`-w`)**:. This will execute the scaffold command inside the **specified workspace** (theme or plugin)
+without requiring you to manually `cd` into the directory. 🚀.
+
+For example:
+```
+npm run scaffold:block -w tenup-theme
+npm run scaffold:block -w tenup-plugin
+```
+:::
+
 ### Explanation of Prompts
 
 | Prompt                 | Description                                          | Example Input     |
@@ -67,16 +79,6 @@ Let's add a new block to your existing WordPress plugin:
 | **Short description**  | Optional description of the block.                   | `A custom block`  |
 | **Dashicon**           | Icon used to identify the block in the editor.       | `block`           |
 | **Category name**      | Determines where the block appears in the editor.    | `text`            |
-
-:::tip
-To avoid changing into directories if all your commands are primarily ran from the project root, you can add a new script to your project's root `package.json` file. This will run the command from within your theme or plugin without the need to change into directories.
-
-```
-"scripts": {
-  "scaffold:block": "npm run scaffold:block -w=tenup-theme"
-}
-```
-:::
 
 ## Understanding the Scaffolded Files
 
