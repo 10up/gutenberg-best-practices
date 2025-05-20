@@ -58,19 +58,18 @@ You can think about attributes as fields or data — a heading, a title, a descr
 
 ## File structure of a block
 
-It takes a village (of files) to build a block. Luckily, our 10up scaffold has everything neatly in place for you. The scaffold comes with a [starter block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block)
+It takes a village (of files) to build a block. Luckily, our 10up scaffold has everything neatly in place for you. The scaffold comes with a [starter block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block)
  that shows everything in place.
 
-### The [10up Starter block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block)
+### The [10up Starter block](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block)
 
 The various pieces of this starter block are:
 
-- [**block.json**](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/block.json) — This is where all of the configurations for our block happen. The block's name, icon, keywords and everything else is handled here. Most importantly, the block's attributes are listed here. We will cover attributes more in the next section.
-- [**edit.js**](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/edit.js) —  This file controls how the block looks and behaves in the editor. This is where you use interactive elements to manage your block's attributes. Imagine that you want to add a title to your block. In `edit.js`,  you will import the `RichText` component, style it to look like it does on the frontend, and listen for changes. Any time the block changes, the data gets saved in the database! Markup in this file is written in JSX like standard React components.
-- [**index.css**](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/index.css) — Sometimes you want your block to look slightly different in the editor than on the frontend. You can add styles to affect only the editor appearance here.
-- [**index.js**](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/index.js) — This is where everything about the block is brought together. You should not need to do much in this file beyond importing the edit function, the save function and the block.json.
-- [**markup.php**](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/markup.php) — Here is where the frontend markup for your block lives. Have a look at what is in `$attributes` to see what data is available to you. Any attributes that you have saved in the editor should be available here.
-- [**save.js**](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/save.js) — You generally should not need to touch this file. At 10up, we build dynamic blocks which return `null`, but this is not super-important to know at this stage. Dynamic versus static blocks is something you do not need to worry about until much later in these lessons.
+- [**block.json**](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block/block.json) — This is where all of the configurations for our block happen. The block's name, icon, keywords and everything else is handled here. Most importantly, the block's attributes are listed here. We will cover attributes more in the next section.
+- [**edit.js**](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block/edit.js) —  This file controls how the block looks and behaves in the editor. This is where you use interactive elements to manage your block's attributes. Imagine that you want to add a title to your block. In `edit.js`,  you will import the `RichText` component, style it to look like it does on the frontend, and listen for changes. Any time the block changes, the data gets saved in the database! Markup in this file is written in JSX like standard React components.
+- [**index.js**](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block/index.js) — This is where everything about the block is brought together. You should not need to do much in this file beyond importing the edit function, the save function and the block.json.
+- [**markup.php**](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block/markup.php) — Here is where the frontend markup for your block lives. Have a look at what is in `$attributes` to see what data is available to you. Any attributes that you have saved in the editor should be available here.
+- [**save.js**](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block/save.js) — You generally should not need to touch this file. At 10up, we build dynamic blocks which return `null`, but this is not super-important to know at this stage. Dynamic versus static blocks is something you do not need to worry about until much later in these lessons.
 
 ## Putting it all Together
 
@@ -78,7 +77,7 @@ There is a lot going on here, but things should make more sense if we follow a s
 
 Let us look at the `title` attribute:
 
-1. It is first defined as an attribute in [block.json](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/block.json#L12). This is essentially saying "I want to store a field in the database called `title` and use it in my templates. There are two instances below where you can see `title` defined.
+1. It is first defined as an attribute in [block.json](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block/block.json#L15). This is essentially saying "I want to store a field in the database called `customTitle` and use it in my templates. There are two instances below where you can see `customTitle` defined.
 
 The first is the actual definition of the attribute. Here, we define the attribute and set [type validation](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/#type-validation).
 
@@ -132,7 +131,7 @@ You can see below the "Example Block" `block.json` from our 10up Scaffold that i
 }
 ```
 
-1. Then we wrap it in some markup and watch for changes in a `<RichText>` element in [edit.js](https://github.com/10up/wp-scaffold/blob/trunk/themes/tenup-theme/includes/blocks/example-block/edit.js#L28). Pay close attention to the last two lines of the `<RichText>` element. We are telling the RichText component what the current current value it should display is. And then telling it what to do whenever the value it is changed.
+1. Then we wrap it in some markup and watch for changes in a `<RichText>` element in [edit.js](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block/edit.js#L28). Pay close attention to the last two lines of the `<RichText>` element. We are telling the RichText component what the current current value it should display is. And then telling it what to do whenever the value it is changed.
 
 ```jsx title="edit.js"
 import { useBlockProps, RichText } from '@wordpress/block-editor';
@@ -173,7 +172,7 @@ That was a quick tour of the block editor, some of the common lingo, and a peek 
 
 1. Blocks live in the block editor. Most blocks have two places to control their settings: the **Toolbar** above the block and the **Inspector** located in the right sidebar.
 2. Blocks use and store **Attributes**. Think of attributes in the same way you would think about custom fields.
-3. Our scaffolding has a specific structure for blocks. The example block ships with our [WP Scaffold](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/includes/blocks/example-block) repository.
+3. Our scaffolding has a specific structure for blocks. The example block ships with our [WP Scaffold](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block) repository.
 
 ## Further Reading
 
