@@ -75,7 +75,7 @@ The various pieces of this starter block are:
 
 There is a lot going on here, but things should make more sense if we follow a single attribute around the codebase.
 
-Let us look at the `customTitle` attribute:
+Let us look at the `title` attribute:
 
 1. It is first defined as an attribute in [block.json](https://github.com/10up/wp-scaffold/tree/trunk/themes/10up-theme/blocks/example-block/block.json#L15). This is essentially saying "I want to store a field in the database called `customTitle` and use it in my templates. There are two instances below where you can see `customTitle` defined.
 
@@ -84,7 +84,7 @@ The first is the actual definition of the attribute. Here, we define the attribu
 ```json title="block.json"
 "attributes":{
 	// highlight-start
-	"customTitle": {
+	"title": {
 		"type" : "string"
 	}
 	// highlight-end
@@ -97,33 +97,33 @@ The second, within `example: {}` is not setting or defining the attribute. Inste
 "example": {
 	"attributes": {
 		// highlight-next-line
-		"customTitle": "Example Block"
+		"title": "Example Block"
 	}
 },
 ```
 
 For this lesson, however, the actual definition of the attribute (first instance) is where we want to focus.
 
-You can see below the "Example Block" `block.json` from our 10up Scaffold that includes both the `customTitle` attribute definition and the `customTitle` "example" content:
+You can see below the "Example Block" `block.json` from our 10up Scaffold that includes both the `title` attribute definition and the `title` "example" content:
 
 ```json title="block.json"
 {
 	"apiVersion": 2,
 	"title": "Example Block",
 	"description": "An Example Block",
-	"textdomain": "tenup-scaffold",
+	"textdomain": "tenup-theme",
 	"name": "tenup/example",
 	"icon": "feedback",
-	"category": "tenup-scaffold-blocks",
+	"category": "formatting",
 	// highlight-start
 	"attributes":{
-		"customTitle": {
+		"title": {
 			"type" : "string"
 		}
 	},
 	"example": {
 		"attributes":{
-			"customTitle": "Example Block"
+			"title": "Example Block"
 		}
 	},
 	// highlight-end
@@ -138,7 +138,7 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 function BlockEdit(props) {
 	const { attributes } = props;
-	const { customTitle } = attributes;
+	const { title } = attributes;
 	const blockProps = useBlockProps();
 
 	return (
@@ -148,8 +148,8 @@ function BlockEdit(props) {
 				tagName="h2"
 				placeholder={__('Custom Title')}
 				// highlight-start
-				value={customTitle}
-				onChange={(newValue) => setAttributes({ customTitle: newValue })}
+				value={title}
+				onChange={(title) => setAttributes({ title })}
 				// highlight-end
 			/>
 		</div>
@@ -158,11 +158,11 @@ function BlockEdit(props) {
 
 ```
 
-3. Finally, we output our `customTitle` attribute in our frontend markup in [markup.php](https://github.com/10up/wp-scaffold/blob/trunk/themes/10up-theme/includes/blocks/example-block/markup.php)!
+3. Finally, we output our `title` attribute in our frontend markup in [markup.php](https://github.com/10up/wp-scaffold/blob/trunk/themes/10up-theme/includes/blocks/example-block/markup.php)!
 
 ```php title="markup.php" {2}
 <h2 <?php echo get_block_wrapper_attributes(); ?>>
-	<?php echo wp_kses_post( $args['attributes']['customTitle'] ); ?>
+	<?php echo wp_kses_post( $attributes['title'] ); ?>
 </h2>
 ```
 
