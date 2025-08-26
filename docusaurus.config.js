@@ -24,9 +24,8 @@ const config = {
 			({
 				docs: false,
 				blog: false,
-				gtag: {
-					trackingID: 'G-WF1Z7JSCXS',
-					anonymizeIP: true,
+				googleTagManager: {
+					containerId: 'GTM-KKMSD2RG',
 				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
