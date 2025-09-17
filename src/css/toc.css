@@ -16,7 +16,7 @@
   border-radius: .5rem;
 }
 
-.table-of-contents:hover {
+.table-of-contents a:hover {
   color: var(--ifm-color-primary);
   text-decoration: underline;
 }
