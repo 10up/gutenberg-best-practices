@@ -200,7 +200,7 @@ function filter_the_markup( string $content, array $block ) : string {
 	$id_hash    = md5( $inner_html );
 
 	// Add the attributes to the markup.
-	if ( $attributes->next_tag( array( 'class' => 'wp-block-heading' ) ) ) {
+	if ( $attributes->next_tag( array( 'class_name' => 'wp-block-heading' ) ) ) {
 		$attributes->set_attribute( 'id', $id_hash );
 		$attributes->add_class( 'js-detect-sidebar-heading' );
 	}
