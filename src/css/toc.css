@@ -22,9 +22,9 @@
 }
 
 .table-of-contents .table-of-contents__link--active {
-  outline: 1px solid #ddd;
-  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 3px -1px var(--ifm-shadow-overlay);
   font-weight: 700;
+  outline: 1px solid var(--ifm-border-color);
 }
 
 .table-of-contents code {
