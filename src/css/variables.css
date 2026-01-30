@@ -45,7 +45,6 @@
   --docusaurus-highlighted-code-line-bg: #e0e0e0;
 }
 
-/* Dark theme: remap variables to --wp--custom--color palette (delete-me.css). */
 html[data-theme="dark"] {
   --c-10up-secondary: rgba(102, 82, 255, 0.15);
   --c-10up-secondary-dark: #7c6bff;
