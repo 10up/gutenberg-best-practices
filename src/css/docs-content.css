@@ -1,7 +1,11 @@
 .theme-doc-markdown h1 {
-	border-bottom: 1px dashed #ddd;
-	padding-bottom: 2rem;
+	border-bottom: 1px dashed var(--ifm-border-color);
 	margin-bottom: 2rem;
+	padding-bottom: 2rem;
+}
+
+.theme-doc-markdown img {
+	background-color: #fff; /* Keep white so pngs get bg in dark mode. */
 }
 
 main > .container {
