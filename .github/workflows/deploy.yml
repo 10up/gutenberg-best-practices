@@ -1,5 +1,8 @@
 name: Deploy Production Website
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [ "main" ]
@@ -8,8 +11,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
       - uses: actions/checkout@v3
