@@ -19,10 +19,10 @@
 }
 
 .contributing img {
-  height: auto;
-  border: 5px solid white;
-  box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.1);
+  border: 5px solid var(--ifm-input-background-color);
   border-radius: .5rem;
+  box-shadow: 0 5px 10px -3px var(--ifm-shadow-overlay);
+  height: auto;
 }
 
 .contributing p {

@@ -57,10 +57,18 @@
   margin-top: .5em;
   background-color: var(--ifm-color-primary);
   text-decoration: none;
+
+  [data-theme="dark"] & {
+    background-color: var(--ifm-color-primary-dark);
+  }
 }
 
 .cta-careers .button:hover {
   background-color: var(--ifm-color-primary-dark);
+
+  [data-theme="dark"] & {
+    background-color: var(--ifm-color-primary-light);
+  }
 }
 
 .footer__links {

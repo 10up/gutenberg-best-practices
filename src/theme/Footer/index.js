@@ -1,12 +1,17 @@
 import React from 'react';
 import Footer from '@theme-original/Footer';
+import { useColorMode } from '@docusaurus/theme-common';
 
 const currentYear = new Date().getFullYear();
+const logoLight = '/img/10up-logo-full.svg';
+const logoDark = '/img/10up-logo-full-white.svg';
 
 export default function FooterWrapper(props) {
+  const { colorMode } = useColorMode();
+  const logoSrc = colorMode === 'dark' ? logoDark : logoLight;
+
   return (
     <>
-
       <Footer {...props} />
 
       <div className="footer-about">
@@ -31,10 +36,10 @@ export default function FooterWrapper(props) {
         <div className="wrap">
           <a className="tenup-logo" href="https://10up.com" title="10up">
             <img
-              src="/img/10up-logo-full.svg"
               alt="10up logo"
-              width="75"
               height="75"
+              src={logoSrc}
+              width="75"
             />
           </a>
           <p>Finely crafted by 10up, ©{currentYear}.<br />

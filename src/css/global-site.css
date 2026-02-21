@@ -3,11 +3,11 @@ html {
 }
 
 aside.theme-doc-sidebar-container {
-  background-color: #fbfbfb;
+  background-color: var(--ifm-sidebar-background-color);
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--ifm-code-line-highlight-bg);
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
@@ -17,8 +17,10 @@ html[data-theme="dark"] {
   --ifm-color-primary: var(--ifm-color-primary-lightest);
 }
 
-html[data-theme="dark"] .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
+/* !important needed to override inline styles. */
+html[data-theme="dark"] .theme-announcement-bar {
+  background-color: var(--ifm-sidebar-background-color) !important;
+  color: var(--ifm-color-black) !important;
 }
 
 main > .container {
@@ -64,4 +66,12 @@ h5,
 h6 {
   text-wrap: balance;
   text-wrap: pretty;
+}
+
+dt {
+	font-weight: 700;
+}
+
+dd + dt {
+	margin-block-start: 1rem;
 }

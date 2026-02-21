@@ -1,5 +1,8 @@
 name: Ensure the build is passing
 
+permissions:
+  contents: read
+
 on:
   pull_request
 

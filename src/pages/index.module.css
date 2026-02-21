@@ -60,7 +60,7 @@
 .gridLink {
   margin-top: auto;
   font-weight: 700;
-  color: #000;
+  color: var(--ifm-color-black);
   text-decoration: none;
   border-bottom: 2px solid var(--ifm-color-primary);
 }
@@ -68,6 +68,10 @@
 .gridLink:hover {
   text-decoration: none;
   color: var(--ifm-color-primary);
+}
+
+:global(html[data-theme="dark"]) .gridItem img {
+  filter: invert(1);
 }
 
 .buttons {

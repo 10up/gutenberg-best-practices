@@ -134,12 +134,14 @@ const config = {
 		({
 			colorMode: {
 				defaultMode: 'light',
-				disableSwitch: true,
+				disableSwitch: false,
+				respectPrefersColorScheme: false,
 			},
 			navbar: {
 				title: 'Block Editor Best Practices',
 				logo: {
-					src: 'img/10up-logo-full.svg'
+					src: 'img/10up-logo-full.svg',
+					srcDark: 'img/10up-logo-full-white.svg',
 				},
 				items: [
 					{
