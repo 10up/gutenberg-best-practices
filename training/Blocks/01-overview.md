@@ -1,4 +1,4 @@
-# Lesson 1: Anatomy of a block
+# 1. Anatomy of a Block
 
 Blocks are the foundation of how we build WordPress sites at 10up. As of WordPress 5.0, the Block Editor has become the default editor and replaces TinyMCE in that role. To deliver the best editorial experience to our clients, we will develop custom blocks, block patterns, make customizations to the core blocks and make sure our styles are loaded in both the frontend and the editor.
 

@@ -1,4 +1,4 @@
-# Lesson 2: Creating a simple Block
+# 2. Creating a Simple Block
 
 This lesson provides a partially completed block that needs to have some features added to it to match the existing `cta-complete` block. All of the setup and files have been pre-configured as the focus here is to work with a block on its own without adding confusion around build tools and file locations.
 

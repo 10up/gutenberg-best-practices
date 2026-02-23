@@ -1,4 +1,4 @@
-# Lesson 10: Scaffolding with the Block Scaffold Command
+# 10. Scaffolding with the Block Scaffold Command
 
 ## Overview
 

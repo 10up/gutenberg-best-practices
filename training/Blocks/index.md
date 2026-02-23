@@ -103,15 +103,16 @@ If there is a `markup.php` file located inside the same directory as the `block.
 
 ## Lessons
 
-* [Lesson 1: Anatomy of a block](./01-overview.md)
-* [Lesson 2: A Simple CTA block](./02-cta-lesson.md)
-* [Lesson 3: Block Styles](./03-styles.md)
-* [Lesson 4: Block Patterns](./04-patterns.md)
-* [Lesson 5: Block Variations](./05-variations.md)
-* [Lesson 6: Inner Blocks / Block Nesting](./06-inner-blocks.md)
-* [Lesson 7: Rich Text Formats](./07-rich-text-formats.md)
-* [Lesson 8: Slot Fill](./08-slot-fill.md)
-* [Lesson 9: Build your own](./09-build-your-own.md)
+1. [Anatomy of a Block](./01-overview.md)
+2. [A Simple CTA Block](./02-cta-lesson.md)
+3. [Block Styles](./03-styles.md)
+4. [Block Patterns](./04-patterns.md)
+5. [Block Variations](./05-variations.md)
+6. [Inner Blocks / Block Nesting](./06-inner-blocks.md)
+7. [Rich Text Formats](./07-rich-text-formats.md)
+8. [Slot Fill](./08-slot-fill.md)
+9. [Build Your own](./09-build-your-own.md)
+10. [Scaffolding with the Block Scaffold Command](./10-Using%20the%20Block%20Scaffold%20command.md)
 
 ## Support
 

@@ -1,4 +1,4 @@
-# Lesson 9: Build Your Own
+# 9. Build Your Own
 
 After going through the lessons, it's time to put all your newly learned skills together and build a block by yourself. Spend no more than ~4 hours on this block.
 

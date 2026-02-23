@@ -1,4 +1,9 @@
-# Lesson 1: Anatomy of a block based theme
+---
+sidebar_label: 1. Anatomy of a Block Based Theme
+sidebar_position: 1
+---
+
+# 1. Anatomy of a Block Based Theme
 
 Block Based Themes _(sometimes referred to as Full Site Editing or FSE for short)_ are a new way of building WordPress themes. Instead of using PHP templates, you build your theme using blocks. This means that everything in your theme is a block, from the header to the footer, and everything in between.
 
@@ -6,7 +11,7 @@ In this lesson, we'll take a look at the anatomy of a block based theme, and how
 
 ## The Basics
 
-Even though it might seem like a big change, building a block based theme is not that different from building a traditional theme. The main difference is that instead of using PHP templates, you HTML template files that contain block markup. These files are stored in a `templates` folder in your theme.
+Even though it might seem like a big change, building a block based theme is not that different from building a traditional theme. The main difference is that instead of using PHP templates, you use HTML template files that contain block markup. These files are stored in a `templates` folder in your theme.
 
 Everything else is pretty much the same. Any theme still requires a `style.css` file for the theme metadata, and a `functions.php` file for any custom functions or hooks, and so on.
 
@@ -53,7 +58,7 @@ $footer_template = do_blocks( $footer_template->content );
 
 		<main class="is-layout-constrained">
 			<h1><?php the_title(); ?></h1>
-			
+
 			<?php
 			// do custom work here
 			?>
@@ -118,12 +123,12 @@ Whilst you may find core themes such as twentytwentyfive to strive for _zero css
 For custom built themes for client projects it brings very little value and adds a lot of complexity in terms of fighting with WordPress cores stylesheet specificity.
 
 :::tip
-A rule of thumb is that you should `theme.json` as the source of truth for all your design tokens and settings. But any actual styles should be written in CSS files.
+A rule of thumb is that you should use `theme.json` as the source of truth for all your design tokens and settings. But any actual styles should be written in CSS files.
 :::
 
 ## Styles
 
-One of the nice benefits of block based themes where everything is made out of blocks is, that only the styles for the blocks that are actually used on the page are loaded. So you WordPress essentially does some code splitting for you.
+One of the nice benefits of block based themes where everything is made out of blocks is that only the styles for the blocks that are actually used on the page are loaded. So you WordPress essentially does some code splitting for you.
 
 Whats even more interesting is that on top of just code splitting, WordPress also does some light critical CSS extraction for you.
 

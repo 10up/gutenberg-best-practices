@@ -1,4 +1,4 @@
-# Lesson 3: Block styles
+# 3. Block Styles
 
 In many of our projects at 10up, we need to change the style of some of the core blocks that ship with the block editor. Typically, we want to remove block styles that aren't needed, or add ones that help us achieve elements of the project's design. Block Styles have a rather narrow use-case though as other options like [extending a block](/reference/Blocks/block-extensions) often time creates a better user experience.
 

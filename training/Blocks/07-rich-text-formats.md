@@ -1,4 +1,4 @@
-# Lesson 7: Rich Text Formats
+# 7. Rich Text Formats
 
 ## Learning Outcomes
 

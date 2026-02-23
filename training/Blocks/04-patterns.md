@@ -1,4 +1,4 @@
-# Lesson 4: Block Patterns
+# 4. Block Patterns
 
 Block Patterns are a great way to get up and running quickly when editing a page in WordPress. They allow you to insert entire predefined templates so that you don't have to start from scratch. As an editor you get a really nice visual preview of what the pattern looks like.
 
