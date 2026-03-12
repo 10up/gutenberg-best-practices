@@ -11,3 +11,8 @@
 main > .container {
 	margin-bottom: 4rem;
 }
+
+main img:has(+ em) {
+	display: block;
+	margin-block-end: 4px;
+}

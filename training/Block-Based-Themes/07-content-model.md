@@ -1,11 +1,13 @@
 ---
-sidebar_label: "7. Content Model: CPTs, Taxonomies, and Post Meta"
+sidebar_label: 7. Understanding the Content Model
 sidebar_position: 7
 ---
 
-# 7. Content Model — CPTs, Taxonomies, and Post Meta
+# 7. Understanding the Content Model
 
-Up to now we've been working inside the theme. This lesson shifts to the MU plugin, where the content model lives. Data should persist regardless of which theme is active — that's why CPTs, taxonomies, meta fields, and relationships belong in the plugin layer, not the theme.
+Up to now we've been working inside the theme. This lesson shifts to the MU plugin, where the content model lives. **No code changes to the theme.** This is a read-only exploration.
+
+Data should persist regardless of which theme is active, so CPTs, taxonomies, meta fields, and relationships belong in the plugin layer, not the theme.
 
 ## Learning Outcomes
 
@@ -16,7 +18,7 @@ Up to now we've been working inside the theme. This lesson shifts to the MU plug
 
 ## The module system
 
-The `10up-plugin` uses the [10up PHP framework](https://github.com/10up/wp-framework) — specifically the `ModuleInterface` and `Module` trait — to auto-discover and register classes.
+The `10up-plugin` uses the [10up PHP framework](https://github.com/10up/wp-framework):specifically the `ModuleInterface` and `Module` trait:to auto-discover and register classes.
 
 Here's the initialization flow:
 
@@ -37,7 +39,7 @@ interface ModuleInterface {
 }
 ```
 
-Drop a new PHP class in `src/` that implements this interface and it will be auto-discovered — no manual registration needed.
+Drop a new PHP class in `src/` that implements this interface and it will be auto-discovered:no manual registration needed.
 
 ## Custom post types
 
@@ -125,7 +127,7 @@ class MoviePlot extends AbstractPostMeta {
 }
 ```
 
-And a complex object field — `MovieRuntime` stores hours and minutes as a structured object:
+And a complex object field:`MovieRuntime` stores hours and minutes as a structured object:
 
 ```php title="mu-plugins/10up-plugin/src/PostMeta/MovieRuntime.php (key parts)"
 class MovieRuntime extends AbstractPostMeta {
@@ -162,7 +164,7 @@ class MovieRuntime extends AbstractPostMeta {
 }
 ```
 
-The abstract class automatically includes `show_in_rest` with the schema — this is what makes the field visible to the REST API, the block editor, and block bindings.
+The abstract class automatically includes `show_in_rest` with the schema:this is what makes the field visible to the REST API, the block editor, and block bindings.
 
 :::tip
 `show_in_rest` is the single most important flag for any meta field. Without it, the field is invisible to the editor, block bindings, and JavaScript. If a field doesn't appear where you expect, check `show_in_rest` first.
@@ -206,34 +208,39 @@ class Relationships implements ModuleInterface {
 }
 ```
 
-This creates a bidirectional relationship between Movies and People. From the admin, editors can relate a Movie to its cast members, and those relationships are queryable from both sides. The theme's Block Bindings (covered in [Lesson 9](./09-block-bindings.md)) use Content Connect to display linked names.
+This creates a bidirectional relationship between Movies and People. From the admin, editors can relate a Movie to its cast members, and those relationships are queryable from both sides. The theme's Block Bindings (covered in [Lesson 10](./10-block-bindings.md)) use Content Connect to display linked names.
 
 ## Tasks
 
 1. **Trace the initialization flow.** Start at `plugin.php`, follow to `PluginCore.php`, and see how `ModuleInitialization::instance()->init_classes()` auto-discovers classes.
 
-> 📐 **Diagram suggestion**: Flowchart showing `plugin.php` → `PluginCore::init()` → `ModuleInitialization` → scans `src/` → `can_register()` → `register()`.
+TODO_SUGGEST_SCREENSHOT
 
 2. **Read a CPT definition.** Open `PostTypes/Movie.php`. Note the slug, rewrite, supported taxonomies, and `custom-fields` support.
 
 3. **Read the abstract meta class.** Open `AbstractPostMeta.php`. See how `register_post_meta()` is called with `show_in_rest`, `single`, `type`, and optional `default`/`enum`.
 
-4. **Add a new meta field.** Create a class (e.g. `MovieTagline.php`) extending `AbstractPostMeta`. Set the key to `tenup_movie_tagline`, type to `string`, and return `Movie::POST_TYPE` from `get_post_types()`. Verify it appears in the REST response: `/wp-json/wp/v2/tenup-movie/{id}`.
+4. **Read a simple field** (`MoviePlot.php`) and a complex one (`MovieRuntime.php`, an object type with a properties schema).
 
-5. **Test the relationship.** In the admin, edit a Movie and use the Content Connect UI to relate it to a Person. Verify the relationship persists and is queryable from both sides.
+5. **Read `Relationships.php`.** See how Content Connect defines bidirectional many-to-many relationships.
+
+6. **Verify data in the REST API.** Visit `/wp-json/wp/v2/tenup-movie/{id}` and confirm meta fields appear in the response.
+
+7. **Test the relationship.** In the admin, edit a Movie and use the Content Connect UI to relate it to a Person. Verify the relationship persists and is queryable from both sides.
 
 ## Takeaways
 
 - The content model belongs in the MU plugin. Data outlives design.
 - All modules implement `ModuleInterface` with `can_register()`, `register()`, and `load_order()`.
-- `show_in_rest` is the single most important flag — without it, the field is invisible to the editor, bindings, and JS.
+- `show_in_rest` is the single most important flag. Without it, the field is invisible to the editor, bindings, and JS.
 - Complex meta (like `MovieRuntime`) uses the `object` type with a `properties` schema.
 - Content Connect provides bidirectional many-to-many relationships between post types.
 
 ## Ship it checkpoint
 
-- The CPT works end-to-end (archive + single resolve, permalinks work)
-- A meta field is registered with `show_in_rest` and persists when edited via REST
+- Can explain where CPTs, meta, and relationships are defined
+- Can see meta fields in the REST API response
+- Understands why `show_in_rest` matters
 
 ## Further reading
 

@@ -239,17 +239,14 @@ Below is the full code from our example Call to Action.
 Here we can see that our Call to Action will display a nice fallback should our post meta fields be missing.
 
 ![Call to action with default settings applied](../../static/img/block-pattern-call-to-action-example.jpg)
-<br/>
 *Call to action with default settings applied*
 
 If we have our all of our desired data, we will display our custom content.
 
 ![An example of our populated post meta fields](../../static/img/block-pattern-bindings-post-meta-example.jpg)
-<br/>
 *An example of our populated post meta fields*
 
 ![Our dynamic Call to Action populated with our post meta fields](../../static/img/block-pattern-bindings-finished-example.jpg)
-<br/>
 *Our dynamic Call to Action populated with our post meta fields*
 
 ## Further reading

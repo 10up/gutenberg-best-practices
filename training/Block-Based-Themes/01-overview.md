@@ -5,17 +5,17 @@ sidebar_position: 1
 
 # 1. Anatomy of a Block Based Theme
 
-Block Based Themes _(sometimes referred to as Full Site Editing or FSE for short)_ are a new way of building WordPress themes. Instead of using PHP templates, you build your theme using blocks. This means that everything in your theme is a block, from the header to the footer, and everything in between.
+Block Based Themes (sometimes referred to as Full Site Editing or FSE for short) are a new way of building WordPress themes. Instead of using PHP templates, you build your theme using blocks. This means that everything in your theme is a block, from the header to the footer, and everything in between.
 
-In this lesson, we'll take a look at the anatomy of a block based theme, and how you can start building your own.
+In this lesson, we'll take a look at the anatomy of a block based theme and how you can start building your own.
 
 ## The Basics
 
 Even though it might seem like a big change, building a block based theme is not that different from building a traditional theme. The main difference is that instead of using PHP templates, you use HTML template files that contain block markup. These files are stored in a `templates` folder in your theme.
 
-Everything else is pretty much the same. Any theme still requires a `style.css` file for the theme metadata, and a `functions.php` file for any custom functions or hooks, and so on.
+Everything else is pretty much the same. Any theme still requires a `style.css` file for the theme metadata and a `functions.php` file for any custom functions or hooks.
 
-You can think of block based themes as a superset on top of traditional themes. If you look at the template hierarchy in WordPress (e.g. `index.php`, `single.php`, `page.php`, etc.), the introduction of block based themes doesn't change that. Instead of `index.php`, you now have `templates/index.html`, and so on. The same rules apply, but instead of PHP files, you use HTML files. The cool part here is that technically speaking you can even still use PHP files. The template hierarchy will look for `.html` files first, and then fall back to `.php` files if it can't find an `.html` version.
+You can think of block based themes as a superset on top of traditional themes. If you look at the template hierarchy in WordPress (`index.php`, `single.php`, `page.php`, etc.), the introduction of block based themes doesn't change that. Instead of `index.php`, you now have `templates/index.html`, and so on. The same rules apply, but instead of PHP files, you use HTML files. Technically you can even still use PHP files: the template hierarchy will look for `.html` files first, and then fall back to `.php` files if it can't find an `.html` version.
 
 ![Block Based Theme File Structure](../../static//img/fse-template-hierarchy.png)
 
@@ -98,7 +98,7 @@ You **cannot use arbitrary HTML** in a block template. **It needs to be valid bl
 
 If you need custom markup that isn't already available via any of the core blocks you can create it as a custom block. You can learn more about how to do that in the [Blocks section](../Blocks/01-overview.md).
 
-Block based themes don't mean that we no longer write custom blocks. But rather that the custom blocks we do build are much more atomic rather that the big monolithic blocks that we might have built in the past.
+Block based themes don't mean that we no longer write custom blocks, but rather that the custom blocks we do build are much more atomic rather than the big monolithic blocks we might have built in the past.
 
 ![Monolithic vs. Atomic blocks](../../static/img/atomic-blocks.png)
 
@@ -110,17 +110,17 @@ No one should have to hand author the block markup in the `.html` files. The edi
 
 ## The Site Editor
 
-We just mentioned the site editor, and it's a key part of building block based themes. The site editor is where you create and edit your block templates and template parts. It's a visual editor that lets you see how your changes will look on the frontend in real-time.
+We just mentioned the Site Editor, and it's a key part of building block based themes. The Site Editor is where you create and edit your block templates and template parts. It's a visual editor that lets you see how your changes will look on the frontend in real time.
 
-We should think of the site editor as a kind of visual IDE for developing WordPress themes. It is a development feature rather that something we would expect end users to use.
+We should think of the Site Editor as a kind of visual IDE for developing WordPress themes. It is a development feature rather than something we would expect end users to use.
 
 ## Theme.json
 
 There is a myth out there that you don't wite any CSS in a block based theme and instead do everything in the `theme.json` file. **This is not true.**
 
-Whilst you may find core themes such as twentytwentyfive to strive for _zero css_ that is not at all a requirement and I would even go so far as to say it is only really something you should consider if you are building a theme for the WordPress theme directory.
+Whilst you may find core themes such as Twenty Twenty-Five striving for "zero CSS," that is not at all a requirement. It is really only something you should consider if you are building a theme for the WordPress theme directory.
 
-For custom built themes for client projects it brings very little value and adds a lot of complexity in terms of fighting with WordPress cores stylesheet specificity.
+For custom-built themes on client projects, it brings very little value and adds a lot of complexity in terms of fighting with WordPress core's stylesheet specificity.
 
 :::tip
 A rule of thumb is that you should use `theme.json` as the source of truth for all your design tokens and settings. But any actual styles should be written in CSS files.
@@ -128,11 +128,11 @@ A rule of thumb is that you should use `theme.json` as the source of truth for a
 
 ## Styles
 
-One of the nice benefits of block based themes where everything is made out of blocks is that only the styles for the blocks that are actually used on the page are loaded. So you WordPress essentially does some code splitting for you.
+One of the nice benefits of block based themes where everything is made out of blocks is that only the styles for the blocks actually used on the page are loaded. WordPress essentially does some code splitting for you.
 
-Whats even more interesting is that on top of just code splitting, WordPress also does some light critical CSS extraction for you.
+What's even more interesting is that on top of code splitting, WordPress also does some light critical CSS extraction for you.
 
-When a page is loaded WordPress parses the blocks from top to bottom. And any time it encounters a block it will try to load all the styles associated with that block. As it does that it has a little buffer where instead of loading the individual css file, it will take the styles and actually inline them into the head of the document. WordPress will to that until that buffer is full and then it will start loading the css remaining CSS files separately. That way the blocks at the top of the page should have all their styles already present on the page when they are rendered.
+When a page is loaded, WordPress parses the blocks from top to bottom. Any time it encounters a block, it tries to load all the styles associated with that block. It has a small buffer where instead of loading the individual CSS file, it inlines the styles directly into the `<head>` of the document. WordPress does that until the buffer is full, and then it starts loading the remaining CSS files separately. That way the blocks at the top of the page should have all their styles already present when they are rendered.
 
 ![Diagram how WordPress parses blocks top to bottom](../../static/img/block-css-inlining.png)
 
@@ -148,12 +148,11 @@ Our theme scaffold is already setup for this and has a special `assets/css/block
 
 ## Takeaways
 
-- Block based themes are a new way of building WordPress themes that use blocks instead of PHP templates.
-- Block templates are HTML files that contain block markup. They need to be stored in a `templates` folder in your theme.
-- The site editor is where you create and edit your block templates and template parts.
-- You should use the site editor to create your block templates, rather than hand-authoring the block markup in the `.html` files.
+- Block based themes use blocks instead of PHP templates. Everything from the header to the footer is a block.
+- Block templates are HTML files that contain block markup, stored in a `templates` folder in your theme.
+- The Site Editor is where you create and edit your block templates and template parts.
+- Author templates in the Site Editor, not by hand. No one should have to hand-author block markup in `.html` files.
 - You can still use PHP templates in a block based theme, but it's recommended to stick with `.html` files as much as possible.
-- You should use the `theme.json` file as the source of truth for your design tokens and settings, but write your styles in CSS files.
-- You should write your CSS for individual blocks in separate CSS files in the `assets/css/blocks` folder.
-- WordPress does some code splitting and critical CSS extraction for you in block based themes.
-- The [Create Block Theme plugin](https://wordpress.org/plugins/create-block-theme/) is a must-have for building block based themes.
+- Use the `theme.json` file as the source of truth for your design tokens and settings, but write your actual styles in CSS files.
+- Write CSS for individual blocks in separate files in the `assets/css/blocks` folder. WordPress code-splits these automatically.
+- WordPress does code splitting and critical CSS extraction for you in block based themes.

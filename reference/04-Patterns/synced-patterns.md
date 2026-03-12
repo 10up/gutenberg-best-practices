@@ -9,7 +9,6 @@ Block Patterns are an excellent way to quickly add common components across our 
 This is where Synced Patterns shine.  We can create a global component which can be edited once to then update across all instances where it is used.  For example an info card, a grid of logos, or perhaps a simple call to action are all excellent candidates which may require such a feature.  We will use the latter in our examples.
 
 ![Call to action example pattern](../../static/img/block-pattern-call-to-action-example.jpg)
-<br/>
 *A simple Call to Action block pattern*
 
 :::caution
@@ -29,7 +28,6 @@ To mark a pattern as Synced, you would follow these steps:
 That's it!  You can now find your component via the block inserter under the Patterns tab > My Patterns *(and any other categories you declared in step 3)*.
 
 ![The modal window for adding a new Pattern](../../static/img/block-pattern-add-new-modal.jpg)
-<br/>
 *The modal window for adding a new Pattern*
 
 ## Updating a Synced Pattern
@@ -43,7 +41,6 @@ To edit your Synced Pattern, you would do the following:
 5. You can return to the page you were editing using the **Back** button located near the title in the upper center of the screen.
 
 ![The block toolbar to edit your Synced Pattern](../../static/img/block-pattern-synced-edit-original.jpg)
-<br/>
 *The block toolbar to edit your Synced Pattern*
 
 ## Creating Synced Patterns for Theme Authors

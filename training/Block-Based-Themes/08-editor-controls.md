@@ -5,7 +5,7 @@ sidebar_position: 8
 
 # 8. Editor Controls for Post Meta
 
-In the [previous lesson](./07-content-model.md) we defined meta fields in the MU plugin. Now we need to build the editor UI so content editors can actually fill them in. WordPress no longer needs custom metaboxes — the block editor's SlotFill system lets us inject panels directly into the document sidebar.
+In the [previous lesson](./07-content-model.md) we explored how meta fields are defined in the MU plugin. Now we need to build the editor UI so content editors can actually fill them in. WordPress no longer needs custom metaboxes, the block editor's SlotFill system lets us inject panels directly into the document sidebar.
 
 ## Learning Outcomes
 
@@ -207,16 +207,27 @@ Because the PHP `MovieRuntime` field is registered as type `object` with `hours`
 
 ## Tasks
 
-1. **Read the Movie meta panel.** Open `movie-meta-fields.js`. Identify the `PluginDocumentSettingPanel`, the post type check, and how each field component is composed.
+### Bulk copy
 
-2. **Read a meta component.** Open `MovieMPARating.js`. Note how `PostMeta` from `@10up/block-components` provides the meta value and setter.
+Copy the entire `block-plugins/` and `block-components/` directories from the fueled-movies theme into your `assets/js/`. Add `import './block-plugins'` to `block-extensions.js`. Rebuild.
 
-3. **Add a new control.** If you added `MovieTagline` in Lesson 7, create a corresponding editor component:
-   - Create `assets/js/block-components/PostMeta/MovieTagline.js`
-   - Use `TextControl` from `@wordpress/components`
-   - Import it into `movie-meta-fields.js`
+### Walk through 2-3 examples
 
-> 📷 **Screenshot suggestion**: Before/after of the sidebar panel — without the tagline field, then with it added.
+Students don't need to create each field by hand. The pattern repeats. Walk through these examples to understand how it works:
+
+1. **The panel registration pattern.** Open `movie-meta-fields.js`. Identify the `registerPlugin` call, the `PluginDocumentSettingPanel`, the post type check via `usePost()`, and how field components are composed inside a `Flex`.
+
+2. **A simple text field.** Open one `PostMeta` component (e.g. `MoviePlot.js` or `MovieIMDBID.js`). See how the `@10up/block-components` `PostMeta` render prop pattern works vs the vanilla `useEntityProp` hook shown above. Both are valid approaches.
+
+3. **A more advanced control.** Open `PersonBorn.js`. This shows a reusable shared component (`DateTimePopover.js`) using `Dropdown` + `DateTimePicker`, and how to format/parse date strings for meta storage.
+
+After the walkthrough, explore the remaining components on your own. The pattern repeats.
+
+### Test
+
+Edit a Movie and Person post to confirm panels appear and fields persist.
+
+TODO_SUGGEST_SCREENSHOT
 
 4. **Test persistence.** Set a value, save the post, refresh. Confirm the value persists. Check the REST API response at `/wp-json/wp/v2/tenup-movie/{id}`.
 

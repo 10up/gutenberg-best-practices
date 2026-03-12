@@ -25,9 +25,9 @@ If you're new to blocks entirely, we recommend starting with our [Building Block
 
 ## Getting started
 
-### 1. Create a Local site
+### 1. Create a LocalWP site
 
-You may certainly do this course using your development environment of choice, but we recommend [LocalWP](https://localwp.com/) and have outlined the steps necessary to get started with it below.
+You can certainly do this course using your development environment of choice, but we recommend [LocalWP](https://localwp.com/) and have outlined the steps necessary to get started with it below.
 
 <dl>
 <dt>Create a site</dt>
@@ -64,6 +64,10 @@ cd themes/10up-block-theme && composer install
 cd ../..
 ```
 
+:::info
+Going forward, please work from the `wp-content` folder when executing commands such as `npm run build`. The course will later provide additional instructions under the assumption your terminal is in that directory.
+:::
+
 ### 3. Configure wp-config.php
 
 Add the following constants to your `wp-config.php`:
@@ -84,7 +88,7 @@ At any time, you may also activate the **Fueled Movies** theme to see the finish
 
 ## Content Import
 
-Once your site is set up, import the sample movie and person content.  Open the **Site Shell** from the LocalWP dashboard for your site and run the following.  The default import
+Once your site is set up, import the sample movie and person content.  Open the **Site Shell** from the LocalWP dashboard for your site and run the following.  The default import will add 30 movies and a approximately 90 persons.  Alternatively, you can choose to import only your favorite films and their stars using the id found in the URL of an IMDB entry (e.g. - `tt0094721`).
 
 ```bash
 # Recommended default, imports 30 movies and 3 members of their cast.
@@ -92,7 +96,7 @@ wp fueled-movies import
 
 # Import only your favorite movies and their stars via the IMDB ID as found in their URL.
 # e.g. https://www.imdb.com/title/tt0094721
-# These should be movies, not TV shows
+# These should be movie ID's (not TV shows) as a comma seperated list.
 wp fueled-movies import --ids=tt0094721,tt0910970,tt0068646
 
 # Preview without creating posts
@@ -116,8 +120,8 @@ To ensure our content has imported, visit [block-based-theme-training.local/movi
 ## Lessons
 
 1. [Anatomy of a Block Based Theme](./01-overview.md)
-2. [Orientation: The 10up Block Theme](./02-10up-block-theme.md)
-3. [The Site Editor and Navigation](./03-site-editor-and-navigation.md)
+2. [Orientation: The 10up Block Theme](./02-using-10up-block-theme.md)
+3. [The Site Editor](./03-site-editor.md)
 4. [theme.json: Design Tokens and Settings](./04-theme-json.md)
 5. [Styles: CSS Architecture and Style Variations](./05-styles.md)
 6. [Render Filters and Block Styles](./06-render-filters-and-block-styles.md)
