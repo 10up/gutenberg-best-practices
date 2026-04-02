@@ -9,29 +9,32 @@ Core blocks cover most layout needs, but some HTML structures have no core equiv
 
 ## Learning Outcomes
 
-1. Understand a custom block's anatomy: `block.json`, `index.js`, `markup.php`, `style.css`.
+1. Understand a custom block's anatomy: `block.json`, `index.js`, `render.php`, `style.css`.
 2. Know how to build parent/child block relationships using `parent` and `allowedBlocks`.
 3. Be able to create a dynamic block that renders via PHP.
 4. Understand how `usesContext` lets a block read data from the query loop.
 5. Know how `get_block_wrapper_attributes()` handles wrapper output.
 
+:::info
+To sync your theme with the finished product, run these commands:
+
+```bash
+mkdir -p themes/10up-block-theme/blocks
+cp -r themes/fueled-movies/blocks/dl themes/10up-block-theme/blocks/dl
+cp -r themes/fueled-movies/blocks/dl-item themes/10up-block-theme/blocks/dl-item
+cp -r themes/fueled-movies/blocks/dt themes/10up-block-theme/blocks/dt
+cp -r themes/fueled-movies/blocks/dd themes/10up-block-theme/blocks/dd
+cp -r themes/fueled-movies/blocks/movie-runtime themes/10up-block-theme/blocks/movie-runtime
+```
+
+Run `npm run build` when complete.
+:::
+
 ## Tasks
 
 ### 1. Copy blocks from the answer key
 
-Copy the following directories from the `fueled-movies` theme:
-
-- `blocks/dl/`
-- `blocks/dl-item/`
-- `blocks/dt/`
-- `blocks/dd/`
-- `blocks/movie-runtime/`
-
-Rebuild:
-
-```bash
-npm run build
-```
+Copy the block directories listed above from the `fueled-movies` theme and rebuild.
 
 The theme's `src/Blocks.php` already auto-registers any block with a `block.json` in the `blocks/` directory, so no additional PHP registration is needed.
 
@@ -66,19 +69,21 @@ The nesting rules are defined in each block's `block.json`:
 }
 ```
 
-- **`parent`** restricts where a block can be inserted. `tenup/dl-item` can only exist inside `tenup/dl`. `tenup/dt` and `tenup/dd` can only exist inside `tenup/dl-item`.
+- **`parent`** restricts where a block can be inserted. `tenup/dl-item` can only exist inside `tenup/dl`. `tenup/dt` and `tenup/dd` can only exist inside `tenup/dl-item`.*
 - The DL block uses `InnerBlocks` to accept child blocks. The editor automatically filters the inserter to only show allowed children.
 
-TODO_SUGGEST_SCREENSHOT
+_* Alternatively, there is also `ancestor` to be allowed at any level within a blocks nested innerblocks_
 
-#### Dynamic rendering with markup.php
+![The Description List block used in the inserter](../../static//img/training/editor-description-list-blocks.png)
 
-At 10up we build dynamic blocks: blocks that render on the server via PHP. The `markup.php` file is referenced as `render` in `block.json`:
+#### Dynamic rendering with render.php
+
+At 10up we build dynamic blocks: blocks that render on the server via PHP. The `render.php` file is referenced as `render` in `block.json`:
 
 ```json title="blocks/dl/block.json (partial)"
 {
     "name": "tenup/dl",
-    "render": "file:./markup.php",
+    "render": "file:./render.php",
     "editorScript": "file:./index.js",
     "style": "file:./style.css"
 }
@@ -86,7 +91,7 @@ At 10up we build dynamic blocks: blocks that render on the server via PHP. The `
 
 The PHP render template receives three variables:
 
-```php title="blocks/dl/markup.php"
+```php title="blocks/dl/render.php"
 <?php
 /**
  * @var array    $attributes Block attributes.
@@ -108,7 +113,7 @@ $block_wrapper_attributes = get_block_wrapper_attributes();
 
 - `$attributes`: the block's saved attributes (from `block.json`)
 - `$content`: the rendered HTML of inner blocks (already processed by WordPress)
-- `$block`: the full `WP_Block` instance, including context
+- `$block`: the full `WP_Block` instance (access context via `$block->context` when `usesContext` is set in `block.json`)
 
 `get_block_wrapper_attributes()` generates the correct wrapper attributes (classes, styles, IDs) based on block supports. Always use this instead of building class names manually.
 
@@ -132,7 +137,7 @@ registerBlockType(metadata, {
 });
 ```
 
-For dynamic blocks, the `save` function returns `<InnerBlocks.Content />` (if the block has inner blocks) or `null` (if it doesn't). The actual frontend markup comes from `markup.php`.
+For dynamic blocks, the `save` function returns `<InnerBlocks.Content />` (if the block has inner blocks) or `null` (if it doesn't). The actual frontend markup comes from `render.php`.
 
 #### Auto-registration
 
@@ -159,11 +164,11 @@ The `tenup/movie-runtime` block demonstrates reading data from the post via bloc
 {
     "name": "tenup/movie-runtime",
     "usesContext": ["postId", "postType"],
-    "render": "file:./markup.php"
+    "render": "file:./render.php"
 }
 ```
 
-```php title="blocks/movie-runtime/markup.php (simplified)"
+```php title="blocks/movie-runtime/render.php (simplified)"
 $post_id = $block->context['postId'] ?? null;
 if ( ! $post_id ) {
     return;
@@ -195,6 +200,14 @@ Update both single templates in the Site Editor to use the new blocks:
 - Wrap plot, stars, and genre in `tenup/dl` blocks
 - Add `tenup/movie-runtime` to the metadata row
 
+Notice how the `tenup/dd` blocks contain bound Paragraphs from [Lesson 10](./10-block-bindings.md). The Plot field uses `core/post-meta` (reading directly from meta), while the Stars field uses our custom `tenup/block-bindings` source (querying Content Connect relationships and returning linked names). The DL blocks provide the semantic HTML structure; the bindings provide the dynamic data.
+
+:::warning
+Is it worth mentioning once more here that our bindings will still return an empty paragraph tag if they are not set _(i.e. - no Plot meta or Stars relationship)_.
+
+For our custom binding, we can return the fallback in our php callback if we wish, but our for our `core/post-meta` binding we would add our fallback here in the template.
+:::
+
 ```html title="DL usage example in single-tenup-movie.html"
 <!-- wp:tenup/dl {"style":{"layout":{"selfStretch":"fill"}},"layout":{"type":"default"}} -->
     <!-- wp:tenup/dl-item {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
@@ -207,7 +220,16 @@ Update both single templates in the Site Editor to use the new blocks:
     <!-- wp:tenup/dl-item {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
         <!-- wp:tenup/dt {"content":"Plot","textColor":"text-secondary"} /-->
         <!-- wp:tenup/dd -->
-            <!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"tenup_movie_plot"}}}}} -->
+            <!-- wp:paragraph {
+                "metadata": {
+                    "bindings": {
+                        "content": {
+                            "source": "core/post-meta",
+                            "args": { "key": "tenup_movie_plot" }
+                        }
+                    }
+                }
+            } -->
             <p></p>
             <!-- /wp:paragraph -->
         <!-- /wp:tenup/dd -->
@@ -216,7 +238,16 @@ Update both single templates in the Site Editor to use the new blocks:
     <!-- wp:tenup/dl-item {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
         <!-- wp:tenup/dt {"content":"Stars","textColor":"text-secondary"} /-->
         <!-- wp:tenup/dd -->
-            <!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"tenup/block-bindings","args":{"key":"movieStars"}}}}} -->
+            <!-- wp:paragraph {
+                "metadata": {
+                    "bindings": {
+                        "content": {
+                            "source": "tenup/block-bindings",
+                            "args": { "key": "movieStars" }
+                        }
+                    }
+                }
+            } -->
             <p></p>
             <!-- /wp:paragraph -->
         <!-- /wp:tenup/dd -->
@@ -229,14 +260,15 @@ Update both single templates in the Site Editor to use the new blocks:
 
 Export the updated markup back to the theme files.
 
-TODO_SUGGEST_SCREENSHOT
+![The Description List block output on the frontend](../../static//img/training/frontend-dl-block-bindings.png)
+*Our Description List blocks on the frontend with bound innerblock content*
 
-## Files changed (fueled-movies delta)
+## Files changed in this lesson
 
 | File | Change type | What changes |
 | ---- | ----------- | ------------ |
-| `blocks/dl/` | **New** | Block metadata, edit component, markup.php, styles |
-| `blocks/dl-item/` | **New** | `parent: ["tenup/dl"]`, markup.php |
+| `blocks/dl/` | **New** | Block metadata, edit component, render.php, styles |
+| `blocks/dl-item/` | **New** | `parent: ["tenup/dl"]`, render.php |
 | `blocks/dt/` | **New** | `parent: ["tenup/dl-item"]`, inline editable term |
 | `blocks/dd/` | **New** | `parent: ["tenup/dl-item"]`, inner blocks container |
 | `blocks/movie-runtime/` | **New** | `usesContext: ["postId", "postType"]`, semantic `<time>` output |
@@ -252,7 +284,7 @@ TODO_SUGGEST_SCREENSHOT
 
 ## Takeaways
 
-- Custom blocks: `block.json` for metadata, `index.js` for the editor, `markup.php` for the frontend.
+- Custom blocks: `block.json` for metadata, `index.js` for the editor, `render.php` for the frontend.
 - Dynamic blocks (PHP-rendered) avoid deprecation problems: the 10up standard.
 - Use `parent` and `allowedBlocks` to enforce nesting rules in parent/child block systems.
 - `get_block_wrapper_attributes()` handles wrapper classes, styles, and IDs. Always use it.

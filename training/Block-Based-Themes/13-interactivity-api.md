@@ -17,17 +17,47 @@ This lesson walks through the `tenup/rate-movie` block: a fully interactive star
 4. Understand progressive enhancement: the block should be meaningful without JS.
 5. Know the `do_blocks()` pattern for rendering block markup from PHP.
 
-## Tasks
+:::info
+To sync your theme with the finished product:
 
-### 1. Copy the block from the answer key
+**1. Copy the block:**
 
-Copy the `blocks/rate-movie/` directory from the `fueled-movies` theme.
+```bash
+cp -r themes/fueled-movies/blocks/rate-movie themes/10up-block-theme/blocks/rate-movie
+```
 
-Update `package.json` to add the `@wordpress/interactivity` dependency and `useScriptModules: true` in the toolkit config. Rebuild:
+**2. Add two new dependencies.** In your theme's `package.json`, add `@wordpress/dependency-extraction-webpack-plugin` and `@wordpress/interactivity` to `dependencies`:
+
+```json
+"dependencies": {
+    "@10up/block-components": "^1.19.4",
+    "@wordpress/dependency-extraction-webpack-plugin": "^5.9.0",
+    "@wordpress/interactivity": "^6.38.0",
+    "10up-toolkit": "^6.5.0",
+    "clsx": "^2.1.1"
+}
+```
+
+Two new packages here:
+
+- **`@wordpress/dependency-extraction-webpack-plugin`** tells webpack to externalize `@wordpress/*` packages so they use WordPress's built-in copies instead of being bundled.
+- **`@wordpress/interactivity`** is the Interactivity API runtime that your `view-module.js` imports from.
+
+The scaffold already has `"useScriptModules": true` in the `10up-toolkit` config, which is required for the Interactivity API's `viewScriptModule` to work.
+
+**3. Install and build:**
 
 ```bash
 npm install && npm run build
 ```
+
+:::
+
+## Tasks
+
+### 1. Copy the block from the answer key
+
+Copy the block and install the dependency as described above, then rebuild.
 
 ### 2. Review block.json
 
@@ -128,7 +158,7 @@ $block_wrapper_attributes = get_block_wrapper_attributes( [
 
 #### The do_blocks() pattern
 
-The `markup.php` uses `do_blocks()` to render Button blocks from PHP. This ensures the buttons get proper block-style-variation CSS applied:
+The `markup.php` uses `do_blocks()` to render Button blocks from PHP. This ensures the buttons get proper block-style-variation CSS applied.  This approach would also load any other code split block assets such as `view-module.js` for interactivity.
 
 ```php title="blocks/rate-movie/markup.php (do_blocks pattern)"
 $trigger_button = '
@@ -152,50 +182,69 @@ By wrapping the HTML in block comments and running it through `do_blocks()`, Wor
 ### 4. Walk through the store
 
 ```js title="blocks/rate-movie/view-module.js"
+// store() creates a reactive store scoped to the 'tenup/rate-movie' namespace.
+// State is reactive: when values change, any directives referencing them re-render.
+// Context (getContext()) is per-block-instance data set via data-wp-context in the markup.
 import { store, getContext, getElement } from '@wordpress/interactivity';
 
 const { state } = store('tenup/rate-movie', {
+    // Reactive state shared across all instances of this block.
     state: {
+        // Tracks whether the popover is currently open.
         isPopoverOpen: false,
 
+        // Derived state (getter): true when the user has set a rating.
         get hasRating() {
             const context = getContext();
             return context.rating !== null && context.rating > 0;
         },
 
+        // Derived state: shows "Rate" or "7/10" depending on rating and popover state.
         get buttonText() {
             if (state.isPopoverOpen) return 'Rate';
             const context = getContext();
             return context.rating > 0 ? `${context.rating}/10` : 'Rate';
         },
 
+        // Derived state: the range slider's current value (defaults to 1 if no rating).
         get sliderValue() {
             const context = getContext();
             return context.rating !== null ? context.rating : 1;
         },
     },
 
+    // Actions are event handlers triggered by data-wp-on--{event} directives.
     actions: {
+        // Sets the rating from the range slider input event.
         selectRating(event) {
             const context = getContext();
             const value = parseInt(event.target.value, 10);
             context.rating = value >= 1 && value <= 10 ? value : null;
         },
+
+        // Resets the rating to null (triggered by the "Clear" button).
         clearRating() {
             getContext().rating = null;
         },
     },
 
+    // Callbacks run in response to lifecycle events like data-wp-init.
     callbacks: {
+        // Syncs the popover's open/close state with the reactive store.
+        // Uses the native Popover API's toggle event to detect state changes.
         initPopover() {
             const { ref } = getElement();
             if (!ref) return;
+
+            // data-wp-init is on the popover element, so we walk up to find
+            // the block wrapper and then locate the trigger button sibling.
             const root = ref.closest('.wp-block-tenup-rate-movie') ?? ref.parentElement;
             const popover = ref;
             const button = root?.querySelector('.wp-block-tenup-rate-movie__trigger');
 
             if (!popover || !button) return;
 
+            // Listen for the native popover toggle event and sync to reactive state.
             const updateState = () => {
                 state.isPopoverOpen = popover.matches(':popover-open');
                 button.setAttribute('aria-expanded', state.isPopoverOpen ? 'true' : 'false');
@@ -233,29 +282,21 @@ Revisit `templates/single-tenup-movie.html` in the Site Editor. Add `<!-- wp:ten
 
 Export the updated markup back to the theme file.
 
-TODO_SUGGEST_SCREENSHOT
+![The Movie Rating button while in use](../../static//img/training/frontend-rate-button-during.png)
 
-### 6. Test accessibility
+![The Movie Rating button after giving a rating](../../static//img/training/frontend-rate-button-after.png)
+*Our Movie Rating button demonstrating the popover js and updated text*
 
-The rate-movie block demonstrates several important accessibility patterns:
 
-- **`aria-haspopup`** on the trigger button tells assistive technology a dialog will appear
-- **`aria-expanded`** toggles dynamically via `data-wp-bind--aria-expanded`
-- **`aria-modal`** and **`role="dialog"`** on the popover identify it as a modal
-- **`aria-labelledby`** connects the popover to its heading
-- **Visually hidden label** on the range slider: "Rate this movie from 1 to 10"
-- **Native `popover` API** provides built-in focus management and Escape key behavior
-
-Use VoiceOver (macOS) or a screen reader to verify:
-- `aria-expanded` toggles on the trigger button
-- The popover is announced as a dialog
-- Keyboard navigation works (Tab, Escape)
-
-:::caution
-The Interactivity API is not a replacement for React. It's designed for server-rendered blocks that need client-side behavior. Editor-side interactivity still lives in `edit.js` with React.
+:::tip
+As a bonus, see if you can add local storage to a movie's rating so the values persist across page loads.
 :::
 
-## Files changed (fueled-movies delta)
+:::caution
+The Interactivity API is not a replacement for React. It's designed for server-rendered blocks that need client-side behavior. Editor-side interactivity still lives in `edit.js`.
+:::
+
+## Files changed in this lesson
 
 | File | Change type | What changes |
 | ---- | ----------- | ------------ |
@@ -274,7 +315,6 @@ The Interactivity API is not a replacement for React. It's designed for server-r
 - State rules enforced (null initial, range 1-10, clear resets to null)
 - Rating displays on the button after selection ("7/10")
 
-TODO_SUGGEST_SCREENSHOT
 
 ## Takeaways
 

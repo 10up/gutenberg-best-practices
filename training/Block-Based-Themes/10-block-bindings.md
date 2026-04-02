@@ -17,29 +17,28 @@ In this lesson you'll register a custom binding source and build the single movi
 4. Know the difference between `core/post-meta` (simple fields) and a custom source (computed values).
 5. Be able to build single post templates that use bindings for dynamic content.
 
+:::info
+To sync your theme with the finished product, run these commands and then add `import './block-bindings';` to `assets/js/block-extensions.js`:
+
+```bash
+cp themes/fueled-movies/src/BlockBindings.php themes/10up-block-theme/src/BlockBindings.php
+mkdir -p themes/10up-block-theme/assets/js/block-bindings
+cp themes/fueled-movies/assets/js/block-bindings/index.js themes/10up-block-theme/assets/js/block-bindings/index.js
+cp themes/fueled-movies/patterns/single-movie-trailer.php themes/10up-block-theme/patterns/single-movie-trailer.php
+mkdir -p themes/10up-block-theme/patterns/images
+cp themes/fueled-movies/patterns/images/placeholder.png themes/10up-block-theme/patterns/images/placeholder.png
+cp themes/fueled-movies/templates/single-tenup-movie.html themes/10up-block-theme/templates/single-tenup-movie.html
+cp themes/fueled-movies/templates/single-tenup-person.html themes/10up-block-theme/templates/single-tenup-person.html
+```
+
+Run `npm run build` when complete.
+:::
+
 ## Tasks
 
 ### 1. Copy files from the answer key
 
-Copy the following from the `fueled-movies` theme:
-
-- `src/BlockBindings.php`
-- `assets/js/block-bindings/` (entire directory)
-- `patterns/single-movie-trailer.php`
-- `templates/single-tenup-movie.html`
-- `templates/single-tenup-person.html`
-
-Add the import to `assets/js/block-extensions.js`:
-
-```js
-import './block-bindings';
-```
-
-Rebuild:
-
-```bash
-npm run build
-```
+Copy the files listed above from the `fueled-movies` theme, add the `block-bindings` import to `block-extensions.js`, and rebuild.
 
 ### 2. Walk through the PHP binding source
 
@@ -49,6 +48,8 @@ The registration:
 
 ```php title="src/BlockBindings.php (registration)"
 public function register_block_bindings() {
+    // Register a custom binding source with a unique name and a callback
+    // that WordPress will call whenever a block uses this source.
     register_block_bindings_source(
         'tenup/block-bindings',
         array(
@@ -67,6 +68,8 @@ public function block_bindings_callback( $source_args ) {
         return null;
     }
 
+    // Route to different helper methods based on which key the
+    // binding is using in its args (set in the template markup).
     switch ( $source_args['key'] ) {
         case 'archiveLinkText':
             return $this->get_archive_link( 'text' );
@@ -101,16 +104,19 @@ private function get_movie_stars() {
     $value   = '';
     $post_id = get_the_ID();
 
+    // Bail early if Content Connect isn't available.
     if ( ! $post_id || ! function_exists( '\TenUp\ContentConnect\Helpers\get_related_ids_by_name' ) ) {
         return $value;
     }
 
+    // Query the Content Connect relationship for related Person post IDs.
     $star_ids = \TenUp\ContentConnect\Helpers\get_related_ids_by_name( $post_id, 'movie_person' );
 
     if ( empty( $star_ids ) ) {
         return $value;
     }
 
+    // Fetch the Person posts and build linked name strings.
     $stars_query = new \WP_Query( [
         'post_type'      => Person::POST_TYPE,
         'post__in'       => $star_ids,
@@ -122,6 +128,7 @@ private function get_movie_stars() {
         return sprintf( '<a href="%s">%s</a>', esc_url( get_permalink( $star->ID ) ), esc_html( $star->post_title ) );
     }, $stars_query->posts );
 
+    // Return comma-separated linked names (e.g. "Al Pacino, Robert De Niro").
     return implode( ', ', $star_links );
 }
 ```
@@ -140,10 +147,15 @@ Both share the same source name (`tenup/block-bindings`). WordPress uses the JS 
 ```js title="assets/js/block-bindings/index.js"
 import { registerBlockBindingsSource } from '@wordpress/blocks';
 
+// Register the JS-side source that mirrors the PHP source.
+// WordPress uses this in the editor; the PHP callback runs on the frontend.
 registerBlockBindingsSource({
     name: 'tenup/block-bindings',
     label: 'Fueled Movies Theme',
     usesContext: ['postId', 'postType'],
+
+    // Return placeholder values so editors see realistic content in the canvas.
+    // The key in bindings.content/text/url.args.key matches the PHP switch cases.
     getValues({ bindings }) {
         if (bindings.content?.args?.key === 'movieStars') {
             return { content: 'Placeholder Stars' };
@@ -160,6 +172,8 @@ registerBlockBindingsSource({
         // ... more keys
         return {};
     },
+
+    // Make bindings discoverable in the editor UI (Block Bindings panel).
     getFieldsList() {
         return [
             { label: 'Archive Link Text', type: 'string', args: { key: 'archiveLinkText' } },
@@ -172,7 +186,8 @@ registerBlockBindingsSource({
 
 `getValues()` provides placeholder text so editors see meaningful content in the canvas. `getFieldsList()` makes bindings discoverable in the editor UI.
 
-TODO_SUGGEST_SCREENSHOT
+![Screenshot of a the Attributes panel showing where block bindings are connected in the editor](../../static//img/training/editor-block-bindings-popover.png)
+*The Attributes panel of the Button block where we connect our bindings in the Single Movie template*
 
 :::tip
 Keep placeholder text realistic so editors understand what will render. "Placeholder Stars" is better than "Loading..." because it communicates the shape of the content.
@@ -180,14 +195,45 @@ Keep placeholder text realistic so editors understand what will render. "Placeho
 
 ### Which blocks support bindings?
 
-Currently only **Image**, **Paragraph**, **Heading**, and **Button** support the `metadata.bindings` attribute:
+These core blocks have built-in binding support:
 
 | Block | Bindable properties |
 | ----- | ------------------- |
 | Paragraph | `content` |
 | Heading | `content` |
-| Button | `text`, `url` |
-| Image | `url`, `alt`, `title` |
+| Button | `text`, `url`, `linkTarget`, `rel` |
+| Image | `id`, `url`, `alt`, `title`, `caption` |
+| Post Date | `datetime` |
+| Navigation Link | `url` |
+| Navigation Submenu | `url` |
+
+#### Extending bindings to any block
+
+As of WordPress 7.0, bindings are no longer limited to this built-in list. The `block_bindings_supported_attributes` filter lets any block, including custom blocks, opt into binding support. Any block attribute that supports bindings also supports [Pattern Overrides](https://make.wordpress.org/core/2026/03/16/pattern-overrides-in-wp-7-0-support-for-custom-blocks/), meaning editors can override bound values per-instance in synced patterns.
+
+```php
+// Allow a custom block's "heading" attribute to support bindings and pattern overrides.
+add_filter(
+    'block_bindings_supported_attributes',
+    function ( $supported_attributes, $block_name ) {
+        if ( 'my-plugin/my-block' === $block_name ) {
+            $supported_attributes[] = 'heading';
+        }
+        return $supported_attributes;
+    },
+    10,
+    2
+);
+```
+
+What else the attribute needs depends on how your block renders:
+
+- **Dynamic blocks** (blocks with a `render_callback`): the filter is all you need. WordPress merges bound values into `$attributes` before calling your callback, so your PHP receives the correct values automatically.
+- **Static blocks** (blocks with saved HTML): the attribute must also have a `source` (`html`, `rich-text`, or `attribute`) and `selector` in `block.json` so WordPress knows where in the saved markup to inject the bound value. Without these, the bound value is silently ignored.
+
+:::note
+You may see `role: "content"` on block.json attributes. This controls a separate concern: whether the block stays editable inside content-locked containers (like synced patterns with `templateLock: "contentOnly"`). It is good practice to add `"role": "content"` to bindable attributes, but it is not required for bindings to work.
+:::
 
 ### 4. Understand binding markup in templates
 
@@ -196,7 +242,17 @@ In template markup, bindings are added via the `metadata.bindings` attribute on 
 **`core/post-meta` for simple fields:**
 
 ```html
-<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"tenup_movie_release_year"}}}}} -->
+<!-- Simple: bind paragraph content directly to a post meta field. -->
+<!-- wp:paragraph {
+    "metadata": {
+        "bindings": {
+            "content": {
+                "source": "core/post-meta",
+                "args": { "key": "tenup_movie_release_year" }
+            }
+        }
+    }
+} -->
 <p></p>
 <!-- /wp:paragraph -->
 ```
@@ -204,7 +260,17 @@ In template markup, bindings are added via the `metadata.bindings` attribute on 
 **`tenup/block-bindings` for computed values:**
 
 ```html
-<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"tenup/block-bindings","args":{"key":"movieStars"}}}}} -->
+<!-- Custom source: the PHP callback computes the value (e.g. querying related posts). -->
+<!-- wp:paragraph {
+    "metadata": {
+        "bindings": {
+            "content": {
+                "source": "tenup/block-bindings",
+                "args": { "key": "movieStars" }
+            }
+        }
+    }
+} -->
 <p></p>
 <!-- /wp:paragraph -->
 ```
@@ -212,6 +278,8 @@ In template markup, bindings are added via the `metadata.bindings` attribute on 
 **Button with both `text` and `url` bound:**
 
 ```html
+<!-- Buttons can bind both text and url to different keys. -->
+<!-- The inner HTML ("← Back", the href) is fallback content replaced at render time. -->
 <!-- wp:button {"metadata":{"bindings":{
     "url":{"source":"tenup/block-bindings","args":{"key":"archiveLinkUrl"}},
     "text":{"source":"tenup/block-bindings","args":{"key":"archiveLinkText"}}
@@ -229,17 +297,22 @@ The inner HTML (`← Back`, the `href`) is the fallback content that gets replac
 The trailer pattern (`patterns/single-movie-trailer.php`) demonstrates conditional rendering with PHP logic:
 
 ```php title="patterns/single-movie-trailer.php (structure)"
+// Read the trailer ID from post meta.
 $trailer_id = get_post_meta( get_the_ID(), 'tenup_movie_trailer_id', true );
 
 if ( empty( $trailer_id ) || is_admin() ) :
-    // Render placeholder image block
+    // No trailer or in the editor -- show a placeholder image instead.
 else :
+    // Build the IMDB embed URL and render an iframe via wp:html.
     $url = 'https://www.imdb.com/video/embed/' . $trailer_id . '/';
-    // Render iframe in wp:html block
 endif;
 ```
 
-The Avengers movie has no trailer, making it a good test case for the placeholder fallback.
+As of this writing, the Avengers movie has no trailer coming from our importer, making it a good test case for the placeholder fallback. The placeholder image itself lives at `patterns/images/placeholder.png`.
+
+:::tip
+You can place subdirectories inside `patterns/` for related assets like images. WordPress only registers `.php` files at the **top level** of `patterns/` as patterns, it does not scan subdirectories. This is different from the `styles/` directory, where subdirectories like `styles/button/` are scanned for style variation JSON files. So `patterns/images/placeholder.png` is just a regular file, not a pattern.
+:::
 
 ### 6. Tour the single templates
 
@@ -250,7 +323,7 @@ The single templates were copied in step 1. Briefly review their layout structur
 
 These templates use simple Paragraphs for metadata right now. In [Lesson 12](./12-custom-blocks.md), you'll revisit them to wrap metadata in `tenup/dl` blocks for semantic HTML. The metadata row uses a basic flex Group without the separator toggle, which comes in [Lesson 11](./11-block-extensions.md). The `tenup/rate-movie` block is added in [Lesson 13](./13-interactivity-api.md).
 
-TODO_SUGGEST_SCREENSHOT
+![The movie single frontend view](../../static//img/training/frontend-movie-block-bindings.png)
 
 ## Null and empty fallback strategy
 
@@ -258,14 +331,14 @@ Bound blocks always render their markup, even when the value is empty. An empty 
 
 The theme uses two fallback strategies:
 
-1. **Empty string for user-facing text**: fields like `movieStars` return `''` when there's no data. The DL blocks added in Lesson 12 will inherit this behavior.
+1. **Empty string for user-facing text**: fields like `movieStars` intentionally return `''` when there's no data, though an "n/a" or "unavailable" fallback might make just as much sense. The DL blocks added in Lesson 12 will inherit this behavior.
 2. **Safe defaults for structural values**: `archiveLinkUrl` falls back to `home_url()` so the link always goes somewhere. `viewerRatingLabelUrl` returns `'#'` as a no-op.
 
 :::caution
 Bindings are not conditional: you can't hide a bound block entirely when the value is empty. The block always renders. Plan your fallbacks accordingly.
 :::
 
-## Files changed (fueled-movies delta)
+## Files changed in this lesson
 
 | File | Change type | What changes |
 | ---- | ----------- | ------------ |
@@ -284,7 +357,7 @@ Bindings are not conditional: you can't hide a bound block entirely when the val
 - Trailer embeds from IMDB, with placeholder for movies without trailers
 - Back button navigates to the correct archive
 
-TODO_SUGGEST_SCREENSHOT
+![The person single frontend view](../../static//img/training/frontend-person-block-bindings.png)
 
 ## Takeaways
 

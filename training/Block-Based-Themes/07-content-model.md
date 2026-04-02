@@ -18,28 +18,14 @@ Data should persist regardless of which theme is active, so CPTs, taxonomies, me
 
 ## The module system
 
-The `10up-plugin` uses the [10up PHP framework](https://github.com/10up/wp-framework):specifically the `ModuleInterface` and `Module` trait:to auto-discover and register classes.
-
-Here's the initialization flow:
+The `10up-plugin` uses the same `ModuleInterface` pattern introduced in [Lesson 6](./06-render-filters-and-block-styles.md). The plugin's bootstrap flow works like this:
 
 1. `plugin.php` creates `new PluginCore()` and calls `$plugin_core->setup()`
 2. `PluginCore::init()` calls `ModuleInitialization::instance()->init_classes( TENUP_PLUGIN_INC )`
 3. `ModuleInitialization` scans all PHP classes in `src/`
-4. For each class implementing `ModuleInterface`, it calls `can_register()` → if true, calls `register()`
+4. For each class implementing `ModuleInterface`, it calls `can_register()` -- if true, calls `register()`
 
-> 📐 **Diagram suggestion**: A flowchart showing: `plugin.php` → `PluginCore::setup()` → `init()` → `ModuleInitialization` → scans `src/` → `can_register()` → `register()`.
-
-Every module implements `ModuleInterface` with three methods:
-
-```php
-interface ModuleInterface {
-    public function can_register(): bool;  // Should this module load?
-    public function register();            // Hook in
-    public function load_order(): int;     // Priority (lower = earlier)
-}
-```
-
-Drop a new PHP class in `src/` that implements this interface and it will be auto-discovered:no manual registration needed.
+Drop a new PHP class in `src/` that implements this interface and it will be auto-discovered -- no manual registration needed.
 
 ## Custom post types
 
@@ -164,7 +150,7 @@ class MovieRuntime extends AbstractPostMeta {
 }
 ```
 
-The abstract class automatically includes `show_in_rest` with the schema:this is what makes the field visible to the REST API, the block editor, and block bindings.
+The abstract class automatically includes `show_in_rest` with the schema, this is what makes the field visible to the REST API, the block editor, and block bindings.
 
 :::tip
 `show_in_rest` is the single most important flag for any meta field. Without it, the field is invisible to the editor, block bindings, and JavaScript. If a field doesn't appear where you expect, check `show_in_rest` first.
@@ -214,8 +200,6 @@ This creates a bidirectional relationship between Movies and People. From the ad
 
 1. **Trace the initialization flow.** Start at `plugin.php`, follow to `PluginCore.php`, and see how `ModuleInitialization::instance()->init_classes()` auto-discovers classes.
 
-TODO_SUGGEST_SCREENSHOT
-
 2. **Read a CPT definition.** Open `PostTypes/Movie.php`. Note the slug, rewrite, supported taxonomies, and `custom-fields` support.
 
 3. **Read the abstract meta class.** Open `AbstractPostMeta.php`. See how `register_post_meta()` is called with `show_in_rest`, `single`, `type`, and optional `default`/`enum`.
@@ -226,7 +210,12 @@ TODO_SUGGEST_SCREENSHOT
 
 6. **Verify data in the REST API.** Visit `/wp-json/wp/v2/tenup-movie/{id}` and confirm meta fields appear in the response.
 
-7. **Test the relationship.** In the admin, edit a Movie and use the Content Connect UI to relate it to a Person. Verify the relationship persists and is queryable from both sides.
+
+## Ship it checkpoint
+
+- Can explain where CPTs, meta, and relationships are defined
+- Can see meta fields in the REST API response
+- Understands why `show_in_rest` matters
 
 ## Takeaways
 
@@ -235,12 +224,6 @@ TODO_SUGGEST_SCREENSHOT
 - `show_in_rest` is the single most important flag. Without it, the field is invisible to the editor, bindings, and JS.
 - Complex meta (like `MovieRuntime`) uses the `object` type with a `properties` schema.
 - Content Connect provides bidirectional many-to-many relationships between post types.
-
-## Ship it checkpoint
-
-- Can explain where CPTs, meta, and relationships are defined
-- Can see meta fields in the REST API response
-- Understands why `show_in_rest` matters
 
 ## Further reading
 

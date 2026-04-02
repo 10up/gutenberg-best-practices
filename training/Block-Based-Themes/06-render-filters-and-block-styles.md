@@ -67,7 +67,7 @@ public function filter_featured_image_block( $block_content, $block, $parsed_blo
 
 ### 2. Add flex-shrink-0 to fixed-width blocks
 
-Add a `maybe_add_flex_shrink()` method. This is a workaround for a Gutenberg issue (#53766) where blocks with `selfStretch: "fixed"` don't get `flex-shrink: 0`:
+Add a `maybe_add_flex_shrink()` method. This is a workaround for a Gutenberg issue [#53766](https://github.com/WordPress/gutenberg/issues/53766) where blocks with `selfStretch: "fixed"` don't get `flex-shrink: 0`:
 
 ```php title="src/Blocks.php (new method)"
 public function maybe_add_flex_shrink( $block_content, $block, $parsed_block ) {
@@ -123,6 +123,29 @@ domReady(() => {
 
 `domReady` ensures the block styles are registered before we try to unregister them. Without it, the unregister calls might fire too early.
 
+We could similarly use `registerBlockStyle()` here as mentioned in the [previous lesson](./05-styles.md) _(This is not necessary for our training)_.
+
+```js
+import { registerBlockStyle, unregisterBlockStyle } from '@wordpress/blocks';
+import domReady from '@wordpress/dom-ready';
+
+domReady(() => {
+	unregisterBlockStyle('core/button', 'fill');
+	unregisterBlockStyle('core/button', 'outline');
+
+	registerBlockStyle('core/button', {
+		name: 'primary',
+		label: 'Primary',
+		isDefault: true,
+	});
+
+	registerBlockStyle('core/button', {
+		name: 'secondary',
+		label: 'Secondary',
+	});
+});
+```
+
 ### 2. Import from the editor entry point
 
 Add the import to `assets/js/block-extensions.js`:
@@ -137,9 +160,19 @@ This is the editor-only JS entry point. It's loaded via `enqueue_block_editor_as
 
 Run `npm run build`. Open the editor, select a Button block, and confirm the "Fill" and "Outline" styles are gone from the Styles panel.
 
-TODO_SUGGEST_SCREENSHOT
 
-## Files changed (fueled-movies delta)
+:::info
+To sync our theme with the finished product, run these commands and then add `import './block-styles';` to `assets/js/block-extensions.js`:
+
+```bash
+cp themes/fueled-movies/src/Blocks.php themes/10up-block-theme/src/Blocks.php
+mkdir -p themes/10up-block-theme/assets/js/block-styles
+cp themes/fueled-movies/assets/js/block-styles/index.js themes/10up-block-theme/assets/js/block-styles/index.js
+```
+
+:::
+
+## Files changed in this lesson
 
 | File | Change type | What changes |
 | ---- | ----------- | ------------ |
@@ -153,10 +186,13 @@ TODO_SUGGEST_SCREENSHOT
 - `flex-shrink-0` class applied to fixed-width blocks
 - Core block styles (fill, outline, etc.) are removed from the inspector
 
+![A gif demonstrating our featured image view transitions](../../static//img/training/frontend-view-transitions.gif)
+*Our Featured Image view-transitions in action*
+
 ## Takeaways
 
 - The `render_block` filter lets you modify any block's HTML output on the frontend.
-- `WP_HTML_Tag_Processor` is the safe way to modify block HTML. Avoid string manipulation.
+- `WP_HTML_Tag_Processor` is the safe way to modify block HTML. Avoid string manipulation where possible.
 - Use `render_block_{block-name}` for targeted filters, `render_block` for broad ones.
 - `unregisterBlockStyle()` + `domReady()` removes unwanted core block styles from the editor.
 - The editor-only JS entry point (`block-extensions.js`) is where editor customizations live.

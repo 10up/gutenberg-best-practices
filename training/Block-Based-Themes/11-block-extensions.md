@@ -5,7 +5,7 @@ sidebar_position: 11
 
 # 11. Block Extensions: Extending Core Blocks
 
-When you need to add behavior to an existing core block, a toggle, a class name, an extra control, you extend it instead of replacing it. This lesson walks through extending the core Group block with a "separator" toggle using `registerBlockExtension` from `@10up/block-components`.
+Sometimes you'll find you need more control of a block to meet the needs of your design _(think of an icon picker)_. In this scenario, you extend a core block instead of replacing it. This lesson walks through extending the core Group block with a "separator" toggle using `registerBlockExtension` from `@10up/block-components`.
 
 ## Learning Outcomes
 
@@ -33,7 +33,7 @@ registerBlockExtension('core/group', {
     },
     classNameGenerator: (attributes) => {
         const { hasSeparator, layout } = attributes;
-        if (hasSeparator && layout?.type === 'flex' && layout?.orientation === 'horizontal') {
+        if (hasSeparator && layout?.type === 'flex' && layout?.orientation !== 'vertical') {
             return 'has-separator';
         }
         return '';
@@ -41,7 +41,7 @@ registerBlockExtension('core/group', {
     Edit: (props) => {
         const { attributes, setAttributes } = props;
         const { hasSeparator, layout } = attributes;
-        if (layout?.type !== 'flex' || layout?.orientation !== 'horizontal') return null;
+        if (layout?.type !== 'flex' || layout?.orientation === 'vertical') return null;
 
         return (
             <InspectorControls group="settings">
@@ -61,23 +61,22 @@ registerBlockExtension('core/group', {
 
 `registerBlockExtension` from `@10up/block-components` wraps the three WordPress block filters into a cleaner API:
 
-1. **Add attribute**: `blocks.registerBlockType` adds the `hasSeparator` boolean
-2. **Add editor control**: `editor.BlockEdit` renders the toggle in the inspector
-3. **Add class output**: `blocks.getSaveContent.extraProps` adds the `has-separator` class
+1. **Add attribute**: [`blocks.registerBlockType`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/#registerblocktype) adds the `hasSeparator` boolean
+2. **Add editor control**: [`editor.BlockEdit`](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#editor-blockedit) renders the toggle conditionally in the inspector
+3. **Add class output**: [`blocks.getSaveContent.extraProps`](https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#blocks-getsavecontent-extraprops) adds the `has-separator` class
 
-The `classNameGenerator` only returns the class when the layout is horizontal flex, so the dots only appear on inline groups.
+Our separator styles are designed to add a middot between items in a row so the `classNameGenerator` only returns the class when the layout is horizontal flex, ensuring the dots only appear on inline groups.
 
-TODO_SUGGEST_SCREENSHOT
+![The editor view of the Group block extension for "Add separator"](../../static//img/training/editor-group-extension-setting.png)
+*The toggle should only display when using the Row Group variation*
 
-### 2. Create the barrel file
+### 2. Create the barrel file and update the entry point
 
 Create `assets/js/block-filters/index.js`:
 
 ```js title="assets/js/block-filters/index.js"
 import './group';
 ```
-
-### 3. Update the entry point
 
 Add the import to `assets/js/block-extensions.js`:
 
@@ -112,13 +111,13 @@ The CSS for `.has-separator` was already created in [Lesson 5](./05-styles.md) (
 }
 ```
 
-### 5. Revisit the single movie template
+### 5. Verify on the single movie template
 
-Open `templates/single-tenup-movie.html` in the Site Editor. Find the metadata row Group (the horizontal flex group containing release year, MPA rating, etc.). Enable the "Add Separator" toggle in the inspector. Export the updated markup back to the theme file.
+The single movie template we copied from the fueled-movies theme already has `"hasSeparator":true` on the metadata row Group. After rebuilding, visit a single movie page on the frontend and confirm you see the dot separators between the release year, MPA rating, and other metadata items.
 
-The metadata row should now have `"hasSeparator":true` in its attributes and the `has-separator` class on the output.
+If the dots aren't showing, open `templates/single-tenup-movie.html` in the Site Editor and find the metadata row Group (the horizontal flex group containing release year, MPA rating, etc.). Enable the "Add Separator" toggle in the inspector and export the updated markup back to the theme file.
 
-TODO_SUGGEST_SCREENSHOT
+![The frontend view of the Group block extension for "Add separator"](../../static//img/training/frontend-group-separator.png)
 
 ## When to build vs extend
 
@@ -130,10 +129,10 @@ TODO_SUGGEST_SCREENSHOT
 | Need structured nested content | Build parent/child blocks ([Lesson 12](./12-custom-blocks.md)) |
 
 :::tip
-Always try block bindings first. If a Paragraph with a binding can do the job, you don't need a custom block. Only build custom when core blocks genuinely can't handle the use case.
+Try block bindings first. If a Paragraph with a binding can do the job, you don't need a custom block. Only build custom when core blocks genuinely can't handle the use case.
 :::
 
-## Files changed (fueled-movies delta)
+## Files changed in this lesson
 
 | File | Change type | What changes |
 | ---- | ----------- | ------------ |
@@ -144,14 +143,14 @@ Always try block bindings first. If a Paragraph with a binding can do the job, y
 
 ## Ship it checkpoint
 
-- "Add Separator" toggle appears in Group block inspector (only for horizontal flex layouts)
+- "Add Separator" toggle appears in Group block inspector (only for Row Group variation)
 - Dots appear between items in the metadata row on the single movie page
-- Toggle works in both editor and frontend
+- Toggle adds styles to both editor and frontend
 
 ## Takeaways
 
 - Block extensions add features to core blocks using `registerBlockExtension` from `@10up/block-components`.
-- The API wraps three WordPress block filters: attribute registration, editor control, and class output.
+- The API wraps three WordPress block filters to handle attribute registration, editor control, and class output.
 - Use `classNameGenerator` to conditionally add classes based on block attributes.
 - Conditionally render the `Edit` component so controls only appear when relevant (e.g., horizontal flex layouts only).
 - Build custom when core blocks can't do the job. Extend when they almost can.
