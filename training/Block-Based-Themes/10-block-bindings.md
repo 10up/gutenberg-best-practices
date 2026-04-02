@@ -53,7 +53,7 @@ public function register_block_bindings() {
     register_block_bindings_source(
         'tenup/block-bindings',
         array(
-            'label'              => __( 'Fueled Movies Theme', 'tenup' ),
+            'label'              => __( 'Fueled Movies Theme', 'tenup-block-theme' ),
             'get_value_callback' => [ $this, 'block_bindings_callback' ],
         )
     );

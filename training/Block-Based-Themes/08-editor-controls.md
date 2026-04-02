@@ -90,7 +90,7 @@ const MovieFields = () => {
     return (
         <PluginDocumentSettingPanel
             name="tenup-movie-fields"
-            title={__('Movie Information', 'tenup')}
+            title={__('Movie Information', 'tenup-block-theme')}
         >
             <Flex direction="column">
                 <MovieIMDBID />
@@ -140,7 +140,7 @@ const MovieMPARating = ({ postMetaProps, ...restProps }) => {
         <PostMeta metaKey="tenup_movie_mpa_rating" {...postMetaProps}>
             {(meta, setMeta) => (
                 <SelectControl
-                    label={__('MPA Rating', 'tenup')}
+                    label={__('MPA Rating', 'tenup-block-theme')}
                     value={meta}
                     options={options}
                     onChange={(value) => setMeta(value)}
@@ -193,8 +193,8 @@ const MovieRuntime = ({ postMetaProps, ...restProps }) => {
             {(meta, setMeta) => (
                 <BaseControl
                     id="tenup-movie-runtime"
-                    label={__('Runtime', 'tenup')}
-                    help={__('In hours & minutes', 'tenup')}
+                    label={__('Runtime', 'tenup-block-theme')}
+                    help={__('In hours & minutes', 'tenup-block-theme')}
                 >
                     <TimePicker.TimeInput
                         onChange={(value) => {
@@ -229,14 +229,14 @@ const DateTimePopover = ({ date, setDate, label }) => {
             popoverProps={{ offset: 36, placement: 'left-end' }}
             renderToggle={({ isOpen, onToggle }) => (
                 <HStack justify="flex-start" alignment="top">
-                    <div className="editor-post-panel__row-label">{__(label, 'tenup')}</div>
+                    <div className="editor-post-panel__row-label">{__(label, 'tenup-block-theme')}</div>
                     <Button
                         aria-expanded={isOpen}
                         onClick={onToggle}
                         size="compact"
                         variant="tertiary"
                     >
-                        {date ? formatDate(date) : __('Choose a date', 'tenup')}
+                        {date ? formatDate(date) : __('Choose a date', 'tenup-block-theme')}
                     </Button>
                 </HStack>
             )}
@@ -247,7 +247,7 @@ const DateTimePopover = ({ date, setDate, label }) => {
                         className="block-editor-inspector-popover-header"
                     >
                         <Heading level={2} size={13}>
-                            {__(label, 'tenup')}
+                            {__(label, 'tenup-block-theme')}
                         </Heading>
                         <HStack
                             justify="flex-end"
@@ -260,19 +260,19 @@ const DateTimePopover = ({ date, setDate, label }) => {
                                 variant="link"
                                 isDestructive
                             >
-                                {__('Clear', 'tenup')}
+                                {__('Clear', 'tenup-block-theme')}
                             </Button>
                             <Button
                                 size="small"
                                 className="block-editor-inspector-popover-header__action"
-                                label={__('Close', 'tenup')}
+                                label={__('Close', 'tenup-block-theme')}
                                 icon={closeSmall}
                                 onClick={onClose}
                             />
                         </HStack>
                     </HStack>
                     <DateTimePicker
-                        label={__(label, 'tenup')}
+                        label={__(label, 'tenup-block-theme')}
                         onChange={setDate}
                         currentDate={date}
                         is12Hour
@@ -294,7 +294,7 @@ const PersonBorn = ({ postMetaProps, ...restProps }) => {
         <PostMeta metaKey="tenup_person_born" {...postMetaProps}>
             {(meta, setMeta) => (
                 <DateTimePopover
-                    label={__('Born', 'tenup')}
+                    label={__('Born', 'tenup-block-theme')}
                     date={meta}
                     setDate={(value) => setMeta(value)}
                     {...restProps}

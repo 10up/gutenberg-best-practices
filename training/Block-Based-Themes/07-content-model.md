@@ -133,11 +133,11 @@ class MovieRuntime extends AbstractPostMeta {
         $schema['schema']['properties'] = [
             'hours'   => [
                 'type'        => 'string',
-                'description' => __( 'Hours', 'tenup' ),
+                'description' => __( 'Hours', 'tenup-block-theme' ),
             ],
             'minutes' => [
                 'type'        => 'string',
-                'description' => __( 'Minutes', 'tenup' ),
+                'description' => __( 'Minutes', 'tenup-block-theme' ),
             ],
         ];
 
@@ -178,11 +178,11 @@ class Relationships implements ModuleInterface {
             'movie_person' => [
                 'from' => [
                     'cpt'  => Movie::POST_TYPE,
-                    'name' => __( 'Related People', 'tenup' ),
+                    'name' => __( 'Related People', 'tenup-block-theme' ),
                 ],
                 'to' => [
                     'cpt'  => Person::POST_TYPE,
-                    'name' => __( 'Related Movies', 'tenup' ),
+                    'name' => __( 'Related Movies', 'tenup-block-theme' ),
                 ],
             ],
         ];

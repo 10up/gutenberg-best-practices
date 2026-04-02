@@ -45,10 +45,10 @@ registerBlockExtension('core/group', {
 
         return (
             <InspectorControls group="settings">
-                <PanelBody title={__('Separator', 'tenup')}>
+                <PanelBody title={__('Separator', 'tenup-block-theme')}>
                     <ToggleControl
-                        label={__('Add Separator', 'tenup')}
-                        help={__('Creates a middot between each innerblock.', 'tenup')}
+                        label={__('Add Separator', 'tenup-block-theme')}
+                        help={__('Creates a middot between each innerblock.', 'tenup-block-theme')}
                         checked={hasSeparator}
                         onChange={(value) => setAttributes({ hasSeparator: value })}
                     />
