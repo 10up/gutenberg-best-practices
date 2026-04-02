@@ -199,5 +199,5 @@ cp themes/fueled-movies/assets/js/block-styles/index.js themes/10up-block-theme/
 
 ## Further reading
 
-- [Block Filters](/reference/Blocks/block-filters)
+- [Block Extensions](/reference/Blocks/block-extensions)
 - [WP_HTML_Tag_Processor (WordPress Developer Resources)](https://developer.wordpress.org/reference/classes/wp_html_tag_processor/)
