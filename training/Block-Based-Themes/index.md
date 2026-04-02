@@ -110,12 +110,12 @@ wp fueled-movies import --ids=tt0094721 --star-limit=5
 
 Visit the frontend at [block-based-theme-training.local](http://block-based-theme-training.local), you should see the following.
 
-![The 10up Block Theme added to a new LocalWP site](../../static//img/training/10up-block-theme-initial-screenshot.png)
+![The 10up Block Theme added to a new LocalWP site](../../static/img/training/10up-block-theme-initial-screenshot.png)
 
 To ensure our content has imported, visit [block-based-theme-training.local/movies](http://block-based-theme-training.local/movies) and [block-based-theme-training.local/people](http://block-based-theme-training.local/people).
 
-![The Movies archive page](../../static//img/training/10up-block-theme-initial-movies-screenshot.png)
-![The People archive page](../../static//img/training/10up-block-theme-initial-people-screenshot.png)
+![The Movies archive page](../../static/img/training/10up-block-theme-initial-movies-screenshot.png)
+![The People archive page](../../static/img/training/10up-block-theme-initial-people-screenshot.png)
 
 ## Lessons
 

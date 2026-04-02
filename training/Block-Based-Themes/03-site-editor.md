@@ -32,7 +32,7 @@ parts/
 
 Open the Site Editor via **Appearance > Editor**.
 
-![The Site Editor](../../static//img/training/site-editor-default-appearance.png)
+![The Site Editor](../../static/img/training/site-editor-default-appearance.png)
 
 Explore the main panels:
 
@@ -45,7 +45,7 @@ Explore the main panels:
 :::info
 Note that the Site Editor lists no patterns currently even though the theme contains a `card.php` file in the `/patterns` directory.  This is due to the `Inserter: false` property in the file's metadata.  Set it to `true` for the card to see it display in the editor and revert back to `false` when done.
 
-![The Patterns tab with Card set true](../../static//img/training/site-editor-patterns-display.png)
+![The Patterns tab with Card set true](../../static/img/training/site-editor-patterns-display.png)
 :::
 
 ### 2. Edit the header navigation
@@ -59,14 +59,14 @@ Note that the Site Editor lists no patterns currently even though the theme cont
 7. Follow the same process to create a `/people` custom link.
 8. Hit Save.
 
-![The completed Navigation in the editor](../../static//img/training/site-editor-navigation-completed.png)
+![The completed Navigation in the editor](../../static/img/training/site-editor-navigation-completed.png)
 
 If you view the frontend of your site, you should see the new items in both your header and footer.
 
-![The completed Navigation on the frontend - header](../../static//img/training/site-editor-navigation-completed-frontend-header.png)
+![The completed Navigation on the frontend - header](../../static/img/training/site-editor-navigation-completed-frontend-header.png)
 *Frontend header navigation*
 
-![The completed Navigation on the frontend- footer](../../static//img/training/site-editor-navigation-completed-frontend-footer.png)
+![The completed Navigation on the frontend- footer](../../static/img/training/site-editor-navigation-completed-frontend-footer.png)
 *Frontend footer navigation*
 
 ### 3. Edit the footer
@@ -96,10 +96,10 @@ That last step is pretty important, this clears the database customization so th
 [Create Block Theme](https://wordpress.org/plugins/create-block-theme/) is a very handy plugin that can help to manage these steps as well.  We went with the manual approach for this training but it is worth checking out.
 :::
 
-![The Options dropdown with relevant items in bold](../../static//img/training/site-editor-footer-options-dropdown.png)
+![The Options dropdown with relevant items in bold](../../static/img/training/site-editor-footer-options-dropdown.png)
 *The Options dropdown with relevant items in bold*
 
-![The reset option](../../static//img/training/site-editor-footer-reset.png)
+![The reset option](../../static/img/training/site-editor-footer-reset.png)
 *The template part Reset button*
 
 ## Templates, parts, and patterns: when to use what
@@ -223,10 +223,10 @@ Create `templates/single-tenup-person.html` using the same structure, changing t
 
 These headings are intentionally rough. They confirm the correct template is loading for each post type. We'll replace these placeholder templates with their final versions in [Lesson 9](./09-archive-templates-and-cards.md) (archives) and [Lesson 10](./10-block-bindings.md) (singles).
 
-![The template select button](../../static//img/training/editor-template-select.png)
+![The template select button](../../static/img/training/editor-template-select.png)
 *The template select button on a single Movie*
 
-![The template select screen screen in the Site Editor](../../static//img/training/site-editor-templates.png)
+![The template select screen screen in the Site Editor](../../static/img/training/site-editor-templates.png)
 *The Templates section of the Site Editor displaying our new templates*
 
 ## Files changed in this lesson
@@ -249,7 +249,7 @@ These headings are intentionally rough. They confirm the correct template is loa
 - A single movie post loads the Single Movie template (shows "Single: Movie" heading)
 - Same for People
 
-![The frontend of our site on a single Movie displaying our added template title](../../static//img/training/frontend-single-movie-initial-template.png)
+![The frontend of our site on a single Movie displaying our added template title](../../static/img/training/frontend-single-movie-initial-template.png)
 *The frontend of our site on a single Movie displaying our added template title*
 
 ## Takeaways

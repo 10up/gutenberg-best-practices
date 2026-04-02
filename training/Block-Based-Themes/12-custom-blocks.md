@@ -74,7 +74,7 @@ The nesting rules are defined in each block's `block.json`:
 
 _* Alternatively, there is also `ancestor` to be allowed at any level within a blocks nested innerblocks_
 
-![The Description List block used in the inserter](../../static//img/training/editor-description-list-blocks.png)
+![The Description List block used in the inserter](../../static/img/training/editor-description-list-blocks.png)
 
 #### Dynamic rendering with render.php
 
@@ -260,7 +260,7 @@ For our custom binding, we can return the fallback in our php callback if we wis
 
 Export the updated markup back to the theme files.
 
-![The Description List block output on the frontend](../../static//img/training/frontend-dl-block-bindings.png)
+![The Description List block output on the frontend](../../static/img/training/frontend-dl-block-bindings.png)
 *Our Description List blocks on the frontend with bound innerblock content*
 
 ## Files changed in this lesson

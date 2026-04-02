@@ -186,7 +186,7 @@ registerBlockBindingsSource({
 
 `getValues()` provides placeholder text so editors see meaningful content in the canvas. `getFieldsList()` makes bindings discoverable in the editor UI.
 
-![Screenshot of a the Attributes panel showing where block bindings are connected in the editor](../../static//img/training/editor-block-bindings-popover.png)
+![Screenshot of a the Attributes panel showing where block bindings are connected in the editor](../../static/img/training/editor-block-bindings-popover.png)
 *The Attributes panel of the Button block where we connect our bindings in the Single Movie template*
 
 :::tip
@@ -323,7 +323,7 @@ The single templates were copied in step 1. Briefly review their layout structur
 
 These templates use simple Paragraphs for metadata right now. In [Lesson 12](./12-custom-blocks.md), you'll revisit them to wrap metadata in `tenup/dl` blocks for semantic HTML. The metadata row uses a basic flex Group without the separator toggle, which comes in [Lesson 11](./11-block-extensions.md). The `tenup/rate-movie` block is added in [Lesson 13](./13-interactivity-api.md).
 
-![The movie single frontend view](../../static//img/training/frontend-movie-block-bindings.png)
+![The movie single frontend view](../../static/img/training/frontend-movie-block-bindings.png)
 
 ## Null and empty fallback strategy
 
@@ -357,7 +357,7 @@ Bindings are not conditional: you can't hide a bound block entirely when the val
 - Trailer embeds from IMDB, with placeholder for movies without trailers
 - Back button navigates to the correct archive
 
-![The person single frontend view](../../static//img/training/frontend-person-block-bindings.png)
+![The person single frontend view](../../static/img/training/frontend-person-block-bindings.png)
 
 ## Takeaways
 

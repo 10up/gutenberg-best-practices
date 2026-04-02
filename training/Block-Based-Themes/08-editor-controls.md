@@ -118,7 +118,7 @@ Key patterns:
 3. **`registerPlugin`** - Registers the component as a plugin with the block editor. This is how WordPress knows to render it.
 4. **One component per field** - Each meta field has its own component, keeping things modular and testable.
 
-![Screenshot of a the editor Movie Information meta panel](../../static//img/training/editor-movie-meta-panel.png)
+![Screenshot of a the editor Movie Information meta panel](../../static/img/training/editor-movie-meta-panel.png)
 *Our Movie Information meta panel*
 
 ## Meta field components
@@ -305,7 +305,7 @@ const PersonBorn = ({ postMetaProps, ...restProps }) => {
 };
 ```
 
-![Screenshot of a the Birthplace meta field control and popover](../../static//img/training/editor-birthplace-control.png)
+![Screenshot of a the Birthplace meta field control and popover](../../static/img/training/editor-birthplace-control.png)
 
 :::info
 This sort of reverse engineering is not strictly necessary, but it does provide a cohesive editorial experience.

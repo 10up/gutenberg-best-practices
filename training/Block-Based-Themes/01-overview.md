@@ -17,7 +17,7 @@ Everything else is pretty much the same. Any theme still requires a `style.css` 
 
 You can think of block based themes as a superset on top of traditional themes. If you look at the template hierarchy in WordPress (`index.php`, `single.php`, `page.php`, etc.), the introduction of block based themes doesn't change that. Instead of `index.php`, you now have `templates/index.html`, and so on. The same rules apply, but instead of PHP files, you use HTML files. Technically you can even still use PHP files: the template hierarchy will look for `.html` files first, and then fall back to `.php` files if it can't find an `.html` version.
 
-![Block Based Theme File Structure](../../static//img/fse-template-hierarchy.png)
+![Block Based Theme File Structure](../../static/img/fse-template-hierarchy.png)
 
 So if you ever encounter a situation where you need to use a PHP template in a block based theme, you can still do that.
 

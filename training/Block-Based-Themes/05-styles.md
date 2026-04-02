@@ -107,7 +107,7 @@ cp themes/fueled-movies/assets/js/frontend.js themes/10up-block-theme/assets/js/
 
 After copying, run `npm run build` and verify the site looks styled.  The changes are subtle at this point, you can confirm our changes worked if the build succeeds and the Separator block matches what we've added to `css/blocks/core/separator.css`.
 
-![The Separator block in the Footer](../../static//img/training/frontend-separator.png)
+![The Separator block in the Footer](../../static/img/training/frontend-separator.png)
 *Notice the Separator is using our `--wp--custom--color--background--light-transparent-10` variable created in theme.json*
 
 ### Key CSS patterns
@@ -269,7 +269,7 @@ To see the clickable card in action, update `patterns/card.php` to add the `is-c
 
 The only change from the previous version is `"className":"is-clickable-card"` on the outer Group block (and the matching `is-clickable-card` in the rendered `class` attribute). After rebuilding, hovering over a card on the frontend should reveal the title underline and the entire card surface should be clickable.
 
-![Screenshot of a card hover showing an underlined title](../../static//img/training/frontend-card-hover-example.png)
+![Screenshot of a card hover showing an underlined title](../../static/img/training/frontend-card-hover-example.png)
 *Hovering over any part of the card should show the cursor as `pointer` and underline the title*
 
 ## Part B: Style variations
@@ -329,7 +329,7 @@ To see it in action, add a Group block in the editor with the "Primary" style ap
 
 You should see the Group get a white background with black text. You can also select the Group block and pick the "Primary" style from the Styles panel in the block inspector. Delete the test block when you're done.
 
-![The Group block in the editor with Primary style applied](../../static//img/training/editor-primary-group-style.png)
+![The Group block in the editor with Primary style applied](../../static/img/training/editor-primary-group-style.png)
 *The Group block with our Primary style applied. Notice the Style preview also will display our changes*
 
 ### Hands-on: create style variations
@@ -378,8 +378,8 @@ Notice we only define the static styles (color, shadow) here. The hover and focu
 
 4. **Rebuild and verify**: "Secondary" style appears for Button blocks in the editor and frontend.
 
-![Screenshot of Buttons in the editor with default and Secondary styles applied](../../static//img/training/editor-button-styles.png)
-![Screenshot of Buttons on the frontend with default and Secondary styles applied](../../static//img/training/frontend-button-styles.png)
+![Screenshot of Buttons in the editor with default and Secondary styles applied](../../static/img/training/editor-button-styles.png)
+![Screenshot of Buttons on the frontend with default and Secondary styles applied](../../static/img/training/frontend-button-styles.png)
 
 ### Why hover/focus lives in CSS, not the variation JSON
 

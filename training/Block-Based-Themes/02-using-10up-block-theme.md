@@ -107,10 +107,10 @@ Let's do one quick exercise to prove the build pipeline works.
 
 The 10up Block Theme contains an opinionated modification to the block editor Post Title text input wrapper.  Typically this appears as part of the content area of the post, however this can often times feel undesirable when using Page Header or Hero type blocks that display the title as it does on the frontend.  Our theme modification makes this appear as part of the standard editor UI, providing a bit more visual clarity.
 
-![The unmodified post title wrapper](../../static//img/training/editor-post-title-wrapper-unmodified.png)
+![The unmodified post title wrapper](../../static/img/training/editor-post-title-wrapper-unmodified.png)
 *The unmodified Post Title wrapper*
 
-![The 10up Block Theme modified post title wrapper](../../static//img/training/editor-post-title-wrapper-modified.png)
+![The 10up Block Theme modified post title wrapper](../../static/img/training/editor-post-title-wrapper-modified.png)
 *The 10up Block Theme modified Post Title wrapper*
 
 1. Open `assets/css/editor-canvas-style-overrides.css`.
@@ -131,7 +131,7 @@ npm run build
 
 4. Open any post in the editor. The title area should now have a pink background.
 
-![The 10up Block Theme modified post title wrapper with pink background](../../static//img/training/editor-post-title-wrapper-pink.png)
+![The 10up Block Theme modified post title wrapper with pink background](../../static/img/training/editor-post-title-wrapper-pink.png)
 
 5. Revert the change back to `#fff` and rebuild.
 

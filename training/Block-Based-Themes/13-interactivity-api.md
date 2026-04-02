@@ -282,9 +282,9 @@ Revisit `templates/single-tenup-movie.html` in the Site Editor. Add `<!-- wp:ten
 
 Export the updated markup back to the theme file.
 
-![The Movie Rating button while in use](../../static//img/training/frontend-rate-button-during.png)
+![The Movie Rating button while in use](../../static/img/training/frontend-rate-button-during.png)
 
-![The Movie Rating button after giving a rating](../../static//img/training/frontend-rate-button-after.png)
+![The Movie Rating button after giving a rating](../../static/img/training/frontend-rate-button-after.png)
 *Our Movie Rating button demonstrating the popover js and updated text*
 
 

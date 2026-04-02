@@ -186,7 +186,7 @@ cp themes/fueled-movies/assets/js/block-styles/index.js themes/10up-block-theme/
 - `flex-shrink-0` class applied to fixed-width blocks
 - Core block styles (fill, outline, etc.) are removed from the inspector
 
-![A gif demonstrating our featured image view transitions](../../static//img/training/frontend-view-transitions.gif)
+![A gif demonstrating our featured image view transitions](../../static/img/training/frontend-view-transitions.gif)
 *Our Featured Image view-transitions in action*
 
 ## Takeaways

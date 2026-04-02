@@ -67,7 +67,7 @@ registerBlockExtension('core/group', {
 
 Our separator styles are designed to add a middot between items in a row so the `classNameGenerator` only returns the class when the layout is horizontal flex, ensuring the dots only appear on inline groups.
 
-![The editor view of the Group block extension for "Add separator"](../../static//img/training/editor-group-extension-setting.png)
+![The editor view of the Group block extension for "Add separator"](../../static/img/training/editor-group-extension-setting.png)
 *The toggle should only display when using the Row Group variation*
 
 ### 2. Create the barrel file and update the entry point
@@ -117,7 +117,7 @@ The single movie template we copied from the fueled-movies theme already has `"h
 
 If the dots aren't showing, open `templates/single-tenup-movie.html` in the Site Editor and find the metadata row Group (the horizontal flex group containing release year, MPA rating, etc.). Enable the "Add Separator" toggle in the inspector and export the updated markup back to the theme file.
 
-![The frontend view of the Group block extension for "Add separator"](../../static//img/training/frontend-group-separator.png)
+![The frontend view of the Group block extension for "Add separator"](../../static/img/training/frontend-group-separator.png)
 
 ## When to build vs extend
 

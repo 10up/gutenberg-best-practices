@@ -114,7 +114,7 @@ All three archive templates reference the same pattern:
 
 One pattern, three templates. The PHP conditionals run in the context of each post inside the query loop, so the card automatically adapts.
 
-![Screenshot of a Movie and Person cards side by side](../../static//img/training/frontend-card-side-by-side.png)
+![Screenshot of a Movie and Person cards side by side](../../static/img/training/frontend-card-side-by-side.png)
 *Our Movie and Person cards side by side*
 
 ### How patterns work in templates

@@ -226,7 +226,7 @@ The key difference: `preset` variables come from defined presets (palette, spaci
 - Buttons are yellow with inset shadow
 - Updating a color in the Styles section of the Editor updates usage everywhere
 
-![The Site Editor edit palette feature](../../static//img/training/site-editor-style-color-change.png)
+![The Site Editor edit palette feature](../../static/img/training/site-editor-style-color-change.png)
 *Editing the palette from the Site Editor, noting how it changes our link color*
 
 :::warning
