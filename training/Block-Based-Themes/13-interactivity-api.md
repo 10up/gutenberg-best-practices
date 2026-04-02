@@ -72,7 +72,7 @@ Copy the block and install the dependency as described above, then rebuild.
             "clientNavigation": true
         }
     },
-    "render": "file:./markup.php",
+    "render": "file:./render.php",
     "editorScript": "file:./index.js",
     "viewScriptModule": "file:./view-module.js",
     "style": "file:./style.css"
@@ -86,9 +86,9 @@ Key entries:
 
 ### 3. Walk through the server-rendered markup
 
-The `markup.php` file outputs HTML with `data-wp-*` directives:
+The `render.php` file outputs HTML with `data-wp-*` directives:
 
-```php title="blocks/rate-movie/markup.php (simplified)"
+```php title="blocks/rate-movie/render.php (simplified)"
 <?php
 $block_wrapper_attributes = get_block_wrapper_attributes( [
     'data-wp-context'     => wp_json_encode( [ 'rating' => null ] ),
@@ -158,9 +158,9 @@ $block_wrapper_attributes = get_block_wrapper_attributes( [
 
 #### The do_blocks() pattern
 
-The `markup.php` uses `do_blocks()` to render Button blocks from PHP. This ensures the buttons get proper block-style-variation CSS applied.  This approach would also load any other code split block assets such as `view-module.js` for interactivity.
+The `render.php` uses `do_blocks()` to render Button blocks from PHP. This ensures the buttons get proper block-style-variation CSS applied.  This approach would also load any other code split block assets such as `view-module.js` for interactivity.
 
-```php title="blocks/rate-movie/markup.php (do_blocks pattern)"
+```php title="blocks/rate-movie/render.php (do_blocks pattern)"
 $trigger_button = '
 <!-- wp:button {"tagName":"button"} -->
 <div class="wp-block-button">
@@ -302,7 +302,7 @@ The Interactivity API is not a replacement for React. It's designed for server-r
 | ---- | ----------- | ------------ |
 | `package.json` | Modified | Added `@wordpress/interactivity` dependency; `useScriptModules: true` in toolkit config |
 | `blocks/rate-movie/block.json` | **New** | Interactive block metadata with `viewScriptModule` |
-| `blocks/rate-movie/markup.php` | **New** | Server-rendered HTML with `data-wp-*` directives, `do_blocks()` pattern for buttons |
+| `blocks/rate-movie/render.php` | **New** | Server-rendered HTML with `data-wp-*` directives, `do_blocks()` pattern for buttons |
 | `blocks/rate-movie/view-module.js` | **New** | Interactivity API store with state, actions, callbacks |
 | `blocks/rate-movie/index.js` | **New** | Minimal editor registration |
 | `blocks/rate-movie/style.css` | **New** | Popover, trigger, slider, and rating display styles |
@@ -320,9 +320,9 @@ The Interactivity API is not a replacement for React. It's designed for server-r
 
 - The Interactivity API adds frontend behavior to server-rendered blocks declaratively.
 - Directives (`data-wp-on--click`, `data-wp-bind--*`, `data-wp-text`) connect HTML to store state.
-- Always server-render the initial HTML in `markup.php`. The API enhances it, not replaces it.
+- Always server-render the initial HTML in `render.php`. The API enhances it, not replaces it.
 - Each block instance has its own context via `data-wp-context` and `getContext()`.
-- Computed state (`get` properties) automatically updates when dependencies change.
+- Computed state (`get` properties) automatically update when dependencies change.
 - Accessibility is not optional: ARIA attributes, keyboard support, screen reader testing.
 - Use `do_blocks()` when outputting block markup from PHP to ensure style variations are applied.
 

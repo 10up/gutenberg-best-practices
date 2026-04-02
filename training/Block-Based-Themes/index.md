@@ -88,7 +88,7 @@ At any time, you may also activate the **Fueled Movies** theme to see the finish
 
 ## Content Import
 
-Once your site is set up, import the sample movie and person content.  Open the **Site Shell** from the LocalWP dashboard for your site and run the following.  The default import will add 30 movies and a approximately 90 persons.  Alternatively, you can choose to import only your favorite films and their stars using the id found in the URL of an IMDB entry (e.g. - `tt0094721`).
+Once your site is set up, import the sample movie and person content.  Open the **Site Shell** from the LocalWP dashboard for your site and run the following.  The default import will add 30 movies and approximately 90 persons.  Alternatively, you can choose to import only your favorite films and their stars using the id found in the URL of an IMDB entry (e.g. - `tt0094721`).
 
 ```bash
 # Recommended default, imports 30 movies and 3 members of their cast.
@@ -96,7 +96,7 @@ wp fueled-movies import
 
 # Import only your favorite movies and their stars via the IMDB ID as found in their URL.
 # e.g. https://www.imdb.com/title/tt0094721
-# These should be movie ID's (not TV shows) as a comma seperated list.
+# These should be movie ID's (not TV shows) as a comma separated list.
 wp fueled-movies import --ids=tt0094721,tt0910970,tt0068646
 
 # Preview without creating posts

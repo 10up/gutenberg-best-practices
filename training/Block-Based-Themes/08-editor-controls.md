@@ -331,13 +331,13 @@ After the walkthrough, explore the remaining components on your own. The pattern
 
 ### Bonus: Create your own meta field
 
-To re-enforce what you've learned in [the last lesson](./07-content-model.md) and here, try and create your own unique field!
+To reinforce what you've learned in [the last lesson](./07-content-model.md) and here, try and create your own unique field!
 
 
 <details>
 <summary>Feeling stuck?</summary>
 1. Copy one of the PostMeta files in `/mu-plugins/10up-plugin/src/PostMeta/` such as `MoviePlot.php` to `MyCoolMetaField.php`
-2. Change the `MoviePlot` class name and use a uniqiue `META_KEY` slug - `my_cool_meta_field`
+2. Change the `MoviePlot` class name and use a unique `META_KEY` slug - `my_cool_meta_field`
 3. Copy the `/themes/fueled-movies/assets/js/block-components/PostMeta/MoviePlot.js` file to `MyCoolMetaField.js`
 4. Change the `MoviePlot` name and export, and swap the meta key in the `<PostMeta/>` component for `my_cool_meta_field`
 5. Add the import and place your new component below the `<MoviePlot/>` component in `/themes/fueled-movies/assets/js/block-plugins/movie-meta-fields.js`

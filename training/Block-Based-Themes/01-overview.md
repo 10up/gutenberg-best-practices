@@ -116,7 +116,7 @@ We should think of the Site Editor as a kind of visual IDE for developing WordPr
 
 ## Theme.json
 
-There is a myth out there that you don't wite any CSS in a block based theme and instead do everything in the `theme.json` file. **This is not true.**
+There is a myth out there that you don't write any CSS in a block based theme and instead do everything in the `theme.json` file. **This is not true.**
 
 Whilst you may find core themes such as Twenty Twenty-Five striving for "zero CSS," that is not at all a requirement. It is really only something you should consider if you are building a theme for the WordPress theme directory.
 

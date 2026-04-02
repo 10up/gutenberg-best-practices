@@ -346,8 +346,8 @@ Bindings are not conditional: you can't hide a bound block entirely when the val
 | `assets/js/block-bindings/index.js` | **New** | Client-side `registerBlockBindingsSource()` with `getValues()` placeholders and `getFieldsList()` |
 | `assets/js/block-extensions.js` | Modified | Added `import './block-bindings'` |
 | `patterns/single-movie-trailer.php` | **New** | Conditional IMDB iframe embed or placeholder image based on `tenup_movie_trailer_id` meta |
-| `templates/single-tenup-movie.html` | **New** | Initial version using core/post-meta and tenup/block-bindings throughout |
-| `templates/single-tenup-person.html` | **New** | Initial version using core/post-meta and tenup/block-bindings throughout |
+| `templates/single-tenup-movie.html` | Modified | Replaced placeholder with full layout using core/post-meta and tenup/block-bindings throughout |
+| `templates/single-tenup-person.html` | Modified | Replaced placeholder with full layout using core/post-meta and tenup/block-bindings throughout |
 
 ## Ship it checkpoint
 
@@ -363,7 +363,7 @@ Bindings are not conditional: you can't hide a bound block entirely when the val
 
 - Block bindings let core blocks display dynamic values without custom blocks.
 - You need both a PHP source (real values) and a JS source (editor previews).
-- Only Image, Paragraph, Heading, and Button support bindings today.
+- Seven core blocks support bindings out of the box. As of WP 7.0, any block can opt in via the `block_bindings_supported_attributes` filter.
 - Use `core/post-meta` for simple meta display. Use a custom source for computed or formatted values.
 - Always handle null/empty values: bound blocks always render their markup.
 - Bindings are not conditional: you can't hide a block based on whether a value exists.

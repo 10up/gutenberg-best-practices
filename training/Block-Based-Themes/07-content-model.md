@@ -156,11 +156,11 @@ The abstract class automatically includes `show_in_rest` with the schema, this i
 `show_in_rest` is the single most important flag for any meta field. Without it, the field is invisible to the editor, block bindings, and JavaScript. If a field doesn't appear where you expect, check `show_in_rest` first.
 :::
 
-### All 15 meta fields
+### All 14 meta fields
 
-The plugin defines 15 meta fields across two post types:
+The plugin defines 14 meta fields across two post types:
 
-**Movie** (9 fields): `tenup_movie_imdb_id`, `tenup_movie_mpa_rating`, `tenup_movie_plot`, `tenup_movie_release_year`, `tenup_movie_runtime` (object), `tenup_movie_viewer_rating`, `tenup_movie_viewer_rating_count`, `tenup_movie_trailer_id`
+**Movie** (8 fields): `tenup_movie_imdb_id`, `tenup_movie_mpa_rating`, `tenup_movie_plot`, `tenup_movie_release_year`, `tenup_movie_runtime` (object), `tenup_movie_viewer_rating`, `tenup_movie_viewer_rating_count`, `tenup_movie_trailer_id`
 
 **Person** (6 fields): `tenup_person_biography`, `tenup_person_birthplace`, `tenup_person_born`, `tenup_person_deathplace`, `tenup_person_died`, `tenup_person_imdb_id`
 

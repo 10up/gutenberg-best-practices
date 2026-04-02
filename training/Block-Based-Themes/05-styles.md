@@ -376,7 +376,7 @@ Notice we only define the static styles (color, shadow) here. The hover and focu
 }
 ```
 
-1. **Rebuild and verify**: "Secondary" style appears for Button blocks in the editor and frontend.
+4. **Rebuild and verify**: "Secondary" style appears for Button blocks in the editor and frontend.
 
 ![Screenshot of Buttons in the editor with default and Secondary styles applied](../../static//img/training/editor-button-styles.png)
 ![Screenshot of Buttons on the frontend with default and Secondary styles applied](../../static//img/training/frontend-button-styles.png)

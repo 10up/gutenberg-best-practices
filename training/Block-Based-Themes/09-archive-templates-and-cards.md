@@ -68,7 +68,7 @@ Make the same changes to `templates/archive-tenup-person.html`.
 :::info
 You could even copy and paste `templates/archive-tenup-movie.html` directly to `archive-tenup-person.html` and it would still work.
 
-This is because the Query attributes set `"inherit":true` which means it will use context from the WP heirarchy and ignore the `postType` attribute here.
+This is because the Query attributes set `"inherit":true` which means it will use context from the WP hierarchy and ignore the `postType` attribute here.
 
 However to avoid confusion, it is still recommended to set the proper `postType` attribute.
 :::

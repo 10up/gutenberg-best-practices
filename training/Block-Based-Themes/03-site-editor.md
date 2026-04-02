@@ -43,7 +43,7 @@ Explore the main panels:
 - **Patterns** - reusable sections and template parts
 
 :::info
-Note that the Site Editor lists no patterns currently even though the theme contains a `card.php` file in the `/patterns` directory.  This is due to `Inserter: false` property in the files metadata.  Set it `true` for the card to see it display it the editor and revert back to `false` when done.
+Note that the Site Editor lists no patterns currently even though the theme contains a `card.php` file in the `/patterns` directory.  This is due to the `Inserter: false` property in the file's metadata.  Set it to `true` for the card to see it display in the editor and revert back to `false` when done.
 
 ![The Patterns tab with Card set true](../../static//img/training/site-editor-patterns-display.png)
 :::
@@ -93,7 +93,7 @@ That last step is pretty important, this clears the database customization so th
 :::
 
 :::info
-[Create Bock Theme](https://wordpress.org/plugins/create-block-theme/) is a very handy plugin that can help to manage these steps as well.  We went with the manual approach for this training but it is worth checking out.
+[Create Block Theme](https://wordpress.org/plugins/create-block-theme/) is a very handy plugin that can help to manage these steps as well.  We went with the manual approach for this training but it is worth checking out.
 :::
 
 ![The Options dropdown with relevant items in bold](../../static//img/training/site-editor-footer-options-dropdown.png)

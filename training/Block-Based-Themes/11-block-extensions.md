@@ -84,7 +84,7 @@ Add the import to `assets/js/block-extensions.js`:
 import './block-filters';
 ```
 
-### 4. Verify in the editor
+### 3. Verify in the editor
 
 Rebuild with `npm run build`. Open the editor and insert a Group block set to "Row" layout (horizontal flex). The "Add Separator" toggle should appear in the inspector under a "Separator" panel.
 
@@ -111,7 +111,7 @@ The CSS for `.has-separator` was already created in [Lesson 5](./05-styles.md) (
 }
 ```
 
-### 5. Verify on the single movie template
+### 4. Verify on the single movie template
 
 The single movie template we copied from the fueled-movies theme already has `"hasSeparator":true` on the metadata row Group. After rebuilding, visit a single movie page on the frontend and confirm you see the dot separators between the release year, MPA rating, and other metadata items.
 
