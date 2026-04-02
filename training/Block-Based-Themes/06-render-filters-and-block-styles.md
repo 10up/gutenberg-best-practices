@@ -42,8 +42,8 @@ The framework auto-discovers all classes in `src/` that implement this interface
 Add a `filter_featured_image_block()` method to `src/Blocks.php`. This injects a `view-transition-name` style on `core/post-featured-image` blocks using `WP_HTML_Tag_Processor`:
 
 ```php title="src/Blocks.php (new method)"
-public function filter_featured_image_block( $block_content, $block, $parsed_block ) {
-    $featured_image_id = get_post_thumbnail_id( $parsed_block->context['postId'] );
+public function filter_featured_image_block( $block_content, $block, $instance ) {
+    $featured_image_id = get_post_thumbnail_id( $instance->context['postId'] );
     $p = new WP_HTML_Tag_Processor( $block_content );
     $p->next_tag();
 
@@ -70,7 +70,7 @@ public function filter_featured_image_block( $block_content, $block, $parsed_blo
 Add a `maybe_add_flex_shrink()` method. This is a workaround for a Gutenberg issue [#53766](https://github.com/WordPress/gutenberg/issues/53766) where blocks with `selfStretch: "fixed"` don't get `flex-shrink: 0`:
 
 ```php title="src/Blocks.php (new method)"
-public function maybe_add_flex_shrink( $block_content, $block, $parsed_block ) {
+public function maybe_add_flex_shrink( $block_content, $block, $instance ) {
     if ( isset( $block['attrs']['style']['layout']['selfStretch'] )
          && 'fixed' === $block['attrs']['style']['layout']['selfStretch'] ) {
         $tags = new WP_HTML_Tag_Processor( $block_content );
