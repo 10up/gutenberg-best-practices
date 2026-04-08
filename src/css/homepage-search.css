@@ -52,13 +52,5 @@
 }
 
 .navbar__search [class^="searchHintContainer_"] {
-  align-items: center;
-  display: flex;
-  gap: 4px;
-  height: 100%;
   justify-content: end;
-  pointer-events: none;
-  position: absolute;
-  right: 10px;
-  top: 0;
 }
