@@ -40,13 +40,6 @@
 }
 
 [class^="searchBarContainer_"] [class^="searchClearButton_"] {
-  background: none !important;
-  border: none !important;
-  line-height: 1rem !important;
-  padding: 0 !important;
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
   right: 7px !important;
   text-align: right !important;
 }
