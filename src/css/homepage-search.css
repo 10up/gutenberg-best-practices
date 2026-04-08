@@ -39,16 +39,16 @@
   color: var(--ifm-color-content);
 }
 
-.navbar .navbar__search [class^="searchBarContainer_"] [class^="searchClearButton_"] {
-  background: none;
-  border: none;
-  line-height: 1rem;
-  padding: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 7px;
-  text-align: right;
+[class^="searchBarContainer_"] [class^="searchClearButton_"] {
+  background: none !important;
+  border: none !important;
+  line-height: 1rem !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  right: 7px !important;
+  text-align: right !important;
 }
 
 .navbar__search [class^="searchHintContainer_"] {
