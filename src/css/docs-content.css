@@ -8,6 +8,3 @@
 	background-color: #fff; /* Keep white so pngs get bg in dark mode. */
 }
 
-main > .container {
-	margin-bottom: 4rem;
-}
