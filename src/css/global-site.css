@@ -24,7 +24,13 @@ html[data-theme="dark"] .theme-announcement-bar {
 }
 
 main > .container {
-  margin-top: 4rem;
+  max-width: none;
+}
+
+@media (min-width: 1440px) {
+  main > .container {
+    max-width: var(--ifm-container-width-xl);
+  }
 }
 
 .theme-doc-markdown iframe {
