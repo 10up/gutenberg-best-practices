@@ -24,11 +24,6 @@
   color: var(--ifm-color-content);
 }
 
-.home__heroBanner
-  [class="searchHintContainer_node_modules-@easyops-cn-docusaurus-search-local-dist-client-client-theme-SearchBar-SearchBar-module"] {
-  display: none !important;
-}
-
 .home__heroBanner .navbar__search input {
   background-color: var(--ifm-input-background-color);
   border-radius: 0.75em;
@@ -42,4 +37,28 @@
   margin-left: auto;
   font-size: 1.125rem;
   color: var(--ifm-color-content);
+}
+
+[class^="searchBarContainer_"] [class^="searchClearButton_"] {
+  background: none;
+  border: none;
+  line-height: 1rem;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 7px;
+  text-align: right;
+}
+
+[class^="searchHintContainer_"] {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  height: 100%;
+  justify-content: end;
+  pointer-events: none;
+  position: absolute;
+  right: 10px;
+  top: 0;
 }
