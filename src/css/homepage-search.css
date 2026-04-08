@@ -39,7 +39,7 @@
   color: var(--ifm-color-content);
 }
 
-.navbar__search [class^="searchBarContainer_"] [class^="searchClearButton_"] {
+.navbar .navbar__search [class^="searchBarContainer_"] [class^="searchClearButton_"] {
   background: none;
   border: none;
   line-height: 1rem;
