@@ -24,6 +24,11 @@
   color: var(--ifm-color-content);
 }
 
+.home__heroBanner
+  [class="searchHintContainer_node_modules-@easyops-cn-docusaurus-search-local-dist-client-client-theme-SearchBar-SearchBar-module"] {
+  display: none !important;
+}
+
 .home__heroBanner .navbar__search input {
   background-color: var(--ifm-input-background-color);
   border-radius: 0.75em;
