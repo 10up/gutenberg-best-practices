@@ -16,7 +16,44 @@ This lesson combines two related topics: how the scaffold organizes and code-spl
 
 ## Part A: Copy CSS from the finished theme
 
-Most of the CSS in this lesson is straightforward styling. Rather than writing every file from scratch, copy the CSS files from the `fueled-movies` answer-key theme and review the file table below to understand what each file does.
+Most of the CSS in this lesson is straightforward styling. Rather than writing every file from scratch, copy from the `fueled-movies` answer-key theme first, then we'll walk through what you have now.
+
+### Copy the files
+
+From the `wp-content` directory, run:
+
+```bash
+# CSS files
+cp themes/fueled-movies/assets/css/base/html.css themes/10up-block-theme/assets/css/base/html.css
+cp themes/fueled-movies/assets/css/base/layout.css themes/10up-block-theme/assets/css/base/layout.css
+cp themes/fueled-movies/assets/css/base/index.css themes/10up-block-theme/assets/css/base/index.css
+cp themes/fueled-movies/assets/css/components/header.css themes/10up-block-theme/assets/css/components/header.css
+cp themes/fueled-movies/assets/css/components/card.css themes/10up-block-theme/assets/css/components/card.css
+cp themes/fueled-movies/assets/css/components/button.css themes/10up-block-theme/assets/css/components/button.css
+cp themes/fueled-movies/assets/css/components/index.css themes/10up-block-theme/assets/css/components/index.css
+cp themes/fueled-movies/assets/css/mixins/is-clickable-card.css themes/10up-block-theme/assets/css/mixins/is-clickable-card.css
+mkdir -p themes/10up-block-theme/assets/css/blocks/core
+cp themes/fueled-movies/assets/css/blocks/core/separator.css themes/10up-block-theme/assets/css/blocks/core/separator.css
+cp themes/fueled-movies/assets/css/blocks/core/post-featured-image.css themes/10up-block-theme/assets/css/blocks/core/post-featured-image.css
+cp themes/fueled-movies/assets/css/blocks/core/post-terms.css themes/10up-block-theme/assets/css/blocks/core/post-terms.css
+cp themes/fueled-movies/assets/css/blocks/core/group.css themes/10up-block-theme/assets/css/blocks/core/group.css
+cp themes/fueled-movies/assets/css/utilities/layout.css themes/10up-block-theme/assets/css/utilities/layout.css
+cp themes/fueled-movies/assets/css/utilities/visually-hidden.css themes/10up-block-theme/assets/css/utilities/visually-hidden.css
+cp themes/fueled-movies/assets/css/utilities/index.css themes/10up-block-theme/assets/css/utilities/index.css
+
+# JS files
+cp themes/fueled-movies/assets/js/is-clickable-card.js themes/10up-block-theme/assets/js/is-clickable-card.js
+cp themes/fueled-movies/assets/js/frontend.js themes/10up-block-theme/assets/js/frontend.js
+```
+
+:::info
+`is-style-single-movie-backdrop` styles in `post-featured-image.css` won't be visually testable until we build the single templates in [Lesson 10](./10-block-bindings.md). The `.has-separator` styles in `group.css` won't have a toggle until [Lesson 11](./11-block-extensions.md). Both are harmless CSS that we're placing now.
+:::
+
+After copying, run `npm run build` and verify the site looks styled. The changes are subtle at this point, you can confirm our changes worked if the build succeeds and the Separator block matches what we've added to `css/blocks/core/separator.css`.
+
+![The Separator block in the Footer](../../static/img/training/frontend-separator.png)
+*Notice the Separator is using our `--wp--custom--color--background--light-transparent-10` variable created in theme.json*
 
 ### The CSS architecture
 
@@ -25,7 +62,7 @@ The scaffold organizes CSS into purpose-specific directories:
 | Directory | Loads | When to use | Example |
 | --------- | ----- | ----------- | ------- |
 | `blocks/core/` | Per-block (autoenqueue) | Styling a core block | `separator.css`, `post-terms.css` |
-| `blocks/{namespace}/` | Per-block (autoenqueue) | Styling a third-party block | `jetpack/contact-form.css` |
+| `blocks/{namespace}/` | Per-block (autoenqueue) | Styling a third-party block | `jetpack/contact-form.css` *(example only, not used in our training)* |
 | `components/` | Globally via `frontend.css` | Styles that span multiple blocks | `card.css`, `header.css` |
 | `base/` | Globally via `frontend.css` | Foundational resets and layout | `reset.css`, `layout.css` |
 | `utilities/` | Globally via `frontend.css` | Single-purpose utility classes | `visually-hidden.css` |
@@ -54,61 +91,6 @@ The CSS files directly in `assets/css/` provide the main theme style entry and s
 :::tip
 The editor has **two CSS scopes**. The "frame" is everything outside the editing area. The "canvas" is the iframe where blocks render. `frontend.css` is loaded in the canvas via `add_editor_style()` so blocks look the same in the editor as they do on the frontend. The frame and canvas override files are separate.
 :::
-
-### Files to copy from fueled-movies
-
-Copy these files into your `10up-block-theme`:
-
-- `assets/css/base/html.css` (new)
-- `assets/css/base/layout.css` (modified, adds `accent-color`, `@view-transition`)
-- `assets/css/base/index.css` (modified, adds `@import url("html.css")`)
-- `assets/css/components/header.css`, `card.css`, `button.css` (new)
-- `assets/css/components/index.css` (modified, adds imports)
-- `assets/css/mixins/is-clickable-card.css` (new)
-- `assets/css/blocks/core/separator.css`, `post-featured-image.css`, `post-terms.css`, `group.css` (new)
-- `assets/css/utilities/layout.css` (new)
-- `assets/css/utilities/visually-hidden.css` (modified, adds `.is-hidden`)
-- `assets/css/utilities/index.css` (modified, adds import)
-- `assets/js/is-clickable-card.js` (new)
-- `assets/js/frontend.js` (modified, adds `import './is-clickable-card'`)
-
-:::info
-If you'd like to skip the manual copying and keep your theme in sync with the finished product, run this command to copy all Part A files at once:
-
-```bash
-# CSS files
-cp themes/fueled-movies/assets/css/base/html.css themes/10up-block-theme/assets/css/base/html.css
-cp themes/fueled-movies/assets/css/base/layout.css themes/10up-block-theme/assets/css/base/layout.css
-cp themes/fueled-movies/assets/css/base/index.css themes/10up-block-theme/assets/css/base/index.css
-cp themes/fueled-movies/assets/css/components/header.css themes/10up-block-theme/assets/css/components/header.css
-cp themes/fueled-movies/assets/css/components/card.css themes/10up-block-theme/assets/css/components/card.css
-cp themes/fueled-movies/assets/css/components/button.css themes/10up-block-theme/assets/css/components/button.css
-cp themes/fueled-movies/assets/css/components/index.css themes/10up-block-theme/assets/css/components/index.css
-cp themes/fueled-movies/assets/css/mixins/is-clickable-card.css themes/10up-block-theme/assets/css/mixins/is-clickable-card.css
-mkdir -p themes/10up-block-theme/assets/css/blocks/core
-cp themes/fueled-movies/assets/css/blocks/core/separator.css themes/10up-block-theme/assets/css/blocks/core/separator.css
-cp themes/fueled-movies/assets/css/blocks/core/post-featured-image.css themes/10up-block-theme/assets/css/blocks/core/post-featured-image.css
-cp themes/fueled-movies/assets/css/blocks/core/post-terms.css themes/10up-block-theme/assets/css/blocks/core/post-terms.css
-cp themes/fueled-movies/assets/css/blocks/core/group.css themes/10up-block-theme/assets/css/blocks/core/group.css
-cp themes/fueled-movies/assets/css/utilities/layout.css themes/10up-block-theme/assets/css/utilities/layout.css
-cp themes/fueled-movies/assets/css/utilities/visually-hidden.css themes/10up-block-theme/assets/css/utilities/visually-hidden.css
-cp themes/fueled-movies/assets/css/utilities/index.css themes/10up-block-theme/assets/css/utilities/index.css
-
-# JS files
-cp themes/fueled-movies/assets/js/is-clickable-card.js themes/10up-block-theme/assets/js/is-clickable-card.js
-cp themes/fueled-movies/assets/js/frontend.js themes/10up-block-theme/assets/js/frontend.js
-```
-
-:::
-
-:::info
-`is-style-single-movie-backdrop` styles in `post-featured-image.css` won't be visually testable until we build the single templates in [Lesson 10](./10-block-bindings.md). The `.has-separator` styles in `group.css` won't have a toggle until [Lesson 11](./11-block-extensions.md). Both are harmless CSS that we're placing now.
-:::
-
-After copying, run `npm run build` and verify the site looks styled.  The changes are subtle at this point, you can confirm our changes worked if the build succeeds and the Separator block matches what we've added to `css/blocks/core/separator.css`.
-
-![The Separator block in the Footer](../../static/img/training/frontend-separator.png)
-*Notice the Separator is using our `--wp--custom--color--background--light-transparent-10` variable created in theme.json*
 
 ### Key CSS patterns
 

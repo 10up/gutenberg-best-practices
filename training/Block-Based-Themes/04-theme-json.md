@@ -9,6 +9,10 @@ There's a misconception that block themes put all their styles in `theme.json`. 
 
 The rule of thumb: **`theme.json` is the source of truth for design tokens and settings. Actual styles belong in CSS files.**
 
+:::tip
+If you work in VS Code or Cursor, Sérgio Santos' [WP Theme JSON Editor](https://marketplace.visualstudio.com/items?itemName=s3rgiosan.vscode-wp-theme-json-editor) is worth installing. It's a form-driven visual editor for `theme.json` backed by the official WordPress schema: color pickers, spacing controls, CSS variable autocomplete for `--wp--preset--*` and `--wp--custom--*`, and block-level overrides without hand-editing raw JSON.
+:::
+
 ## Learning Outcomes
 
 1. Know what belongs in `theme.json` (tokens, settings, layout constraints) and what doesn't (actual CSS).
@@ -31,6 +35,8 @@ This means an editor can always override your theme's tokens via the Site Editor
 The `10up-block-theme` ships a minimal `theme.json`: spacing presets, layout widths, a system font stack, and some viewport-aware calculations. The color palette is intentionally empty.
 
 The `fueled-movies` theme builds on that foundation significantly. Let's walk through what it adds.
+
+All the snippets in this section live in `themes/fueled-movies/theme.json`.
 
 ### Color palette
 
@@ -251,3 +257,4 @@ cp themes/fueled-movies/theme.json themes/10up-block-theme/theme.json
 
 - [Theme.json Reference](/reference/Themes/theme-json)
 - [Styles Reference](/reference/Themes/styles)
+- [Remove settings in theme.json](https://fullsiteediting.com/lessons/remove-settings-in-theme-json/) - what you can and cannot customize

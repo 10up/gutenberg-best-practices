@@ -15,9 +15,9 @@ If you're new to blocks entirely, we recommend starting with our [Building Block
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) (>=20.0.0) and npm (>=9.0.0)
+- [Node.js](https://nodejs.org/) (>=20) and npm (>=9)
 - PHP (>=8.3)
-- [Composer](https://getcomposer.org/)
+- [Composer](https://getcomposer.org/) (>=2)
 - MySQL (8+)
 - Git
 - A code editor
@@ -37,14 +37,14 @@ You can certainly do this course using your development environment of choice, b
 <dt>Choose your environment</dt>
 <dd>Custom<br/>PHP version: <code>8.3.x</code><br/>Web server: <code>nginx</code><br/>Database: <code>MYSQL 8+</code></dd>
 <dt>Set up WordPress</dt>
-<dd>Username: <code>admin</code><br/>Password: <code>password</code><br/>Email: <code>example@example.com</code><br/>Is this a WordPress Multisite? <code>No</code></dd>
+<dd>Username: <code>admin</code><br/>Password: <code>password</code><br/>Email: <code>example@example.com</code><br/>Is this a WordPress Multisite? <code>No</code> (open <strong>Advanced Options</strong> to reveal this)</dd>
 </dl>
 
-### 2. Clone the repository
+### 2. Open the Site Shell and clone the repository
 
-https://github.com/10up/block-based-theme-training
+From the LocalWP dashboard screen for your site, select **Site Shell**. Every command in the rest of this section runs from that shell.
 
-Open your terminal and navigate to `~/Local Sites/block-based-theme-training/app/public`, or from the LocalWP dashboard screen for the site select **Site shell**.
+Clone [the repo](https://github.com/10up/block-based-theme-training) into `wp-content` and install dependencies:
 
 ```bash
 rm -rf wp-content
@@ -58,49 +58,42 @@ nvm use && npm install && npm run build
 composer install
 composer install --working-dir=mu-plugins/10up-plugin
 composer install --working-dir=themes/10up-block-theme
+composer install --working-dir=themes/fueled-movies
 ```
 
 :::info
 Going forward, please work from the `wp-content` folder when executing commands such as `npm run build`. The course will later provide additional instructions under the assumption your terminal is in that directory.
 :::
 
-### 3. Configure wp-config.php
+### 3. Activate the theme and set debug constants
 
-Add the following constants to your `wp-config.php`:
+Still in the Site Shell:
 
-```php
-define( 'WP_DEBUG', true );
-define( 'WP_DEBUG_LOG', true );
-define( 'WP_DEBUG_DISPLAY', false );
-define( 'SCRIPT_DEBUG', true );
-define( 'WP_DEVELOPMENT_MODE', 'all' );
+```bash
+wp theme activate 10up-block-theme
+
+wp config set WP_DEBUG true --raw
+wp config set WP_DEBUG_LOG true --raw
+wp config set WP_DEBUG_DISPLAY false --raw
+wp config set SCRIPT_DEBUG true --raw
+wp config set WP_DEVELOPMENT_MODE all
 ```
 
-### 4. Activate the theme
-
-Log in to `wp-admin`, go to **Appearance > Themes**, and activate the **10up Block Theme**.
-
-At any time, you may also activate the **Fueled Movies** theme to see the finished product of this training course.
+:::tip
+If you get stuck at any point, you can activate the **Fueled Movies** theme to see the finished product: `wp theme activate fueled-movies`. Switch back with `wp theme activate 10up-block-theme` (or swap in the WP admin under Appearance > Themes).
+:::
 
 ## Content Import
 
-Once your site is set up, import the sample movie and person content.  Open the **Site Shell** from the LocalWP dashboard for your site and run the following.  The default import will add 30 movies and approximately 90 persons.  Alternatively, you can choose to import only your favorite films and their stars using the id found in the URL of an IMDB entry (e.g. - `tt0094721`).
+Import the sample movie and person content, 30 films and approximately 90 people _(roughly 3 cast members per movie)_:
 
 ```bash
-# Recommended default, imports 30 movies and 3 members of their cast.
 wp fueled-movies import
-
-# Import only your favorite movies and their stars via the IMDB ID as found in their URL.
-# e.g. https://www.imdb.com/title/tt0094721
-# These should be movie ID's (not TV shows) as a comma separated list.
-wp fueled-movies import --ids=tt0094721,tt0910970,tt0068646
-
-# Preview without creating posts
-wp fueled-movies import --dry-run
-
-# Override default star limit (default: 3 per movie)
-wp fueled-movies import --ids=tt0094721 --star-limit=5
 ```
+
+:::warning
+This import fetches data from IMDB one movie at a time and can take several minutes to complete. Kick it off and feel free to jump into [Lesson 1: Anatomy of a Block Based Theme](./01-overview.md) while it runs.  When it completes, you can then come back here to confirm the screenshots below with your local.
+:::
 
 ## What you should see
 

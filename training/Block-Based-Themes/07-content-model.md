@@ -148,13 +148,13 @@ class MoviePlot extends AbstractPostMeta {
 
     const META_KEY = 'tenup_movie_plot';
 
-    protected $type = 'string';
-
     public function get_post_types(): array {
         return [ Movie::POST_TYPE ];
     }
 }
 ```
+
+The abstract defaults `$type` to `'string'`, so simple string fields only need to declare the meta key and which post types they register on.
 
 And a complex object field:`MovieRuntime` stores hours and minutes as a structured object:
 
@@ -209,7 +209,7 @@ The plugin defines 14 meta fields across two post types:
 
 ## Relationships
 
-The plugin uses [Content Connect](https://github.com/10up/content-connect) for bidirectional many-to-many relationships between post types.
+The plugin uses [Content Connect](https://github.com/10up/wp-content-connect) for bidirectional many-to-many relationships between post types.
 
 ```php title="mu-plugins/10up-plugin/src/Relationships.php (simplified)"
 class Relationships implements ModuleInterface {

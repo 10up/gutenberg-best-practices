@@ -212,6 +212,12 @@ const { state } = store('tenup/rate-movie', {
             return context.rating > 0 ? `${context.rating}/10` : 'Rate';
         },
 
+        // Derived state: the text inside the popover showing the current selection.
+        get popupRatingText() {
+            const context = getContext();
+            return context.rating !== null && context.rating > 0 ? `${context.rating}/10` : '';
+        },
+
         // Derived state: the range slider's current value (defaults to 1 if no rating).
         get sliderValue() {
             const context = getContext();
@@ -293,13 +299,12 @@ Export the updated markup back to the theme file.
 ![The Movie Rating button after giving a rating](../../static/img/training/frontend-rate-button-after.png)
 *Our Movie Rating button demonstrating the popover js and updated text*
 
+:::caution
+The Interactivity API is not a replacement for React. It's designed for server-rendered blocks that need client-side behavior. Editor-side interactivity still lives in `edit.js`.
+:::
 
 :::tip
 As a bonus, see if you can add local storage to a movie's rating so the values persist across page loads.
-:::
-
-:::caution
-The Interactivity API is not a replacement for React. It's designed for server-rendered blocks that need client-side behavior. Editor-side interactivity still lives in `edit.js`.
 :::
 
 ## Files changed in this lesson

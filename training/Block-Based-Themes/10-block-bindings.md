@@ -104,8 +104,12 @@ private function get_movie_stars() {
     $value   = '';
     $post_id = get_the_ID();
 
+    if ( ! $post_id ) {
+        return $value;
+    }
+
     // Bail early if Content Connect isn't available.
-    if ( ! $post_id || ! function_exists( '\TenUp\ContentConnect\Helpers\get_related_ids_by_name' ) ) {
+    if ( ! function_exists( '\TenUp\ContentConnect\Helpers\get_related_ids_by_name' ) ) {
         return $value;
     }
 
@@ -117,19 +121,34 @@ private function get_movie_stars() {
     }
 
     // Fetch the Person posts and build linked name strings.
-    $stars_query = new \WP_Query( [
-        'post_type'      => Person::POST_TYPE,
-        'post__in'       => $star_ids,
-        'orderby'        => 'post__in',
-        'posts_per_page' => 99,
-    ] );
+    $stars_query = new \WP_Query(
+        [
+            'post_type'      => Person::POST_TYPE,
+            'post__in'       => $star_ids,
+            'orderby'        => 'post__in',
+            'posts_per_page' => 99,
+        ]
+    );
 
-    $star_links = array_map( function ( $star ) {
-        return sprintf( '<a href="%s">%s</a>', esc_url( get_permalink( $star->ID ) ), esc_html( $star->post_title ) );
-    }, $stars_query->posts );
+    if ( ! $stars_query->have_posts() ) {
+        return $value;
+    }
+
+    $star_links = array_map(
+        function ( $star ) {
+            return sprintf(
+                '<a href="%s">%s</a>',
+                esc_url( get_permalink( $star->ID ) ),
+                esc_html( $star->post_title )
+            );
+        },
+        $stars_query->posts
+    );
 
     // Return comma-separated linked names (e.g. "Al Pacino, Robert De Niro").
-    return implode( ', ', $star_links );
+    $value = implode( ', ', $star_links );
+
+    return $value;
 }
 ```
 
@@ -322,6 +341,10 @@ The single templates were copied in step 1. Briefly review their layout structur
 - **Single Person**: header with photo and biographical info, filmography section
 
 These templates use simple Paragraphs for metadata right now. In [Lesson 12](./12-custom-blocks.md), you'll revisit them to wrap metadata in `tenup/dl` blocks for semantic HTML. The metadata row uses a basic flex Group without the separator toggle, which comes in [Lesson 11](./11-block-extensions.md). The `tenup/rate-movie` block is added in [Lesson 13](./13-interactivity-api.md).
+
+:::note
+After copying these templates, the Site Editor will show "Your site doesn't include support for the..." warnings for `tenup/movie-runtime`, `tenup/rate-movie`, `tenup/dl`, and `tenup/dl-item`. This is expected. Those blocks are built in [Lesson 12](./12-custom-blocks.md) (`tenup/movie-runtime`, `tenup/dl`, `tenup/dl-item`) and [Lesson 13](./13-interactivity-api.md) (`tenup/rate-movie`). Leave the placeholders alone and the warnings will resolve as you progress.
+:::
 
 ![The movie single frontend view](../../static/img/training/frontend-movie-block-bindings.png)
 

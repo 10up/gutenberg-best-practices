@@ -87,6 +87,12 @@ From the template part in the Site Editor:
 3. Paste this into the corresponding file in your theme at `parts/footer.html`.
 4. **Reset the template part** in the Site Editor sidebar under **Settings > Template Part > Actions (three dots) > Reset**
 
+![The Options dropdown with relevant items in bold](../../static/img/training/site-editor-footer-options-dropdown.png)
+*The Options dropdown with relevant items in bold*
+
+![The reset option](../../static/img/training/site-editor-footer-reset.png)
+*The template part Reset button*
+
 :::tip
 That last step is pretty important, this clears the database customization so the editor reads from the theme file again.
   After pasting markup into a theme file, always reset the template part in the Site Editor. Without resetting, the Site Editor continues to use the database version (your customization), not the theme file. Resetting ensures the editor and the theme file are in sync.
@@ -95,12 +101,6 @@ That last step is pretty important, this clears the database customization so th
 :::info
 [Create Block Theme](https://wordpress.org/plugins/create-block-theme/) is a very handy plugin that can help to manage these steps as well.  We went with the manual approach for this training but it is worth checking out.
 :::
-
-![The Options dropdown with relevant items in bold](../../static/img/training/site-editor-footer-options-dropdown.png)
-*The Options dropdown with relevant items in bold*
-
-![The reset option](../../static/img/training/site-editor-footer-reset.png)
-*The template part Reset button*
 
 ## Templates, parts, and patterns: when to use what
 
@@ -119,30 +119,28 @@ Patterns have two modes. When an editor **inserts** a pattern into a post, the m
 When you need templates for custom post types, add them to the `customTemplates` array in `theme.json`. This is how the editor discovers them in the template picker:
 
 ```json title="theme.json (partial)"
-{
-    "customTemplates": [
-        {
-            "name": "archive-tenup-movie",
-            "title": "Movie Archives",
-            "postTypes": []
-        },
-        {
-            "name": "single-tenup-movie",
-            "title": "Single Movie",
-            "postTypes": ["tenup-movie"]
-        },
-        {
-            "name": "archive-tenup-person",
-            "title": "Person Archives",
-            "postTypes": []
-        },
-        {
-            "name": "single-tenup-person",
-            "title": "Single Person",
-            "postTypes": ["tenup-person"]
-        }
-    ]
-}
+"customTemplates": [
+    {
+        "name": "archive-tenup-movie",
+        "title": "Movie Archives",
+        "postTypes": []
+    },
+    {
+        "name": "single-tenup-movie",
+        "title": "Single Movie",
+        "postTypes": ["tenup-movie"]
+    },
+    {
+        "name": "archive-tenup-person",
+        "title": "Person Archives",
+           "postTypes": []
+    },
+    {
+       "name": "single-tenup-person",
+       "title": "Single Person",
+       "postTypes": ["tenup-person"]
+    }
+]
 ```
 
 The `postTypes` array controls which post types show this template as a selectable option in the Editor. Both single and archive templates are resolved automatically by the WordPress template hierarchy (`single-{post-type}.html`, `archive-{post-type}.html`), so `postTypes` does not affect which template file is used. It only affects editor UI visibility. Single templates list their post type so the template appears in the editor when editing that post type. Archive templates use an empty array because archives aren't assigned to individual posts.

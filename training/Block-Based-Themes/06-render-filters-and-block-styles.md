@@ -59,50 +59,67 @@ The scaffold's `can_register()` / `register()` / `load_order()` methods give you
 
 ### 1. Add view-transition-name to featured images
 
-Add a `filter_featured_image_block()` method to `src/Blocks.php`. This injects a `view-transition-name` style on `core/post-featured-image` blocks using `WP_HTML_Tag_Processor`:
+Add a `filter_featured_image_block()` method to the bottom of `src/Blocks.php`, just above the closing `}` of the class. It injects a `view-transition-name` style on `core/post-featured-image` blocks using `WP_HTML_Tag_Processor`:
 
 ```php title="src/Blocks.php (new method)"
 public function filter_featured_image_block( $block_content, $block, $instance ) {
+
+    if ( empty( $instance->context['postId'] ) ) {
+        return $block_content;
+    }
+
     $featured_image_id = get_post_thumbnail_id( $instance->context['postId'] );
+
     $p = new WP_HTML_Tag_Processor( $block_content );
-    $p->next_tag();
+
+    if ( ! $p->next_tag() ) {
+        return $block_content;
+    }
 
     if ( $p->has_class( 'is-style-single-movie-backdrop' ) ) {
         return $block_content;
     }
 
-    $style = $p->get_attribute( 'style' );
-    $vt    = "view-transition-name: post-featured-image-id-{$featured_image_id};";
+    $style_attribute       = $p->get_attribute( 'style' );
+    $view_transition_style = "view-transition-name: post-featured-image-id-{$featured_image_id};";
 
-    if ( false === strpos( $style, $vt ) ) {
-        $style = $vt . $style;
+    if ( false === strpos( $style_attribute, $view_transition_style ) ) {
+        $style_attribute = $view_transition_style . $style_attribute;
     }
 
-    $p->set_attribute( 'style', $style );
+    $p->set_attribute( 'style', $style_attribute );
+
     return $p->get_updated_html();
 }
 ```
 
 `WP_HTML_Tag_Processor` is WordPress's safe way to modify HTML. It parses the block's output, lets you read/modify attributes, and generates the updated HTML. It avoids the fragility of string manipulation or regex on HTML.
 
+Note the two guards up top: we bail out if there's no post to read a thumbnail from, and if the block has no HTML tag to modify. Skipping these means the rest of the function can error on empty or malformed block output.
+
 ### 2. Add flex-shrink-0 to fixed-width blocks
 
-Add a `maybe_add_flex_shrink()` method. This is a workaround for a Gutenberg issue [#53766](https://github.com/WordPress/gutenberg/issues/53766) where blocks with `selfStretch: "fixed"` don't get `flex-shrink: 0`:
+Add a `maybe_add_flex_shrink()` method beneath the method you just added. This is a workaround for a Gutenberg issue [#53766](https://github.com/WordPress/gutenberg/issues/53766) where blocks with `selfStretch: "fixed"` don't get `flex-shrink: 0`:
 
 ```php title="src/Blocks.php (new method)"
 public function maybe_add_flex_shrink( $block_content, $block, $instance ) {
-    if ( isset( $block['attrs']['style']['layout']['selfStretch'] )
-         && 'fixed' === $block['attrs']['style']['layout']['selfStretch'] ) {
+
+    if ( isset( $block['attrs']['style']['layout']['selfStretch'] ) && 'fixed' === $block['attrs']['style']['layout']['selfStretch'] ) {
         $tags = new WP_HTML_Tag_Processor( $block_content );
-        $tags->next_tag();
+
+        if ( ! $tags->next_tag() ) {
+            return $block_content;
+        }
+
         $tags->add_class( 'flex-shrink-0' );
         $block_content = $tags->get_updated_html();
     }
+
     return $block_content;
 }
 ```
 
-Register both filters in the `register()` method of `Blocks.php`:
+Register both filters inside the `register()` method of `Blocks.php`, after the existing `add_action` lines:
 
 ```php
 add_filter( 'render_block_core/post-featured-image', [ $this, 'filter_featured_image_block' ], 10, 3 );

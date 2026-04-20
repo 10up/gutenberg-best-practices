@@ -105,7 +105,7 @@ Block based themes don't mean that we no longer write custom blocks, but rather 
 :::tip
 The best way to create block templates is to use the site editor itself. You can create the block markup in the editor, and then save it back to the theme using the [Create Block Theme plugin](https://wordpress.org/plugins/create-block-theme/).
 
-No one should have to hand author the block markup in the `.html` files. The editor is the best place to do that.
+No one should have to hand author the block markup in the `.html` files. The editor is the best place to do that. We'll walk through the Site Editor and this round-trip workflow in [Lesson 3: The Site Editor](./03-site-editor.md).
 :::
 
 ## The Site Editor
@@ -123,7 +123,7 @@ Whilst you may find core themes such as Twenty Twenty-Five striving for "zero CS
 For custom-built themes on client projects, it brings very little value and adds a lot of complexity in terms of fighting with WordPress core's stylesheet specificity.
 
 :::tip
-A rule of thumb is that you should use `theme.json` as the source of truth for all your design tokens and settings. But any actual styles should be written in CSS files.
+A rule of thumb is that you should use `theme.json` as the source of truth for all your design tokens and settings. But any actual styles should be written in CSS files. We cover `theme.json` configuration in depth in [Lesson 4: theme.json](./04-theme-json.md).
 :::
 
 ## Styles
