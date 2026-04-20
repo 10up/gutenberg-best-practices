@@ -341,7 +341,9 @@ Now that you've seen how a style variation works, we'll delete the scaffold surf
 2. **Create `styles/button/secondary.json`**: transparent background, primary text, inset shadow:
 
 :::info
-Note that you can use directories here to group variations by block type or whatever convention you prefer.  Slugs should be unique across files however.
+Directories under `styles/` are for your own organization only. They do not target blocks. The `"blockTypes"` property in each JSON file is what connects a style to a specific block (here, `"core/button"`).
+
+You can put a file in `styles/button/`, `styles/core/`, or jusr `styles/` directly, WordPress treats them identically. Slugs, however, must be unique across all files regardless of directory.
 :::
 
 ```json title="styles/button/secondary.json"

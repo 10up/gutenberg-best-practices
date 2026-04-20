@@ -209,7 +209,7 @@ These core blocks have built-in binding support:
 
 #### Extending bindings to any block
 
-As of WordPress 7.0, bindings are no longer limited to this built-in list. The `block_bindings_supported_attributes` filter lets any block, including custom blocks, opt into binding support. Any block attribute that supports bindings also supports [Pattern Overrides](https://make.wordpress.org/core/2026/03/16/pattern-overrides-in-wp-7-0-support-for-custom-blocks/), meaning editors can override bound values per-instance in synced patterns.
+As of WordPress 6.9, bindings are no longer limited to this built-in list. The [`block_bindings_supported_attributes`](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-bindings/#extending-supported-attributes) filter lets any block, including custom blocks, opt into binding support. As of [WordPress 7.0](https://make.wordpress.org/core/2026/03/16/pattern-overrides-in-wp-7-0-support-for-custom-blocks/), any bindable attribute (including on custom blocks) also supports Pattern Overrides, meaning editors can override bound values per-instance in synced patterns.
 
 ```php
 // Allow a custom block's "heading" attribute to support bindings and pattern overrides.
@@ -363,7 +363,7 @@ Bindings are not conditional: you can't hide a bound block entirely when the val
 
 - Block bindings let core blocks display dynamic values without custom blocks.
 - You need both a PHP source (real values) and a JS source (editor previews).
-- Seven core blocks support bindings out of the box. As of WP 7.0, any block can opt in via the `block_bindings_supported_attributes` filter.
+- Seven core blocks support bindings out of the box. As of WP 6.9, any block can opt in via the `block_bindings_supported_attributes` filter. As of WP 7.0, those bindable attributes also support Pattern Overrides.
 - Use `core/post-meta` for simple meta display. Use a custom source for computed or formatted values.
 - Always handle null/empty values: bound blocks always render their markup.
 - Bindings are not conditional: you can't hide a block based on whether a value exists.

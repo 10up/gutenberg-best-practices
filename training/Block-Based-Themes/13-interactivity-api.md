@@ -9,6 +9,10 @@ The Interactivity API replaces ad-hoc frontend JavaScript with a declarative sys
 
 This lesson walks through the `tenup/rate-movie` block: a fully interactive star rating widget built entirely with the Interactivity API.
 
+:::note
+Keeping our ratings persistent is out of scope for this lesson. The rating lives in reactive context for the current page view only.  It resets on reload and does not persist across navigations.
+:::
+
 ## Learning Outcomes
 
 1. Understand the Interactivity API: stores, state, actions, callbacks, and `data-wp-*` directives.
@@ -86,17 +90,19 @@ Key entries:
 
 ### 3. Walk through the server-rendered markup
 
-The `render.php` file outputs HTML with `data-wp-*` directives:
+The `render.php` file outputs HTML with `data-wp-*` directives. The `data-wp-context` attribute is emitted via [`wp_interactivity_data_wp_context()`](https://developer.wordpress.org/reference/functions/wp_interactivity_data_wp_context/), which JSON-encodes the array with the flags required for safe HTML-attribute output.
 
 ```php title="blocks/rate-movie/render.php (simplified)"
 <?php
 $block_wrapper_attributes = get_block_wrapper_attributes( [
-    'data-wp-context'     => wp_json_encode( [ 'rating' => null ] ),
     'data-wp-interactive' => 'tenup/rate-movie',
 ] );
 ?>
 
-<div <?php echo $block_wrapper_attributes; ?>>
+<div
+    <?php echo $block_wrapper_attributes; ?>
+    <?php echo wp_interactivity_data_wp_context( [ 'rating' => null ] ); ?>
+>
 
     <!-- Trigger button -->
     <button

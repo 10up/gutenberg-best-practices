@@ -35,6 +35,26 @@ interface ModuleInterface {
 
 The framework auto-discovers all classes in `src/` that implement this interface. You just drop in a class and it registers itself, no manual wiring needed.
 
+<details>
+<summary>Not using the 10up scaffold? Here's the vanilla equivalent.</summary>
+
+The `Module` pattern is a thin layer over standard WordPress hooks. A class that calls `add_filter()` inside `register()` is equivalent to wiring the same filter up directly in `functions.php` or a plugin file:
+
+```php
+// Vanilla equivalent of a Module class.
+add_action( 'init', function () {
+    add_filter( 'render_block_core/post-featured-image', 'filter_featured_image_block', 10, 3 );
+} );
+
+function filter_featured_image_block( $block_content, $block, $instance ) {
+    // Same body shown below.
+}
+```
+
+The scaffold's `can_register()` / `register()` / `load_order()` methods give you a consistent place to put this wiring and let the framework call it at the right time. If you're working without the scaffold, drop the class wrapper and call `add_action` / `add_filter` directly.
+
+</details>
+
 `src/Blocks.php` already exists and hooks into `init`. We'll add two new methods and register them with the `render_block` filter.
 
 ### 1. Add view-transition-name to featured images

@@ -27,6 +27,49 @@ The `10up-plugin` uses the same `ModuleInterface` pattern introduced in [Lesson 
 
 Drop a new PHP class in `src/` that implements this interface and it will be auto-discovered -- no manual registration needed.
 
+<details>
+<summary>Not using the 10up scaffold? Here's the vanilla equivalent.</summary>
+
+The scaffold's abstracts (`AbstractPostType`, `AbstractTaxonomy`, `AbstractPostMeta`) call the same WordPress functions you'd call by hand. They just share sensible defaults so each CPT, taxonomy, or meta field isn't boilerplate.
+
+Equivalent vanilla calls for what this lesson covers:
+
+```php
+// Post type (see AbstractPostType).
+add_action( 'init', function () {
+    register_post_type( 'tenup-movie', [
+        'public'       => true,
+        'show_in_rest' => true,
+        'supports'     => [ 'title', 'editor', 'thumbnail', 'custom-fields' ],
+        'rewrite'      => [ 'slug' => 'movies' ],
+        'labels'       => [ 'name' => 'Movies', 'singular_name' => 'Movie' ],
+    ] );
+} );
+
+// Taxonomy (see AbstractTaxonomy).
+add_action( 'init', function () {
+    register_taxonomy( 'tenup-genre', [ 'tenup-movie' ], [
+        'public'       => true,
+        'show_in_rest' => true,
+        'hierarchical' => true,
+        'labels'       => [ 'name' => 'Genres', 'singular_name' => 'Genre' ],
+    ] );
+} );
+
+// Post meta (see AbstractPostMeta).
+add_action( 'init', function () {
+    register_post_meta( 'tenup-movie', 'tenup_movie_plot', [
+        'show_in_rest' => true,
+        'single'       => true,
+        'type'         => 'string',
+    ] );
+} );
+```
+
+The rest of this lesson (custom-fields support, `show_in_rest`, object-type meta schemas) applies identically in either approach.
+
+</details>
+
 ## Custom post types
 
 CPTs extend `AbstractPostType` from the framework. Here's the Movie post type:

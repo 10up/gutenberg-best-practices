@@ -53,15 +53,11 @@ git clone git@github.com:10up/block-based-theme-training.git wp-content
 
 cd wp-content
 
-nvm use && npm install && npm run build && composer install
+nvm use && npm install && npm run build
 
-cd mu-plugins/10up-plugin && composer install
-
-cd ../..
-
-cd themes/10up-block-theme && composer install
-
-cd ../..
+composer install
+composer install --working-dir=mu-plugins/10up-plugin
+composer install --working-dir=themes/10up-block-theme
 ```
 
 :::info
