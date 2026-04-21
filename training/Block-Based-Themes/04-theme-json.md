@@ -30,13 +30,21 @@ WordPress resolves `theme.json` values in three layers:
 
 This means an editor can always override your theme's tokens via the Site Editor. That's by design. The theme establishes sensible defaults, and editors customize from there.
 
+## Copy theme.json from the finished theme
+
+Rather than hand-authoring each section, copy the finished `theme.json` from the `fueled-movies` answer-key theme. From the `wp-content` directory, run:
+
+```bash
+cp themes/fueled-movies/theme.json themes/10up-block-theme/theme.json
+```
+
+No build needed: `theme.json` is read directly by WordPress. Refresh the Site Editor and the site should be ready to go dark with yellow accents.
+
 ## Comparing the two themes
 
 The `10up-block-theme` ships a minimal `theme.json`: spacing presets, layout widths, a system font stack, and some viewport-aware calculations. The color palette is intentionally empty.
 
-The `fueled-movies` theme builds on that foundation significantly. Let's walk through what it adds.
-
-All the snippets in this section live in `themes/fueled-movies/theme.json`.
+The `fueled-movies` theme.json, which now lives in your `10up-block-theme/theme.json` after the copy, builds on that foundation significantly. Let's walk through the key additions.
 
 ### Color palette
 
@@ -47,9 +55,9 @@ All the snippets in this section live in `themes/fueled-movies/theme.json`.
             "defaultPalette": false,
             "palette": [
                 {
-                    "slug": "yellow",
+                    "slug": "yellow-primary",
                     "color": "var(--wp--custom--color--yellow--primary)",
-                    "name": "Yellow"
+                    "name": "Yellow Primary"
                 },
                 {
                     "slug": "yellow-secondary",
@@ -122,7 +130,7 @@ The `fueled-movies` theme defines default button and link styles at the element 
         "elements": {
             "button": {
                 "color": {
-                    "background": "var(--wp--preset--color--yellow)",
+                    "background": "var(--wp--preset--color--yellow-primary)",
                     "text": "#121212"
                 },
                 "border": {
@@ -198,7 +206,7 @@ Every preset in `theme.json` generates a CSS custom property following a naming 
 
 | Setting | CSS variable pattern | Example |
 |---------|---------------------|---------|
-| `settings.color.palette` | `--wp--preset--color--{slug}` | `--wp--preset--color--yellow` |
+| `settings.color.palette` | `--wp--preset--color--{slug}` | `--wp--preset--color--yellow-primary` |
 | `settings.spacing.spacingSizes` | `--wp--preset--spacing--{slug}` | `--wp--preset--spacing--24` |
 | `settings.typography.fontFamilies` | `--wp--preset--font-family--{slug}` | `--wp--preset--font-family--system-font` |
 | `settings.custom.*` | `--wp--custom--{path}` | `--wp--custom--color--yellow--primary` |
@@ -207,23 +215,15 @@ The key difference: `preset` variables come from defined presets (palette, spaci
 
 ## Tasks
 
-1. **Add the `settings.custom` block** with the semantic color tokens shown above (yellow, text, background, transparent backgrounds, spacing tokens).
+1. **Verify.** Refresh the Site Editor and confirm the custom palette appears in color pickers, the site is dark, and buttons are yellow with the inset shadow.
 
-2. **Add the 8-color palette** referencing custom properties (set `defaultPalette: false`).
-
-3. **Add `styles.elements.button` and `styles.elements.link`** defaults as shown above.
-
-4. **Add `spacing.units`** array and update `layout.wideSize` to `1219px`.
-
-5. **Verify.** No build needed: `theme.json` changes are read directly by WordPress. Refresh the editor and confirm colors appear in the picker and the site is dark.
-
-6. **Test the cascade.** Override one of your theme's colors in the Site Editor's Global Styles panel. Refresh and verify the user override wins. Reset it and verify the theme default returns.
+2. **Test the cascade.** Override one of your theme's colors in the Site Editor's Global Styles panel. Refresh and verify the user override wins. Reset it and verify the theme default returns.
 
 ## Files changed in this lesson
 
 | File | Change type | What changes |
 | ---- | ----------- | ------------ |
-| `theme.json` | Modified | Added: 8-color palette, `settings.custom` with semantic tokens, `styles.elements.button` and `styles.elements.link`, `spacing.units`, `layout.wideSize` 1200px to 1219px |
+| `theme.json` | Modified | Added: 9-color palette, `settings.custom` with semantic tokens, `styles.elements.button` and `styles.elements.link`, `spacing.units`, `layout.wideSize` 1200px to 1219px |
 
 ## Ship it checkpoint
 
@@ -235,13 +235,8 @@ The key difference: `preset` variables come from defined presets (palette, spaci
 ![The Site Editor edit palette feature](../../static/img/training/site-editor-style-color-change.png)
 *Editing the palette from the Site Editor, noting how it changes our link color*
 
-:::warning
-If you've experimented and wish to keep our training in sync with the finished product, you can use this command to copy the completed theme.json into the 10up Block Theme.  Be sure to reset any Editor changes you may have made as well.
-
-```bash
-cp themes/fueled-movies/theme.json themes/10up-block-theme/theme.json
-```
-
+:::tip
+If you experimented in the Site Editor's Global Styles panel, reset those changes to pick up the theme's defaults again. The copy you ran earlier only touches the theme file; it doesn't clear user overrides stored in the database.
 :::
 
 ## Takeaways
