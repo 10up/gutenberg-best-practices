@@ -6,7 +6,7 @@ sidebar_position: 3
 
 Editors now have the capability to maintain a Synced Pattern while being able to edit the content of the block on an individual basis.  In other words, we can keep the look and feel of our component in sync across the site, while being able to alter the text, links, or even images used within on a per use basis.
 
-It should be noted that only a handful of core blocks allow for this, and custom block support does not currently exist. As of WordPress 6.6, the following blocks are enabled with the supported attributes listed after each one.
+Out of the box the following core blocks support pattern overrides:
 
 | Supported Blocks | Supported Attributes |
 | ---------------- | ---------------------|
@@ -16,6 +16,22 @@ It should be noted that only a handful of core blocks allow for this, and custom
 | Button           | url, text, linkTarget, rel |
 
 In the case of our Call to Action pattern, we can override the Heading, Paragraph, and Button used *within*, but not overide the settings as a whole on the parent Group for example.
+
+:::tip WordPress 7.0
+WordPress 7.0 extends Pattern Overrides to **custom blocks**. Any attribute exposed via the `block_bindings_supported_attributes` filter is automatically available for the `core/pattern-overrides` source, so the bindings entry for a custom block looks identical to a core block:
+
+```php
+add_filter(
+	'block_bindings_supported_attributes',
+	function ( $supported_attributes ) {
+		$supported_attributes['namespace/cta'] = array( 'title', 'description', 'buttonUrl', 'buttonText' );
+		return $supported_attributes;
+	}
+);
+```
+
+7.0 also introduces pattern-level editing modes and the `disableContentOnlyForUnsyncedPatterns` setting (via the `block_editor_settings_all` filter) so you can opt individual patterns out of the new default content-only behavior. When you want a nested block inside a `contentOnly` pattern to remain editable, add `"role": "content"` to its attribute definition; declare `"supports": { "listView": true }` to surface the block in the pattern's list view for editors.
+:::
 
 :::caution
 When using Synced Pattern Overrides, it is very important to know that our blocks are not optional, and we cannot display them conditionally.

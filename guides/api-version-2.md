@@ -1,6 +1,10 @@
-# A Quick Guide for Gutenberg API Version 2
+# A Quick Guide for Gutenberg API Version 2 & 3
 
 First of all there is no need to freak out. I know API Version 2 sounds scary like everything is changing but that is not the case. In fact if you don't want to nothing has to change. API Version 2 is opt in and therefore does not impact anything if you don't want it to. But there are good reasons why you may want to use it.
+
+:::info WordPress 7.0
+For new blocks, prefer **API Version 3**. Starting in WordPress 7.0 the iframed editor is enforced when every block on the post is v3+, which gives editors a much more accurate preview of the frontend. The two changes described on this page (`useBlockProps` + dropping the wrapper `<div>`) are also required for v3, so this guide is still the right starting point.
+:::
 
 ## Benefits
 

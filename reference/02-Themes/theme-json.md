@@ -161,6 +161,301 @@ Using `useSettings(['typography.dropCap'])` would only return `[true]` if it is 
 </p>
 </details>
 
+## Schema version
+
+The `version` key at the root of `theme.json` controls which schema is in use:
+
+| Version | Introduced | Notes |
+| ------- | ---------- | ----- |
+| 1 | 5.8 | Initial release, deprecated. |
+| 2 | 5.9 | Default for several years. Most settings/styles documented here are v2. |
+| 3 | 6.6 | Adopts the modern fluid typography defaults, sectioned styles, and the `dimensions.defaultAspectRatios` toggle. |
+
+```json title="theme.json"
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 3
+}
+```
+
+When migrating from v2 → v3, WordPress automatically rewrites theme tokens at runtime, but you should still review fluid typography output and aspect ratio presets because the defaults change.
+
+## Settings reference
+
+Below are the settings most commonly used on 10up builds, grouped by area. All of them live under the top-level `settings` key (and can be repeated inside `settings.blocks[blockName]` for per-block overrides).
+
+### Appearance tools shortcut
+
+```json
+"settings": {
+    "appearanceTools": true
+}
+```
+
+Setting `appearanceTools: true` enables the full set of design controls in one go (border, color link, color heading, color button, spacing, typography line-height, etc.). This is the recommended starting point for most 10up themes — turn it on globally and then disable specific controls per block as needed.
+
+### Layout & root padding
+
+```json
+"settings": {
+    "layout": {
+        "contentSize": "640px",
+        "wideSize":    "1200px"
+    },
+    "useRootPaddingAwareAlignments": true
+}
+```
+
+`useRootPaddingAwareAlignments` (added in 6.1) moves the root padding to inner blocks so that `align: full` blocks can still extend edge-to-edge while content blocks honor the gutter. This is now the default for new block themes.
+
+### Spacing presets (added in 5.9, expanded in 6.1)
+
+```json
+"settings": {
+    "spacing": {
+        "units":          [ "px", "em", "rem", "%", "vw", "vh" ],
+        "padding":        true,
+        "margin":         true,
+        "blockGap":       true,
+        "spacingScale":   { "operator": "*", "increment": 1.5, "steps": 7, "mediumStep": 1.5, "unit": "rem" },
+        "spacingSizes":   [
+            { "slug": "20", "size": "0.5rem", "name": "Small" },
+            { "slug": "30", "size": "1rem",   "name": "Medium" },
+            { "slug": "40", "size": "2rem",   "name": "Large" }
+        ]
+    }
+}
+```
+
+`spacingScale` auto-generates a `t-shirt` style scale; `spacingSizes` lets you author named presets manually. If both are provided, `spacingSizes` wins. Presets are exposed both in the spacing controls and as `var(--wp--preset--spacing--{slug})` CSS variables.
+
+### Typography (added throughout 5.9 → 7.0)
+
+```json
+"settings": {
+    "typography": {
+        "fontSizes":       [ /* ... */ ],
+        "fontFamilies":    [ /* ... */ ],
+        "fluid":           true,
+        "customFontSize":  true,
+        "fontStyle":       true,
+        "fontWeight":      true,
+        "letterSpacing":   true,
+        "lineHeight":      true,
+        "textAlign":       true,
+        "textColumns":     true,
+        "textDecoration":  true,
+        "textIndent":      true,
+        "textTransform":   true,
+        "writingMode":     true,
+        "dropCap":         false
+    }
+}
+```
+
+Highlights:
+
+- `typography.fluid` (added in 6.1) enables CSS `clamp()`-based fluid sizing. In v3 it can also be defined per-font-size via `fluid: { min, max }` on individual entries.
+- `typography.textAlign` (6.6) and `typography.textIndent` (7.0) are the most recent additions.
+- Set `customFontSize: false` to lock editors to your preset scale.
+
+### Border settings (added in 5.9)
+
+```json
+"settings": {
+    "border": {
+        "color":  true,
+        "radius": true,
+        "style":  true,
+        "width":  true
+    }
+}
+```
+
+### Color (with duotone added in 5.9)
+
+```json
+"settings": {
+    "color": {
+        "palette":           [ /* preset colors */ ],
+        "gradients":         [ /* preset gradients */ ],
+        "duotone":           [ /* preset duotone filters */ ],
+        "background":        true,
+        "text":              true,
+        "link":              true,
+        "heading":           true,
+        "button":            true,
+        "caption":           true,
+        "customDuotone":     true,
+        "defaultPalette":    false,
+        "defaultGradients":  false,
+        "defaultDuotone":    false
+    }
+}
+```
+
+Disable the `default*` keys when you want only your brand presets to show up — by default WordPress merges in its own palette and duotone filters.
+
+### Shadow presets (added in 6.3)
+
+```json
+"settings": {
+    "shadow": {
+        "defaultPresets": false,
+        "presets": [
+            { "slug": "soft",   "shadow": "0 4px 12px rgba(0,0,0,0.08)", "name": "Soft" },
+            { "slug": "strong", "shadow": "0 12px 32px rgba(0,0,0,0.18)", "name": "Strong" }
+        ]
+    }
+}
+```
+
+These presets feed both the global shadow picker in the site editor and any block that opts into the `shadow` block support.
+
+### Dimensions (added in 6.5, expanded in 7.0)
+
+```json
+"settings": {
+    "dimensions": {
+        "defaultAspectRatios": true,
+        "aspectRatios": [
+            { "slug": "wide", "ratio": "16/9", "name": "Wide" }
+        ],
+        "minHeight": [
+            { "slug": "small", "size": "20rem", "name": "Small" },
+            { "slug": "large", "size": "60rem", "name": "Large" }
+        ]
+    }
+}
+```
+
+WordPress 7.0 also adds `height` and `width` preset arrays for the new `dimensions.height` / `dimensions.width` block supports.
+
+### Background (added in 6.4)
+
+```json
+"settings": {
+    "background": {
+        "backgroundImage": true,
+        "backgroundSize":  true
+    }
+}
+```
+
+When enabled, blocks that opt into the `background` block support can accept background images directly from the inspector.
+
+### Lightbox (added in 6.4)
+
+```json
+"settings": {
+    "blocks": {
+        "core/image": {
+            "lightbox": { "enabled": true, "allowEditing": true }
+        }
+    }
+}
+```
+
+Turns the click-to-zoom lightbox on for the Image block site-wide. The Gallery block also supports it via the same setting.
+
+### Custom CSS toggle (added in 6.2)
+
+```json
+"settings": {
+    "css": true
+}
+```
+
+Required for the `styles.css` and `styles.blocks[blockName].css` keys to be honored.
+
+## Styles reference
+
+`styles` mirrors `settings` in that you can target the whole site (`styles.*`), individual elements (`styles.elements.*`), and individual blocks (`styles.blocks[blockName].*`).
+
+### Element styles (added in 5.9, expanded in 6.x)
+
+```json
+"styles": {
+    "elements": {
+        "link":    { "color": { "text": "var(--wp--preset--color--accent)" } },
+        "button":  { /* … */ },
+        "heading": { "typography": { "fontFamily": "var(--wp--preset--font-family--display)" } },
+        "h1":      { "typography": { "fontSize": "var(--wp--preset--font-size--xx-large)" } },
+        "h2":      { /* … */ },
+        "caption": { "typography": { "fontSize": "0.875rem" } },
+        "cite":    { /* … */ }
+    }
+}
+```
+
+Element styles cascade across **every** block that renders that HTML element, which is exactly what you want for a design-system theme.
+
+### Per-block & per-element interaction states
+
+```json
+"styles": {
+    "elements": {
+        "link": {
+            "color":  { "text": "var(--wp--preset--color--accent)" },
+            ":hover": { "color": { "text": "var(--wp--preset--color--accent-2)" } },
+            ":focus": { /* … */ }
+        }
+    }
+}
+```
+
+`:hover`, `:focus`, `:focus-visible`, and `:active` are supported on link and button elements. WordPress 7.0 extends this to the `core/button` block specifically (see below).
+
+### Custom CSS per block / globally (added in 6.2)
+
+```json
+"styles": {
+    "css": ":root { --site-max-width: 1280px; }",
+    "blocks": {
+        "core/quote": {
+            "css": "& { border-inline-start: 4px solid currentColor; padding-inline-start: var(--wp--preset--spacing--40); }"
+        }
+    }
+}
+```
+
+The `&` selector is automatically replaced with the block's root selector, so you can scope styles without duplicating the class name.
+
+### Style variations (added in 6.6)
+
+```json
+"styles": {
+    "blocks": {
+        "core/group": {
+            "variations": {
+                "accent": {
+                    "color": { "background": "var(--wp--preset--color--accent)" }
+                }
+            }
+        }
+    }
+}
+```
+
+Any variation defined this way is automatically registered as a block style on `core/group` and surfaces in the Styles panel.
+
+### Pseudo-element styles on `core/button` (added in 7.0)
+
+```json title="theme.json"
+{
+    "version": 3,
+    "styles": {
+        "blocks": {
+            "core/button": {
+                "color": { "background": "var(--wp--preset--color--accent)" },
+                ":hover":         { "color": { "background": "var(--wp--preset--color--accent-2)" } },
+                ":focus-visible": { "outline": { "width": "2px", "style": "solid", "color": "currentColor", "offset": "2px" } }
+            }
+        }
+    }
+}
+```
+
 ## Filtering `theme.json` data
 
 Starting in WordPress 6.1 it is possible to filter the values of `theme.json` on the server. There are 4 different hooks for the 4 different layers or `theme.json`. Default, Blocks, Theme, and User.
@@ -243,3 +538,4 @@ addFilter(
 - [Filters for theme.json data - WordPress 6.1 Dev Note](https://make.wordpress.org/core/2022/10/10/filters-for-theme-json-data/)
 - [How to modify theme.json data using server-side filters - WordPress Developer Blog](https://developer.wordpress.org/news/2023/07/how-to-modify-theme-json-data-using-server-side-filters/)
 - [Customize settings for any block in WordPress 6.2 - WordPress 6.2 Dev Note](https://make.wordpress.org/core/2023/02/28/custom-settings-wordpress-6-2/)
+- [WordPress 7.0 Field Guide](https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/)
