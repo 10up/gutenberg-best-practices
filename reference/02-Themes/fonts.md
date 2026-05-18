@@ -81,9 +81,13 @@ Most of the time you won't actually want to manually write all the JSON to add y
 
 ## Font Library
 
-The font library is part of the Global Styles section inside the site editor of a block theme. It visually allows administrators to manage which fonts are installed on their site.
+The Font Library lets administrators visually manage which fonts are installed on their site.
 
-The font library exposes available font collections in the UI. By default WordPress core includes a collection for Google Fonts. But any developer can add additional font collections in the same way using the `wp_register_font_collection` function.
+:::tip WordPress 7.0
+WordPress 7.0 promotes the Font Library to a **dedicated page under `Appearance → Fonts`** and makes it available to **all themes**, including classic and hybrid themes — not just block themes. Previously it only lived inside the Site Editor's Global Styles panel.
+:::
+
+The Font Library exposes available font collections in the UI. By default WordPress core includes a collection for Google Fonts. But any developer can add additional font collections in the same way using the `wp_register_font_collection` function.
 
 You can [learn more about registering custom font collections in the core documentation](https://make.wordpress.org/core/2024/03/14/new-feature-font-library/#adding-a-font-collection).
 

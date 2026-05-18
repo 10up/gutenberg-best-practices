@@ -88,3 +88,43 @@ Static blocks also only update when the post where they are used gets loaded in 
 :::info
 We recommend that any block that is meant to live on a site that is not directly maintained by a developer, or that is distributed through the plugin directory should use static rendering by default unless there are specific reasons dynamic rendering makes more sense for the specific use-case.
 :::
+
+### PHP-only Blocks (WordPress 7.0)
+
+:::caution Not recommended for client builds
+While PHP-only block registration removes the JavaScript build step, it does so by trading away the editorial experience. Because the editor UI is generated automatically from the attribute schema, every control ends up in the inspector sidebar — there is no inline editing with `RichText`, no live preview that matches the frontend, and no ability to surface controls in the block toolbar. The result feels much closer to a classic shortcode/widget than to a native block.
+
+For client work at 10up the recommendation is still to build dynamic blocks with a proper `edit` component so the editor sees what the visitor will see. Reserve `autoRegister` for purely administrative blocks where the visual representation in the editor genuinely does not matter.
+:::
+
+WordPress 7.0 introduces a new `autoRegister` block support that lets you register a fully working dynamic block **entirely in PHP** — no JavaScript build step required. The editor inspector for the block's attributes is generated automatically from the schema declared in `block.json`, and the block is exposed to the client via a JavaScript global so it still behaves like any other block in the inserter, list view, and DataForms.
+
+```json title="block.json"
+{
+    "apiVersion": 3,
+    "name": "namespace/php-only-block",
+    "title": "PHP Only Block",
+    "supports": {
+        "autoRegister": true
+    },
+    "attributes": {
+        "heading": {
+            "type": "string"
+        },
+        "ctaUrl": {
+            "type": "string"
+        }
+    },
+    "render": "file:./render.php"
+}
+```
+
+When `autoRegister` is set to `true`:
+
+- The block is registered server-side via `register_block_type()` as usual — the `render` callback is required.
+- WordPress automatically generates inspector controls for each supported attribute type.
+- The block is auto-exposed to the editor via a JS global, so no `index.js`/`registerBlockType()` call is needed.
+
+:::info
+PHP-only block registration is a great fit for simple data-driven blocks (latest posts, single-CPT renderers, server-side widgets) where the editor experience doesn't need a custom React UI. For inline-editable blocks with `RichText` we still recommend the standard dynamic block approach.
+:::

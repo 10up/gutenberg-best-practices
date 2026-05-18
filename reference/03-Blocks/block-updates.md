@@ -120,6 +120,23 @@ But be careful. Existing blocks on pages that don't get edited will still have t
 the `isEligible` check is required since the block editor would use the saved markup by default. But since we don't save our markup this is the way we can tell the editor what deprecation needs to run.
 :::
 
+## Block API versions
+
+Each block declares an `apiVersion` in its `block.json`. The version affects how the block is rendered in the editor (most notably whether it participates in the iframed editor).
+
+| API Version | Notable Behavior |
+| ----------- | ---------------- |
+| 1 | Legacy. Adds an extra wrapper `<div>` around block markup in the editor. |
+| 2 | Removes the extra wrapper, requires the use of `useBlockProps`. |
+| 3 | Block opts into the iframed editor and shares the same DOM as the saved markup. |
+
+:::warning WordPress 7.0
+Starting in WordPress 7.0, the **iframed editor is automatically enforced** when every block on the post uses Block API version 3 or higher. If even one block declares a lower API version, the editor falls back to the non-iframed renderer to maintain backwards compatibility.
+
+For most new client work this means setting `"apiVersion": 3` in `block.json` and making sure that scripts, fonts, and styles are loaded through the official enqueue APIs so they are forwarded into the iframe. Editor scripts that rely on `document` or `window` from the parent frame will need to be revisited.
+:::
+
 ## Further reading
 
 - [WordPress Block Deprecations Reference Guide](https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-deprecation.md)
+- [Block API Versions Reference](https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-api-versions.md)
