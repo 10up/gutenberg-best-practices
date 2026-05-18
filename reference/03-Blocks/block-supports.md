@@ -566,7 +566,7 @@ _Added in WordPress 6.5._
   - `clientNavigation`: type `boolean`, default value `false`
   - `interactive`: type `boolean`, default value `false`
 
-Declares that the block uses the [Interactivity API](../../guides/interactivity-api-getting-started.md). Setting it to `true` is shorthand for `{ "interactive": true }`. Setting `clientNavigation` opts the block into the upcoming client-side navigation transitions and tells WordPress that the block's markup is safe to swap during a navigation.
+Declares that the block uses the [Interactivity API](/guides/interactivity-api-getting-started). Setting it to `true` is shorthand for `{ "interactive": true }`. Setting `clientNavigation` opts the block into the upcoming client-side navigation transitions and tells WordPress that the block's markup is safe to swap during a navigation.
 
 ```json
 "supports": {
