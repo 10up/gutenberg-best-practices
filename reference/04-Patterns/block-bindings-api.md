@@ -6,7 +6,7 @@ sidebar_position: 4
 
 In WordPress 6.6 the [Block Bindings API](https://make.wordpress.org/core/2024/03/06/new-feature-the-block-bindings-api/) was introduced.  What this does is allow our blocks to read data from a variety of sources such as custom fields (post meta) or other logic created in php.  Under the hood, it is this feature that allows us to override our synced patterns.
 
-Again, it should be noted that only a handful of core blocks allow for this, and custom block support does not currently exist.  As of WordPress 6.6, the following blocks are enabled with the supported attributes listed after each one.
+Out of the box the following core blocks ship with built-in bindings support:
 
 | Supported Blocks | Supported Attributes |
 | ---------------- | ---------------------|
@@ -14,6 +14,20 @@ Again, it should be noted that only a handful of core blocks allow for this, and
 | Paragraph        | content              |
 | Heading	       | content              |
 | Button           | url, text, linkTarget, rel |
+
+:::tip WordPress 7.0
+Starting in WordPress 7.0, custom blocks can opt into the Block Bindings API (including Pattern Overrides) by registering attributes through the new `block_bindings_supported_attributes` filter. Any attribute exposed through this filter automatically becomes available for both custom binding sources and the built-in `core/pattern-overrides` source.
+
+```php
+add_filter(
+	'block_bindings_supported_attributes',
+	function ( $supported_attributes ) {
+		$supported_attributes['namespace/custom-block'] = array( 'title', 'subtitle', 'mediaId' );
+		return $supported_attributes;
+	}
+);
+```
+:::
 
 While the editor does not currently have an interface for applying these features, we can manually apply attributes to our block markup using the Code Editor view.  Let's run through an example using our Call to Action block from the previous entries on Synced Patterns.
 

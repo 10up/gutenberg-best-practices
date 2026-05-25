@@ -38,3 +38,19 @@ Something we have also done, is creating a custom navigation block that uses the
 ### 4. Custom Navigation Block that uses the old menu system
 
 Another option is to create a custom navigation block that uses the old menu system. This way you can still use the old menu editor to assign a menu to a navigation area. This approach does retain the familiarity of the old system, but it also means you are not using the new block-based system to its full potential.
+
+## Navigation Overlays (WordPress 7.0)
+
+WordPress 7.0 introduces fully customizable **navigation overlays** for the mobile hamburger menu. The overlay is now driven by a regular block pattern that you can edit directly in the Site Editor, and the new `core/navigation-overlay-close` block exposes a styleable close affordance.
+
+Highlights:
+
+- Overlays are editable in-place and previewable from the Navigation block toolbar.
+- Themes can ship a **default overlay template** that the editor uses as the starting point whenever the overlay is opened for the first time.
+- The four overlay patterns bundled with core (centered, accent, dark, plain) can be unregistered or replaced with theme-specific ones.
+
+When building a custom 10up theme:
+
+1. Register an overlay pattern with the `header` category and the `core/navigation-overlay` template area so it's available in the overlay picker.
+2. Include `core/navigation-overlay-close` inside the pattern and style it via `theme.json` to match the rest of the design system.
+3. For client builds where editors should not switch overlays, lock the Navigation block's overlay attribute through the `block_editor_settings_all` filter.

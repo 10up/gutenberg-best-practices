@@ -207,6 +207,45 @@ $additional_attributes = [
 </div>
 ```
 
+## Reacting to state changes (WordPress 7.0)
+
+WordPress 7.0 adds two new tools for running side-effects when state or context changes:
+
+### `watch()`
+
+Imported from `@wordpress/interactivity`, `watch()` subscribes a callback to any signals it reads. It runs once immediately and again any time those signals change, and the optional return value is treated as a cleanup function (similar to `useEffect`).
+
+```js
+import { store, getContext, watch } from '@wordpress/interactivity';
+
+store('namespace/block-name', {
+    callbacks: {
+        logActiveState() {
+            // Re-runs every time isActive changes.
+            watch(() => {
+                const { isActive } = getContext();
+                console.log('isActive →', isActive);
+            });
+        },
+    },
+});
+```
+
+### `data-wp-watch`
+
+The directive counterpart of `watch()`. Attach `data-wp-watch="callbacks.someCallback"` to a DOM element and the referenced callback re-runs every time its tracked signals change, with full access to the element's lifecycle (mount/unmount). This replaces most manual `data-wp-init` + custom subscription patterns.
+
+```html
+<div
+    data-wp-interactive="namespace/block-name"
+    data-wp-watch="callbacks.logActiveState"
+>
+    …
+</div>
+```
+
+`state.url` is also now populated server-side, so SSR pages can read the current URL without waiting for the first client-side navigation.
+
 ## Conclusion
 
 The Interactivity API is a powerful new way to write frontend JavaScript for blocks. It is designed to be declarative and easy to use. This guide has shown you the basics of how to get started with the Interactivity API and how to write your first interactive block.

@@ -16,8 +16,9 @@ Opting into any of these features will register additional attributes on the blo
 - Default value: `false`
 
 Anchors let you link directly to a specific block on a page. This property adds a field to define an id for the block and a button to copy the direct link.
-:::warning
-This doesn't work with dynamic blocks yet. If you need to add Anchor support to a block that uses PHP rendering you need to manually add the attribute and UI for it.
+
+:::tip WordPress 7.0
+As of WordPress 7.0, `anchor` support is fully wired up for **dynamic blocks** as well. The anchor value is now stored on the block comment delimiter and automatically applied to the wrapper attributes returned by `get_block_wrapper_attributes()` — no manual attribute or UI registration required for PHP-rendered blocks.
 :::
 
 ```json
@@ -95,6 +96,49 @@ This property allows to enable [wide alignment](https://developer.wordpress.org/
  }
  ```
 
+## background
+
+_Added in WordPress 6.4._
+
+- Type: `Object`
+- Default value: null
+- Subproperties:
+  - `backgroundImage`: type `boolean`, default value `false`
+  - `backgroundSize`: type `boolean`, default value `false` _(added in 6.5)_
+
+When enabled, the editor surfaces a background image control in the block's inspector. Setting `backgroundSize` to `true` adds a "Size" control (`cover`, `contain`, custom) alongside it.
+
+```json
+"supports": {
+    "background": {
+        "backgroundImage": true,
+        "backgroundSize":  true
+    }
+}
+```
+
+The selected values are written to the `style.background.backgroundImage` and `style.background.backgroundSize` attributes and end up as inline CSS on the block wrapper via `get_block_wrapper_attributes()`.
+
+## blockHooks
+
+_Added in WordPress 6.4._
+
+- Type: `Object`
+- Default value: null
+
+Block Hooks let a block declare that it should be **auto-inserted** relative to another block (typically a template part or a specific core block). The keys are the names of the blocks you want to attach to and the values are the insertion position.
+
+Supported positions: `before`, `after`, `firstChild`, `lastChild`.
+
+```json
+"blockHooks": {
+    "core/post-content":   "after",
+    "core/template-part/footer": "lastChild"
+}
+```
+
+This is the recommended way to inject blocks like "Back to top", "Reading progress", or a "Cookie banner" without editing every template by hand. Editors can still remove or move the auto-inserted block from the list view.
+
 ## className
 
 - Type: `boolean`
@@ -121,11 +165,22 @@ In general it is recommended for consistency sake to stick with the core generat
 - Default value: null
 - Subproperties:
   - `background`: type `boolean`, default value `true`
+  - `button`: type `boolean`, default value `false` _(added in 6.5)_
+  - `caption`: type `boolean`, default value `false` _(added in 6.3)_
+  - `enableContrastChecker`: type `boolean`, default value `true` _(added in 6.5)_
   - `gradients`: type `boolean`, default value `false`
+  - `heading`: type `boolean`, default value `false` _(added in 6.4)_
   - `link`: type `boolean`, default value `false`
   - `text`: type `boolean`, default value `true`
 
 This value signals that a block supports some of the properties related to color. When it does, the block editor will show UI controls for the user to set their values.
+
+In addition to the `text`/`background`/`gradients`/`link` controls described below, you can also expose color pickers that target semantic descendants of the block:
+
+- `color.heading` — styles any `h1`–`h6` inside the block (great for hero/group blocks).
+- `color.button` — styles any `core/button` inside the block.
+- `color.caption` — styles caption text on media blocks.
+- `color.enableContrastChecker` — toggle the accessibility contrast checker that shows next to color pickers (default `true`).
 
 Note that the `background` and `text` keys have a default value of `true`, so if the `color` property is present they'll also be considered enabled:
 
@@ -383,6 +438,33 @@ When the block declares support for `color.text`, the attributes definition is e
   }
   ```
 
+## dimensions
+
+- Type: `Object`
+- Default value: null
+- Subproperties:
+  - `aspectRatio`: type `boolean`, default value `false`
+  - `minHeight`: type `boolean`, default value `false`
+  - `height`: type `boolean`, default value `false` _(added in WordPress 7.0)_
+  - `width`: type `boolean`, default value `false` _(added in WordPress 7.0)_
+
+This value signals that a block supports CSS dimensions. When it does, the block editor will show UI controls for the user to set their values, if the theme declares matching presets in `settings.dimensions` of `theme.json`.
+
+```json
+"supports": {
+    "dimensions": {
+        "aspectRatio": true,
+        "minHeight":   true,
+        "height":      true,
+        "width":       true
+    }
+}
+```
+
+:::tip WordPress 7.0
+WordPress 7.0 introduces `dimensions.height` and `dimensions.width` block supports along with reusable size presets in `theme.json`'s `settings.dimensions` array. The Cover and Image blocks now also support aspect ratio for `wide` and `full` alignments.
+:::
+
 ## customClassName
 
 ![Block Editor Sidebar showing the custom class name setting](../../static//img/supports-classname.png)
@@ -412,6 +494,35 @@ When the style picker is shown, the user can set a default style for a block typ
 "supports": {
     // Remove the Default Style picker.
     "defaultStylePicker": false
+}
+```
+
+## filter
+
+_Added in WordPress 5.9 (duotone). Promoted to the top-level `filter` support in 6.3._
+
+- Type: `Object`
+- Default value: null
+- Subproperties:
+  - `duotone`: type `boolean`, default value `false`
+
+Enables a duotone color filter control. Themes can pre-define duotone presets via `settings.color.duotone` in `theme.json`.
+
+```json
+"supports": {
+    "filter": {
+        "duotone": true
+    }
+}
+```
+
+To apply the generated filter on the frontend you also need to declare a CSS selector via `selectors.filter.duotone` in `block.json`:
+
+```json
+"selectors": {
+    "filter": {
+        "duotone": ".wp-block-namespace-block img"
+    }
 }
 ```
 
@@ -445,6 +556,65 @@ By default, all blocks will appear in the inserter. To hide a block so that it c
 }
 ```
 
+## interactivity
+
+_Added in WordPress 6.5._
+
+- Type: `boolean` or `Object`
+- Default value: `false`
+- Subproperties:
+  - `clientNavigation`: type `boolean`, default value `false`
+  - `interactive`: type `boolean`, default value `false`
+
+Declares that the block uses the [Interactivity API](/guides/interactivity-api-getting-started). Setting it to `true` is shorthand for `{ "interactive": true }`. Setting `clientNavigation` opts the block into the upcoming client-side navigation transitions and tells WordPress that the block's markup is safe to swap during a navigation.
+
+```json
+"supports": {
+    "interactivity": {
+        "interactive":       true,
+        "clientNavigation":  true
+    }
+}
+```
+
+## layout
+
+_Added in WordPress 5.8, expanded in 6.3._
+
+- Type: `boolean` or `Object`
+- Default value: `false`
+
+Layout support lets a block participate in the Flow / Flex / Grid layout system that powers `core/group`, `core/columns`, and similar containers. When enabled, the editor shows the layout panel in the inspector and applies the matching layout styles to inner blocks.
+
+```json
+"supports": {
+    "layout": {
+        "default": { "type": "constrained" },
+        "allowSwitching":     false,
+        "allowInheriting":    true,
+        "allowEditing":       true,
+        "allowSizingOnChildren": true
+    }
+}
+```
+
+Available layout types include `default` (flow), `constrained`, `flex`, and `grid`. The constrained layout is the recommended replacement for the legacy `contentSize` / `wideSize` `align` behavior.
+
+## listView
+
+- Type: `boolean`
+- Default value: `false`
+
+_Added in WordPress 7.0._
+
+Declaring `"listView": true` tells the editor that this block — and its inner blocks — should be discoverable in the **List View** for `contentOnly` patterns. This is the recommended way for custom blocks to surface their nested structure to editors who are working inside Pattern editing mode without exposing the full block design controls.
+
+```json
+"supports": {
+    "listView": true
+}
+```
+
 ## multiple
 
 - Type: `boolean`
@@ -456,6 +626,40 @@ A non-multiple block can be inserted into each post, one time only. For example,
 "supports": {
     // Use the block just once per post
     "multiple": false
+}
+```
+
+## position
+
+_Added in WordPress 6.2._
+
+- Type: `Object`
+- Default value: null
+- Subproperties:
+  - `sticky`: type `boolean`, default value `false`
+
+Exposes a "Position" control in the inspector with a Sticky option. Only the **outermost** block of a template/template-part can become sticky — usually this is the header.
+
+```json
+"supports": {
+    "position": {
+        "sticky": true
+    }
+}
+```
+
+## renaming
+
+_Added in WordPress 6.5._
+
+- Type: `boolean`
+- Default value: `true`
+
+By default editors can rename a block instance via the List View / block options menu. Set to `false` to disable renaming for a specific block.
+
+```json
+"supports": {
+    "renaming": false
 }
 ```
 
@@ -486,6 +690,36 @@ A block may want to disable the ability to toggle the lock state. It can be lock
 supports: {
 	// Remove support for locking UI.
 	lock: false
+}
+```
+
+## shadow
+
+_Added in WordPress 6.3._
+
+- Type: `boolean`
+- Default value: `false`
+
+Adds a box-shadow control in the inspector. The selectable shadow presets come from `settings.shadow.presets` in `theme.json`.
+
+```json
+"supports": {
+    "shadow": true
+}
+```
+
+## splitting
+
+_Added in WordPress 6.5._
+
+- Type: `boolean`
+- Default value: `false`
+
+Allows the block to be split into multiple blocks when the user presses Enter inside it (the way `core/paragraph` and `core/list-item` already behave). The block must implement the `splitting` filter / handler in its edit component.
+
+```json
+"supports": {
+    "splitting": true
 }
 ```
 
@@ -536,20 +770,42 @@ A spacing property may define an array of allowable sides that can be configured
 - Default value: `null`
 - Subproperties:
   - `fontSize`: type `boolean`, default value `false`
+  - `fontFamily`: type `boolean`, default value `false` _(added in 5.9)_
+  - `fontStyle`: type `boolean`, default value `false` _(added in 6.1)_
+  - `fontWeight`: type `boolean`, default value `false` _(added in 6.1)_
+  - `letterSpacing`: type `boolean`, default value `false` _(added in 6.1)_
   - `lineHeight`: type `boolean`, default value `false`
+  - `textAlign`: type `boolean` or `array`, default value `false` _(added in 6.6)_
+  - `textColumns`: type `boolean`, default value `false` _(added in 6.1)_
+  - `textDecoration`: type `boolean`, default value `false` _(added in 6.1)_
+  - `textIndent`: type `boolean`, default value `false` _(added in 7.0)_
+  - `textTransform`: type `boolean`, default value `false` _(added in 6.1)_
+  - `writingMode`: type `boolean`, default value `false` _(added in 6.3)_
 
 The presence of this object signals that a block supports some typography related properties. When it does, the block editor will show a typography UI allowing the user to control their values.
 
 ```json
 "supports": {
     "typography": {
-        // Enable support and UI control for font-size.
-        "fontSize": true,
-        // Enable support and UI control for line-height.
-        "lineHeight": true,
-    },
+        "fontSize":       true,
+        "fontFamily":     true,
+        "fontStyle":      true,
+        "fontWeight":     true,
+        "letterSpacing":  true,
+        "lineHeight":     true,
+        "textAlign":      true,
+        "textColumns":    true,
+        "textDecoration": true,
+        "textIndent":     true,
+        "textTransform":  true,
+        "writingMode":    true
+    }
 }
 ```
+
+:::info
+`textAlign` also accepts an array to restrict which alignments are available, e.g. `"textAlign": [ "left", "center" ]`.
+:::
 
 ### typography.fontSize
 

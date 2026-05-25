@@ -10,6 +10,10 @@ Block variations are a great way to surface one block in multiple ways. The best
 
 Variations can also be used in a variations picker to choose between different predefined setups of a block. This is how the core columns block creates its initial setup state where the editor can choose from a predefined list of different variations.
 
+:::tip WordPress 7.0
+In WordPress 7.0 the heading levels **H1–H6** are no longer registered as a single attribute toggle on `core/heading`. Each level is now registered as its own block variation. The variations are deliberately hidden from the inserter (`scope: ['transform']`) but show up in the toolbar transform picker and slash command — a useful pattern to mirror in your own design-system blocks where you want a single block class with multiple semantic variants.
+:::
+
 ![Core Columns Block initial setup state](../../static/img/block-variations-example.png)
 
 ## Using Block Variations

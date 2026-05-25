@@ -43,3 +43,12 @@
   font-size: 1.125rem;
   color: var(--ifm-color-content);
 }
+
+[class*="searchBarContainer_"] [class*="searchClearButton_"] {
+  right: 7px !important;
+  text-align: right !important;
+}
+
+.navbar__search [class^="searchHintContainer_"] {
+  justify-content: end;
+}
