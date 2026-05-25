@@ -119,10 +119,42 @@ public function maybe_add_flex_shrink( $block_content, $block, $instance ) {
 }
 ```
 
-Register both filters inside the `register()` method of `Blocks.php`, after the existing `add_action` lines:
+### 3. Replace href-less button anchors with spans
+
+Our card pattern (which becomes a custom block in [Lesson 9](./09-archive-templates-and-cards.md)) renders decorative "Trailer" and "View More" buttons with no `href`. The card title already carries the real link (`isLink: true`), which gives screen readers the actual post title for context rather than a generic button label. Leaving the decorative buttons as real anchors causes two problems:
+
+1. **Duplicate link noise**: a second `<a>` to the same destination shows up in the tab order and in the screen reader's links list, with no clearer label than the title link already provides.
+2. **Click capture**: when the entire card is made clickable (see [Lesson 5](./05-styles.md#clickable-cards)), an inner `<a>` swallows the click before it can bubble up to trigger the card-level navigation.
+
+The fix is a `render_block_core/button` filter that swaps the `<a>` for a `<span>` whenever no `href` is present. Add `neutralize_empty_button_link()` to `src/Blocks.php`:
+
+```php title="src/Blocks.php (new method)"
+public function neutralize_empty_button_link( $block_content ) {
+
+    if ( ! str_contains( $block_content, '<a' ) ) {
+        return $block_content;
+    }
+
+    return preg_replace_callback(
+        '#<a\b([^>]*)>(.*?)</a>#is',
+        function ( $matches ) {
+            if ( preg_match( '/\bhref\s*=/i', $matches[1] ) ) {
+                return $matches[0];
+            }
+            return '<span' . $matches[1] . '>' . $matches[2] . '</span>';
+        },
+        $block_content
+    );
+}
+```
+
+Why regex here instead of `WP_HTML_Tag_Processor` like the other filters? The tag processor can read and write attributes but cannot rename a tag from `<a>` to `<span>`. Regex is the practical choice for this narrow case, scoped to the `core/button` render output where the markup shape is predictable.
+
+Register all three filters inside the `register()` method of `Blocks.php`, after the existing `add_action` lines:
 
 ```php
 add_filter( 'render_block_core/post-featured-image', [ $this, 'filter_featured_image_block' ], 10, 3 );
+add_filter( 'render_block_core/button', [ $this, 'neutralize_empty_button_link' ], 10, 1 );
 add_filter( 'render_block', [ $this, 'maybe_add_flex_shrink' ], 10, 3 );
 ```
 
@@ -213,7 +245,7 @@ cp themes/fueled-movies/assets/js/block-styles/index.js themes/10up-block-theme/
 
 | File | Change type | What changes |
 | ---- | ----------- | ------------ |
-| `src/Blocks.php` | Modified | Added `filter_featured_image_block()` for view-transition-name; added `maybe_add_flex_shrink()` for fixed-width blocks |
+| `src/Blocks.php` | Modified | Added `filter_featured_image_block()` for view-transition-name; added `neutralize_empty_button_link()` to swap href-less button anchors for spans; added `maybe_add_flex_shrink()` for fixed-width blocks |
 | `assets/js/block-styles/index.js` | **New** | `unregisterBlockStyle()` calls for button, quote, table, image, separator, site-logo |
 | `assets/js/block-extensions.js` | Modified | Added `import './block-styles'` |
 
@@ -221,6 +253,7 @@ cp themes/fueled-movies/assets/js/block-styles/index.js themes/10up-block-theme/
 
 - View transition names visible on featured images in DevTools
 - `flex-shrink-0` class applied to fixed-width blocks
+- Decorative card buttons (Trailer, View More) render as `<span>` rather than `<a>` on the frontend
 - Core block styles (fill, outline, etc.) are removed from the inspector
 
 ![A gif demonstrating our featured image view transitions](../../static/img/training/frontend-view-transitions.gif)
@@ -229,7 +262,7 @@ cp themes/fueled-movies/assets/js/block-styles/index.js themes/10up-block-theme/
 ## Takeaways
 
 - The `render_block` filter lets you modify any block's HTML output on the frontend.
-- `WP_HTML_Tag_Processor` is the safe way to modify block HTML. Avoid string manipulation where possible.
+- `WP_HTML_Tag_Processor` is the safe way to modify block HTML attributes. Avoid string manipulation where possible. Regex is the fallback when you need to rewrite the tag itself.
 - Use `render_block_{block-name}` for targeted filters, `render_block` for broad ones.
 - `unregisterBlockStyle()` + `domReady()` removes unwanted core block styles from the editor.
 - The editor-only JS entry point (`block-extensions.js`) is where editor customizations live.

@@ -1,18 +1,18 @@
 ---
-sidebar_label: 9. Archive Templates and the Card Pattern
+sidebar_label: 9. Archive Templates and the Card Block
 sidebar_position: 9
 ---
 
-# 9. Archive Templates and the Card Pattern
+# 9. Archive Templates and the Card Block
 
-Build archive pages for Movies and People, and create an adaptive card pattern that renders differently based on post type. This lesson combines templates and patterns into one hands-on exercise.
+Build archive pages for Movies and People. We'll reference a custom Card block that renders differently based on post type, and look at why a block beats a pattern once render logic needs to survive a round trip through the editor.
 
 ## Learning Outcomes
 
 1. Be able to build archive templates with Query Loop, Post Template, and pagination.
-2. Know how patterns work as template composition tools.
-3. Understand how PHP conditionals in patterns can adapt output.
-4. Know the difference between a pattern used for starter content and one used for template composition.
+2. Know how to reference a custom block (with attribute variations) from a template.
+3. Understand why patterns with PHP logic are risky once content passes through the editor.
+4. Know what belongs at the top level of `patterns/` versus in a subdirectory like `patterns/images/`.
 
 ## Tasks
 
@@ -43,7 +43,7 @@ Your updated template should look like this:
 
         <!-- wp:post-template {"layout":{"type":"grid","columnCount":null,"minimumColumnWidth":"13rem"}} -->
 
-            <!-- wp:pattern {"slug":"tenup-theme/base-card"} /-->
+            <!-- wp:tenup/card {"variant":"movie"} /-->
 
         <!-- /wp:post-template -->
 
@@ -61,9 +61,11 @@ Your updated template should look like this:
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
 ```
 
+The `<!-- wp:tenup/card {"variant":"movie"} /-->` line references the Card custom block with its `variant` attribute set. The block itself is built in [Lesson 12](./12-custom-blocks.md). Until then the archive will show a missing-block placeholder where each card would render. That's expected.
+
 ### 2. Update the Person Archives template
 
-Make the same changes to `templates/archive-tenup-person.html`.
+Make the same changes to `templates/archive-tenup-person.html`, but set `"variant":"person"` on the Card block reference.
 
 :::info
 You could even copy and paste `templates/archive-tenup-movie.html` directly to `archive-tenup-person.html` and it would still work.
@@ -73,91 +75,107 @@ This is because the Query attributes set `"inherit":true` which means it will us
 However to avoid confusion, it is still recommended to set the proper `postType` attribute.
 :::
 
-### 3. Evolve the card pattern
+### 3. Why a custom block, not a pattern?
 
-The scaffold ships a simple `patterns/card.php` with a featured image, title, date, and category. We'll evolve it to handle multiple post types using PHP conditionals.
+The scaffold ships a simple `patterns/card.php`. The obvious next step would be to extend it with PHP conditionals on `get_post_type()` so movies, people, and blog posts each render slightly different inner content. WordPress supports that. The pattern PHP file would re-execute on every page load, and the conditionals would pick the right shape for whatever post the query loop is iterating over.
 
-The outer card structure (wrapping Group, featured image, post title) is shared across all post types. Only the inner content changes based on `get_post_type()`:
+We're not going to do that. Here's why.
 
-```php title="patterns/card.php (conditional content only)"
-$post_type = get_post_type();
-$is_movie  = 'tenup-movie' === $post_type;
-$is_person = 'tenup-person' === $post_type;
+#### A pattern's PHP only runs at evaluation time
 
-// Shared: outer Group with is-clickable-card, 2:3 featured image, post title (isLink:true)
+Once a pattern is inserted into a post, or once a template is opened in the Site Editor and exported back to a `.html` file via "Copy all blocks", the PHP runs **once** and the resolved block markup is what gets stored. The PHP call is gone from the saved copy. Whatever logic it expressed is frozen at the moment of evaluation.
 
-// Then conditionally:
-if ( $is_movie ) :
-    // Viewer rating row (block binding) + "Trailer" button
-elseif ( ! $is_movie && ! $is_person ) :
-    // Post date + post terms (default blog content)
-endif;
+For a contrived example, imagine a Hero pattern that loads its background image from the theme directory:
 
-if ( $is_movie || $is_person ) :
-    // Secondary button: "Trailer" for movies, "View More" for persons
-endif;
-```
-
-Copy the complete `patterns/card.php` from the fueled-movies theme. The key design decisions:
-
-- **One shared card layout** -- every post type gets the same outer Group (`is-clickable-card`, `2:3` image, `10px` radius, `12px` padding, background color). Only the content inside varies.
-- **`isLink: true`** on the post title makes the heading a link, which serves as the primary clickable target for accessibility (screen readers announce the post title).
-- **Movie-specific viewer rating row** uses a block binding (`viewerRatingLabelTextNumberOnly`) that won't exist until [Lesson 10](./10-block-bindings.md). It will show empty until then.
-- **Movie/person button**: movies show "Trailer," persons show "View More" via a PHP ternary. Blog posts get no button.
-- **Blog-specific metadata**: post date and category terms only render for non-movie, non-person post types.
-
-All three archive templates reference the same pattern:
-
-```html
-<!-- wp:pattern {"slug":"tenup-theme/base-card"} /-->
-```
-
-One pattern, three templates. The PHP conditionals run in the context of each post inside the query loop, so the card automatically adapts.
-
-![Screenshot of a Movie and Person cards side by side](../../static/img/training/frontend-card-side-by-side.png)
-*Our Movie and Person cards side by side*
-
-### How patterns work in templates
-
-When a template references a pattern via `<!-- wp:pattern {"slug":"..."} /-->`, the pattern's PHP file re-executes on every page load. This is different from patterns inserted into posts, which are copied and detached.
-
-This means:
-- Changes to the pattern file propagate immediately to all templates that reference it
-- PHP conditionals run in context (the current post type, post ID, etc.)
-- No need to re-save posts after changing the pattern
-
-:::tip
-Because patterns are PHP files, you can use any PHP logic: conditional rendering, `get_post_meta()`, `get_template_directory_uri()` for asset paths, `get_post_type()` for post-type-aware behavior. The only rule is that the output must be valid block markup.
-:::
-
-## Pattern metadata reference
-
-The PHP file header tells WordPress about the pattern:
-
-```php
+```php title="patterns/hero.php (illustrative; not in our theme)"
 <?php
 /**
- * Title: Base Card
- * Slug: tenup-theme/base-card
- * Description: A card pattern with a featured image, title, and contextual metadata.
+ * Title: Hero
+ * Slug: tenup-theme/hero
+ * Inserter: true
+ */
+?>
+
+<!-- wp:image -->
+<figure class="wp-block-image">
+    <img src="<?php echo esc_url( get_theme_file_uri( 'patterns/images/hero-bg.jpg' ) ); ?>" alt="" />
+</figure>
+<!-- /wp:image -->
+```
+
+When an editor inserts this pattern into a post and saves, the post's stored block markup looks something like:
+
+```html
+<!-- wp:image -->
+<figure class="wp-block-image">
+    <img src="https://example.com/wp-content/themes/fueled-movies/patterns/images/hero-bg.jpg" alt="" />
+</figure>
+<!-- /wp:image -->
+```
+
+The `get_theme_file_uri()` call is gone. The URL is hardcoded into the saved post. Two things follow from this:
+
+1. Rename the image, change CDN config, or switch themes, and every previously inserted Hero block points at a stale URL with no way for WordPress to know.
+2. The same hazard applies to **anything** PHP-driven inside a pattern: `get_post_meta()` reads, `get_post_type()` conditionals, queries against related posts. The moment that pattern's resolved output hits the editor, the dynamic behavior stops being dynamic.
+
+Templates that include a pattern via `<!-- wp:pattern -->` *do* re-execute the PHP on each request, so this is fine until someone opens the template in the Site Editor and clicks "Copy all blocks" to export updates back to the theme. The exported markup contains the resolved values, not the pattern reference, and the round trip silently flattens the logic.
+
+#### A custom block keeps `render.php` as the source of truth
+
+The Card block we'll consume below (and build in [Lesson 12](./12-custom-blocks.md)) takes a different approach. The saved markup is always:
+
+```html
+<!-- wp:tenup/card {"variant":"movie"} /-->
+```
+
+That's all that round-trips through the editor. The actual rendering happens server-side via the block's `render.php` on every request, against the current post in the query loop. There's no resolved markup to flatten, because there's no resolved markup stored anywhere. Whatever the block renders today, it will keep rendering tomorrow.
+
+:::tip
+WordPress only registers `.php` files at the **top level** of `patterns/` as patterns. Subdirectories like `patterns/images/` are safe homes for related assets such as the contrived `hero-bg.jpg` above. The folder name does not matter; only top-level `.php` files get scanned.
+:::
+
+### 4. The variant inner patterns
+
+The Card block doesn't render its inner content directly. Instead, it looks up one of three patterns based on the value of its `variant` attribute:
+
+| Variant slug | File | What it renders |
+| ------------ | ---- | --------------- |
+| `default` | `patterns/card-inner-default.php` | Featured image, title, post date, category terms |
+| `movie` | `patterns/card-inner-movie.php` | Featured image, title, viewer rating row (binding), Trailer button |
+| `person` | `patterns/card-inner-person.php` | Featured image, title, View More button |
+
+All three are registered with `Inserter: false` so they never appear in the inserter. They exist purely as source markup that the Card block expands inside its editor preview and renders on the frontend. We'll see how the block looks them up in [Lesson 12](./12-custom-blocks.md).
+
+Copy the three `card-inner-*.php` files from the `fueled-movies` theme into your `patterns/` directory now, and delete the original `patterns/card.php`. The archive templates updated above (`wp:tenup/card`) will start rendering correctly once the block exists.
+
+```php title="patterns/card-inner-movie.php (header only)"
+<?php
+/**
+ * Title: Card Inner - Movie
+ * Slug: tenup-theme/card-inner-movie
+ * Description: Inner content for the movie variant of the tenup/card block.
  * Inserter: false
  */
 ```
 
-`Inserter: false` hides the pattern from the inserter while keeping it usable via `<!-- wp:pattern -->` references. Use this for structural patterns that only make sense in a specific template context.
+The `Slug` is what the Card block's editor preview looks up by name; the convention `tenup-theme/card-inner-{variant}` mirrors the block's variant attribute so the lookup stays mechanical.
 
 ## Notes
 
 - Cards in the archive editor won't match the frontend perfectly because `wp_template` is the post context in the editor, not individual movies/people. This is a known limitation worth calling out.
-- The card pattern includes a viewer rating row using the `viewerRatingLabelTextNumberOnly` binding for movie cards. This binding doesn't exist until Lesson 10, so it will show empty until then.
+- The Movie variant includes a viewer rating row using the `viewerRatingLabelTextNumberOnly` binding. This binding doesn't exist until Lesson 10, so it will show empty until then.
+- The Card block itself is built in Lesson 12. Until then, the archive templates will show a missing-block placeholder where each card would render. This is expected.
 
 ## Files changed in this lesson
 
 | File | Change type | What changes |
 | ---- | ----------- | ------------ |
-| `templates/archive-tenup-movie.html` | Modified | Removed placeholder heading, updated grid column width and query order |
-| `templates/archive-tenup-person.html` | Modified | Same changes as movie archive |
-| `patterns/card.php` | Modified | Shared card layout with conditional inner content based on `get_post_type()` |
+| `templates/archive-tenup-movie.html` | Modified | Removed placeholder heading, updated grid column width and query order, swapped the `wp:pattern` reference for `<!-- wp:tenup/card {"variant":"movie"} /-->` |
+| `templates/archive-tenup-person.html` | Modified | Same as movie archive; variant set to `person` |
+| `patterns/card.php` | **Removed** | Replaced by the `tenup/card` custom block (Lesson 12) and the per-variant inner patterns below |
+| `patterns/card-inner-default.php` | **New** | Inner content for the default Card variant |
+| `patterns/card-inner-movie.php` | **New** | Inner content for the Movie Card variant |
+| `patterns/card-inner-person.php` | **New** | Inner content for the Person Card variant |
 
 :::info
 To sync your theme with the finished product, run these commands:
@@ -165,29 +183,34 @@ To sync your theme with the finished product, run these commands:
 ```bash
 cp themes/fueled-movies/templates/archive-tenup-movie.html themes/10up-block-theme/templates/archive-tenup-movie.html
 cp themes/fueled-movies/templates/archive-tenup-person.html themes/10up-block-theme/templates/archive-tenup-person.html
-cp themes/fueled-movies/patterns/card.php themes/10up-block-theme/patterns/card.php
+rm themes/10up-block-theme/patterns/card.php
+cp themes/fueled-movies/patterns/card-inner-default.php themes/10up-block-theme/patterns/card-inner-default.php
+cp themes/fueled-movies/patterns/card-inner-movie.php themes/10up-block-theme/patterns/card-inner-movie.php
+cp themes/fueled-movies/patterns/card-inner-person.php themes/10up-block-theme/patterns/card-inner-person.php
 ```
 
 :::
 
 ## Ship it checkpoint
 
-- `/movies/` shows a poster grid of movies
-- `/people/` shows a poster grid of people
-- All archives use the same `base-card` pattern
+- `/movies/` and `/people/` load their archive templates with the query loop in place
+- Each iteration of the query loop shows a missing-block placeholder for `tenup/card` (resolved in Lesson 12)
+- `patterns/card.php` has been removed
+- The three `card-inner-{variant}.php` patterns exist at the top level of `patterns/`
 
 :::tip[Bonus: What about index.html?]
-We haven't touched the blog index template yet. The scaffold's `templates/index.html` already references the base-card pattern and has a working query loop with pagination, so it works out of the box.
+We haven't touched the blog index template yet. The scaffold's `templates/index.html` references the original `tenup-theme/base-card` pattern that we just removed, so it will need the same `<!-- wp:tenup/card {"variant":"default"} /-->` swap to render correctly once Lesson 12 builds the block.
 
-If you'd like to make it your own, open it in the Site Editor and experiment. Add a heading, tweak the grid column width, change the query type to custom and use one of our new post types... This is your template, do whatever you want with it.
+If you'd like to make it your own, open it in the Site Editor and experiment. Add a heading, tweak the grid column width, change the query type to custom and use one of our new post types. This is your template, do whatever you want with it.
 :::
 
 ## Takeaways
 
-- Archive templates compose a Query Loop with a pattern reference for the card.
-- Patterns referenced via `<!-- wp:pattern -->` re-execute on every page load, staying in sync with the source file.
-- PHP conditionals in patterns let one card pattern adapt to multiple post types.
-- `Inserter: false` hides structural patterns from the inserter while keeping them usable in templates.
+- Archive templates compose a Query Loop with either a pattern reference or a custom block per iteration.
+- A pattern's PHP runs at evaluation time. Once its resolved markup hits the editor, the dynamic behavior is lost.
+- Custom blocks keep `render.php` as the source of truth across editor round-trips. Use them whenever render logic needs to keep running.
+- WordPress only registers `.php` files at the top level of `patterns/`. Subdirectories like `patterns/images/` are safe for related assets.
+- `Inserter: false` hides structural patterns from the inserter while keeping them available to be consumed by a block (as the Card block does in Lesson 12) or a template.
 - The `is-clickable-card` class and heading link work together for accessible card interactions.
 
 ## Further reading

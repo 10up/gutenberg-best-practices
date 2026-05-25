@@ -355,7 +355,7 @@ To reinforce what you've learned in [the last lesson](./07-content-model.md) and
 ## Takeaways
 
 - Use `PluginDocumentSettingPanel`, not custom metaboxes.
-- `useEntityProp` is the standard hook for reading/writing post meta in the editor. The `PostMeta` component from `@10up/block-components` wraps it with a cleaner API.
+- `useEntityProp` is the standard hook for reading/writing post meta in the editor. The `PostMeta` component from `@10up/block-components` wraps it with a cleaner API; `usePostMetaValue` (covered in [Lesson 12](./12-custom-blocks.md)) is a one-liner alternative for single-key reads from inside a block's `edit.js`.
 - Scope panels to the correct post type by checking `postType` and returning `null` if it doesn't match.
 - Keep meta components small, one component per field.
 - Complex meta (objects, arrays) works the same way. The shape passed to `setMeta` must match the REST schema.

@@ -251,6 +251,10 @@ To see the clickable card in action, update `patterns/card.php` to add the `is-c
 
 The only change from the previous version is `"className":"is-clickable-card"` on the outer Group block (and the matching `is-clickable-card` in the rendered `class` attribute). After rebuilding, hovering over a card on the frontend should reveal the title underline and the entire card surface should be clickable.
 
+:::info
+[Lesson 9](./09-archive-templates-and-cards.md) replaces this pattern with a `tenup/card` custom block, and [Lesson 12](./12-custom-blocks.md) builds the block. The `is-clickable-card` class survives the migration: the block applies it via `useBlockProps({ className: 'is-clickable-card' })`, and the same JS utility you set up here keeps working.
+:::
+
 ![Screenshot of a card hover showing an underlined title](../../static/img/training/frontend-card-hover-example.png)
 *Hovering over any part of the card should show the cursor as `pointer` and underline the title*
 

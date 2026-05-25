@@ -112,7 +112,7 @@ That last step is pretty important, this clears the database customization so th
 
 The key distinction: template parts always maintain a live link. When you edit a part, every template that references it gets the update.
 
-Patterns have two modes. When an editor **inserts** a pattern into a post, the markup is copied and detached. But when a template **references** a pattern via `<!-- wp:pattern {"slug":"..."} /-->`, the pattern re-executes on every page load. We'll use patterns this way in [Lesson 9](./09-archive-templates-and-cards.md).
+Patterns have two modes. When an editor **inserts** a pattern into a post, the markup is copied and detached. But when a template **references** a pattern via `<!-- wp:pattern {"slug":"..."} /-->`, the pattern re-executes on every page load. [Lesson 9](./09-archive-templates-and-cards.md) digs into the tradeoffs of both modes, and why we ultimately reach for a custom block instead.
 
 ## Registering custom templates
 

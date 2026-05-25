@@ -24,9 +24,6 @@ To sync your theme with the finished product, run these commands and then add `i
 cp themes/fueled-movies/src/BlockBindings.php themes/10up-block-theme/src/BlockBindings.php
 mkdir -p themes/10up-block-theme/assets/js/block-bindings
 cp themes/fueled-movies/assets/js/block-bindings/index.js themes/10up-block-theme/assets/js/block-bindings/index.js
-cp themes/fueled-movies/patterns/single-movie-trailer.php themes/10up-block-theme/patterns/single-movie-trailer.php
-mkdir -p themes/10up-block-theme/patterns/images
-cp themes/fueled-movies/patterns/images/placeholder.png themes/10up-block-theme/patterns/images/placeholder.png
 cp themes/fueled-movies/templates/single-tenup-movie.html themes/10up-block-theme/templates/single-tenup-movie.html
 cp themes/fueled-movies/templates/single-tenup-person.html themes/10up-block-theme/templates/single-tenup-person.html
 ```
@@ -311,39 +308,17 @@ In template markup, bindings are added via the `metadata.bindings` attribute on 
 
 The inner HTML (`← Back`, the `href`) is the fallback content that gets replaced at render time by the binding source.
 
-### 5. Review the trailer pattern
-
-The trailer pattern (`patterns/single-movie-trailer.php`) demonstrates conditional rendering with PHP logic:
-
-```php title="patterns/single-movie-trailer.php (structure)"
-// Read the trailer ID from post meta.
-$trailer_id = get_post_meta( get_the_ID(), 'tenup_movie_trailer_id', true );
-
-if ( empty( $trailer_id ) || is_admin() ) :
-    // No trailer or in the editor -- show a placeholder image instead.
-else :
-    // Build the IMDB embed URL and render an iframe via wp:html.
-    $url = 'https://www.imdb.com/video/embed/' . $trailer_id . '/';
-endif;
-```
-
-As of this writing, the Avengers movie has no trailer coming from our importer, making it a good test case for the placeholder fallback. The placeholder image itself lives at `patterns/images/placeholder.png`.
-
-:::tip
-You can place subdirectories inside `patterns/` for related assets like images. WordPress only registers `.php` files at the **top level** of `patterns/` as patterns, it does not scan subdirectories. This is different from the `styles/` directory, where subdirectories like `styles/button/` are scanned for style variation JSON files. So `patterns/images/placeholder.png` is just a regular file, not a pattern.
-:::
-
-### 6. Tour the single templates
+### 5. Tour the single templates
 
 The single templates were copied in step 1. Briefly review their layout structure:
 
 - **Single Movie**: backdrop image, metadata row (release year, MPA rating), two-column layout with poster and trailer, plot/stars sections
 - **Single Person**: header with photo and biographical info, filmography section
 
-These templates use simple Paragraphs for metadata right now. In [Lesson 12](./12-custom-blocks.md), you'll revisit them to wrap metadata in `tenup/dl` blocks for semantic HTML. The metadata row uses a basic flex Group without the separator toggle, which comes in [Lesson 11](./11-block-extensions.md). The `tenup/rate-movie` block is added in [Lesson 13](./13-interactivity-api.md).
+These templates use simple Paragraphs for metadata right now. In [Lesson 12](./12-custom-blocks.md), you'll revisit them to wrap metadata in `tenup/dl` blocks for semantic HTML. The metadata row uses a basic flex Group without the separator toggle, which comes in [Lesson 11](./11-block-extensions.md). The `tenup/movie-trailer` block that embeds the IMDB trailer is also built in [Lesson 12](./12-custom-blocks.md). The `tenup/rate-movie` block is added in [Lesson 13](./13-interactivity-api.md).
 
 :::note
-After copying these templates, the Site Editor will show "Your site doesn't include support for the..." warnings for `tenup/movie-runtime`, `tenup/rate-movie`, `tenup/dl`, and `tenup/dl-item`. This is expected. Those blocks are built in [Lesson 12](./12-custom-blocks.md) (`tenup/movie-runtime`, `tenup/dl`, `tenup/dl-item`) and [Lesson 13](./13-interactivity-api.md) (`tenup/rate-movie`). Leave the placeholders alone and the warnings will resolve as you progress.
+After copying these templates, the Site Editor will show "Your site doesn't include support for the..." warnings for `tenup/movie-runtime`, `tenup/movie-trailer`, `tenup/rate-movie`, `tenup/dl`, and `tenup/dl-item`. This is expected. Those blocks are built in [Lesson 12](./12-custom-blocks.md) (`tenup/movie-runtime`, `tenup/movie-trailer`, `tenup/dl`, `tenup/dl-item`) and [Lesson 13](./13-interactivity-api.md) (`tenup/rate-movie`). Leave the placeholders alone and the warnings will resolve as you progress.
 :::
 
 ![The movie single frontend view](../../static/img/training/frontend-movie-block-bindings.png)
@@ -368,8 +343,7 @@ Bindings are not conditional: you can't hide a bound block entirely when the val
 | `src/BlockBindings.php` | **New** | Registers `tenup/block-bindings` source; routes 9 keys to helper methods; Content Connect queries for movieStars and personMovies; date formatting for personBorn/personDied; viewer rating with K notation for counts |
 | `assets/js/block-bindings/index.js` | **New** | Client-side `registerBlockBindingsSource()` with `getValues()` placeholders and `getFieldsList()` |
 | `assets/js/block-extensions.js` | Modified | Added `import './block-bindings'` |
-| `patterns/single-movie-trailer.php` | **New** | Conditional IMDB iframe embed or placeholder image based on `tenup_movie_trailer_id` meta |
-| `templates/single-tenup-movie.html` | Modified | Replaced placeholder with full layout using core/post-meta and tenup/block-bindings throughout |
+| `templates/single-tenup-movie.html` | Modified | Replaced placeholder with full layout using core/post-meta and tenup/block-bindings throughout; references `tenup/movie-trailer` (built in Lesson 12) |
 | `templates/single-tenup-person.html` | Modified | Replaced placeholder with full layout using core/post-meta and tenup/block-bindings throughout |
 
 ## Ship it checkpoint
@@ -377,7 +351,7 @@ Bindings are not conditional: you can't hide a bound block entirely when the val
 - Single movie pages show dynamic metadata (release year, MPA rating, plot, stars, viewer rating)
 - Single person pages show dynamic metadata (biography, born, birthplace, died, deathplace, movies)
 - Editor shows placeholder text for custom bindings
-- Trailer embeds from IMDB, with placeholder for movies without trailers
+- Single movie templates show a missing-block placeholder where the trailer will render (resolved in Lesson 12)
 - Back button navigates to the correct archive
 
 ![The person single frontend view](../../static/img/training/frontend-person-block-bindings.png)
@@ -390,7 +364,6 @@ Bindings are not conditional: you can't hide a bound block entirely when the val
 - Use `core/post-meta` for simple meta display. Use a custom source for computed or formatted values.
 - Always handle null/empty values: bound blocks always render their markup.
 - Bindings are not conditional: you can't hide a block based on whether a value exists.
-- The trailer pattern shows how PHP conditional logic in patterns enables dynamic rendering.
 
 ## Further reading
 
