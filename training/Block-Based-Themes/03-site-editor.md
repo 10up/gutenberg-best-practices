@@ -147,6 +147,10 @@ The `postTypes` array controls which post types show this template as a selectab
 
 Go ahead and add this `customTemplates` array to your `theme.json` now. It can go at the top level, before the `settings` key.
 
+:::info
+[Lesson 4](./04-theme-json.md) replaces the entire `theme.json` by copying from the `fueled-movies` answer-key theme. The answer-key file already includes this exact `customTemplates` array, so your addition here survives the swap intact. You're authoring the block now to learn it; the cp later just keeps things in sync.
+:::
+
 ### 5. Create placeholder templates
 
 Now let's create the actual template files. These will be simple placeholders, just copies of the existing `index.html` and `single.html` with identifying headings so you can confirm they're loading. We'll build out their real content in later lessons.

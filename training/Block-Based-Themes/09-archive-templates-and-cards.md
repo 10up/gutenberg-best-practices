@@ -172,6 +172,7 @@ The `Slug` is what the Card block's editor preview looks up by name; the convent
 | ---- | ----------- | ------------ |
 | `templates/archive-tenup-movie.html` | Modified | Removed placeholder heading, updated grid column width and query order, swapped the `wp:pattern` reference for `<!-- wp:tenup/card {"variant":"movie"} /-->` |
 | `templates/archive-tenup-person.html` | Modified | Same as movie archive; variant set to `person` |
+| `templates/index.html` | Modified | Swapped the `tenup-theme/base-card` pattern reference for `<!-- wp:tenup/card {"variant":"default"} /-->` so the blog index still renders after `patterns/card.php` is removed |
 | `patterns/card.php` | **Removed** | Replaced by the `tenup/card` custom block (Lesson 12) and the per-variant inner patterns below |
 | `patterns/card-inner-default.php` | **New** | Inner content for the default Card variant |
 | `patterns/card-inner-movie.php` | **New** | Inner content for the Movie Card variant |
@@ -183,12 +184,19 @@ To sync your theme with the finished product, run these commands:
 ```bash
 cp themes/fueled-movies/templates/archive-tenup-movie.html themes/10up-block-theme/templates/archive-tenup-movie.html
 cp themes/fueled-movies/templates/archive-tenup-person.html themes/10up-block-theme/templates/archive-tenup-person.html
+cp themes/fueled-movies/templates/index.html themes/10up-block-theme/templates/index.html
 rm themes/10up-block-theme/patterns/card.php
 cp themes/fueled-movies/patterns/card-inner-default.php themes/10up-block-theme/patterns/card-inner-default.php
 cp themes/fueled-movies/patterns/card-inner-movie.php themes/10up-block-theme/patterns/card-inner-movie.php
 cp themes/fueled-movies/patterns/card-inner-person.php themes/10up-block-theme/patterns/card-inner-person.php
 ```
 
+The cp pulls `templates/index.html` over too. The scaffold's blog index references the original `tenup-theme/base-card` pattern that we just removed, so the same swap to `<!-- wp:tenup/card {"variant":"default"} /-->` is needed there for the blog index to render once Lesson 12 builds the block.
+
+:::
+
+:::note
+The archive templates in `fueled-movies` were last saved through the Site Editor, so they include extra default query attributes (`pages`, `offset`, `author`, `search`, `exclude`, `sticky`, `taxQuery`, `parents`) and an enclosing Group around the pagination. The example earlier in this section trims those to highlight the changes that matter. Don't be alarmed if your cp'd file looks a bit more verbose than the snippet.
 :::
 
 ## Ship it checkpoint
@@ -197,11 +205,10 @@ cp themes/fueled-movies/patterns/card-inner-person.php themes/10up-block-theme/p
 - Each iteration of the query loop shows a missing-block placeholder for `tenup/card` (resolved in Lesson 12)
 - `patterns/card.php` has been removed
 - The three `card-inner-{variant}.php` patterns exist at the top level of `patterns/`
+- `templates/index.html` now references `<!-- wp:tenup/card {"variant":"default"} /-->`
 
-:::tip[Bonus: What about index.html?]
-We haven't touched the blog index template yet. The scaffold's `templates/index.html` references the original `tenup-theme/base-card` pattern that we just removed, so it will need the same `<!-- wp:tenup/card {"variant":"default"} /-->` swap to render correctly once Lesson 12 builds the block.
-
-If you'd like to make it your own, open it in the Site Editor and experiment. Add a heading, tweak the grid column width, change the query type to custom and use one of our new post types. This is your template, do whatever you want with it.
+:::tip[Bonus: Make `index.html` your own]
+Open `templates/index.html` in the Site Editor and experiment. Add a heading, tweak the grid column width, change the query type to custom and use one of our new post types. This is your template, do whatever you want with it.
 :::
 
 ## Takeaways

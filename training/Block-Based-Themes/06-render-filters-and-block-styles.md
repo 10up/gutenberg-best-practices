@@ -239,6 +239,7 @@ mkdir -p themes/10up-block-theme/assets/js/block-styles
 cp themes/fueled-movies/assets/js/block-styles/index.js themes/10up-block-theme/assets/js/block-styles/index.js
 ```
 
+The answer-key `Blocks.php` also includes a `localize_block_editor_data()` method that this lesson hasn't introduced yet. It powers an editor placeholder URL for the Movie Trailer block and is covered in [Lesson 12](./12-custom-blocks.md). Safe to leave alone for now.
 :::
 
 ## Files changed in this lesson
